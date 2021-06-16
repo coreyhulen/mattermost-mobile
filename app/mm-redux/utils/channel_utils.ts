@@ -736,3 +736,16 @@ export function filterChannelsMatchingTerm(channels: Array<Channel>, term: strin
             displayName.startsWith(lowercasedTerm);
     });
 }
+
+// removeItem removes an item from an array and returns the result. The provided array is not modified. If the array
+// did not originally contain the given item, the original array is returned.
+export function removeItem<T>(array: T[], item: T) {
+    const index = array.indexOf(item);
+    if (index === -1) {
+        return array;
+    }
+
+    const result = [...array];
+    result.splice(index, 1);
+    return result;
+}

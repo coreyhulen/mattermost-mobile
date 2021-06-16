@@ -9,6 +9,7 @@ import {
     getSortedFavoriteChannelIds,
     getSortedUnreadChannelIds,
     getOrderedChannelIds,
+    getChannelsByCategoryForCurrentTeam,
 } from '@mm-redux/selectors/entities/channels';
 import {getCurrentUserId, getCurrentUserRoles} from '@mm-redux/selectors/entities/users';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
@@ -42,6 +43,7 @@ function mapStateToProps(state) {
     const lastUnreadChannel = DeviceTypes.IS_TABLET ? state.views.channel.keepChannelIdAsUnread : null;
     const unreadChannelIds = getSortedUnreadChannelIds(state, lastUnreadChannel);
     const favoriteChannelIds = getSortedFavoriteChannelIds(state);
+    const channelsByCategory = getChannelsByCategoryForCurrentTeam(state);
     const orderedChannelIds = filterZeroUnreads(getOrderedChannelIds(
         state,
         lastUnreadChannel,
@@ -69,6 +71,7 @@ function mapStateToProps(state) {
         theme: getTheme(state),
         unreadChannelIds,
         orderedChannelIds,
+        channelsByCategory,
     };
 }
 

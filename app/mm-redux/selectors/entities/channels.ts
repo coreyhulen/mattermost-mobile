@@ -1,16 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+
+/* eslint-disable max-lines */
+/* eslint-disable max-nested-callbacks */
+
 import {createSelector} from 'reselect';
 import {General, Permissions} from '../../constants';
 import {getCurrentChannelId, getCurrentUser, getUsers, getMyChannelMemberships, getMyCurrentChannelMembership} from '@mm-redux/selectors/entities/common';
 import {getConfig, getLicense, hasNewPermissions} from '@mm-redux/selectors/entities/general';
-import {getFavoritesPreferences, getMyPreferences, getTeammateNameDisplaySetting, getVisibleTeammate, getVisibleGroupIds} from '@mm-redux/selectors/entities/preferences';
+import {getFavoritesPreferences, getMyPreferences, getTeammateNameDisplaySetting, getVisibleTeammate, getVisibleGroupIds, shouldShowUnreadsCategory} from '@mm-redux/selectors/entities/preferences';
 import {getLastPostPerChannel, getAllPosts} from '@mm-redux/selectors/entities/posts';
 import {getCurrentTeamId, getCurrentTeamMembership, getMyTeams, getTeamMemberships} from '@mm-redux/selectors/entities/teams';
 import {haveICurrentChannelPermission, haveIChannelPermission, haveITeamPermission} from '@mm-redux/selectors/entities/roles';
 import {isCurrentUserSystemAdmin, getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {buildDisplayableChannelListWithUnreadSection, canManageMembersOldPermissions, completeDirectChannelInfo, completeDirectChannelDisplayName, getUserIdFromChannelName, getChannelByName as getChannelByNameHelper, isChannelMuted, getDirectChannelName, isAutoClosed, isDirectChannelVisible, isGroupChannelVisible, isGroupOrDirectChannelVisible, sortChannelsByDisplayName, isFavoriteChannel, isDefault, sortChannelsByRecency} from '@mm-redux/utils/channel_utils';
-import {createIdsSelector} from '@mm-redux/utils/helpers';
+import {createIdsSelector, memoizeResult} from '@mm-redux/utils/helpers';
 
 export {getCurrentChannelId, getMyChannelMemberships, getMyCurrentChannelMembership};
 import {GlobalState} from '@mm-redux/types/store';
@@ -23,6 +27,8 @@ import {NameMappedObjects, UserIDMappedObjects, IDMappedObjects, RelationOneToOn
 
 import {getUserIdsInChannels} from './users';
 import {Config} from '@mm-redux/types/config';
+import {makeGetCategoriesForTeam, makeGetChannelsByCategory} from './channel_categories';
+import {CategorySorting, ChannelCategory} from '@mm-redux/types/channel_categories';
 type SortingType = 'recent' | 'alpha';
 
 export function getAllChannels(state: GlobalState): IDMappedObjects<Channel> {
@@ -933,3 +939,92 @@ export function isManuallyUnread(state: GlobalState, channelId?: string): boolea
 export function getChannelMemberCountsByGroup(state: GlobalState, channelId: string): ChannelMemberCountsByGroup {
     return state.entities.channels.channelMemberCountsByGroup[channelId] || {};
 }
+
+// Categories
+// makeGetChannelsForIds returns a selector that, given an array of channel IDs, returns a list of the corresponding
+// channels. Channels are returned in the same order as the given IDs with undefined entries replacing any invalid IDs.
+// Note that memoization will fail if an array literal is passed in.
+export function makeGetChannelsForIds(): (state: GlobalState, ids: string[]) => Channel[] {
+    return createSelector(
+        getAllChannels,
+        (state: GlobalState, ids: string[]) => ids,
+        (allChannels, ids = []) => {
+            return ids.map((id) => allChannels[id]);
+        },
+    );
+}
+
+export function isUnreadFilterEnabled(state: GlobalState) {
+    return state.views.channelSidebar.unreadFilterEnabled;
+}
+
+export const getCategoriesForCurrentTeam: (state: GlobalState) => ChannelCategory[] = (() => {
+    const getCategoriesForTeam = makeGetCategoriesForTeam();
+
+    return memoizeResult((state: GlobalState) => {
+        const currentTeamId = getCurrentTeamId(state);
+        return getCategoriesForTeam(state, currentTeamId);
+    });
+})();
+
+export const getAutoSortedCategoryIds: (state: GlobalState) => Set<string> = (() => createSelector(
+    (state: GlobalState) => getCategoriesForCurrentTeam(state),
+    (categories) => {
+        return new Set(categories.filter((category) =>
+            category.sorting === CategorySorting.Alphabetical ||
+            category.sorting === CategorySorting.Recency).map((category) => category.id));
+    },
+))();
+
+export const getChannelsByCategoryForCurrentTeam: (state: GlobalState) => RelationOneToOne<ChannelCategory, Channel[]> = (() => {
+    const getChannelsByCategory = makeGetChannelsByCategory();
+
+    return memoizeResult((state: GlobalState) => {
+        const currentTeamId = getCurrentTeamId(state);
+        return getChannelsByCategory(state, currentTeamId);
+    });
+})();
+
+const getUnreadChannelIdsSet = createSelector(
+    (state: GlobalState) => getUnreadChannelIds(state, state.views.channel.lastUnreadChannel),
+    (unreadChannelIds) => {
+        return new Set(unreadChannelIds);
+    },
+);
+
+// getChannelsInCategoryOrder returns an array of channels on the current team that are currently visible in the sidebar.
+// Channels are returned in the same order as in the sidebar. Channels in the Unreads category are not included.
+export const getChannelsInCategoryOrder = (() => {
+    return createSelector(
+        getCategoriesForCurrentTeam,
+        getChannelsByCategoryForCurrentTeam,
+        getCurrentChannelId,
+        getUnreadChannelIdsSet,
+        shouldShowUnreadsCategory,
+        (categories, channelsByCategory, currentChannelId, unreadChannelIds, showUnreadsCategory) => {
+            return categories.map((category) => {
+                const channels = channelsByCategory[category.id];
+
+                return channels.filter((channel: Channel) => {
+                    const isUnread = unreadChannelIds.has(channel.id);
+
+                    if (showUnreadsCategory) {
+                        // Filter out channels that have been moved to the Unreads category
+                        if (isUnread) {
+                            return false;
+                        }
+                    }
+
+                    if (category.collapsed) {
+                        // Filter out channels that would be hidden by a collapsed category
+                        if (!isUnread && currentChannelId !== channel.id) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+            }).flat();
+        },
+    );
+})();

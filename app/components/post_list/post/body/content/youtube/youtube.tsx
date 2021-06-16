@@ -89,7 +89,7 @@ const YouTube = ({googleDeveloperKey, intl, isReplyPost, post}: YouTubeProps) =>
 
         if (Platform.OS === 'ios') {
             YouTubeStandaloneIOS.
-                playVideo(videoId, startTime).
+                playVideo(videoId).
                 then(playYouTubeVideoEnded).
                 catch(playYouTubeVideoError);
             return;

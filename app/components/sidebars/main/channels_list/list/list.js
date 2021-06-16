@@ -48,6 +48,7 @@ export default class List extends PureComponent {
         styles: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
         orderedChannelIds: PropTypes.array.isRequired,
+        channelsByCategory: PropTypes.array.isRequired,
     };
 
     static contextTypes = {
@@ -166,7 +167,11 @@ export default class List extends PureComponent {
     buildSections = (props) => {
         const {
             orderedChannelIds,
+            channelsByCategory,
         } = props;
+
+        // eslint-disable-next-line no-console
+        console.log('ChannelIDs', channelsByCategory);
 
         return orderedChannelIds.map((s) => {
             return {

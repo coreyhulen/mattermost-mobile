@@ -13,6 +13,7 @@ export default keyMirror({
     LOGIN_FAILURE: null,
 
     LOGOUT_REQUEST: null,
+    LOGOUT_SUCCESS: null,
     LOGOUT_FAILURE: null,
 
     REVOKE_ALL_USER_SESSIONS_SUCCESS: null,

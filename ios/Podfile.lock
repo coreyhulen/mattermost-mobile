@@ -685,7 +685,7 @@ SPEC CHECKSUMS:
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 7b423f9e248eae65987838148c36eec1dbfe0b53
-  FBReactNativeSpec: 5f648f4f07de2b0b37afa48029ed2b894d9ebfd0
+  FBReactNativeSpec: 1ad27830bb833630be32fb99d53183f3416344f6
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   jail-monkey: 0b62fb896246639f4203ea90358e08db91b7f5ea
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0

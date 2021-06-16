@@ -265,3 +265,23 @@ export function shouldAutocloseDMs(state: GlobalState) {
     const preference = get(state, Preferences.CATEGORY_SIDEBAR_SETTINGS, Preferences.CHANNEL_SIDEBAR_AUTOCLOSE_DMS, Preferences.AUTOCLOSE_DMS_ENABLED);
     return preference === Preferences.AUTOCLOSE_DMS_ENABLED;
 }
+
+// shouldShowUnreadsCategory returns true if the user has unereads grouped separately with the new sidebar enabled.
+export const shouldShowUnreadsCategory: (state: GlobalState) => boolean = reselect.createSelector(
+    (state: GlobalState) => get(state, Preferences.CATEGORY_SIDEBAR_SETTINGS, Preferences.SHOW_UNREAD_SECTION),
+    (state: GlobalState) => get(state, Preferences.CATEGORY_SIDEBAR_SETTINGS, ''),
+    (state: GlobalState) => getConfig(state).ExperimentalGroupUnreadChannels,
+    (userPreference, oldUserPreference, serverDefault) => {
+        // Prefer the show_unread_section user preference over the previous version
+        if (userPreference) {
+            return userPreference === 'true';
+        }
+
+        if (oldUserPreference) {
+            return JSON.parse(oldUserPreference).unreads_at_top === 'true';
+        }
+
+        // The user setting is not set, so use the system default
+        return serverDefault === General.DEFAULT_ON;
+    },
+);

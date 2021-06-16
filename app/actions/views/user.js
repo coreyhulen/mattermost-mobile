@@ -4,7 +4,7 @@
 import {batchActions} from 'redux-batched-actions';
 
 import {NavigationTypes} from 'app/constants';
-import {GeneralTypes, RoleTypes, UserTypes} from '@mm-redux/action_types';
+import {ChannelCategoryTypes, GeneralTypes, RoleTypes, UserTypes} from '@mm-redux/action_types';
 import {getDataRetentionPolicy} from '@mm-redux/actions/general';
 import * as HelperActions from '@mm-redux/actions/helpers';
 import {autoUpdateTimezone} from '@mm-redux/actions/timezone';
@@ -122,6 +122,30 @@ export function loadMe(user, deviceToken, skipDispatch = false) {
             data.preferences = preferences;
             data.config = config;
             data.url = Client4.getUrl();
+
+            const allCategories = [];
+
+            teams.forEach(async (team) => {
+                const channelCategories = await Client4.getChannelCategories(data.user.id, team.id);
+                // eslint-disable-next-line no-console
+                console.log('Channel Categories', channelCategories);
+                const categories = channelCategories.categories;
+                allCategories.push(categories);
+
+                const order = channelCategories.order;
+                actions.push({
+                    type: ChannelCategoryTypes.RECEIVED_CATEGORY_ORDER,
+                    data: {
+                        teamId: team.id,
+                        order,
+                    },
+                });
+            });
+
+            actions.push({
+                type: ChannelCategoryTypes.RECEIVED_CATEGORIES,
+                data: {categories: Array.flat(allCategories)},
+            });
 
             actions.push({
                 type: UserTypes.LOGIN,

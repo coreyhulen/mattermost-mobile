@@ -28,6 +28,7 @@ export default class MainSidebarBase extends Component {
             joinChannel: PropTypes.func.isRequired,
             makeDirectChannel: PropTypes.func.isRequired,
             setChannelDisplayName: PropTypes.func.isRequired,
+            fetchMyCategories: PropTypes.func.isRequired,
         }).isRequired,
         children: PropTypes.node,
         currentTeamId: PropTypes.string.isRequired,
@@ -47,6 +48,11 @@ export default class MainSidebarBase extends Component {
     componentDidMount() {
         this.mounted = true;
         this.props.actions.getTeams();
+
+        if (this.props.currentTeamId) {
+            this.props.actions.fetchMyCategories(this.props.currentTeamId);
+        }
+
         EventEmitter.on(NavigationTypes.CLOSE_MAIN_SIDEBAR, this.closeMainSidebar);
         EventEmitter.on(WebsocketEvents.CHANNEL_UPDATED, this.handleUpdateTitle);
         Dimensions.addEventListener('change', this.handleDimensions);

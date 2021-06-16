@@ -4,6 +4,7 @@
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import {fetchMyCategories} from '@mm-redux/actions/channel_categories';
 import {joinChannel} from '@mm-redux/actions/channels';
 import {getTeams} from '@mm-redux/actions/teams';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
@@ -35,6 +36,7 @@ function mapDispatchToProps(dispatch) {
             makeDirectChannel,
             setChannelDisplayName,
             handleSelectChannel,
+            fetchMyCategories,
         }, dispatch),
     };
 }

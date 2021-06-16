@@ -11,10 +11,14 @@ const IPHONE_11_LANDSCAPE_HEIGHT = ['iPhone 11', 'iPhone 11 Pro Max'];
 export const SidebarSectionTypes = {
     UNREADS: 'unreads',
     FAVORITE: 'favorite',
-    PUBLIC: 'public',
-    PRIVATE: 'private',
+
+    // PUBLIC: 'public',
+    // PRIVATE: 'private',
+    CUSTOM: 'custom',
+    CHANNELS: 'channels',
     DIRECT: 'direct',
-    RECENT_ACTIVITY: 'recent',
+
+    // RECENT_ACTIVITY: 'recent',
     ALPHA: 'alpha',
 };
 
