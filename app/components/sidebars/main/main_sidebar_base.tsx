@@ -21,6 +21,32 @@ import DrawerSwiper from './drawer_swiper';
 import TeamsList from './teams_list';
 
 export default class MainSidebarBase extends Component {
+	public swiperIndex: any;
+	public channelListRef: any;
+	public mounted: any;
+	public props: any;
+	public closeMainSidebar: any;
+	public handleDimensions: any;
+	public state: any;
+	public drawerSwiper: any;
+	public providerRef: any;
+	public context: any;
+	public setState: any;
+	public drawerRef: any;
+	public onPageSelected: any;
+	public currentTeamId: any;
+	public teamsCount: any;
+	public theme: any;
+	public deviceWidth: any;
+	public openDrawerOffset: any;
+	public isSplitView: any;
+	public permanentSidebar: any;
+	public searching: any;
+	public intl: any;
+	public actions: any;
+	public currentUserId: any;
+	public makeDirectChannel: any;
+	public handleSelectChannel: any;
     static propTypes = {
         actions: PropTypes.shape({
             getTeams: PropTypes.func.isRequired,

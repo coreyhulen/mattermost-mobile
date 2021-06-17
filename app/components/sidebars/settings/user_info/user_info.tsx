@@ -11,6 +11,13 @@ import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import ProfilePicture from 'app/components/profile_picture';
 
 export default class UserInfo extends PureComponent {
+	public props: any;
+	public testID: any;
+	public user: any;
+	public onPress: any;
+	public theme: any;
+	public firstName: any;
+	public lastName: any;
     static propTypes = {
         testID: PropTypes.string,
         user: PropTypes.object.isRequired,

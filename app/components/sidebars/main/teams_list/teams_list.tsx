@@ -33,6 +33,22 @@ const VIEWABILITY_CONFIG = {
 };
 
 export default class TeamsList extends PureComponent {
+	public state: any;
+	public closeButton: any;
+	public setState: any;
+	public props: any;
+	public context: any;
+	public actions: any;
+	public closeMainSidebar: any;
+	public currentTeamId: any;
+	public intl: any;
+	public serverUrl: any;
+	public width: any;
+	public height: any;
+	public testID: any;
+	public hasOtherJoinableTeams: any;
+	public teamIds: any;
+	public theme: any;
     static propTypes = {
         testID: PropTypes.string,
         actions: PropTypes.shape({

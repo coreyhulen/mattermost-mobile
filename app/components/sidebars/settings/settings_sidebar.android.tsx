@@ -13,6 +13,8 @@ import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import SettingsSidebarBase from './settings_sidebar_base';
 
 export default class SettingsDrawerAndroid extends SettingsSidebarBase {
+	public providerRef: any;
+	public intl: any;
     confirmReset = (status) => {
         const {intl} = this.providerRef.getChildContext();
         this.confirmResetBase(status, intl);

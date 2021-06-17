@@ -16,6 +16,15 @@ import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class TeamsListItem extends React.PureComponent {
+	public props: any;
+	public testID: any;
+	public currentTeamId: any;
+	public currentUrl: any;
+	public displayName: any;
+	public mentionCount: any;
+	public name: any;
+	public teamId: any;
+	public theme: any;
     static propTypes = {
         testID: PropTypes.string,
         currentTeamId: PropTypes.string.isRequired,

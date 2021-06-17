@@ -37,6 +37,32 @@ const VIEWABILITY_CONFIG = {
 let UnreadIndicator = null;
 
 export default class List extends PureComponent {
+	public combinedActionsRef: any;
+	public state: any;
+	public keyboardDismissProp: any;
+	public props: any;
+	public closeButton: any;
+	public setState: any;
+	public listRef: any;
+	public context: any;
+	public canCreatePrivateChannels: any;
+	public orderedChannelIds: any;
+	public unreadChannelIds: any;
+	public canJoinPublicChannels: any;
+	public formatMessage: any;
+	public canCreatePublicChannels: any;
+	public intl: any;
+	public width: any;
+	public testID: any;
+	public favoriteChannelIds: any;
+	public styles: any;
+	public action: any;
+	public defaultMessage: any;
+	public id: any;
+	public height: any;
+	public theme: any;
+	public sections: any;
+	public showIndicator: any;
     static propTypes = {
         testID: PropTypes.string,
         canJoinPublicChannels: PropTypes.bool.isRequired,

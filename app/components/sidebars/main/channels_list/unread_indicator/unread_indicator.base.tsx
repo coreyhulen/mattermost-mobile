@@ -15,6 +15,10 @@ import FormattedText from '@components/formatted_text';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class UnreadIndicatorBase extends PureComponent {
+	public props: any;
+	public onPress: any;
+	public visible: any;
+	public theme: any;
     static propTypes = {
         visible: PropTypes.bool,
         style: ViewPropTypes.style,

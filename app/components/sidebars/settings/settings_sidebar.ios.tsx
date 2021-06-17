@@ -16,6 +16,13 @@ import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import SettingsSidebarBase from './settings_sidebar_base';
 
 export default class SettingsDrawer extends SettingsSidebarBase {
+	public drawerRef: any;
+	public context: any;
+	public drawerOpened: any;
+	public intl: any;
+	public children: any;
+	public deviceWidth: any;
+	public openDrawerOffset: any;
     static contextTypes = {
         intl: intlShape,
     };

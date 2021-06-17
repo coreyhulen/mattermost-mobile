@@ -10,6 +10,18 @@ import FormattedText from '@components/formatted_text';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class DrawerItem extends PureComponent {
+	public props: any;
+	public testID: any;
+	public centered: any;
+	public defaultMessage: any;
+	public i18nId: any;
+	public iconName: any;
+	public isDestructor: any;
+	public labelComponent: any;
+	public leftComponent: any;
+	public onPress: any;
+	public separator: any;
+	public theme: any;
     static propTypes = {
         testID: PropTypes.string,
         centered: PropTypes.bool,

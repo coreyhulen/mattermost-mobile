@@ -27,6 +27,24 @@ const SETTLING = 'Settling';
 const emptyObject = {};
 
 export default class DrawerLayout extends Component {
+	public _panResponder: any;
+	public canClose: any;
+	public openValue: any;
+	public state: any;
+	public setState: any;
+	public props: any;
+	public _lastOpenValue: any;
+	public _isClosing: any;
+	public _closingAnchorValue: any;
+	public drawerPosition: any;
+	public accessibilityViewIsModal: any;
+	public drawerShown: any;
+	public drawerBackgroundColor: any;
+	public drawerWidth: any;
+	public width: any;
+	public isTablet: any;
+	public deviceWidth: any;
+	public threshold: any;
     static propTypes = {
         children: PropTypes.any,
         drawerBackgroundColor: PropTypes.string,

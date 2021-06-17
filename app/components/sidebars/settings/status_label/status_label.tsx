@@ -11,6 +11,9 @@ import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import {t} from 'app/utils/i18n';
 
 export default class UserInfo extends PureComponent {
+	public props: any;
+	public status: any;
+	public theme: any;
     static propTypes = {
         status: PropTypes.string,
         theme: PropTypes.object.isRequired,

@@ -19,6 +19,28 @@ import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class ChannelItem extends PureComponent {
+	public props: any;
+	public context: any;
+	public channelId: any;
+	public currentChannelId: any;
+	public displayName: any;
+	public onSelectChannel: any;
+	public channel: any;
+	public type: any;
+	public fake: any;
+	public testID: any;
+	public isArchived: any;
+	public isChannelMuted: any;
+	public isManualUnread: any;
+	public currentUserId: any;
+	public isUnread: any;
+	public hasDraft: any;
+	public mentions: any;
+	public shouldHideChannel: any;
+	public theme: any;
+	public isSearchResult: any;
+	public teammateId: any;
+	public intl: any;
     static propTypes = {
         testID: PropTypes.string,
         channelId: PropTypes.string.isRequired,

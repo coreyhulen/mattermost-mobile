@@ -24,6 +24,39 @@ import memoize from 'memoize-one';
 const VIEWABILITY_CONFIG = ListTypes.VISIBILITY_CONFIG_DEFAULTS;
 
 class FilteredList extends Component {
+	public keyboardDismissProp: any;
+	public state: any;
+	public props: any;
+	public setState: any;
+	public searchTimeoutId: any;
+	public actions: any;
+	public currentTeam: any;
+	public term: any;
+	public searchChannels: any;
+	public searchProfiles: any;
+	public currentChannel: any;
+	public makeGroupMessageVisibleIfNecessary: any;
+	public unreadChannels: any;
+	public channels: any;
+	public currentUserId: any;
+	public teammateNameDisplay: any;
+	public profiles: any;
+	public pastDirectMessages: any;
+	public groupChannelMemberDetails: any;
+	public favoriteChannels: any;
+	public teamProfiles: any;
+	public restrictDms: any;
+	public publicChannels: any;
+	public privateChannels: any;
+	public archivedChannels: any;
+	public otherChannels: any;
+	public searchOrder: any;
+	public builder: any;
+	public defaultMessage: any;
+	public id: any;
+	public testID: any;
+	public intl: any;
+	public styles: any;
     static propTypes = {
         testID: PropTypes.string,
         actions: PropTypes.shape({

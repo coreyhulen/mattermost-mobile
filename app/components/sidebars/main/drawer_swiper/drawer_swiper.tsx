@@ -9,6 +9,12 @@ import {changeOpacity} from 'app/utils/theme';
 import Swiper from 'app/components/swiper';
 
 export default class DrawerSwiper extends Component {
+	public props: any;
+	public drawerWidth: any;
+	public showTeams: any;
+	public theme: any;
+	public children: any;
+	public testID: any;
     static propTypes = {
         children: PropTypes.node.isRequired,
         drawerWidth: PropTypes.number.isRequired,

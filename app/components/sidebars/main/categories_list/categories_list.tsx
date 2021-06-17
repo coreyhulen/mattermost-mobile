@@ -19,13 +19,25 @@ import {
     getKeyboardAppearanceFromTheme,
 } from '@utils/theme';
 
-import List from './list';
-import SwitchTeamsButton from './switch_teams_button';
+// import List from './list';
+// import SwitchTeamsButton from './switch_teams_button';
 
 const {ANDROID_TOP_PORTRAIT} = ViewTypes;
 let FilteredList = null;
 
-export default class ChannelsList extends PureComponent {
+export default class CategoriesList extends PureComponent {
+	public state: any;
+	public props: any;
+	public closeButton: any;
+	public searchBarRef: any;
+	public setState: any;
+	public context: any;
+	public intl: any;
+	public testID: any;
+	public onShowTeams: any;
+	public theme: any;
+	public searching: any;
+	public term: any;
     static propTypes = {
         testID: PropTypes.string,
         onJoinChannel: PropTypes.func.isRequired,

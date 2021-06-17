@@ -15,6 +15,12 @@ import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class SwitchTeamsButton extends React.PureComponent {
+	public props: any;
+	public testID: any;
+	public currentTeamId: any;
+	public mentionCount: any;
+	public teamsCount: any;
+	public theme: any;
     static propTypes = {
         testID: PropTypes.string,
         currentTeamId: PropTypes.string,

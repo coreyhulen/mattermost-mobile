@@ -26,6 +26,28 @@ import UserInfo from './user_info';
 import StatusLabel from './status_label';
 
 export default class SettingsSidebarBase extends PureComponent {
+	public state: any;
+	public mounted: any;
+	public closeSettingsSidebar: any;
+	public props: any;
+	public setState: any;
+	public statusModal: any;
+	public closeButton: any;
+	public confirmReset: any;
+	public goToCustomStatus: any;
+	public goToUserProfile: any;
+	public goToMentions: any;
+	public goToSaved: any;
+	public goToEditProfile: any;
+	public goToSettings: any;
+	public currentUser: any;
+	public currentUserStatus: any;
+	public error: any;
+	public isCustomStatusEnabled: any;
+	public customStatus: any;
+	public theme: any;
+	public showStatus: any;
+	public showRetryMessage: any;
     static propTypes = {
         actions: PropTypes.shape({
             logout: PropTypes.func.isRequired,

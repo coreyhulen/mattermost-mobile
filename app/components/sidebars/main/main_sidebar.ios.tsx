@@ -14,6 +14,7 @@ import mattermostManaged from 'app/mattermost_managed';
 import MainSidebarBase from './main_sidebar_base';
 
 export default class MainSidebarIOS extends MainSidebarBase {
+	public children: any;
     static contextTypes = {
         intl: intlShape.isRequired,
     };
