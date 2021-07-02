@@ -20,7 +20,7 @@ import DialogIntroductionText from './dialog_introduction_text';
 import {Theme} from '@mm-redux/types/preferences';
 import {AppCallRequest, AppField, AppForm, AppFormValue, AppFormValues, AppLookupResponse, AppSelectOption, FormResponseData} from '@mm-redux/types/apps';
 import {DialogElement} from '@mm-redux/types/integrations';
-import {AppCallResponseTypes} from '@mm-redux/constants/apps';
+import {AppCallResponseTypes, AppFieldTypes} from '@mm-redux/constants/apps';
 import AppsFormField from './apps_form_field';
 import {preventDoubleTap} from '@utils/tap';
 import {DoAppCallResult} from 'types/actions/apps';
@@ -30,9 +30,7 @@ export type Props = {
     form: AppForm;
     actions: {
         submit: (submission: {
-            values: {
-                [name: string]: string;
-            };
+            values: AppFormValues;
         }) => Promise<DoAppCallResult<FormResponseData>>;
         performLookupCall: (field: AppField, values: AppFormValues, userInput: string) => Promise<DoAppCallResult<AppLookupResponse>>;
         refreshOnSelect: (field: AppField, values: AppFormValues, value: AppFormValue) => Promise<DoAppCallResult<FormResponseData>>;
@@ -41,18 +39,23 @@ export type Props = {
     componentId: string;
 }
 
-type State = {
-    values: {[name: string]: string};
+export type State = {
+    values: AppFormValues;
     formError: string | null;
     fieldErrors: {[name: string]: React.ReactNode};
     form: AppForm;
 }
 
-const initFormValues = (form: AppForm): {[name: string]: string} => {
-    const values: {[name: string]: any} = {};
+const initFormValues = (form: AppForm): AppFormValues => {
+    const values: AppFormValues = {};
     if (form && form.fields) {
         form.fields.forEach((f) => {
-            values[f.name] = f.value || null;
+            let defaultValue: AppFormValue = null;
+            if (f.type === AppFieldTypes.BOOL) {
+                defaultValue = false;
+            }
+
+            values[f.name] = f.value || defaultValue;
         });
     }
 
