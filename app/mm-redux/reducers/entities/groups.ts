@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {GroupTypes} from '@mm-redux/action_types';
-import {GroupChannel, GroupSyncables, GroupTeam, Group} from '@mm-redux/types/groups';
 import {GenericAction} from '@mm-redux/types/actions';
+import {GroupChannel, GroupSyncables, GroupTeam, Group} from '@mm-redux/types/groups';
 import {Dictionary} from '@mm-redux/types/utilities';
 
 function syncables(state: Dictionary<GroupSyncables> = {}, action: GenericAction) {

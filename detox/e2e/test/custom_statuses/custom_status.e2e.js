@@ -1,6 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {
+    Setup,
+    System,
+    Post,
+    Channel,
+} from '@support/server_api';
 import {SettingsSidebar} from '@support/ui/component';
 import {
     AddReactionScreen,
@@ -11,12 +17,6 @@ import {
     ThreadScreen,
     UserProfileScreen,
 } from '@support/ui/screen';
-import {
-    Setup,
-    System,
-    Post,
-    Channel,
-} from '@support/server_api';
 
 describe('Custom status', () => {
     const {

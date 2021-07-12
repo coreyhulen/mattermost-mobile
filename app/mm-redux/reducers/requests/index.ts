@@ -7,10 +7,10 @@ import channels from './channels';
 import files from './files';
 import general from './general';
 import posts from './posts';
+import roles from './roles';
+import search from './search';
 import teams from './teams';
 import users from './users';
-import search from './search';
-import roles from './roles';
 
 export default combineReducers({
     channels,

@@ -7,9 +7,9 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import ldapUsers from '@support/fixtures/ldap_users.json';
 import {Ldap, Setup, System, Team, User} from '@support/server_api';
 import {ChannelScreen, LoginScreen} from '@support/ui/screen';
-import ldapUsers from '@support/fixtures/ldap_users.json';
 
 describe('Smoke Tests', () => {
     const testOne = ldapUsers['test-1'];

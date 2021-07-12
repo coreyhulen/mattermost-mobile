@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 
-import type {GlobalState} from '@mm-redux/types/store';
-
 import Toast from './toast';
+
+import type {GlobalState} from '@mm-redux/types/store';
 
 function mapStateToProps(state: GlobalState) {
     return {

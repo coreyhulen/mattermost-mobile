@@ -5,19 +5,19 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {copyAndFillBindings} from '@utils/apps';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
+
+import EmbedText from './embed_text';
+import EmbedTitle from './embed_title';
+import EmbedSubBindings from './embedded_sub_bindings';
 
 import type {AppBinding} from '@mm-redux/types/apps';
 import type {Theme} from '@mm-redux/types/preferences';
 
-import EmbedSubBindings from './embedded_sub_bindings';
-import EmbedText from './embed_text';
-import EmbedTitle from './embed_title';
-
 type Props = {
-    embed: AppBinding,
-    postId: string,
-    theme: Theme,
+    embed: AppBinding;
+    postId: string;
+    theme: Theme;
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme:Theme) => {

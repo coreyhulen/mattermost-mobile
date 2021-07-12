@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {AppsTypes} from '@mm-redux/action_types';
+
 import * as Reducers from './apps';
 
 describe('bindings', () => {

@@ -8,16 +8,16 @@
 // *******************************************************************
 
 import {
-    AddReactionScreen,
-    ChannelScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
     Team,
     User,
 } from '@support/server_api';
+import {
+    AddReactionScreen,
+    ChannelScreen,
+} from '@support/ui/screen';
 
 describe('Add Reaction', () => {
     let testChannel;

@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Channel} from './channels';
-import {Team} from './teams';
 import {PostType} from './posts';
+import {Team} from './teams';
 import {$ID, IDMappedObjects, RelationOneToMany, RelationOneToOne, Dictionary} from './utilities';
 export type UserNotifyProps = {
     auto_responder_active?: 'true' | 'false';

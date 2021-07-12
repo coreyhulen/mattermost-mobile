@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {analytics} from '@init/analytics';
 import {GifTypes} from '@mm-redux/action_types';
-import gfycatSdk from '@mm-redux/utils/gfycat_sdk';
 import {DispatchFunc, GetStateFunc} from '@mm-redux/types/actions';
 import {GlobalState} from '@mm-redux/types/store';
-import {analytics} from '@init/analytics';
+import gfycatSdk from '@mm-redux/utils/gfycat_sdk';
 
 // APP PROPS
 

@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {IntegrationTypes} from '@mm-redux/action_types';
 import {GenericAction} from '@mm-redux/types/actions';
 import {Command, AutocompleteSuggestion} from '@mm-redux/types/integrations';

@@ -14,8 +14,8 @@ import {makeStyleSheetFromTheme} from '@utils/theme';
 import type {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
-    theme: Theme,
-    value: string,
+    theme: Theme;
+    value: string;
 }
 
 const SHOW_MORE_HEIGHT = 54;

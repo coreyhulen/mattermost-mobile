@@ -8,15 +8,15 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    SearchScreen,
-    ThreadScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    SearchScreen,
+    ThreadScreen,
+} from '@support/ui/screen';
 
 describe('Hashtags', () => {
     const {postMessage} = ChannelScreen;

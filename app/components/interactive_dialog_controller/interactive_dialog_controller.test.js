@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import InteractiveDialogController from './interactive_dialog_controller';
 

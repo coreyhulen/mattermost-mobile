@@ -1,19 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Client4} from '@client/rest';
-import {Preferences} from '../constants';
 import {PreferenceTypes} from '@mm-redux/action_types';
 import {getMyPreferences as getMyPreferencesSelector, makeGetCategory} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
+import {GetStateFunc, DispatchFunc, ActionFunc} from '@mm-redux/types/actions';
+import {PreferenceType} from '@mm-redux/types/preferences';
 import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
 
-import {GetStateFunc, DispatchFunc, ActionFunc} from '@mm-redux/types/actions';
+import {Preferences} from '../constants';
 
-import {PreferenceType} from '@mm-redux/types/preferences';
-
+import {getChannelAndMyMember, getMyChannelMember} from './channels';
 import {bindClientFunc} from './helpers';
 import {getProfilesByIds, getProfilesInChannel} from './users';
-import {getChannelAndMyMember, getMyChannelMember} from './channels';
 
 export function deletePreferences(userId: string, preferences: Array<PreferenceType>): ActionFunc {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {

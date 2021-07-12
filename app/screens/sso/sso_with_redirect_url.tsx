@@ -7,13 +7,12 @@ import DeviceInfo from 'react-native-device-info';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import urlParse from 'url-parse';
 
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
-
 import {setDeepLinkURL} from '@actions/views/root';
 import FormattedText from '@components/formatted_text';
 import Loading from '@components/loading';
 import {Theme} from '@mm-redux/types/preferences';
 import Store from '@store/store';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {tryOpenURL} from '@utils/url';
 
 interface SSOWithRedirectURLProps {
@@ -23,7 +22,7 @@ interface SSOWithRedirectURLProps {
     onCSRFToken: (token: string) => void;
     onMMToken: (token: string) => void;
     setLoginError: (value: string) => void;
-    theme: Theme
+    theme: Theme;
 }
 
 function SSOWithRedirectURL({

@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {createSelector} from 'reselect';
 
 import Config from '@assets/config';
 import {searchChannels} from '@mm-redux/actions/channels';
-import {getProfilesInTeam, searchProfiles} from '@mm-redux/actions/users';
 import {makeGroupMessageVisibleIfNecessary} from '@mm-redux/actions/preferences';
+import {getProfilesInTeam, searchProfiles} from '@mm-redux/actions/users';
 import {General} from '@mm-redux/constants';
 import {
     getChannelsWithUnreadSection,
@@ -18,9 +18,9 @@ import {
     getOtherChannels,
 } from '@mm-redux/selectors/entities/channels';
 import {getConfig} from '@mm-redux/selectors/entities/general';
+import {getDirectShowPreferences, getTeammateNameDisplaySetting, getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentTeam} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUserId, getProfilesInCurrentTeam, getUsers, getUserIdsInChannels, getUserStatuses} from '@mm-redux/selectors/entities/users';
-import {getDirectShowPreferences, getTeammateNameDisplaySetting, getTheme} from '@mm-redux/selectors/entities/preferences';
 
 import FilteredList from './filtered_list';
 

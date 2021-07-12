@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
 
-import {storiesOf} from '@storybook/react-native';
 import {withKnobs, select} from '@storybook/addon-knobs';
+import {storiesOf} from '@storybook/react-native';
+
+import React from 'react';
 
 import Loading from './loading';
 

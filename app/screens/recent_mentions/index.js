@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {clearSearch, getRecentMentions} from '@mm-redux/actions/search';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';

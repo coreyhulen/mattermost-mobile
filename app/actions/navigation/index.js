@@ -1,16 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import merge from 'deepmerge';
 import {Keyboard, Platform} from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import merge from 'deepmerge';
-
-import {Preferences} from '@mm-redux/constants';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
-import EventEmmiter from '@mm-redux/utils/event_emitter';
 
 import {DeviceTypes, NavigationTypes} from '@constants';
 import {CHANNEL} from '@constants/screen';
+import {Preferences} from '@mm-redux/constants';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import EventEmmiter from '@mm-redux/utils/event_emitter';
 import EphemeralStore from '@store/ephemeral_store';
 import Store from '@store/store';
 

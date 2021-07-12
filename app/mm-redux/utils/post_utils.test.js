@@ -4,8 +4,6 @@
 import assert from 'assert';
 
 import {PostTypes} from '@mm-redux/constants/posts';
-import {Permissions} from '../constants';
-
 import {
     canEditPost,
     isSystemMessage,
@@ -15,6 +13,8 @@ import {
     isPostCommentMention,
     getEmbedFromMetadata,
 } from '@mm-redux/utils/post_utils';
+
+import {Permissions} from '../constants';
 
 describe('PostUtils', () => {
     describe('shouldFilterJoinLeavePost', () => {

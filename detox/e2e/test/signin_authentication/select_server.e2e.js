@@ -7,11 +7,11 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {serverUrl} from '@support/test_config';
 import {
     LoginScreen,
     SelectServerScreen,
 } from '@support/ui/screen';
-import {serverUrl} from '@support/test_config';
 import {timeouts} from '@support/utils';
 
 describe('Select Server', () => {

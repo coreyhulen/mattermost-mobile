@@ -7,6 +7,10 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {
+    Channel,
+    Setup,
+} from '@support/server_api';
 import {BottomSheet} from '@support/ui/component';
 import {
     ChannelInfoScreen,
@@ -14,10 +18,6 @@ import {
     EditChannelScreen,
     MoreDirectMessagesScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Setup,
-} from '@support/server_api';
 import {isIos, timeouts, wait} from '@support/utils';
 
 describe('Channel Info', () => {

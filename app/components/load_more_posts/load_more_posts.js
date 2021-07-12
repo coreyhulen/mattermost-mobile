@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     ActivityIndicator,
     View,
@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 
 import FormattedText from '@components/formatted_text';
-import TouchableWithFeedback from 'app/components/touchable_with_feedback';
-import {makeStyleSheetFromTheme} from 'app/utils/theme';
-import {t} from 'app/utils/i18n';
+import TouchableWithFeedback from '@components/touchable_with_feedback';
+import {t} from '@utils/i18n';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class LoadMorePosts extends PureComponent {
     static propTypes = {

@@ -8,9 +8,10 @@ import {
 } from 'react-native';
 
 import FormattedText from '@components/formatted_text';
-import RadioButtonGroup from 'app/components/radio_button';
-import StatusBar from 'app/components/status_bar';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import RadioButtonGroup from '@components/radio_button';
+import StatusBar from '@components/status_bar';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
+
 import ChannelNotificationPreferenceBase from './channel_notification_preference_base';
 
 export default class ChannelNotificationPreferenceAndroid extends ChannelNotificationPreferenceBase {

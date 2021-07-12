@@ -1,19 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Client4} from '@client/rest';
+import {analytics} from '@init/analytics';
 import {SearchTypes} from '@mm-redux/action_types';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUserId, getCurrentUserMentionKeys} from '@mm-redux/selectors/entities/users';
-
-import {getChannelAndMyMember, getChannelMembers} from './channels';
-import {forceLogoutIfNecessary} from './helpers';
-import {logError} from './errors';
-import {getProfilesAndStatusesForPosts, receivedPosts} from './posts';
 import {ActionResult, batchActions, DispatchFunc, GetStateFunc, ActionFunc} from '@mm-redux/types/actions';
-import {RelationOneToOne} from '@mm-redux/types/utilities';
 import {Post} from '@mm-redux/types/posts';
 import {SearchParameter} from '@mm-redux/types/search';
-import {analytics} from '@init/analytics';
+import {RelationOneToOne} from '@mm-redux/types/utilities';
+
+import {getChannelAndMyMember, getChannelMembers} from './channels';
+import {logError} from './errors';
+import {forceLogoutIfNecessary} from './helpers';
+import {getProfilesAndStatusesForPosts, receivedPosts} from './posts';
 
 const WEBAPP_SEARCH_PER_PAGE = 20;
 export function getMissingChannelsFromPosts(posts: RelationOneToOne<Post, Post>): ActionFunc {

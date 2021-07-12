@@ -4,12 +4,11 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import {ViewTypes} from 'app/constants';
-
 import {
     handleCommentDraftChanged,
     handleCommentDraftSelectionChanged,
-} from 'app/actions/views/thread';
+} from '@actions/views/thread';
+import {ViewTypes} from '@constants';
 
 const mockStore = configureStore([thunk]);
 

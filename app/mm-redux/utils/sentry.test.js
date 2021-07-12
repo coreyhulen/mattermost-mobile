@@ -4,7 +4,6 @@
 import assert from 'assert';
 
 import {Client} from '@client/rest';
-
 import {cleanUrlForLogging} from '@mm-redux/utils/sentry';
 
 describe('utils/sentry', () => {

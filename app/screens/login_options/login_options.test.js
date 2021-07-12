@@ -4,8 +4,7 @@
 import React from 'react';
 
 import FormattedText from '@components/formatted_text';
-
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import LoginOptions from './login_options';
 

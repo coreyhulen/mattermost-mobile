@@ -1,23 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {ChannelTypes, PreferenceTypes, RoleTypes, UserTypes} from '@mm-redux/action_types';
 import {Client4} from '@client/rest';
+import {ChannelTypes, PreferenceTypes, RoleTypes, UserTypes} from '@mm-redux/action_types';
 import {General, Preferences} from '@mm-redux/constants';
 import {getCurrentChannelId, getRedirectChannelNameForTeam, getChannelsNameMapInTeam} from '@mm-redux/selectors/entities/channels';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getMyPreferences} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUserId, getUsers, getUserIdsInChannels} from '@mm-redux/selectors/entities/users';
-import {getChannelByName as selectChannelByName, getUserIdFromChannelName, isAutoClosed} from '@mm-redux/utils/channel_utils';
-import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
-
 import {ActionResult, GenericAction} from '@mm-redux/types/actions';
 import {Channel, ChannelMembership} from '@mm-redux/types/channels';
 import {PreferenceType} from '@mm-redux/types/preferences';
 import {GlobalState} from '@mm-redux/types/store';
 import {UserProfile} from '@mm-redux/types/users';
 import {RelationOneToMany} from '@mm-redux/types/utilities';
-
+import {getChannelByName as selectChannelByName, getUserIdFromChannelName, isAutoClosed} from '@mm-redux/utils/channel_utils';
+import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
 import {isDirectChannelVisible, isGroupChannelVisible} from '@utils/channels';
 import {buildPreference} from '@utils/preferences';
 

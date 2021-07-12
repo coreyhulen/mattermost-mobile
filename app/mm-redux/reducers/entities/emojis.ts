@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {EmojiTypes, PostTypes} from '@mm-redux/action_types';
-import {EmojisState, CustomEmoji} from '@mm-redux/types/emojis';
 import * as types from '@mm-redux/types';
+import {EmojisState, CustomEmoji} from '@mm-redux/types/emojis';
 
 export function customEmoji(state: types.utilities.IDMappedObjects<CustomEmoji> = {}, action: types.actions.GenericAction): types.utilities.IDMappedObjects<CustomEmoji> {
     switch (action.type) {

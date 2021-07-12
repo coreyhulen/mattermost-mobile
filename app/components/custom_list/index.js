@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {FlatList, Keyboard, Platform, RefreshControl, SectionList, Text, View} from 'react-native';
 
-import {ListTypes} from 'app/constants';
-import {makeStyleSheetFromTheme, changeOpacity} from 'app/utils/theme';
+import {ListTypes} from '@constants';
+import {makeStyleSheetFromTheme, changeOpacity} from '@utils/theme';
 
 export const FLATLIST = 'flat';
 export const SECTIONLIST = 'section';

@@ -9,12 +9,12 @@
 
 import moment from 'moment-timezone';
 
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {ChannelScreen} from '@support/ui/screen';
 import {isAndroid} from '@support/utils';
 
 describe('Message Posting', () => {

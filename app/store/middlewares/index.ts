@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 
 import {Platform} from 'react-native';
+import createActionBuffer from 'redux-action-buffer';
 import {PERSIST, REHYDRATE} from 'redux-persist';
 import {ThunkMiddleware} from 'redux-thunk';
-import createActionBuffer from 'redux-action-buffer';
 
 import messageRetention from './message_retention';
 import createSentryMiddleware from './sentry';

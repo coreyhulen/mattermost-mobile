@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {Alert, AlertButton} from 'react-native';
+
 import {ViewTypes} from '@constants';
 import {tryOpenURL} from '@utils/url';
 

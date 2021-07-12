@@ -12,8 +12,8 @@ import TouchableWithFeedback from '@components/touchable_with_feedback';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
-import type {ImageSource} from 'react-native-vector-icons/Icon';
 import type {Theme} from '@mm-redux/types/preferences';
+import type {ImageSource} from 'react-native-vector-icons/Icon';
 
 type HeaderDisplayNameProps = {
     commentCount: number;

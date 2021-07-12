@@ -9,13 +9,13 @@
 
 import jestExpect from 'expect';
 
-import {MainSidebar} from '@support/ui/component';
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {MainSidebar} from '@support/ui/component';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Mark As Read', () => {
     const {

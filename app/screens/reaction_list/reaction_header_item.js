@@ -1,19 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Text,
     TouchableOpacity,
 } from 'react-native';
 
 import Emoji from '@components/emoji';
-import {makeStyleSheetFromTheme} from '@utils/theme';
-
 import FormattedText from '@components/formatted_text';
-
 import {ALL_EMOJIS} from '@constants/emoji';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class ReactionHeaderItem extends PureComponent {
     static propTypes = {

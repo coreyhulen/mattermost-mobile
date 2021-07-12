@@ -5,12 +5,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {createSelector} from 'reselect';
 
+import {handleSelectChannel} from '@actions/views/channel';
 import {joinChannel} from '@mm-redux/actions/channels';
 import {getChannelsNameMapInCurrentTeam} from '@mm-redux/selectors/entities/channels';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-
-import {handleSelectChannel} from 'app/actions/views/channel';
 
 import ChannelLink from './channel_link';
 

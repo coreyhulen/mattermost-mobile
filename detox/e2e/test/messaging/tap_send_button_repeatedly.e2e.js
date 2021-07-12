@@ -9,8 +9,8 @@
 
 import jestExpect from 'expect';
 
-import {ChannelScreen} from '@support/ui/screen';
 import {Channel, Post, Setup} from '@support/server_api';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Messaging', () => {
     let team;

@@ -7,7 +7,6 @@ import {Permissions} from '@mm-redux/constants';
 import * as channelSelectors from '@mm-redux/selectors/entities/channels';
 import * as preferenceSelectors from '@mm-redux/selectors/entities/preferences';
 import * as roleSelectors from '@mm-redux/selectors/entities/roles';
-
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 
 import {mapStateToProps} from './index';

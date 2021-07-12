@@ -1,19 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {General, Preferences} from '../../constants';
-import {CategoryTypes} from '../../constants/channel_categories';
-
 import {getCurrentChannelId, getMyChannelMemberships} from '@mm-redux/selectors/entities/channels';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getLastPostPerChannel} from '@mm-redux/selectors/entities/posts';
 import {getMyPreferences} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-
 import {isGroupOrDirectChannelVisible} from '@mm-redux/utils/channel_utils';
 import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
+import mergeObjects from '@test/merge_objects';
 
-import mergeObjects from 'test/merge_objects';
+import {General, Preferences} from '../../constants';
+import {CategoryTypes} from '../../constants/channel_categories';
 
 import * as Selectors from './channel_categories';
 

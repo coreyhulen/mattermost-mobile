@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {ALL_EMOJIS} from 'app/constants/emoji';
+import {ALL_EMOJIS} from '@constants/emoji';
 
 export function generateUserProfilesById(userProfiles = []) {
     return userProfiles.reduce((acc, userProfile) => {

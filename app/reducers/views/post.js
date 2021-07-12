@@ -3,7 +3,7 @@
 
 import {combineReducers} from 'redux';
 
-import {ViewTypes} from 'app/constants';
+import {ViewTypes} from '@constants';
 
 function selectedMenuAction(state = {}, action) {
     switch (action.type) {

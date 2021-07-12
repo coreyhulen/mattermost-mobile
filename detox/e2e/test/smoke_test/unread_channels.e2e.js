@@ -7,12 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {MainSidebar} from '@support/ui/component';
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Setup,
 } from '@support/server_api';
+import {MainSidebar} from '@support/ui/component';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Unread channels', () => {
     const {

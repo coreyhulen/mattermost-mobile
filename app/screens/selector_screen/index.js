@@ -1,13 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
-import {getProfiles, searchProfiles} from '@mm-redux/actions/users';
 import {getChannels, searchChannels} from '@mm-redux/actions/channels';
+import {getProfiles, searchProfiles} from '@mm-redux/actions/users';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
+
 import SelectorScreen from './selector_screen';
 
 function mapStateToProps(state) {

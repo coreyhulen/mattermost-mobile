@@ -9,9 +9,9 @@ import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {changeOpacity, makeStyleFromTheme} from '@mm-redux/utils/theme_utils';
 import telemetry, {PerfMetric} from '@telemetry';
 
-import type {Theme} from '@mm-redux/types/preferences';
-
 import PerfItem from './item';
+
+import type {Theme} from '@mm-redux/types/preferences';
 
 const getStyleSheet = makeStyleFromTheme((theme: Theme) => {
     return {

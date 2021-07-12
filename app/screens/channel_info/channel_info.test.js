@@ -1,11 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
+
 import {shallow} from 'enzyme';
+import React from 'react';
 
 import * as NavigationActions from '@actions/navigation';
-import Preferences from '@mm-redux/constants/preferences';
 import {General} from '@mm-redux/constants';
+import Preferences from '@mm-redux/constants/preferences';
 
 import ChannelInfo from './channel_info';
 import NotificationPreference from './notification_preference';

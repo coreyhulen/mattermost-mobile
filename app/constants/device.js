@@ -4,6 +4,7 @@
 import {Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import RNFetchBlobFS from 'rn-fetch-blob/fs';
+
 import keyMirror from '@mm-redux/utils/key_mirror';
 
 const deviceTypes = keyMirror({

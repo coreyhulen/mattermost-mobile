@@ -5,7 +5,7 @@ import {
     captureMessage,
     cleanUrlForLogging,
     LOGGER_JAVASCRIPT_WARNING,
-} from 'app/utils/sentry';
+} from '@utils/sentry';
 
 // Creates middleware that mimics thunk while catching network errors thrown by Client4 that haven't
 // been otherwise handled.

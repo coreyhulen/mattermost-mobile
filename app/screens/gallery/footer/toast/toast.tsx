@@ -5,7 +5,8 @@ import React, {useEffect, useImperativeHandle, useState, useRef, forwardRef} fro
 import {Animated, StyleSheet, Text, View} from 'react-native';
 
 import CompassIcon from '@components/compass_icon';
-import type {ToastProps, ToastRef, ToastState, ShowToast} from 'types/screens/gallery';
+
+import type {ToastProps, ToastRef, ToastState, ShowToast} from '@mm-types/screens/gallery';
 
 const DEFAULT_DURATION = 1000;
 const FADE_DURATION = 400;

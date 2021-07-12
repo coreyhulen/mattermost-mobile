@@ -2,8 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {Client4} from '@client/rest';
-
-import {cleanUrlForLogging} from 'app/utils/sentry';
+import {cleanUrlForLogging} from '@utils/sentry';
 
 /* eslint-disable max-nested-callbacks */
 

@@ -1,16 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import {purgeOfflineStore} from '@actions/views/root';
 import {clearErrors} from '@mm-redux/actions/errors';
 import {getCurrentUrl, getConfig} from '@mm-redux/selectors/entities/general';
-import {getJoinableTeams} from '@mm-redux/selectors/entities/teams';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
-
-import {purgeOfflineStore} from 'app/actions/views/root';
-import {removeProtocol} from 'app/utils/url';
+import {getJoinableTeams} from '@mm-redux/selectors/entities/teams';
+import {removeProtocol} from '@utils/url';
 
 import Settings from './settings';
 

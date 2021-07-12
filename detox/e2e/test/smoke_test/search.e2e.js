@@ -8,6 +8,11 @@
 // *******************************************************************
 
 import {
+    Channel,
+    Post,
+    Setup,
+} from '@support/server_api';
+import {
     Autocomplete,
     PostOptions,
 } from '@support/ui/component';
@@ -17,11 +22,6 @@ import {
     SearchScreen,
     ThreadScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Post,
-    Setup,
-} from '@support/server_api';
 
 describe('Search', () => {
     const {

@@ -2,14 +2,15 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import nock from 'nock';
-
-import * as Actions from '@mm-redux/actions/roles';
-import {Client4} from '@client/rest';
-import {RequestStatus} from '../constants';
-
 import TestHelper from 'test/test_helper';
 import configureStore from 'test/test_store';
+
+import {Client4} from '@client/rest';
+import * as Actions from '@mm-redux/actions/roles';
+
+import {RequestStatus} from '../constants';
 
 describe('Actions.Roles', () => {
     let store;

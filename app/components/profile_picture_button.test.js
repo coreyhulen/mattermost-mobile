@@ -1,13 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
 import {shallow} from 'enzyme';
+import React from 'react';
 
+import {Client4} from '@client/rest';
 import Preferences from '@mm-redux/constants/preferences';
 
 import ProfilePictureButton from './profile_picture_button.js';
-
-import {Client4} from '@client/rest';
 
 describe('profile_picture_button', () => {
     const baseProps = {

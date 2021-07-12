@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 
 import {batchActions} from 'redux-batched-actions';
-import {GeneralTypes} from '@mm-redux/action_types';
 
-import {ViewTypes} from 'app/constants';
+import {ViewTypes} from '@constants';
+import {GeneralTypes} from '@mm-redux/action_types';
 
 export function handleServerUrlChanged(serverUrl) {
     return batchActions([

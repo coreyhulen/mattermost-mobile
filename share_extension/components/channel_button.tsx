@@ -2,14 +2,16 @@
 // See LICENSE.txt for license information.
 
 import {useNavigation} from '@react-navigation/native';
+
 import React from 'react';
 import {injectIntl, intlShape} from 'react-intl';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 
 import FormattedText from '@components/formatted_text';
 import {Preferences} from '@mm-redux/constants';
-import type {Channel} from '@mm-redux/types/channels';
 import {changeOpacity} from '@utils/theme';
+
+import type {Channel} from '@mm-redux/types/channels';
 
 interface ChannelButtonProps {
     channel?: Channel | null;

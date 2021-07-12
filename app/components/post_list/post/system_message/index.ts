@@ -5,11 +5,11 @@ import {connect} from 'react-redux';
 
 import {getUser} from '@mm-redux/selectors/entities/users';
 
-import type {GlobalState} from '@mm-redux/types/store';
+import SystemMessage from './system_message';
+
 import type {Post} from '@mm-redux/types/posts';
 import type {Theme} from '@mm-redux/types/preferences';
-
-import SystemMessage from './system_message';
+import type {GlobalState} from '@mm-redux/types/store';
 
 type OwnProps = {
     post: Post;

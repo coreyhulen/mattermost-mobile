@@ -4,7 +4,7 @@
 import React from 'react';
 
 import {General} from '@mm-redux/constants';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import ChannelTitle from './channel_title';
 

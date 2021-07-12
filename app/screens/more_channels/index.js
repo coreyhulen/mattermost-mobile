@@ -1,20 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {handleSelectChannel, setChannelDisplayName} from '@actions/views/channel';
-import {General} from '@mm-redux/constants';
 import {getArchivedChannels, getChannels, getSharedChannels, joinChannel, searchChannels} from '@mm-redux/actions/channels';
-import {getCurrentUserId, getCurrentUserRoles} from '@mm-redux/selectors/entities/users';
+import {General} from '@mm-redux/constants';
+import {getConfig, getLicense} from '@mm-redux/selectors/entities/general';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
+import {getCurrentUserId, getCurrentUserRoles} from '@mm-redux/selectors/entities/users';
 import {showCreateOption} from '@mm-redux/utils/channel_utils';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {isAdmin, isSystemAdmin} from '@mm-redux/utils/user_utils';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
-import {getConfig, getLicense} from '@mm-redux/selectors/entities/general';
-
 import {teamArchivedChannels, joinablePublicChannels, joinableSharedChannels} from '@selectors/channel';
 
 import MoreChannels from './more_channels';

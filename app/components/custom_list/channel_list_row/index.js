@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
+import {makeGetChannel} from '@mm-redux/selectors/entities/channels';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 
-import {makeGetChannel} from '@mm-redux/selectors/entities/channels';
 import ChannelListRow from './channel_list_row';
 
 function makeMapStateToProps() {

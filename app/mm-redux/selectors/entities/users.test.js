@@ -3,11 +3,12 @@
 
 import assert from 'assert';
 
-import {General, Preferences} from '../../constants';
+import * as Selectors from '@mm-redux/selectors/entities/users';
 import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
 import {sortByUsername} from '@mm-redux/utils/user_utils';
-import TestHelper from 'test/test_helper';
-import * as Selectors from '@mm-redux/selectors/entities/users';
+import TestHelper from '@test/test_helper';
+
+import {General, Preferences} from '../../constants';
 
 describe('Selectors.Users', () => {
     const team1 = TestHelper.fakeTeamWithId();

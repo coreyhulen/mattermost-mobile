@@ -4,29 +4,26 @@
 /* eslint-disable max-lines */
 
 import {
+    AppCommandParser,
+    ParseState,
+    ParsedCommand,
+} from './app_command_parser';
+import {
+    AppCallResponseTypes,
+    AppCallTypes,
+    AutocompleteSuggestion,
+} from './app_command_parser_dependencies';
+import {
+    reduxTestState,
+    testBindings,
+} from './tests/app_command_parser_test_data';
+import {
     thunk,
     configureStore,
     Client4,
     AppBinding,
     checkForExecuteSuggestion,
 } from './tests/app_command_parser_test_dependencies';
-
-import {
-    AppCallResponseTypes,
-    AppCallTypes,
-    AutocompleteSuggestion,
-} from './app_command_parser_dependencies';
-
-import {
-    AppCommandParser,
-    ParseState,
-    ParsedCommand,
-} from './app_command_parser';
-
-import {
-    reduxTestState,
-    testBindings,
-} from './tests/app_command_parser_test_data';
 
 const mockStore = configureStore([thunk]);
 
@@ -45,7 +42,7 @@ describe('AppCommandParser', () => {
     };
 
     const intl = {
-        formatMessage: (message: {id: string, defaultMessage: string}) => {
+        formatMessage: (message: {id: string; defaultMessage: string}) => {
             return message.defaultMessage;
         },
     };

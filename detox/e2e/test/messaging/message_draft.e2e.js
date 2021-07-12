@@ -7,9 +7,9 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {Setup} from '@support/server_api';
 import {Alert} from '@support/ui/component';
 import {ChannelScreen} from '@support/ui/screen';
-import {Setup} from '@support/server_api';
 
 describe('Message Draft', () => {
     const {

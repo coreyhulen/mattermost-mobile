@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 
 import React, {createElement, isValidElement} from 'react';
-import {Text, TextProps} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
+import {Text, TextProps} from 'react-native';
 
 type FormattedTextProps = TextProps & {
     id: string;

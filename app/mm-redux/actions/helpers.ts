@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 
 import {logout} from '@actions/views/user';
-import {UserTypes} from '@mm-redux/action_types';
 import {Client4} from '@client/rest';
-import {Client4Error} from '@mm-redux/types/client4';
+import {UserTypes} from '@mm-redux/action_types';
 import {getCurrentUserId, getUsers} from '@mm-redux/selectors/entities/users';
 import {batchActions, Action, ActionFunc, GenericAction, DispatchFunc, GetStateFunc} from '@mm-redux/types/actions';
+import {Client4Error} from '@mm-redux/types/client4';
 import {GlobalState} from '@mm-redux/types/store';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 

@@ -4,8 +4,7 @@
 import {combineReducers} from 'redux';
 
 import Config from '@assets/config.json';
-
-import {ViewTypes} from 'app/constants';
+import {ViewTypes} from '@constants';
 
 function serverUrl(state = Config.DefaultServerUrl, action) {
     switch (action.type) {

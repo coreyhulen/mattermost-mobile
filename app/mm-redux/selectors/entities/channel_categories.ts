@@ -4,24 +4,22 @@
 import {createSelector} from 'reselect';
 import shallowEquals from 'shallow-equals';
 
-import {General, Preferences} from '../../constants';
-import {CategoryTypes} from '../../constants/channel_categories';
-
 import {getCurrentChannelId, getMyChannelMemberships} from '@mm-redux/selectors/entities/channels';
 import {getCurrentUserLocale} from '@mm-redux/selectors/entities/i18n';
 import {getLastPostPerChannel} from '@mm-redux/selectors/entities/posts';
 import {getMyPreferences, getTeammateNameDisplaySetting, shouldAutocloseDMs} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-
-import {Channel, ChannelMembership} from '@mm-redux/types/channels';
 import {ChannelCategory} from '@mm-redux/types/channel_categories';
+import {Channel, ChannelMembership} from '@mm-redux/types/channels';
 import {GlobalState} from '@mm-redux/types/store';
 import {UserProfile} from '@mm-redux/types/users';
 import {IDMappedObjects, RelationOneToOne} from '@mm-redux/types/utilities';
-
 import {getUserIdFromChannelName, isFavoriteChannel, isUnreadChannel} from '@mm-redux/utils/channel_utils';
 import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
 import {displayUsername} from '@mm-redux/utils/user_utils';
+
+import {General, Preferences} from '../../constants';
+import {CategoryTypes} from '../../constants/channel_categories';
 
 export function getCategoryIdsForTeam(state: GlobalState, teamId: string): string[] | undefined {
     return state.entities.channelCategories.orderByTeam[teamId];

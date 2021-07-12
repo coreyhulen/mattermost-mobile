@@ -4,12 +4,13 @@
 import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 
-import {Theme} from '@mm-redux/types/preferences';
-import {AppCallResponse, AppCallRequest, AppField, AppForm, AppFormValues, FormResponseData, AppLookupResponse} from '@mm-redux/types/apps';
 import {AppCallResponseTypes, AppCallTypes} from '@mm-redux/constants/apps';
-import AppsFormComponent from './apps_form_component';
+import {AppCallResponse, AppCallRequest, AppField, AppForm, AppFormValues, FormResponseData, AppLookupResponse} from '@mm-redux/types/apps';
+import {Theme} from '@mm-redux/types/preferences';
+import {DoAppCall, DoAppCallResult, PostEphemeralCallResponseForContext} from '@mm-types/actions/apps';
 import {makeCallErrorResponse} from '@utils/apps';
-import {DoAppCall, DoAppCallResult, PostEphemeralCallResponseForContext} from 'types/actions/apps';
+
+import AppsFormComponent from './apps_form_component';
 
 export type Props = {
     form?: AppForm;
@@ -36,7 +37,7 @@ export default class AppsFormContainer extends PureComponent<Props, State> {
         this.state = {form: props.form};
     }
 
-    handleSubmit = async (submission: {values: AppFormValues}): Promise<{data?: AppCallResponse<FormResponseData>, error?: AppCallResponse<FormResponseData>}> => {
+    handleSubmit = async (submission: {values: AppFormValues}): Promise<{data?: AppCallResponse<FormResponseData>; error?: AppCallResponse<FormResponseData>}> => {
         const intl = this.context.intl;
         const makeErrorMsg = (msg: string) => {
             return intl.formatMessage(

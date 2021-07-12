@@ -2,17 +2,17 @@
 // See LICENSE.txt for license information.
 import {Client4} from '@client/rest';
 import {EmojiTypes} from '@mm-redux/action_types';
-import {General, Emoji} from '../constants';
-import {getProfilesByIds} from './users';
 import {getCustomEmojisByName as selectCustomEmojisByName} from '@mm-redux/selectors/entities/emojis';
+import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult} from '@mm-redux/types/actions';
+import {CustomEmoji} from '@mm-redux/types/emojis';
+import {Dictionary} from '@mm-redux/types/utilities';
 import {parseNeededCustomEmojisFromText} from '@mm-redux/utils/emoji_utils';
 
-import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult} from '@mm-redux/types/actions';
+import {General, Emoji} from '../constants';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
-import {CustomEmoji} from '@mm-redux/types/emojis';
-import {Dictionary} from '@mm-redux/types/utilities';
+import {getProfilesByIds} from './users';
 
 export function createCustomEmoji(emoji: any, image: any): ActionFunc {
     return bindClientFunc({

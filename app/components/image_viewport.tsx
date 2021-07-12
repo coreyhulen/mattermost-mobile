@@ -2,13 +2,13 @@
 // See LICENSE.txt for license information.
 
 import AsyncStorage from '@react-native-community/async-storage';
+
 import {PureComponent} from 'react';
 import {Dimensions} from 'react-native';
 
 import {DeviceTypes} from '@constants';
+import mattermostManaged from '@mattermost-managed';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-
-import mattermostManaged from 'app/mattermost_managed';
 
 // TODO: Use permanentSidebar and splitView hooks instead
 export default class ImageViewPort extends PureComponent {

@@ -11,7 +11,6 @@ import {
     VIEWPORT_IMAGE_OFFSET,
     VIEWPORT_IMAGE_REPLY_OFFSET,
 } from '@constants/image';
-
 import {PostImage} from '@mm-redux/types/posts';
 
 export const calculateDimensions = (height: number, width: number, viewPortWidth = 0, viewPortHeight = 0) => {

@@ -8,6 +8,12 @@
 // *******************************************************************
 
 import {
+    Channel,
+    Post,
+    Setup,
+    User,
+} from '@support/server_api';
+import {
     ChannelScreen,
     PermalinkScreen,
 } from '@support/ui/screen';
@@ -15,12 +21,6 @@ import {
     timeouts,
     wait,
 } from '@support/utils';
-import {
-    Channel,
-    Post,
-    Setup,
-    User,
-} from '@support/server_api';
 
 describe('Permalink', () => {
     let testUser;

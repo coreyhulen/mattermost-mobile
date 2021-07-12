@@ -3,10 +3,9 @@
 
 import React from 'react';
 
+import * as NavigationActions from '@actions/navigation';
 import {Preferences} from '@mm-redux/constants';
-
-import * as NavigationActions from 'app/actions/navigation';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import ChannelAddMembers from './channel_add_members';
 

@@ -4,16 +4,16 @@
 import {fetchChannelAndMyMember} from '@actions/helpers/channels';
 import {loadChannelsForTeam} from '@actions/views/channel';
 import {getMe} from '@actions/views/user';
+import {Client4} from '@client/rest';
 import {ChannelTypes, TeamTypes, UserTypes, RoleTypes} from '@mm-redux/action_types';
 import {notVisibleUsersActions} from '@mm-redux/actions/helpers';
-import {Client4} from '@client/rest';
 import {General} from '@mm-redux/constants';
 import {getAllChannels, getCurrentChannelId, getChannelMembersInChannels} from '@mm-redux/selectors/entities/channels';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUser, getCurrentUserId} from '@mm-redux/selectors/entities/users';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 import {ActionResult, DispatchFunc, GenericAction, GetStateFunc, batchActions} from '@mm-redux/types/actions';
 import {WebSocketMessage} from '@mm-redux/types/websocket';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 import {isGuest} from '@mm-redux/utils/user_utils';
 
 export function handleStatusChangedEvent(msg: WebSocketMessage): GenericAction {

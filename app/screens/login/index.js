@@ -1,13 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import {login} from '@actions/views/user';
 import {scheduleExpiredNotification} from '@actions/views/session';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {login} from '@actions/views/user';
 import {getConfig, getLicense} from '@mm-redux/selectors/entities/general';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
 
 import Login from './login.js';
 

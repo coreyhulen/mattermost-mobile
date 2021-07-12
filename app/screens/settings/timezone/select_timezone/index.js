@@ -3,8 +3,8 @@
 
 import {connect} from 'react-redux';
 
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getSupportedTimezones} from '@mm-redux/selectors/entities/general';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
 
 import SelectTimezone from './select_timezone';
 

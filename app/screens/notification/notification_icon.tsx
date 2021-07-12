@@ -6,11 +6,12 @@ import {Platform, StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
 
+import {Client4} from '@client/rest';
 import CompassIcon from '@components/compass_icon';
 import ProfilePicture from '@components/profile_picture';
-import {Client4} from '@client/rest';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getUser} from '@mm-redux/selectors/entities/users';
+
 import type {GlobalState} from '@mm-redux/types/store';
 
 interface NotificationIconProps {

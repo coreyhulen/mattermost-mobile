@@ -5,8 +5,7 @@ import React from 'react';
 
 import * as NavigationActions from '@actions/navigation';
 import Preferences from '@mm-redux/constants/preferences';
-
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import MoreChannels from './more_channels.js';
 

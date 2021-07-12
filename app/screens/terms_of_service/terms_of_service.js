@@ -1,22 +1,22 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     Alert,
     ScrollView,
     View,
 } from 'react-native';
-import {intlShape} from 'react-intl';
 import {Navigation} from 'react-native-navigation';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {dismissModal, setButtons} from '@actions/navigation';
 import FailedNetworkAction from '@components/failed_network_action';
-import Loading from 'app/components/loading';
-import Markdown from 'app/components/markdown';
-import StatusBar from 'app/components/status_bar';
+import Loading from '@components/loading';
+import Markdown from '@components/markdown';
+import StatusBar from '@components/status_bar';
 import {getMarkdownTextStyles, getMarkdownBlockStyles} from '@utils/markdown';
 import {unsupportedServer} from '@utils/supported_server';
 import {makeStyleSheetFromTheme} from '@utils/theme';

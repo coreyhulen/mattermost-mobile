@@ -6,10 +6,11 @@ import {Platform} from 'react-native';
 import {ThemeProvider} from 'react-native-elements';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {Navigation} from 'react-native-navigation';
-import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Provider} from 'react-redux';
 
 import RootWrapper from '@components/root';
+
 let store;
 
 const withGestures = (screen, styles) => {

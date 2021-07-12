@@ -7,20 +7,19 @@ import {StyleProp, View, ViewStyle} from 'react-native';
 import FormattedText from '@components/formatted_text';
 import MarkdownEmoji from '@components/markdown/markdown_emoji';
 import {THREAD} from '@constants/screen';
-import {isEdited, isPostEphemeral} from '@mm-redux/utils/post_utils';
 import {Posts} from '@mm-redux/constants';
-
-import type {Post} from '@mm-redux/types/posts';
-import type {Theme} from '@mm-redux/types/preferences';
+import {isEdited, isPostEphemeral} from '@mm-redux/utils/post_utils';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
 import AddMembers from './add_members';
 import Content from './content';
 import Failed from './failed';
+import Files from './files';
 import Message from './message';
 import Reactions from './reactions';
 
-import Files from './files';
+import type {Post} from '@mm-redux/types/posts';
+import type {Theme} from '@mm-redux/types/preferences';
 
 type BodyProps = {
     appsEnabled: boolean;

@@ -3,14 +3,12 @@
 
 import assert from 'assert';
 
-import {Posts, Preferences} from '../../constants';
-
 import * as Selectors from '@mm-redux/selectors/entities/posts';
 import {makeGetProfilesForReactions} from '@mm-redux/selectors/entities/users';
-
-import TestHelper from 'test/test_helper';
-
 import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
+import TestHelper from '@test/test_helper';
+
+import {Posts, Preferences} from '../../constants';
 
 describe('Selectors.Posts', () => {
     const user1 = TestHelper.fakeUserWithId();

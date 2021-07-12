@@ -7,11 +7,11 @@ import FastImage, {FastImageProps} from 'react-native-fast-image';
 export const FAST_IMAGE_MAX_RETRIES = 3;
 
 type RetriableFastImageProps = FastImageProps & {
-    id: string
+    id: string;
 }
 
 type RetriableFastImageState = {
-    retry: number
+    retry: number;
 }
 
 export default class RetriableFastImage extends PureComponent<RetriableFastImageProps, RetriableFastImageState> {

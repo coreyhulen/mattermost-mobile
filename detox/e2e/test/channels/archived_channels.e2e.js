@@ -8,11 +8,6 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    ChannelInfoScreen,
-    MoreChannelsScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
@@ -20,6 +15,11 @@ import {
     Team,
     User,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    ChannelInfoScreen,
+    MoreChannelsScreen,
+} from '@support/ui/screen';
 
 describe('Archived Channels', () => {
     const {

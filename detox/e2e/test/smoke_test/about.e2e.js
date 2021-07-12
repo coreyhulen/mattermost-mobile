@@ -7,12 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {Setup} from '@support/server_api';
 import {
     AboutScreen,
     ChannelScreen,
     GeneralSettingsScreen,
 } from '@support/ui/screen';
-import {Setup} from '@support/server_api';
 
 describe('About', () => {
     beforeAll(async () => {

@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import PropTypes from 'prop-types';
 import {PureComponent} from 'react';
 import {Platform} from 'react-native';
-import PropTypes from 'prop-types';
 import {Navigation} from 'react-native-navigation';
 
 import {Preferences} from '@mm-redux/constants';

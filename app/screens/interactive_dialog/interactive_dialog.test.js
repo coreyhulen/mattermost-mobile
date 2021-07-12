@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
-import {shallow} from 'enzyme';
 
+import {shallow} from 'enzyme';
+import React from 'react';
+
+import ErrorText from '@components/error_text';
 import Preferences from '@mm-redux/constants/preferences';
+import DialogElement from '@screens/interactive_dialog/dialog_element';
 
 import InteractiveDialog from './interactive_dialog';
-
-import ErrorText from 'app/components/error_text';
-import DialogElement from 'app/screens/interactive_dialog/dialog_element';
 
 describe('InteractiveDialog', () => {
     const baseProps = {

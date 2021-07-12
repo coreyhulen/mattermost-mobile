@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import type {AppBinding, AppCallRequest, AppCallResponse, AppCallType} from '@mm-redux/types/apps';
 import {buildQueryString} from '@mm-redux/utils/helpers';
+
+import type {AppBinding, AppCallRequest, AppCallResponse, AppCallType} from '@mm-redux/types/apps';
 
 export interface ClientAppsMix {
     executeAppCall: (call: AppCallRequest, type: AppCallType) => Promise<AppCallResponse>;

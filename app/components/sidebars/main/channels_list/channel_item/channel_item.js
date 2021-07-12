@@ -1,15 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     TouchableHighlight,
     Text,
     View,
     Platform,
 } from 'react-native';
-import {intlShape} from 'react-intl';
 
 import Badge from '@components/badge';
 import ChannelIcon from '@components/channel_icon';

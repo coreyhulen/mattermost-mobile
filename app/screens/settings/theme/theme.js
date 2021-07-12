@@ -1,16 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
-import {Text, View} from 'react-native';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {intlShape} from 'react-intl';
+import {Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
-import Preferences from '@mm-redux/constants/preferences';
 
 import FormattedText from '@components/formatted_text';
 import StatusBar from '@components/status_bar';
+import Preferences from '@mm-redux/constants/preferences';
 import Section from '@screens/settings/section';
 import SectionItem from '@screens/settings/section_item';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';

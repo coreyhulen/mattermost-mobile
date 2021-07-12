@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 
 import Preferences from '@mm-redux/constants/preferences';

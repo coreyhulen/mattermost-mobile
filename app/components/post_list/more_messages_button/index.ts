@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 
 import {resetUnreadMessageCount} from '@actions/views/channel';
 
-import type {GlobalState} from '@mm-redux/types/store';
-
 import MoreMessagesButton from './more_messages_button';
+
+import type {GlobalState} from '@mm-redux/types/store';
 
 type MoreMessagesButtonOwnProps = {
     channelId?: string;

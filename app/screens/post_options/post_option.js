@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Text,
     Platform,
@@ -10,11 +10,11 @@ import {
     TouchableNativeFeedback,
     View,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 import CompassIcon from '@components/compass_icon';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {preventDoubleTap} from '@utils/tap';
-import FastImage from 'react-native-fast-image';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {isValidUrl} from '@utils/url';
 
 export default class PostOption extends PureComponent {

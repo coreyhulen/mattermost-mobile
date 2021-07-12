@@ -8,15 +8,15 @@
 // *******************************************************************
 
 import {
-    ChannelInfoScreen,
-    ChannelScreen,
-    MoreDirectMessagesScreen,
-} from '@support/ui/screen';
-import {
     User,
     Setup,
     Team,
 } from '@support/server_api';
+import {
+    ChannelInfoScreen,
+    ChannelScreen,
+    MoreDirectMessagesScreen,
+} from '@support/ui/screen';
 import {getRandomId} from '@support/utils';
 
 describe('Group Messages', () => {

@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import path from 'path';
+
 import merge from 'deepmerge';
 import jestExpect from 'expect';
-import path from 'path';
 
 import testConfig from '@support/test_config';
 

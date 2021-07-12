@@ -1,10 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {createSelector} from 'reselect';
-import {createIdsSelector} from '@mm-redux/utils/helpers';
-import {GlobalState} from '@mm-redux/types/store';
+
 import {CustomEmoji} from '@mm-redux/types/emojis';
+import {GlobalState} from '@mm-redux/types/store';
 import {IDMappedObjects} from '@mm-redux/types/utilities';
+import {createIdsSelector} from '@mm-redux/utils/helpers';
 export function getCustomEmojis(state: GlobalState): IDMappedObjects<CustomEmoji> {
     if (state.entities.general.config.EnableCustomEmoji !== 'true') {
         return {};

@@ -4,10 +4,8 @@
 /* eslint-disable no-import-assign */
 
 import {Client4} from '@client/rest';
-
-import {Preferences} from '@mm-redux/constants';
 import {PreferenceTypes} from '@mm-redux/action_types';
-
+import {Preferences} from '@mm-redux/constants';
 import * as CommonSelectors from '@mm-redux/selectors/entities/common';
 import * as PreferenceSelectors from '@mm-redux/selectors/entities/preferences';
 import * as PreferenceUtils from '@mm-redux/utils/preference_utils';

@@ -2,15 +2,16 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import nock from 'nock';
 
-import {FormattedError} from './helpers.ts';
+import {Client4} from '@client/rest';
 import {GeneralTypes} from '@mm-redux/action_types';
 import * as Actions from '@mm-redux/actions/general';
-import {Client4} from '@client/rest';
+import TestHelper from '@test/test_helper';
+import configureStore from '@test/test_store';
 
-import TestHelper from 'test/test_helper';
-import configureStore from 'test/test_store';
+import {FormattedError} from './helpers.ts';
 
 describe('Actions.General', () => {
     let store;

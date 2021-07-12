@@ -4,8 +4,8 @@
 import {combineReducers} from 'redux';
 
 import build from './build';
-import version from './version';
 import previousVersion from './previousVersion';
+import version from './version';
 
 export default combineReducers({
     build,

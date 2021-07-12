@@ -4,9 +4,8 @@
 import {connect} from 'react-redux';
 
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
-
-import {makeGetMatchTermForDateMention} from 'app/selectors/autocomplete';
-import {getCurrentLocale} from 'app/selectors/i18n';
+import {makeGetMatchTermForDateMention} from '@selectors/autocomplete';
+import {getCurrentLocale} from '@selectors/i18n';
 
 import DateSuggestion from './date_suggestion';
 

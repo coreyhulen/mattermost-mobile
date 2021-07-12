@@ -8,16 +8,16 @@
 // *******************************************************************
 
 import {
+    Setup,
+    Team,
+    User,
+} from '@support/server_api';
+import {
     ChannelInfoScreen,
     ChannelMembersScreen,
     ChannelScreen,
     MoreDirectMessagesScreen,
 } from '@support/ui/screen';
-import {
-    Setup,
-    Team,
-    User,
-} from '@support/server_api';
 import {getRandomId} from '@support/utils';
 
 describe('Channel View Members', () => {

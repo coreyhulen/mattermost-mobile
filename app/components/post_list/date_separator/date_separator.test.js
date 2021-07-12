@@ -6,7 +6,7 @@
 import React from 'react';
 
 import Preferences from '@mm-redux/constants/preferences';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import DateSeparator from './date_separator';
 

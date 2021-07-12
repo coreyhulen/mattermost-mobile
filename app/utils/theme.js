@@ -4,9 +4,8 @@
 import {StyleSheet} from 'react-native';
 import tinyColor from 'tinycolor2';
 
+import {mergeNavigationOptions} from '@actions/navigation';
 import * as ThemeUtils from '@mm-redux/utils/theme_utils';
-
-import {mergeNavigationOptions} from 'app/actions/navigation';
 
 const MODAL_SCREENS_WITHOUT_BACK = [
     'AddReaction',

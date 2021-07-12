@@ -11,10 +11,10 @@ import {Theme} from '@mm-redux/types/preferences';
 import MessageAttachment from './message_attachment';
 
 type Props = {
-    attachments: MessageAttachmentType[],
-    postId: string,
-    metadata?: PostMetadata,
-    theme: Theme,
+    attachments: MessageAttachmentType[];
+    postId: string;
+    metadata?: PostMetadata;
+    theme: Theme;
 }
 
 const styles = StyleSheet.create({

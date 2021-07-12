@@ -7,12 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Markdown Separator', () => {
     let townSquareChannel;

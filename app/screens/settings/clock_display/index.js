@@ -1,13 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import {getTheme, get as getPreference} from '@mm-redux/selectors/entities/preferences';
-import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {savePreferences} from '@mm-redux/actions/preferences';
 import Preferences from '@mm-redux/constants/preferences';
+import {getTheme, get as getPreference} from '@mm-redux/selectors/entities/preferences';
+import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
+
 import ClockDisplay from './clock_display';
 
 function mapStateToProps(state) {

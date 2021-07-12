@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {shallow} from 'enzyme';
 import React from 'react';
 import {NativeEventEmitter} from 'react-native';
-import {shallow} from 'enzyme';
 
 import {PASTE_FILES} from '@constants/post_draft';
 import EventEmitter from '@mm-redux/utils/event_emitter';

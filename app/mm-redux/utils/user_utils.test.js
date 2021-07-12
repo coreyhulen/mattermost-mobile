@@ -3,13 +3,14 @@
 
 import assert from 'assert';
 
-import {Preferences} from '../constants';
 import {
     displayUsername,
     filterProfilesMatchingTerm,
     getSuggestionsSplitBy,
     getSuggestionsSplitByMultiple,
 } from '@mm-redux/utils/user_utils';
+
+import {Preferences} from '../constants';
 
 describe('user utils', () => {
     describe('displayUsername', () => {

@@ -1,20 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {forwardRef, useEffect, useRef, useState, useImperativeHandle} from 'react';
-import {Animated, Easing, StyleSheet} from 'react-native';
-import {injectIntl} from 'react-intl';
 import Clipboard from '@react-native-community/clipboard';
 
-import {ATTACHMENT_DOWNLOAD} from '@constants/attachment';
-import {Client4} from '@client/rest';
-import EventEmitter from '@mm-redux/utils/event_emitter';
+import React, {forwardRef, useEffect, useRef, useState, useImperativeHandle} from 'react';
+import {injectIntl} from 'react-intl';
+import {Animated, Easing, StyleSheet} from 'react-native';
 
-import type {CallbackFunctionWithoutArguments, PrepareFileRef, FooterProps, FooterRef, ShowToast, ToastRef} from 'types/screens/gallery';
+import {Client4} from '@client/rest';
+import {ATTACHMENT_DOWNLOAD} from '@constants/attachment';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 
 import PrepareFile from './prepare_file';
 import Summary from './summary';
 import Toast from './toast';
+
+import type {CallbackFunctionWithoutArguments, PrepareFileRef, FooterProps, FooterRef, ShowToast, ToastRef} from '@mm-types/screens/gallery';
 
 const styles = StyleSheet.create({
     footer: {

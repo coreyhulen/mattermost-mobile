@@ -3,9 +3,8 @@
 
 import {combineReducers} from 'redux';
 
+import {ViewTypes} from '@constants';
 import {General} from '@mm-redux/constants';
-
-import {ViewTypes} from 'app/constants';
 
 function deepLinkURL(state = '', action) {
     switch (action.type) {

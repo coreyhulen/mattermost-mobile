@@ -2,13 +2,14 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {UserTypes, ChannelTypes} from '@mm-redux/action_types';
-import {profileListToMap} from '@mm-redux/utils/user_utils';
 import {GenericAction} from '@mm-redux/types/actions';
+import {Channel} from '@mm-redux/types/channels';
+import {Team} from '@mm-redux/types/teams';
 import {UserProfile, UserStatus} from '@mm-redux/types/users';
 import {RelationOneToMany, IDMappedObjects, RelationOneToOne} from '@mm-redux/types/utilities';
-import {Team} from '@mm-redux/types/teams';
-import {Channel} from '@mm-redux/types/channels';
+import {profileListToMap} from '@mm-redux/utils/user_utils';
 
 function profilesToSet(state: RelationOneToMany<Team, UserProfile>, action: GenericAction) {
     const id = action.id;

@@ -5,7 +5,7 @@ import React from 'react';
 
 import {DeviceTypes} from '@constants';
 import Preferences from '@mm-redux/constants/preferences';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import MainSidebar from './main_sidebar.ios';
 

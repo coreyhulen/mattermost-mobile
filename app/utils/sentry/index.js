@@ -5,10 +5,10 @@ import {Platform} from 'react-native';
 
 import Config from '@assets/config';
 import {Client4} from '@client/rest';
-import {getConfig} from '@mm-redux/selectors/entities/general';
-import {getCurrentUser} from '@mm-redux/selectors/entities/users';
-import {getCurrentTeam, getCurrentTeamMembership} from '@mm-redux/selectors/entities/teams';
 import {getCurrentChannel, getMyCurrentChannelMembership} from '@mm-redux/selectors/entities/channels';
+import {getConfig} from '@mm-redux/selectors/entities/general';
+import {getCurrentTeam, getCurrentTeamMembership} from '@mm-redux/selectors/entities/teams';
+import {getCurrentUser} from '@mm-redux/selectors/entities/users';
 
 export const LOGGER_EXTENSION = 'extension';
 export const LOGGER_JAVASCRIPT = 'javascript';

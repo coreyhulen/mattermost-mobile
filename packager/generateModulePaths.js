@@ -4,9 +4,11 @@
 /* eslint-disable no-console */
 const execSync = require('child_process').execSync;
 const fs = require('fs');
-const moduleNames = require('./moduleNames');
 
 const pjson = require('../package.json');
+
+const moduleNames = require('./moduleNames');
+
 const localPrefix = `${pjson.name}/`;
 
 // Transforming to Module Paths

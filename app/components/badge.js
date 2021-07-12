@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     PanResponder,
     StyleSheet,
@@ -11,6 +11,7 @@ import {
     View,
     ViewPropTypes,
 } from 'react-native';
+
 import {CHANNEL_ITEM_LARGE_BADGE_MAX_WIDTH, CHANNEL_ITEM_SMALL_BADGE_MAX_WIDTH, LARGE_BADGE_MAX_WIDTH, SMALL_BADGE_MAX_WIDTH} from '@constants/view';
 
 export default class Badge extends PureComponent {

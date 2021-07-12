@@ -1,32 +1,35 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {AppState, Dimensions, Linking, Platform} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import CookieManager from '@react-native-cookies/cookies';
+
+import {AppState, Dimensions, Linking, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import {getLocales} from 'react-native-localize';
 
 import {setDeviceDimensions, setDeviceOrientation, setDeviceAsTablet} from '@actions/device';
-import {selectDefaultChannel} from '@actions/views/channel';
 import {showOverlay} from '@actions/navigation';
+import {selectDefaultChannel} from '@actions/views/channel';
 import {loadConfigAndLicense, setDeepLinkURL, startDataCleanup} from '@actions/views/root';
 import {loadMe, logout} from '@actions/views/user';
+import {close as closeWebSocket} from '@actions/websocket';
 import LocalConfig from '@assets/config';
+import {Client4} from '@client/rest';
 import {NavigationTypes, ViewTypes} from '@constants';
 import {resetMomentLocale} from '@i18n';
+import {analytics} from '@init/analytics.ts';
 import {setupPermanentSidebar} from '@init/device';
 import PushNotifications from '@init/push_notifications';
+import mattermostManaged from '@mattermost-managed';
 import {setAppState, setServerVersion} from '@mm-redux/actions/general';
 import {getTeams} from '@mm-redux/actions/teams';
 import {autoUpdateTimezone} from '@mm-redux/actions/timezone';
-import {close as closeWebSocket} from '@actions/websocket';
-import {Client4} from '@client/rest';
 import {General} from '@mm-redux/constants';
-import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getCurrentChannelId} from '@mm-redux/selectors/entities/channels';
-import {getCurrentUser, getUser} from '@mm-redux/selectors/entities/users';
+import {getConfig} from '@mm-redux/selectors/entities/general';
 import {isTimezoneEnabled} from '@mm-redux/selectors/entities/timezone';
+import {getCurrentUser, getUser} from '@mm-redux/selectors/entities/users';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import initialState from '@store/initial_state';
@@ -35,11 +38,9 @@ import {deleteFileCache} from '@utils/file';
 import {getDeviceTimezone} from '@utils/timezone';
 
 import mattermostBucket from 'app/mattermost_bucket';
-import mattermostManaged from 'app/mattermost_managed';
 
 import {getAppCredentials, removeAppCredentials} from './credentials';
 import emmProvider from './emm_provider';
-import {analytics} from '@init/analytics.ts';
 
 const PROMPT_IN_APP_PIN_CODE_AFTER = 5 * 1000;
 

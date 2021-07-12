@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {RequestStatus} from '../../constants';
 import {GenericAction} from '@mm-redux/types/actions';
 import {RequestStatusType} from '@mm-redux/types/requests';
+
+import {RequestStatus} from '../../constants';
 export function initialRequestState(): RequestStatusType {
     return {
         status: RequestStatus.NOT_STARTED,

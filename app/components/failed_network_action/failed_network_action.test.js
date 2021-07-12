@@ -1,11 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+
+import {waitFor} from '@testing-library/react-native';
+
 import React from 'react';
 
-import FailedNetworkAction from './failed_network_action';
-import {renderWithReduxIntl} from 'test/testing_library';
 import Preferences from '@mm-redux/constants/preferences';
-import {waitFor} from '@testing-library/react-native';
+import {renderWithReduxIntl} from '@test/testing_library';
+
+import FailedNetworkAction from './failed_network_action';
 
 describe('FailedNetworkAction', () => {
     const baseProps = {

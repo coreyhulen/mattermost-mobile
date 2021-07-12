@@ -2,7 +2,9 @@
 // See LICENSE.txt for license information.
 
 import {connect} from 'react-redux';
+
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
+
 import ReactionPicker from './reaction_picker';
 
 function mapStateToProps(state) {

@@ -5,19 +5,18 @@ import React from 'react';
 import {StyleProp, Text, TextStyle, View, ViewStyle} from 'react-native';
 
 import Markdown from '@components/markdown';
-import {makeStyleSheetFromTheme} from '@utils/theme';
-
-import {Theme} from '@mm-redux/types/preferences';
 import {MessageAttachmentField} from '@mm-redux/types/message_attachments';
 import {PostMetadata} from '@mm-redux/types/posts';
+import {Theme} from '@mm-redux/types/preferences';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 type Props = {
-    baseTextStyle: StyleProp<TextStyle>,
-    blockStyles?: StyleProp<ViewStyle>[],
-    fields: MessageAttachmentField[],
-    metadata?: PostMetadata,
-    textStyles?: StyleProp<TextStyle>[],
-    theme: Theme,
+    baseTextStyle: StyleProp<TextStyle>;
+    blockStyles?: StyleProp<ViewStyle>[];
+    fields: MessageAttachmentField[];
+    metadata?: PostMetadata;
+    textStyles?: StyleProp<TextStyle>[];
+    theme: Theme;
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {

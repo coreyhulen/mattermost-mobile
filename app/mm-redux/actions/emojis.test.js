@@ -1,16 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import fs from 'fs';
 import assert from 'assert';
+import fs from 'fs';
+
 import nock from 'nock';
 
-import * as Actions from '@mm-redux/actions/emojis';
 import {Client4} from '@client/rest';
-
 import {GeneralTypes} from '@mm-redux/action_types';
-import TestHelper from 'test/test_helper';
-import configureStore from 'test/test_store';
+import * as Actions from '@mm-redux/actions/emojis';
+import TestHelper from '@test/test_helper';
+import configureStore from '@test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 

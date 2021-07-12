@@ -7,17 +7,17 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {
+    Channel,
+    Setup,
+    System,
+} from '@support/server_api';
 import {MainSidebar} from '@support/ui/component';
 import {
     ChannelInfoScreen,
     ChannelScreen,
     MoreChannelsScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Setup,
-    System,
-} from '@support/server_api';
 
 describe('Public Channels', () => {
     const testPublicChannePrefix = '1-public-channel';

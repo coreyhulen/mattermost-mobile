@@ -2,19 +2,19 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Alert} from 'react-native';
 import {intlShape, injectIntl} from 'react-intl';
+import {Alert} from 'react-native';
 
+import {dismissModal} from '@actions/navigation';
+import {AppCallResponseTypes, AppCallTypes} from '@mm-redux/constants/apps';
+import {AppBinding} from '@mm-redux/types/apps';
+import {Channel} from '@mm-redux/types/channels';
+import {Theme} from '@mm-redux/types/preferences';
+import {DoAppCall, PostEphemeralCallResponseForChannel} from '@mm-types/actions/apps';
 import Separator from '@screens/channel_info/separator';
+import {createCallContext, createCallRequest} from '@utils/apps';
 
 import ChannelInfoRow from '../channel_info_row';
-import {AppBinding} from '@mm-redux/types/apps';
-import {Theme} from '@mm-redux/types/preferences';
-import {Channel} from '@mm-redux/types/channels';
-import {AppCallResponseTypes, AppCallTypes} from '@mm-redux/constants/apps';
-import {dismissModal} from '@actions/navigation';
-import {createCallContext, createCallRequest} from '@utils/apps';
-import {DoAppCall, PostEphemeralCallResponseForChannel} from 'types/actions/apps';
 
 type Props = {
     bindings: AppBinding[];
@@ -26,7 +26,7 @@ type Props = {
     actions: {
         doAppCall: DoAppCall;
         postEphemeralCallResponseForChannel: PostEphemeralCallResponseForChannel;
-    }
+    };
 }
 
 const Bindings: React.FC<Props> = injectIntl((props: Props) => {
@@ -65,7 +65,7 @@ type OptionProps = {
     actions: {
         doAppCall: DoAppCall;
         postEphemeralCallResponseForChannel: PostEphemeralCallResponseForChannel;
-    },
+    };
 }
 
 type OptionState = {

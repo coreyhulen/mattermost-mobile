@@ -1,16 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 
 import {MAX_FILE_COUNT, UPLOAD_FILES} from '@constants/post_draft';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 
 import CameraAction from './camera_quick_action';
-import ImageAction from './image_quick_action';
 import FileAction from './file_quick_action';
+import ImageAction from './image_quick_action';
 import InputAction from './input_quick_action';
 
 export default class QuickActions extends PureComponent {

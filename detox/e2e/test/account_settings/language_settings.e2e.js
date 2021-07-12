@@ -7,12 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Setup,
     User,
 } from '@support/server_api';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Language Settings', () => {
     let testUser;

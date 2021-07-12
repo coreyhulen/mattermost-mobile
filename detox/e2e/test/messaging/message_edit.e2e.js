@@ -8,14 +8,14 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    EditPostScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    EditPostScreen,
+} from '@support/ui/screen';
 
 describe('Message Edit', () => {
     const testMessage = Date.now().toString();

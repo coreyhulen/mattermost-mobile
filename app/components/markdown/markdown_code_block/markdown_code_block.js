@@ -1,11 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import Clipboard from '@react-native-community/clipboard';
+
+import {PropTypes} from 'prop-types';
 import React from 'react';
 import {intlShape} from 'react-intl';
 import {Keyboard, StyleSheet, Text, View} from 'react-native';
-import Clipboard from '@react-native-community/clipboard';
-import {PropTypes} from 'prop-types';
 
 import {goToScreen} from '@actions/navigation';
 import FormattedText from '@components/formatted_text';

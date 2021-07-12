@@ -3,13 +3,11 @@
 
 import React from 'react';
 
+import * as NavigationActions from '@actions/navigation';
 import FormattedText from '@components/formatted_text';
+import {mfaExpectedErrors} from '@screens/login/login';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
-import {shallowWithIntl} from 'test/intl-test-helper';
-
-import * as NavigationActions from 'app/actions/navigation';
-
-import {mfaExpectedErrors} from 'app/screens/login/login';
 import Login from './login';
 
 describe('Login', () => {

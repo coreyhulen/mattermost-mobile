@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {
     DeviceEventEmitter,
@@ -14,9 +14,9 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {dismissModal} from '@actions/navigation';
 import ChannelLoader from '@components/channel_loader';
-import DateSeparator from '@components/post_list/date_separator';
 import FailedNetworkAction from '@components/failed_network_action';
 import NoResults from '@components/no_results';
+import DateSeparator from '@components/post_list/date_separator';
 import PostSeparator from '@components/post_separator';
 import StatusBar from '@components/status_bar';
 import {isDateLine, getDateForDateLine} from '@mm-redux/utils/post_list';

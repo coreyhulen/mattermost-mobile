@@ -1,21 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import {intlShape} from 'react-intl';
-
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {connect} from 'react-redux';
 
 import CompassIcon from '@components/compass_icon';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme} from '@utils/theme';
-import {t} from '@utils/i18n';
 
 export class SettingsSidebarDrawerButton extends PureComponent {
     static propTypes = {

@@ -4,9 +4,9 @@
 import React, {useCallback} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
 
-import Emoji from '@components/emoji';
 import ClearButton from '@components/custom_status/clear_button';
 import CustomStatusText from '@components/custom_status/custom_status_text';
+import Emoji from '@components/emoji';
 import {Theme} from '@mm-redux/types/preferences';
 import {UserCustomStatus} from '@mm-redux/types/users';
 import {preventDoubleTap} from '@utils/tap';

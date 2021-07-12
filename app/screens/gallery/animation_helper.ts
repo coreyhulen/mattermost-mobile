@@ -1,5 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {Platform} from 'react-native';
+import {State} from 'react-native-gesture-handler';
 import Animated, {
     Clock,
     Value,
@@ -33,8 +35,6 @@ import {
     useValue,
     vec,
 } from 'react-native-redash/lib/module/v1';
-import {Platform} from 'react-native';
-import {State} from 'react-native-gesture-handler';
 
 const pinchEnd = proc(
     (state: Animated.Node<State>, numberOfPointers: Animated.Node<number>) =>

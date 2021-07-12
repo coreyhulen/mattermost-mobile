@@ -3,9 +3,9 @@
 
 import {GeneralTypes} from '@mm-redux/action_types';
 import {General} from '@mm-redux/constants';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 import {GenericAction} from '@mm-redux/types/actions';
 import {WebSocketMessage} from '@mm-redux/types/websocket';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 
 export function handleConfigChangedEvent(msg: WebSocketMessage): GenericAction {
     const data = msg.data.config;

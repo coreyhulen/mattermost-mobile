@@ -2,12 +2,13 @@
 // See LICENSE.txt for license information.
 
 import {connect} from 'react-redux';
+
 import {getConfig} from '@mm-redux/selectors/entities/general';
 
-import type {GlobalState} from '@mm-redux/types/store';
-import type {Post} from '@mm-redux/types/posts';
-
 import YouTube from './youtube';
+
+import type {Post} from '@mm-redux/types/posts';
+import type {GlobalState} from '@mm-redux/types/store';
 
 type OwnProps = {
     googleDeveloperKey?: string;

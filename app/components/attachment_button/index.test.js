@@ -7,7 +7,7 @@ import Permissions from 'react-native-permissions';
 
 import Preferences from '@mm-redux/constants/preferences';
 import {VALID_MIME_TYPES} from '@screens/edit_profile/edit_profile';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import AttachmentButton from './index';
 

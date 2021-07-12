@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import {Node, Parser} from 'commonmark';
 
 import {
@@ -11,7 +12,7 @@ import {
     highlightMentions,
     highlightTextNode,
     pullOutImages,
-} from 'app/components/markdown/transform';
+} from '@components/markdown/transform';
 
 /* eslint-disable no-console, no-underscore-dangle */
 

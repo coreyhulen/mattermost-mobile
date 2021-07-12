@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {GifTypes} from '@mm-redux/action_types';
 import {GenericAction} from '@mm-redux/types/actions';
 import {Dictionary} from '@mm-redux/types/utilities';

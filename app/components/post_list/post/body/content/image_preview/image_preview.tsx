@@ -9,10 +9,10 @@ import ProgressiveImage from '@components/progressive_image';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
 import {useDidUpdate} from '@hooks';
 import {usePermanentSidebar, useSplitView} from '@hooks/permanent_sidebar';
-import {openGallerWithMockFile} from '@utils/gallery';
-import {calculateDimensions, getViewPortWidth, isGifTooLarge} from '@utils/images';
 import {changeOpacity} from '@mm-redux/utils/theme_utils';
 import {generateId} from '@utils/file';
+import {openGallerWithMockFile} from '@utils/gallery';
+import {calculateDimensions, getViewPortWidth, isGifTooLarge} from '@utils/images';
 import {isImageLink, isValidUrl} from '@utils/url';
 
 import type {Post} from '@mm-redux/types/posts';

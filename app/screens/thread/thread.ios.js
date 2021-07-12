@@ -6,8 +6,8 @@ import {Animated, View} from 'react-native';
 
 import Autocomplete from '@components/autocomplete';
 import Loading from '@components/loading';
-import PostList from '@components/post_list';
 import PostDraft from '@components/post_draft';
+import PostList from '@components/post_list';
 import SafeAreaView from '@components/safe_area_view';
 import StatusBar from '@components/status_bar';
 import DEVICE from '@constants/device';

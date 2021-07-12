@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Text, TouchableOpacity, View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {Navigation} from 'react-native-navigation';
 
@@ -20,11 +20,11 @@ import Loading from '@components/loading';
 import PostList from '@components/post_list';
 import PostListRetry from '@components/post_list_retry';
 import SafeAreaView from '@components/safe_area_view';
+import {PERMALINK} from '@constants/screen';
 import {General} from '@mm-redux/constants';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {privateChannelJoinPrompt} from '@utils/channels';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {PERMALINK} from '@constants/screen';
 
 Animatable.initializeRegistryWithDefinitions({
     growOut: {

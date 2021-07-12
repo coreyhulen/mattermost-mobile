@@ -2,13 +2,15 @@
 // See LICENSE.txt for license information.
 
 import * as reselect from 'reselect';
-import {General, Preferences} from '../../constants';
+
 import {getConfig, getLicense} from '@mm-redux/selectors/entities/general';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
+import {PreferenceType} from '@mm-redux/types/preferences';
+import {GlobalState} from '@mm-redux/types/store';
 import {createShallowSelector} from '@mm-redux/utils/helpers';
 import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
-import {GlobalState} from '@mm-redux/types/store';
-import {PreferenceType} from '@mm-redux/types/preferences';
+
+import {General, Preferences} from '../../constants';
 
 export function getMyPreferences(state: GlobalState) {
     return state.entities.preferences.myPreferences;

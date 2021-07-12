@@ -7,8 +7,6 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {Alert} from '@support/ui/component';
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Post,
@@ -16,6 +14,8 @@ import {
     Team,
     User,
 } from '@support/server_api';
+import {Alert} from '@support/ui/component';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('At Mention', () => {
     const {

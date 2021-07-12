@@ -4,14 +4,13 @@
 import React, {useCallback, useRef} from 'react';
 import Button from 'react-native-button';
 
-import ActionButtonText from './action_button_text';
-
+import {ActionResult} from '@mm-redux/types/actions';
+import {Theme} from '@mm-redux/types/preferences';
+import {getStatusColors} from '@utils/message_attachment_colors';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme, changeOpacity} from '@utils/theme';
-import {getStatusColors} from '@utils/message_attachment_colors';
 
-import {Theme} from '@mm-redux/types/preferences';
-import {ActionResult} from '@mm-redux/types/actions';
+import ActionButtonText from './action_button_text';
 
 type Props = {
     buttonColor?: string;

@@ -1,11 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import {shallow} from 'enzyme';
+import React from 'react';
 
 import Preferences from '@mm-redux/constants/preferences';
-
 import SectionItem from '@screens/settings/section_item';
 
 import NotificationSettingsEmailIos from './notification_settings_email.ios.js';

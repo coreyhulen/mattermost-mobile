@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {View} from 'react-native';
-import PropTypes from 'prop-types';
 
 import CompassIcon from '@components/compass_icon';
 import FormattedText from '@components/formatted_text';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {ViewTypes} from '@constants';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 class DeletedPost extends PureComponent {
     static propTypes = {

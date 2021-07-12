@@ -128,6 +128,7 @@
     "enzyme-to-json": "3.6.2",
     "eslint": "7.28.0",
     "eslint-plugin-header": "3.1.1",
+    "eslint-plugin-import": "2.23.4",
     "eslint-plugin-jest": "24.3.6",
     "eslint-plugin-mattermost": "github:mattermost/eslint-plugin-mattermost#070ce792d105482ffb2b27cfc0b7e78b3d20acee",
     "eslint-plugin-react": "7.24.0",

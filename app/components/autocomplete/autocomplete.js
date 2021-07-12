@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Keyboard,
     Platform,
@@ -11,15 +11,15 @@ import {
 } from 'react-native';
 
 import {DeviceTypes} from '@constants';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {emptyFunction} from '@utils/general';
 import EventEmitter from '@mm-redux/utils/event_emitter';
+import {emptyFunction} from '@utils/general';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import AtMention from './at_mention';
 import ChannelMention from './channel_mention';
+import DateSuggestion from './date_suggestion';
 import EmojiSuggestion from './emoji_suggestion';
 import SlashSuggestion from './slash_suggestion';
-import DateSuggestion from './date_suggestion';
 
 export default class Autocomplete extends PureComponent {
     static propTypes = {

@@ -7,17 +7,17 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {PostOptions} from '@support/ui/component';
-import {
-    ChannelScreen,
-    SavedMessagesScreen,
-} from '@support/ui/screen';
 import {
     Channel,
     Post,
     Setup,
     System,
 } from '@support/server_api';
+import {PostOptions} from '@support/ui/component';
+import {
+    ChannelScreen,
+    SavedMessagesScreen,
+} from '@support/ui/screen';
 
 describe('Saved Messages', () => {
     const {

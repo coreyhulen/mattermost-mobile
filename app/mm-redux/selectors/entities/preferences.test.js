@@ -3,12 +3,11 @@
 
 import assert from 'assert';
 
-import {General, Preferences} from '../../constants';
-
 import * as Selectors from '@mm-redux/selectors/entities/preferences';
-
 import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
 import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
+
+import {General, Preferences} from '../../constants';
 
 describe('Selectors.Preferences', () => {
     const category1 = 'testcategory1';

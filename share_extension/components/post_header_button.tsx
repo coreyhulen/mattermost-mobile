@@ -7,8 +7,8 @@ import {useSelector} from 'react-redux';
 
 import CompassIcon from '@components/compass_icon';
 import {Preferences} from '@mm-redux/constants';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 import {canUploadFilesOnMobile} from '@mm-redux/selectors/entities/general';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 import {preventDoubleTap} from '@utils/tap';
 
 export const SHARE_EXTENSION_POST_EVENT = 'share-extesion-post-event';

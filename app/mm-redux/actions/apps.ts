@@ -1,11 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {AppsTypes} from '@mm-redux/action_types';
 import {Client4} from '@client/rest';
-
-import {ActionFunc, DispatchFunc, GetStateFunc} from '@mm-redux/types/actions';
+import {AppsTypes} from '@mm-redux/action_types';
 import {getChannel} from '@mm-redux/selectors/entities/channels';
+import {ActionFunc, DispatchFunc, GetStateFunc} from '@mm-redux/types/actions';
 
 import {bindClientFunc} from './helpers';
 

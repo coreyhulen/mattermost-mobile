@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 
 import React, {useCallback, useEffect, useState} from 'react';
-import {Provider} from 'react-redux';
 import {IntlProvider} from 'react-intl';
+import {Provider} from 'react-redux';
 
-import {General} from '@mm-redux/constants';
 import {getTranslations} from '@i18n';
+import {General} from '@mm-redux/constants';
 import {getCurrentLocale} from '@selectors/i18n';
 import configureStore from '@store';
 import getStorage from '@store/mmkv_adapter';

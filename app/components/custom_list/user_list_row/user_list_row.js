@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {intlShape} from 'react-intl';
 import {
     Text,
@@ -10,14 +10,13 @@ import {
 } from 'react-native';
 
 import ChannelIcon from '@components/channel_icon';
+import CustomListRow from '@components/custom_list/custom_list_row';
+import ProfilePicture from '@components/profile_picture';
+import {BotTag, GuestTag} from '@components/tag';
 import {General} from '@mm-redux/constants';
 import {displayUsername, isShared} from '@mm-redux/utils/user_utils';
-
-import CustomListRow from 'app/components/custom_list/custom_list_row';
-import ProfilePicture from 'app/components/profile_picture';
-import {BotTag, GuestTag} from 'app/components/tag';
-import {makeStyleSheetFromTheme, changeOpacity} from 'app/utils/theme';
-import {isGuest} from 'app/utils/users';
+import {makeStyleSheetFromTheme, changeOpacity} from '@utils/theme';
+import {isGuest} from '@utils/users';
 
 export default class UserListRow extends React.PureComponent {
     static propTypes = {

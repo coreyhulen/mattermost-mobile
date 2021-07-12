@@ -6,7 +6,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import FormattedText from '@components/formatted_text';
 
-import type {DetailsProps} from 'types/screens/gallery';
+import type {DetailsProps} from '@mm-types/screens/gallery';
 
 const styles = StyleSheet.create({
     container: {

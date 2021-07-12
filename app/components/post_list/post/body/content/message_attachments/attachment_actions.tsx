@@ -5,10 +5,10 @@ import React from 'react';
 
 import {PostAction} from '@mm-redux/types/integration_actions';
 
-import type {Theme} from '@mm-redux/types/preferences';
-
-import ActionMenu from './action_menu';
 import ActionButton from './action_button';
+import ActionMenu from './action_menu';
+
+import type {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
     actions: PostAction[];

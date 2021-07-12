@@ -1,15 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import {shallow} from 'enzyme';
-
-import ActionButton from './action_button';
-
-import {changeOpacity} from '@utils/theme';
-import {getStatusColors} from '@utils/message_attachment_colors';
+import React from 'react';
 
 import Preferences from '@mm-redux/constants/preferences';
+import {getStatusColors} from '@utils/message_attachment_colors';
+import {changeOpacity} from '@utils/theme';
+
+import ActionButton from './action_button';
 
 describe('ActionButton', () => {
     test('correct styles when from global theme', () => {

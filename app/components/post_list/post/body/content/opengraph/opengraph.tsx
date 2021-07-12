@@ -2,17 +2,17 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Alert, Text, View} from 'react-native';
 import {intlShape, injectIntl} from 'react-intl';
+import {Alert, Text, View} from 'react-native';
 
 import TouchableWithFeedback from '@components/touchable_with_feedback';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {tryOpenURL} from '@utils/url';
 
+import OpengraphImage from './opengraph_image';
+
 import type {Post} from '@mm-redux/types/posts';
 import type {Theme} from '@mm-redux/types/preferences';
-
-import OpengraphImage from './opengraph_image';
 
 type OpengraphProps = {
     intl: typeof intlShape;

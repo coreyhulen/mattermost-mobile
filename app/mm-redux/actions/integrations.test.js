@@ -2,14 +2,14 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import nock from 'nock';
 
+import {Client4} from '@client/rest';
 import * as Actions from '@mm-redux/actions/integrations';
 import * as TeamsActions from '@mm-redux/actions/teams';
-import {Client4} from '@client/rest';
-
-import TestHelper from 'test/test_helper';
-import configureStore from 'test/test_store';
+import TestHelper from '@test/test_helper';
+import configureStore from '@test/test_store';
 
 describe('Actions.Integrations', () => {
     let store;

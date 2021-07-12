@@ -2,16 +2,16 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import {Server, WebSocket as MockWebSocket} from 'mock-socket';
 import {batchActions} from 'redux-batched-actions';
-import {TeamTypes, UserTypes} from '@mm-redux/action_types';
-import {Client4} from '@client/rest';
 
 import * as Actions from '@actions/websocket';
+import {Client4} from '@client/rest';
 import {WebsocketEvents} from '@constants';
-
-import TestHelper from 'test/test_helper';
-import configureStore from 'test/test_store';
+import {TeamTypes, UserTypes} from '@mm-redux/action_types';
+import TestHelper from '@test/test_helper';
+import configureStore from '@test/test_store';
 
 global.WebSocket = MockWebSocket;
 

@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Alert} from 'react-native';
+import {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Alert} from 'react-native';
 
 import {showModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';

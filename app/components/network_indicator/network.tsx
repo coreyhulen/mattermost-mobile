@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {useNetInfo} from '@react-native-community/netinfo';
+
 import React, {useEffect, useRef, useState} from 'react';
 import {ActivityIndicator, AppState, AppStateStatus, Platform, StyleSheet, View} from 'react-native';
 import Animated, {Easing, interpolateColor, runOnJS, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
@@ -33,7 +34,7 @@ type AppStateCallBack = (appState: AppStateStatus) => Promise<void>;
 
 type ConnectionChangedEvent = {
     hasInternet: boolean;
-    serverReachable: boolean
+    serverReachable: boolean;
 };
 
 const MAX_WEBSOCKET_RETRIES = 3;

@@ -2,9 +2,10 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {shallowWithIntl} from 'test/intl-test-helper';
 
 import {Preferences} from '@mm-redux/constants';
+import {shallowWithIntl} from '@test/intl-test-helper';
+
 import UploadRemove from './upload_remove';
 
 describe('UploadRemove', () => {

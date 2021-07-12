@@ -4,8 +4,9 @@
 import {
     Alert,
 } from 'react-native';
-import {toTitleCase} from 'app/utils/general';
-import {t} from 'app/utils/i18n';
+
+import {toTitleCase} from '@utils/general';
+import {t} from '@utils/i18n';
 
 export function confirmOutOfOfficeDisabled(intl, status, updateStatus) {
     const userStatusId = 'modal.manual_status.auto_responder.message_' + status;

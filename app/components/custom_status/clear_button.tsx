@@ -15,7 +15,7 @@ interface Props {
     containerSize?: number;
     theme: Theme;
     testID?: string;
-    iconName: string,
+    iconName: string;
 }
 
 const ClearButton = ({handlePress, iconName, size, containerSize, theme, testID}: Props) => {

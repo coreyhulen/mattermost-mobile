@@ -2,13 +2,13 @@
 // See LICENSE.txt for license information.
 
 import AboutScreen from './about';
-import AdvancedSettingsScreen from './advanced_settings';
 import AddReactionScreen from './add_reaction';
-import ChannelInfoScreen from './channel_info';
+import AdvancedSettingsScreen from './advanced_settings';
+import ChannelScreen from './channel';
 import ChannelAddMembersScreen from './channel_add_members';
+import ChannelInfoScreen from './channel_info';
 import ChannelMembersScreen from './channel_members';
 import ChannelNotificationPreferenceScreen from './channel_notification_preference';
-import ChannelScreen from './channel';
 import ClockDisplaySettingsScreen from './clock_display_settings';
 import CreateChannelScreen from './create_channel';
 import CustomStatusScreen from './custom_status';
@@ -21,16 +21,16 @@ import LoginScreen from './login';
 import MoreChannelsScreen from './more_channels';
 import MoreDirectMessagesScreen from './more_direct_messages';
 import NotificationScreen from './notification';
+import NotificationSettingsScreen from './notification_settings';
 import NotificationSettingsEmailScreen from './notification_settings_email';
 import NotificationSettingsMobileScreen from './notification_settings_mobile';
-import NotificationSettingsScreen from './notification_settings';
 import PermalinkScreen from './permalink';
 import PinnedMessagesScreen from './pinned_messages';
 import ReactionListScreen from './reaction_list';
 import RecentMentionsScreen from './recent_mentions';
 import SavedMessagesScreen from './saved_messages';
-import SearchResultPostScreen from './search_result_post';
 import SearchScreen from './search';
+import SearchResultPostScreen from './search_result_post';
 import SelectServerScreen from './select_server';
 import SelectTeamScreen from './select_team';
 import TableScreen from './table';

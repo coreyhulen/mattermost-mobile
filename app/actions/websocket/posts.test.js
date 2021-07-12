@@ -4,21 +4,20 @@
 /* eslint-disable no-import-assign */
 
 import assert from 'assert';
-import nock from 'nock';
-import {Server, WebSocket as MockWebSocket} from 'mock-socket';
 
+import {Server, WebSocket as MockWebSocket} from 'mock-socket';
+import nock from 'nock';
+
+import * as Actions from '@actions/websocket';
+import {Client4} from '@client/rest';
+import {WebsocketEvents} from '@constants';
 import * as ChannelActions from '@mm-redux/actions/channels';
 import * as PostActions from '@mm-redux/actions/posts';
-import {Client4} from '@client/rest';
 import {General, Posts} from '@mm-redux/constants';
 import * as PostSelectors from '@mm-redux/selectors/entities/posts';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-
-import * as Actions from '@actions/websocket';
-import {WebsocketEvents} from '@constants';
-
-import TestHelper from 'test/test_helper';
-import configureStore from 'test/test_store';
+import TestHelper from '@test/test_helper';
+import configureStore from '@test/test_store';
 
 global.WebSocket = MockWebSocket;
 

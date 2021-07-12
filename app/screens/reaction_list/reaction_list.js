@@ -1,15 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 
-import {intlShape} from 'react-intl';
-
-import SlideUpPanel from 'app/components/slide_up_panel';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import {dismissModal} from '@actions/navigation';
+import SlideUpPanel from '@components/slide_up_panel';
+import {ALL_EMOJIS} from '@constants/emoji';
 import {
     generateUserProfilesById,
     getMissingUserIds,
@@ -17,13 +17,11 @@ import {
     getSortedReactionsForHeader,
     getUniqueUserIds,
     sortReactions,
-} from 'app/utils/reaction';
-import {dismissModal} from 'app/actions/navigation';
+} from '@utils/reaction';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import ReactionHeader from './reaction_header';
 import ReactionRow from './reaction_row';
-
-import {ALL_EMOJIS} from 'app/constants/emoji';
 
 export default class ReactionList extends PureComponent {
     static propTypes = {

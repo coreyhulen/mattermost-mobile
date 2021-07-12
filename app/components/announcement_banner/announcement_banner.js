@@ -1,15 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
+import React, {useEffect, useRef, useState} from 'react';
+import {injectIntl} from 'react-intl';
 import {
     Animated,
     StyleSheet,
     Text,
     TouchableOpacity,
 } from 'react-native';
-import {injectIntl} from 'react-intl';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {goToScreen} from '@actions/navigation';

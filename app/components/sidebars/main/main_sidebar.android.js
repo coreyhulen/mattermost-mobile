@@ -2,14 +2,13 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Dimensions, Keyboard} from 'react-native';
 import {IntlProvider} from 'react-intl';
+import {Dimensions, Keyboard} from 'react-native';
 
+import {closeMainSideMenu, enableMainSideMenu} from '@actions/navigation';
+import {NavigationTypes} from '@constants';
+import {getTranslations} from '@i18n';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-
-import {closeMainSideMenu, enableMainSideMenu} from 'app/actions/navigation';
-import {NavigationTypes} from 'app/constants';
-import {getTranslations} from 'app/i18n';
 
 import MainSidebarBase from './main_sidebar_base';
 

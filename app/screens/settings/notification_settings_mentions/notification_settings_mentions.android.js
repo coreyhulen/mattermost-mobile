@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
+import {injectIntl} from 'react-intl';
 import {
     Modal,
     ScrollView,
@@ -9,19 +10,18 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import {injectIntl} from 'react-intl';
 
 import FormattedText from '@components/formatted_text';
-import RadioButtonGroup from 'app/components/radio_button';
-import StatusBar from 'app/components/status_bar';
-import TextInputWithLocalizedPlaceholder from 'app/components/text_input_with_localized_placeholder';
-import SectionItem from 'app/screens/settings/section_item';
+import RadioButtonGroup from '@components/radio_button';
+import StatusBar from '@components/status_bar';
+import TextInputWithLocalizedPlaceholder from '@components/text_input_with_localized_placeholder';
+import SectionItem from '@screens/settings/section_item';
+import {t} from '@utils/i18n';
 import {
     changeOpacity,
     makeStyleSheetFromTheme,
     getKeyboardAppearanceFromTheme,
-} from 'app/utils/theme';
-import {t} from 'app/utils/i18n';
+} from '@utils/theme';
 
 import NotificationSettingsMentionsBase from './notification_settings_mention_base';
 

@@ -7,7 +7,8 @@ import FastImage from 'react-native-fast-image';
 
 import CompassIcon from '@components/compass_icon';
 import {changeOpacity} from '@mm-redux/utils/theme_utils';
-import type {AvatarProps} from 'types/screens/gallery';
+
+import type {AvatarProps} from '@mm-types/screens/gallery';
 
 const styles = StyleSheet.create({
     avatarContainer: {

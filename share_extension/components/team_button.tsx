@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {useNavigation} from '@react-navigation/native';
+
 import React from 'react';
 import {injectIntl, intlShape} from 'react-intl';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
@@ -11,10 +12,11 @@ import FormattedText from '@components/formatted_text';
 import {getMyTeams} from '@mm-redux/actions/teams';
 import {Preferences} from '@mm-redux/constants';
 import {DispatchFunc} from '@mm-redux/types/actions';
+import {loadTeamChannels, getTeamDefaultChannel} from '@share/actions';
+import {changeOpacity} from '@utils/theme';
+
 import type {Channel} from '@mm-redux/types/channels';
 import type {Team} from '@mm-redux/types/teams';
-import {changeOpacity} from '@utils/theme';
-import {loadTeamChannels, getTeamDefaultChannel} from '@share/actions';
 
 interface TeamButtonProps {
     intl: typeof intlShape;

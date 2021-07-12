@@ -12,11 +12,11 @@ import {isPostEphemeral} from '@mm-redux/utils/post_utils';
 import {appsEnabled} from '@utils/apps';
 import {hasEmojisOnly} from '@utils/emoji_utils';
 
-import type {GlobalState} from '@mm-redux/types/store';
+import Body from './body';
+
 import type {Post} from '@mm-redux/types/posts';
 import type {Theme} from '@mm-redux/types/preferences';
-
-import Body from './body';
+import type {GlobalState} from '@mm-redux/types/store';
 
 type OwnProps = {
     highlight: boolean;

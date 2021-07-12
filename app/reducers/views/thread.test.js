@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import channelReducer, {handleSetTempUploadFilesForPostDraft} from './thread';
 import {ViewTypes} from '@constants';
+
+import channelReducer, {handleSetTempUploadFilesForPostDraft} from './thread';
 
 describe('Reducers.thread', () => {
     test('Initial state', () => {

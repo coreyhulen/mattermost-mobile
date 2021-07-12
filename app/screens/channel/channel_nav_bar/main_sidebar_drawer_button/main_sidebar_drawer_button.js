@@ -1,21 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import {intlShape} from 'react-intl';
 
 import Badge from '@components/badge';
 import CompassIcon from '@components/compass_icon';
+import {LARGE_BADGE_RIGHT_POSITION, SMALL_BADGE_RIGHT_POSITION, MAX_BADGE_RIGHT_POSITION} from '@constants/view';
+import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme} from '@utils/theme';
-import {t} from '@utils/i18n';
-
-import {LARGE_BADGE_RIGHT_POSITION, SMALL_BADGE_RIGHT_POSITION, MAX_BADGE_RIGHT_POSITION} from '@constants/view';
 
 export default class MainSidebarDrawerButton extends PureComponent {
     static propTypes = {

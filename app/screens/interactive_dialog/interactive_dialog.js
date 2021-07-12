@@ -1,20 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {ScrollView} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {checkDialogElementForError, checkIfErrorsMatchElements} from '@mm-redux/utils/integration_utils';
-
-import ErrorText from 'app/components/error_text';
-import StatusBar from 'app/components/status_bar';
+import {dismissModal} from '@actions/navigation';
+import ErrorText from '@components/error_text';
 import FormattedText from '@components/formatted_text';
-
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
-import {dismissModal} from 'app/actions/navigation';
+import StatusBar from '@components/status_bar';
+import {checkDialogElementForError, checkIfErrorsMatchElements} from '@mm-redux/utils/integration_utils';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import DialogElement from './dialog_element.js';
 import DialogIntroductionText from './dialog_introduction_text.js';

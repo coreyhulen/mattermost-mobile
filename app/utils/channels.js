@@ -1,6 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Alert} from 'react-native';
+
 import {Preferences} from '@mm-redux/constants';
 import {getUserIdFromChannelName} from '@mm-redux/utils/channel_utils';
 import {getLastCreateAt} from '@mm-redux/utils/post_utils';

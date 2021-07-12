@@ -9,9 +9,9 @@ import {goToScreen} from '@actions/navigation';
 import PostList from '@components/post_list';
 import RetryBarIndicator from '@components/retry_bar_indicator';
 import {TYPING_HEIGHT} from '@constants/post_draft';
+import {CHANNEL} from '@constants/screen';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {CHANNEL} from '@constants/screen';
 
 let ChannelIntro = null;
 let LoadMorePosts = null;

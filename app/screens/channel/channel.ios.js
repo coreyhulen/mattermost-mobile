@@ -5,7 +5,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import AnnouncementBanner from 'app/components/announcement_banner';
+import AnnouncementBanner from '@components/announcement_banner';
 import Autocomplete from '@components/autocomplete';
 import InteractiveDialogController from '@components/interactive_dialog_controller';
 import NetworkIndicator from '@components/network_indicator';

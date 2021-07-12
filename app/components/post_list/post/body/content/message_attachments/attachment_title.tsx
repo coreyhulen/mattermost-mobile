@@ -6,10 +6,9 @@ import {intlShape, injectIntl} from 'react-intl';
 import {Alert, Text, View} from 'react-native';
 
 import Markdown from '@components/markdown';
+import {Theme} from '@mm-redux/types/preferences';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 import {tryOpenURL} from '@utils/url';
-
-import {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
     intl: typeof intlShape;

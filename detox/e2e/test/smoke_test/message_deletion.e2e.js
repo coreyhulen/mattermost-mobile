@@ -8,14 +8,14 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    ThreadScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    ThreadScreen,
+} from '@support/ui/screen';
 
 describe('Message Deletion', () => {
     const {

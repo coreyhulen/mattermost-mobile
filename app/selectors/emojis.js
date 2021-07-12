@@ -3,11 +3,11 @@
 
 import {createSelector} from 'reselect';
 
+import {Preferences} from '@mm-redux/constants';
 import {getCustomEmojisByName as selectCustomEmojisByName} from '@mm-redux/selectors/entities/emojis';
+import {get} from '@mm-redux/selectors/entities/preferences';
 import {createIdsSelector} from '@mm-redux/utils/helpers';
 import {CategoryNames, CategoryTranslations, Emojis, EmojiIndicesByAlias, EmojiIndicesByCategory, CategoryMessage} from '@utils/emojis';
-import {get} from '@mm-redux/selectors/entities/preferences';
-import {Preferences} from '@mm-redux/constants';
 
 const icons = {
     recent: 'clock-outline',

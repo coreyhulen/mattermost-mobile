@@ -7,6 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {
+    Channel,
+    Setup,
+    Team,
+    User,
+} from '@support/server_api';
 import {MainSidebar} from '@support/ui/component';
 import {
     ChannelAddMembersScreen,
@@ -16,12 +22,6 @@ import {
     CreateChannelScreen,
     EditChannelScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Setup,
-    Team,
-    User,
-} from '@support/server_api';
 import {getRandomId} from '@support/utils';
 
 describe('Private Channels', () => {

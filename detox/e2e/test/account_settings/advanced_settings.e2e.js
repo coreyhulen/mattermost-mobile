@@ -8,14 +8,14 @@
 // *******************************************************************
 
 import {
+    Channel,
+    Setup,
+} from '@support/server_api';
+import {
     AdvancedSettingsScreen,
     ChannelScreen,
     GeneralSettingsScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Setup,
-} from '@support/server_api';
 
 describe('Advanced Settings', () => {
     let townSquareChannel;

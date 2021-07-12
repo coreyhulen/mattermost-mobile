@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 
 import Preferences from '@mm-redux/constants/preferences';
 import intitialState from '@store/initial_state';
-import {renderWithReduxIntl} from 'test/testing_library';
+import {renderWithReduxIntl} from '@test/testing_library';
 
 import PostDraft from './post_draft';
 

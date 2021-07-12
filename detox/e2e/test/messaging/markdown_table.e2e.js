@@ -8,14 +8,14 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    TableScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    TableScreen,
+} from '@support/ui/screen';
 import {isIos} from '@support/utils';
 
 describe('Markdown Table', () => {

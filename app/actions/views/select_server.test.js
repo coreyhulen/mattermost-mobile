@@ -5,11 +5,9 @@ import {batchActions} from 'redux-batched-actions';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import {handleServerUrlChanged} from '@actions/views/select_server';
+import {ViewTypes} from '@constants';
 import {GeneralTypes} from '@mm-redux/action_types';
-
-import {ViewTypes} from 'app/constants';
-
-import {handleServerUrlChanged} from 'app/actions/views/select_server';
 
 const mockStore = configureStore([thunk]);
 

@@ -2,33 +2,33 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Alert} from 'react-native';
 import {intlShape, injectIntl} from 'react-intl';
+import {Alert} from 'react-native';
 
+import {AppCallResponseTypes, AppCallTypes, AppExpandLevels} from '@mm-redux/constants/apps';
+import {AppBinding, AppCallResponse} from '@mm-redux/types/apps';
+import {Post} from '@mm-redux/types/posts';
+import {Theme} from '@mm-redux/types/preferences';
+import {UserProfile} from '@mm-redux/types/users';
 import {isSystemMessage} from '@mm-redux/utils/post_utils';
+import {DoAppCall, PostEphemeralCallResponseForPost} from '@mm-types/actions/apps';
+import {createCallContext, createCallRequest} from '@utils/apps';
 
 import PostOption from '../post_option';
-import {AppBinding, AppCallResponse} from '@mm-redux/types/apps';
-import {Theme} from '@mm-redux/types/preferences';
-import {Post} from '@mm-redux/types/posts';
-import {UserProfile} from '@mm-redux/types/users';
-import {AppCallResponseTypes, AppCallTypes, AppExpandLevels} from '@mm-redux/constants/apps';
-import {createCallContext, createCallRequest} from '@utils/apps';
-import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/actions/apps';
 
 type Props = {
-    bindings: AppBinding[],
-    theme: Theme,
-    post: Post,
-    currentUser: UserProfile,
-    teamID: string,
-    closeWithAnimation: (cb?: () => void) => void,
-    appsEnabled: boolean,
-    intl: typeof intlShape,
+    bindings: AppBinding[];
+    theme: Theme;
+    post: Post;
+    currentUser: UserProfile;
+    teamID: string;
+    closeWithAnimation: (cb?: () => void) => void;
+    appsEnabled: boolean;
+    intl: typeof intlShape;
     actions: {
         doAppCall: DoAppCall;
         postEphemeralCallResponseForPost: PostEphemeralCallResponseForPost;
-    }
+    };
 }
 
 const Bindings = injectIntl((props: Props) => {
@@ -64,17 +64,17 @@ const Bindings = injectIntl((props: Props) => {
 export default Bindings;
 
 type OptionProps = {
-    binding: AppBinding,
-    theme: Theme,
-    post: Post,
-    currentUser: UserProfile,
-    teamID: string,
-    closeWithAnimation: (cb?: () => void) => void,
-    intl: typeof intlShape,
+    binding: AppBinding;
+    theme: Theme;
+    post: Post;
+    currentUser: UserProfile;
+    teamID: string;
+    closeWithAnimation: (cb?: () => void) => void;
+    intl: typeof intlShape;
     actions: {
         doAppCall: DoAppCall;
         postEphemeralCallResponseForPost: PostEphemeralCallResponseForPost;
-    },
+    };
 }
 
 class Option extends React.PureComponent<OptionProps> {

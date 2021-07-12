@@ -3,7 +3,7 @@
 
 import {connect} from 'react-redux';
 
-import {getConnection} from 'app/selectors/device';
+import {getConnection} from '@selectors/device';
 
 import RefreshList from './refresh_list';
 

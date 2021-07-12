@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {View} from 'react-native';
-import PropTypes from 'prop-types';
 
 import Markdown from '@components/markdown';
 import {getMarkdownTextStyles, getMarkdownBlockStyles} from '@utils/markdown';

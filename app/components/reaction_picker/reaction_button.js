@@ -1,20 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     View,
     TouchableWithoutFeedback,
 } from 'react-native';
 
 import Emoji from '@components/emoji';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {hapticFeedback} from '@utils/general';
 import {
     LARGE_CONTAINER_SIZE,
     LARGE_ICON_SIZE,
 } from '@constants/reaction_picker';
+import {hapticFeedback} from '@utils/general';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class ReactionButton extends PureComponent {
     static propTypes = {

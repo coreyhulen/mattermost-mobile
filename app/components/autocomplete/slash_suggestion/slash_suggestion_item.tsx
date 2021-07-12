@@ -3,13 +3,13 @@
 
 import React from 'react';
 import {Image, Text, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import {Theme} from '@mm-redux/types/preferences';
-
 import TouchableWithFeedback from '@components/touchable_with_feedback';
+import {Theme} from '@mm-redux/types/preferences';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import FastImage from 'react-native-fast-image';
+
 const slashIcon = require('@assets/images/autocomplete/slash_command.png');
 const bangIcon = require('@assets/images/autocomplete/slash_command_error.png');
 

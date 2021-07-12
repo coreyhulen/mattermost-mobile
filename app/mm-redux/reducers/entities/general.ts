@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {GeneralTypes, UserTypes} from '@mm-redux/action_types';
 import {GenericAction} from '@mm-redux/types/actions';
 import {Config} from '@mm-redux/types/config';

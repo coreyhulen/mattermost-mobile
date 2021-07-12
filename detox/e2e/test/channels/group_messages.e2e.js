@@ -8,14 +8,14 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    MoreDirectMessagesScreen,
-} from '@support/ui/screen';
-import {
     Setup,
     Team,
     User,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    MoreDirectMessagesScreen,
+} from '@support/ui/screen';
 
 describe('Group Messages', () => {
     const {openMainSidebar} = ChannelScreen;

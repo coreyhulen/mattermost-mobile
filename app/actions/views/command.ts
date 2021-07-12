@@ -3,18 +3,16 @@
 
 import {intlShape} from 'react-intl';
 
+import {doAppCall, postEphemeralCallResponseForCommandArgs} from '@actions/apps';
+import {AppCommandParser} from '@components/autocomplete/slash_suggestion/app_command_parser/app_command_parser';
 import {IntegrationTypes} from '@mm-redux/action_types';
 import {executeCommand as executeCommandService} from '@mm-redux/actions/integrations';
-import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {AppCallResponseTypes, AppCallTypes} from '@mm-redux/constants/apps';
+import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {DispatchFunc, GetStateFunc, ActionFunc} from '@mm-redux/types/actions';
-import {CommandArgs} from '@mm-redux/types/integrations';
-
-import {AppCommandParser} from '@components/autocomplete/slash_suggestion/app_command_parser/app_command_parser';
-
-import {doAppCall, postEphemeralCallResponseForCommandArgs} from '@actions/apps';
-import {appsEnabled} from '@utils/apps';
 import {AppCallResponse} from '@mm-redux/types/apps';
+import {CommandArgs} from '@mm-redux/types/integrations';
+import {appsEnabled} from '@utils/apps';
 
 export function executeCommand(message: string, channelId: string, rootId: string, intl: typeof intlShape): ActionFunc {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {

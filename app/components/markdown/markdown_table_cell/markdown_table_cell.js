@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {View} from 'react-native';
 
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export const CELL_MIN_WIDTH = 96;
 export const CELL_MAX_WIDTH = 192;

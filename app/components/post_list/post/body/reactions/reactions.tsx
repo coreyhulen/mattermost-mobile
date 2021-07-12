@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 
 import React, {useRef} from 'react';
-import {View} from 'react-native';
 import {intlShape, injectIntl} from 'react-intl';
+import {View} from 'react-native';
 
 import {showModal, showModalOverCurrentContext} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
@@ -11,10 +11,10 @@ import TouchableWithFeedback from '@components/touchable_with_feedback';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
+import Reaction from './reaction';
+
 import type {Theme} from '@mm-redux/types/preferences';
 import type {Reaction as ReactionType} from '@mm-redux/types/reactions';
-
-import Reaction from './reaction';
 
 type ReactionsProps = {
     addReaction: (postId: string, emojiName: string) => void;

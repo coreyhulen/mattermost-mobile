@@ -1,18 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Animated} from 'react-native';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Animated} from 'react-native';
 
+import {popTopScreen, mergeNavigationOptions} from '@actions/navigation';
+import DeletedPost from '@components/deleted_post';
+import Loading from '@components/loading';
+import {TYPING_HEIGHT, TYPING_VISIBLE} from '@constants/post_draft';
 import {General, RequestStatus} from '@mm-redux/constants';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-
-import Loading from 'app/components/loading';
-import DeletedPost from 'app/components/deleted_post';
-import {popTopScreen, mergeNavigationOptions} from 'app/actions/navigation';
-import {TYPING_HEIGHT, TYPING_VISIBLE} from '@constants/post_draft';
 
 export default class ThreadBase extends PureComponent {
     static propTypes = {

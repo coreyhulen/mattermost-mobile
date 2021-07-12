@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import ActionButton from './action_button';
-
 import {doPostActionWithCookie} from '@mm-redux/actions/posts';
+
+import ActionButton from './action_button';
 
 const mapDispatchToProps = {
     doPostActionWithCookie,

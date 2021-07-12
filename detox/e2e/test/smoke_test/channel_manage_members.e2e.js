@@ -8,16 +8,16 @@
 // *******************************************************************
 
 import {
-    ChannelInfoScreen,
-    ChannelMembersScreen,
-    ChannelScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Setup,
     Team,
     User,
 } from '@support/server_api';
+import {
+    ChannelInfoScreen,
+    ChannelMembersScreen,
+    ChannelScreen,
+} from '@support/ui/screen';
 import {getRandomId} from '@support/utils';
 
 describe('Channel Manage Members', () => {

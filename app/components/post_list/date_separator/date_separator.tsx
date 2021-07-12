@@ -4,8 +4,8 @@
 import React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 
-import FormattedText from '@components/formatted_text';
 import FormattedDate from '@components/formatted_date';
+import FormattedText from '@components/formatted_text';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
 import type {Theme} from '@mm-redux/types/preferences';

@@ -3,8 +3,8 @@
 
 import assert from 'assert';
 
-import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
 import * as Selectors from '@mm-redux/selectors/entities/groups';
+import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
 
 describe('Selectors.Groups', () => {
     const teamID = 'c6ubwm63apgftbjs71enbjjpsh';

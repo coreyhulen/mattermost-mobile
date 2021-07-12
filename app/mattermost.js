@@ -5,18 +5,17 @@ import {Linking} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {Provider} from 'react-redux';
 
-import EventEmitter from '@mm-redux/utils/event_emitter';
-
 import {resetToChannel, resetToSelectServer} from '@actions/navigation';
 import {setDeepLinkURL} from '@actions/views/root';
 import {loadMe, logout} from '@actions/views/user';
 import {NavigationTypes} from '@constants';
 import {CHANNEL, THREAD} from '@constants/screen';
 import {getAppCredentials} from '@init/credentials';
-import emmProvider from '@init/emm_provider';
 import {setupPermanentSidebar} from '@init/device';
+import emmProvider from '@init/emm_provider';
 import '@init/fetch';
 import globalEventHandler from '@init/global_event_handler';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 import {registerScreens} from '@screens';
 import configureStore from '@store';
 import EphemeralStore from '@store/ephemeral_store';

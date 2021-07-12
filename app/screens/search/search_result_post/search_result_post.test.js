@@ -4,7 +4,7 @@
 import React from 'react';
 
 import {Preferences} from '@mm-redux/constants';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import SearchResultPost from './search_result_post';
 

@@ -3,7 +3,7 @@
 
 import assert from 'assert';
 
-import {makePreparePostIdsForSearchPosts} from 'app/selectors/post_list';
+import {makePreparePostIdsForSearchPosts} from '@selectors/post_list';
 
 describe('makePreparePostIdsForSearchPosts', () => {
     it('should return an empty array if there are no posts specified', () => {

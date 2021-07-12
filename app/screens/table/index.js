@@ -6,7 +6,7 @@ import React from 'react';
 import {Platform, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {makeStyleSheetFromTheme} from 'app/utils/theme';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class Table extends React.PureComponent {
     static propTypes = {

@@ -3,7 +3,7 @@
 
 import {Node} from 'commonmark';
 
-import {escapeRegex} from 'app/utils/markdown';
+import {escapeRegex} from '@utils/markdown';
 
 /* eslint-disable no-underscore-dangle */
 

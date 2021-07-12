@@ -3,7 +3,7 @@
 
 import {connect} from 'react-redux';
 
-import {getDimensions} from 'app/selectors/device';
+import {getDimensions} from '@selectors/device';
 
 import SlideUpPanel from './slide_up_panel';
 

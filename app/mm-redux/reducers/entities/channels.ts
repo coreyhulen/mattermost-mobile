@@ -1,12 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {ChannelTypes, UserTypes, GroupTypes} from '@mm-redux/action_types';
-import {General} from '../../constants';
 import {GenericAction} from '@mm-redux/types/actions';
 import {Channel, ChannelMembership, ChannelStats, ChannelMemberCountByGroup, ChannelMemberCountsByGroup} from '@mm-redux/types/channels';
-import {RelationOneToMany, RelationOneToOne, IDMappedObjects, UserIDMappedObjects} from '@mm-redux/types/utilities';
 import {Team} from '@mm-redux/types/teams';
+import {RelationOneToMany, RelationOneToOne, IDMappedObjects, UserIDMappedObjects} from '@mm-redux/types/utilities';
+
+import {General} from '../../constants';
 
 function removeMemberFromChannels(state: RelationOneToOne<Channel, UserIDMappedObjects<ChannelMembership>>, action: GenericAction) {
     const nextState = {...state};

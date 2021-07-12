@@ -1,16 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     View,
     FlatList,
     Platform,
 } from 'react-native';
-import {intlShape} from 'react-intl';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import {popTopScreen} from '@actions/navigation';
 import SearchBar from '@components/search_bar';
 import StatusBar from '@components/status_bar';
 import {ListTypes} from '@constants';
@@ -20,7 +21,6 @@ import {
     makeStyleSheetFromTheme,
     getKeyboardAppearanceFromTheme,
 } from '@utils/theme';
-import {popTopScreen} from '@actions/navigation';
 
 import SelectTimezoneRow from './select_timezone_row';
 

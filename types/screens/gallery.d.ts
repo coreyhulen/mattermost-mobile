@@ -108,11 +108,11 @@ export interface ToastProps {
 }
 
 export interface ToastRef {
-    show: ShowToast
+    show: ShowToast;
 }
 
 export interface ToastState {
-    animation?: CompositeAnimation,
+    animation?: CompositeAnimation;
     duration?: number;
     callback?: () => void;
 }

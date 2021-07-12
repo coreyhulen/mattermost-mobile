@@ -4,6 +4,7 @@
 import {connect} from 'react-redux';
 
 import {canManageChannelMembers, getCurrentChannel} from '@mm-redux/selectors/entities/channels';
+
 import AddMembers from './add_members';
 
 function mapStateToProps(state) {

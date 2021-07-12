@@ -1,25 +1,25 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import ChannelTypes from './channels';
-import ErrorTypes from './errors';
-import GeneralTypes from './general';
-import UserTypes from './users';
-import TeamTypes from './teams';
-import PostTypes from './posts';
-import FileTypes from './files';
-import PreferenceTypes from './preferences';
-import IntegrationTypes from './integrations';
-import EmojiTypes from './emojis';
-import GifTypes from './gifs';
-import SearchTypes from './search';
-import RoleTypes from './roles';
-import GroupTypes from './groups';
-import BotTypes from './bots';
-import PluginTypes from './plugins';
-import ChannelCategoryTypes from './channel_categories';
-import RemoteClusterTypes from './remote_cluster';
 import AppsTypes from './apps';
+import BotTypes from './bots';
+import ChannelCategoryTypes from './channel_categories';
+import ChannelTypes from './channels';
+import EmojiTypes from './emojis';
+import ErrorTypes from './errors';
+import FileTypes from './files';
+import GeneralTypes from './general';
+import GifTypes from './gifs';
+import GroupTypes from './groups';
+import IntegrationTypes from './integrations';
+import PluginTypes from './plugins';
+import PostTypes from './posts';
+import PreferenceTypes from './preferences';
+import RemoteClusterTypes from './remote_cluster';
+import RoleTypes from './roles';
+import SearchTypes from './search';
+import TeamTypes from './teams';
+import UserTypes from './users';
 
 export {
     ErrorTypes,

@@ -1,20 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {useEffect, useState} from 'react';
-import PropTypes from 'prop-types';
-import {Dimensions, Platform, View} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+
+import PropTypes from 'prop-types';
+import React, {useEffect, useState} from 'react';
+import {Dimensions, Platform, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {DeviceTypes, ViewTypes} from '@constants';
+import mattermostManaged from '@mattermost-managed';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {makeStyleSheetFromTheme} from '@utils/theme';
-import mattermostManaged from 'app/mattermost_managed';
 
-import MainSidebarDrawerButton from './main_sidebar_drawer_button';
 import ChannelSearchButton from './channel_search_button';
 import ChannelTitle from './channel_title';
+import MainSidebarDrawerButton from './main_sidebar_drawer_button';
 import SettingsSidebarDrawerButton from './settings_sidebar_drawer_button';
 
 const {

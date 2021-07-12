@@ -5,16 +5,17 @@ import React, {useCallback, useRef} from 'react';
 import {intlShape, injectIntl} from 'react-intl';
 import Button from 'react-native-button';
 
-import {preventDoubleTap} from 'app/utils/tap';
-import {makeStyleSheetFromTheme, changeOpacity} from 'app/utils/theme';
-import {getStatusColors} from '@utils/message_attachment_colors';
-import ButtonBindingText from './button_binding_text';
-import {Theme} from '@mm-redux/types/preferences';
+import {AppExpandLevels, AppBindingLocations, AppCallTypes, AppCallResponseTypes} from '@mm-redux/constants/apps';
 import {AppBinding} from '@mm-redux/types/apps';
 import {Post} from '@mm-redux/types/posts';
-import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/actions/apps';
-import {AppExpandLevels, AppBindingLocations, AppCallTypes, AppCallResponseTypes} from '@mm-redux/constants/apps';
+import {Theme} from '@mm-redux/types/preferences';
+import {DoAppCall, PostEphemeralCallResponseForPost} from '@mm-types/actions/apps';
 import {createCallContext, createCallRequest} from '@utils/apps';
+import {getStatusColors} from '@utils/message_attachment_colors';
+import {preventDoubleTap} from '@utils/tap';
+import {makeStyleSheetFromTheme, changeOpacity} from '@utils/theme';
+
+import ButtonBindingText from './button_binding_text';
 
 type Props = {
     binding: AppBinding;

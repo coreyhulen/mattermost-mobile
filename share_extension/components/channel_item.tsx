@@ -7,10 +7,9 @@ import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import CompassIcon from '@components/compass_icon';
 import {Preferences} from '@mm-redux/constants';
 import {Channel} from '@mm-redux/types/channels';
+import {DirectChannel, GroupChannel, PublicChannel, PrivateChannel} from '@share/components/channel_type';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity} from '@utils/theme';
-
-import {DirectChannel, GroupChannel, PublicChannel, PrivateChannel} from '@share/components/channel_type';
 
 interface ChannelItemProps {
     onSelect: (channel: Channel) => void;

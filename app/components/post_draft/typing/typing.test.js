@@ -1,12 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
 import {shallow} from 'enzyme';
+import React from 'react';
 import {Animated} from 'react-native';
 
-import EventEmitter from '@mm-redux/utils/event_emitter';
-
 import {TYPING_VISIBLE} from '@constants/post_draft';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 
 import Typing from './typing';
 

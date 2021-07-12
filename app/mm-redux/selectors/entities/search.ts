@@ -2,13 +2,14 @@
 // See LICENSE.txt for license information.
 
 import * as reselect from 'reselect';
-import {GlobalState} from '@mm-redux/types/store';
-import {Channel} from '@mm-redux/types/channels';
-import {UserMentionKey} from './users';
-import {getCurrentUserMentionKeys} from '@mm-redux/selectors/entities/users';
-import {getMyGroupMentionKeys, getMyGroupMentionKeysForChannel} from '@mm-redux/selectors/entities/groups';
 
+import {getMyGroupMentionKeys, getMyGroupMentionKeysForChannel} from '@mm-redux/selectors/entities/groups';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
+import {getCurrentUserMentionKeys} from '@mm-redux/selectors/entities/users';
+import {Channel} from '@mm-redux/types/channels';
+import {GlobalState} from '@mm-redux/types/store';
+
+import {UserMentionKey} from './users';
 
 export const getCurrentSearchForCurrentTeam = reselect.createSelector(
     (state: GlobalState) => state.entities.search.current,

@@ -7,8 +7,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Slider from 'react-native-slider';
 
 import CompassIcon from '@components/compass_icon';
+import {CallbackFunctionWithoutArguments} from '@mm-types/screens/gallery';
 import {makeStyleSheetFromTheme} from '@utils/theme';
-import {CallbackFunctionWithoutArguments} from 'types/screens/gallery';
 
 interface VideoControlsProps {
     isLandscape: boolean;

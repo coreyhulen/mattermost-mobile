@@ -1,10 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {Text} from 'react-native';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class ChannelDisplayName extends PureComponent {
     static propTypes = {

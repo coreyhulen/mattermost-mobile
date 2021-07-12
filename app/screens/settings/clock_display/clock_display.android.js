@@ -1,18 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 import {
     TouchableOpacity,
     Modal,
     View,
 } from 'react-native';
 
-import StatusBar from 'app/components/status_bar';
 import FormattedText from '@components/formatted_text';
-import RadioButtonGroup from 'app/components/radio_button';
-
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import RadioButtonGroup from '@components/radio_button';
+import StatusBar from '@components/status_bar';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import ClockDisplayBase from './clock_display_base';
 

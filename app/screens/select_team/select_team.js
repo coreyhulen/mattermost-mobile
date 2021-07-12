@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
+import memoize from 'memoize-one';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Alert,
     InteractionManager,
@@ -13,20 +14,18 @@ import {
 import {Navigation} from 'react-native-navigation';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import {resetToChannel, dismissModal} from '@actions/navigation';
+import CustomList from '@components/custom_list';
+import FormattedText from '@components/formatted_text';
+import Loading from '@components/loading';
+import StatusBar from '@components/status_bar';
+import TeamIcon from '@components/team_icon';
+import {NavigationTypes} from '@constants';
 import {RequestStatus} from '@mm-redux/constants';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-
-import FormattedText from '@components/formatted_text';
-import Loading from 'app/components/loading';
-import StatusBar from 'app/components/status_bar';
-import CustomList from 'app/components/custom_list';
-import TeamIcon from 'app/components/team_icon';
-import {NavigationTypes} from 'app/constants';
-import {resetToChannel, dismissModal} from 'app/actions/navigation';
-import {preventDoubleTap} from 'app/utils/tap';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
-import {t} from 'app/utils/i18n';
-import memoize from 'memoize-one';
+import {t} from '@utils/i18n';
+import {preventDoubleTap} from '@utils/tap';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 const TEAMS_PER_PAGE = 50;
 

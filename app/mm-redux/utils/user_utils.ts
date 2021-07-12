@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {General, Preferences} from '../constants';
-import {localizeMessage} from '@mm-redux/utils/i18n_utils';
 import {UserProfile} from '@mm-redux/types/users';
 import {IDMappedObjects, $ID, Dictionary} from '@mm-redux/types/utilities';
+import {localizeMessage} from '@mm-redux/utils/i18n_utils';
+
+import {General, Preferences} from '../constants';
 export function getFullName(user: UserProfile): string {
     if (user.first_name && user.last_name) {
         return user.first_name + ' ' + user.last_name;

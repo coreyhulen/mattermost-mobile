@@ -7,13 +7,13 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
 import testConfig from '@support/test_config';
+import {ChannelScreen} from '@support/ui/screen';
 import {timeouts, wait} from '@support/utils';
 
 describe('Channel Link', () => {

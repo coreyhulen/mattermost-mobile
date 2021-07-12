@@ -1,14 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import * as reselect from 'reselect';
+
+import {getChannel} from '@mm-redux/selectors/entities/channels';
+import {getCurrentUserLocale} from '@mm-redux/selectors/entities/i18n';
+import {getTeam} from '@mm-redux/selectors/entities/teams';
+import {UserMentionKey} from '@mm-redux/selectors/entities/users';
+import {Group} from '@mm-redux/types/groups';
 import {GlobalState} from '@mm-redux/types/store';
 import {Dictionary, NameMappedObjects} from '@mm-redux/types/utilities';
-import {Group} from '@mm-redux/types/groups';
 import {filterGroupsMatchingTerm} from '@mm-redux/utils/group_utils';
-import {getCurrentUserLocale} from '@mm-redux/selectors/entities/i18n';
-import {getChannel} from '@mm-redux/selectors/entities/channels';
-import {UserMentionKey} from '@mm-redux/selectors/entities/users';
-import {getTeam} from '@mm-redux/selectors/entities/teams';
 
 const emptyList: any[] = [];
 const emptySyncables = {

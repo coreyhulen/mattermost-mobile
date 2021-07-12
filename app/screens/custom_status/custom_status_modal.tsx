@@ -8,9 +8,9 @@ import {Navigation, NavigationComponent, NavigationComponentProps, OptionsTopBar
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {dismissModal, showModal, mergeNavigationOptions} from '@actions/navigation';
-import Emoji from '@components/emoji';
 import CompassIcon from '@components/compass_icon';
 import ClearButton from '@components/custom_status/clear_button';
+import Emoji from '@components/emoji';
 import FormattedText from '@components/formatted_text';
 import StatusBar from '@components/status_bar';
 import {CustomStatus, DeviceTypes} from '@constants';

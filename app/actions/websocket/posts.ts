@@ -20,13 +20,13 @@ import {
     getMyChannelMember as selectMyChannelMember,
     isManuallyUnread,
 } from '@mm-redux/selectors/entities/channels';
-import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {getPost as selectPost} from '@mm-redux/selectors/entities/posts';
+import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
+import {ActionResult, DispatchFunc, GenericAction, GetStateFunc, batchActions} from '@mm-redux/types/actions';
+import {WebSocketMessage} from '@mm-redux/types/websocket';
 import {getUserIdFromChannelName} from '@mm-redux/utils/channel_utils';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {isFromWebhook, isSystemMessage, shouldIgnorePost} from '@mm-redux/utils/post_utils';
-import {ActionResult, DispatchFunc, GenericAction, GetStateFunc, batchActions} from '@mm-redux/types/actions';
-import {WebSocketMessage} from '@mm-redux/types/websocket';
 
 export function handleNewPostEvent(msg: WebSocketMessage) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc): Promise<ActionResult> => {

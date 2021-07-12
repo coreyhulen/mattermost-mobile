@@ -11,16 +11,16 @@ import Markdown from '@components/markdown';
 import {getMarkdownTextStyles} from '@utils/markdown';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
-import type {Theme} from '@mm-redux/types/preferences';
-
 import {postTypeMessages, systemMessages} from './messages';
+
+import type {Theme} from '@mm-redux/types/preferences';
 
 type LastUsersProps = {
     actor: string;
     intl: typeof intlShape;
     postType: string;
     usernames: string[];
-    theme: Theme
+    theme: Theme;
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {

@@ -6,9 +6,9 @@ import {connect} from 'react-redux';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {isLandscape} from '@selectors/device';
 
-import type {GlobalState} from '@mm-redux/types/store';
-
 import PrepareFile from './prepare_file';
+
+import type {GlobalState} from '@mm-redux/types/store';
 
 function mapStateToProps(state: GlobalState) {
     return {

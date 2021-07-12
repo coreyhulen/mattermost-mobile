@@ -4,7 +4,7 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import * as NavigationActions from 'app/actions/navigation';
+import * as NavigationActions from '@actions/navigation';
 
 import Hashtag from './index';
 

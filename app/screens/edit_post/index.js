@@ -1,14 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import {MAX_MESSAGE_LENGTH_FALLBACK} from '@constants/post_draft';
 import {editPost} from '@mm-redux/actions/posts';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
-
-import {MAX_MESSAGE_LENGTH_FALLBACK} from '@constants/post_draft';
 import {getDimensions} from '@selectors/device';
 
 import EditPost from './edit_post';

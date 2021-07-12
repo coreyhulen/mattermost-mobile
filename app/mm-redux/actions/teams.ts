@@ -1,24 +1,22 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Client4} from '@client/rest';
-import {General} from '../constants';
 import {ChannelTypes, RoleTypes, TeamTypes, UserTypes} from '@mm-redux/action_types';
-import EventEmitter from '@mm-redux/utils/event_emitter';
-
 import {isCompatibleWithJoinViewTeamPermissions} from '@mm-redux/selectors/entities/general';
 import {getRoles} from '@mm-redux/selectors/entities/roles_helpers';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-
 import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult, batchActions, Action} from '@mm-redux/types/actions';
-
 import {Team} from '@mm-redux/types/teams';
+import EventEmitter from '@mm-redux/utils/event_emitter';
+
+import {General} from '../constants';
 
 import {selectChannel} from './channels';
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
-import {getProfilesByIds, getStatusesByIds} from './users';
 import {loadRolesIfNeeded} from './roles';
+import {getProfilesByIds, getStatusesByIds} from './users';
 
 async function getProfilesAndStatusesForMembers(userIds: string[], dispatch: DispatchFunc, getState: GetStateFunc) {
     const {

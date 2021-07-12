@@ -6,10 +6,10 @@ import {connect} from 'react-redux';
 import {getRedirectLocation} from '@mm-redux/actions/general';
 import {getExpandedLink} from '@mm-redux/selectors/entities/posts';
 
-import type {GlobalState} from '@mm-redux/types/store';
-import type {Post} from '@mm-redux/types/posts';
-
 import ImagePreview from './image_preview';
+
+import type {Post} from '@mm-redux/types/posts';
+import type {GlobalState} from '@mm-redux/types/store';
 
 type OwnProps = {
     post: Post;

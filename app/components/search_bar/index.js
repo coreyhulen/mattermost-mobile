@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     Animated,
     InteractionManager,
@@ -12,13 +13,10 @@ import {
     View,
     Platform,
 } from 'react-native';
-import {intlShape} from 'react-intl';
-
 import {SearchBar} from 'react-native-elements';
 
-import {memoizeResult} from '@mm-redux/utils/helpers';
-
 import CompassIcon from '@components/compass_icon';
+import {memoizeResult} from '@mm-redux/utils/helpers';
 
 const LEFT_COMPONENT_INITIAL_POSITION = Platform.OS === 'ios' ? 7 : 0;
 

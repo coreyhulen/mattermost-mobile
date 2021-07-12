@@ -1,14 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {bindActionCreators} from 'redux';
 
 import {selectPost} from '@mm-redux/actions/posts';
 import {getChannel, getMyCurrentChannelMembership} from '@mm-redux/selectors/entities/channels';
 import {makeGetPostIdsForThread} from '@mm-redux/selectors/entities/posts';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
 
 import Thread from './thread';
 

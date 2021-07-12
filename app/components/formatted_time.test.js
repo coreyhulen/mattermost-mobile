@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import moment from 'moment-timezone';
+import React from 'react';
 
-import {renderWithIntl} from 'test/testing_library';
+import {renderWithIntl} from '@test/testing_library';
 
 import FormattedTime from './formatted_time';
 

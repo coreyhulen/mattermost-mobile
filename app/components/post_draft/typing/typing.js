@@ -1,18 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Animated,
     Platform,
     Text,
 } from 'react-native';
 
-import EventEmitter from '@mm-redux/utils/event_emitter';
-
 import FormattedText from '@components/formatted_text';
-import {makeStyleSheetFromTheme} from '@utils/theme';
 import {TYPING_VISIBLE, TYPING_HEIGHT} from '@constants/post_draft';
+import EventEmitter from '@mm-redux/utils/event_emitter';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class Typing extends PureComponent {
     static propTypes = {

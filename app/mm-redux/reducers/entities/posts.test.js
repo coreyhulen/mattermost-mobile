@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import expect from 'expect';
 
 import {
@@ -9,9 +10,10 @@ import {
     GeneralTypes,
     PostTypes,
 } from '@mm-redux/action_types';
-import {Posts} from '../../constants';
 import * as reducers from '@mm-redux/reducers/entities/posts';
 import deepFreeze from '@mm-redux/utils/deep_freeze';
+
+import {Posts} from '../../constants';
 
 describe('posts', () => {
     for (const actionType of [

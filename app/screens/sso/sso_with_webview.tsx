@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import CookieManager, {Cookies} from '@react-native-cookies/cookies';
+
 import React from 'react';
 import {intlShape} from 'react-intl';
 import {Alert, Text, View} from 'react-native';
@@ -10,14 +11,14 @@ import {WebView} from 'react-native-webview';
 import {WebViewErrorEvent, WebViewMessageEvent, WebViewNavigation, WebViewNavigationEvent} from 'react-native-webview/lib/WebViewTypes';
 import urlParse from 'url-parse';
 
-import {Client4} from '@client/rest';
-import type {Theme} from '@mm-redux/types/preferences';
-
-import Loading from 'app/components/loading';
-import StatusBar from 'app/components/status_bar';
-import {ViewTypes} from 'app/constants';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import {popTopScreen} from '@actions/navigation';
+import {Client4} from '@client/rest';
+import Loading from '@components/loading';
+import StatusBar from '@components/status_bar';
+import {ViewTypes} from '@constants';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
+
+import type {Theme} from '@mm-redux/types/preferences';
 
 const HEADERS = {
     'X-Mobile-App': 'mattermost',
@@ -64,7 +65,7 @@ interface SSOWithWebViewProps {
     onMMToken: (token: string) => void;
     serverUrl: string;
     ssoType: string;
-    theme: Theme
+    theme: Theme;
 }
 
 function SSOWithWebView({completeUrlPath, intl, loginError, loginUrl, onCSRFToken, onMMToken, serverUrl, ssoType, theme}: SSOWithWebViewProps) {

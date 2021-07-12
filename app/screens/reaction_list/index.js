@@ -1,16 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {getMissingProfilesByIds} from '@mm-redux/actions/users';
 import {makeGetReactionsForPost} from '@mm-redux/selectors/entities/posts';
-import {getCurrentUserId, makeGetProfilesByIdsAndUsernames} from '@mm-redux/selectors/entities/users';
 import {getTeammateNameDisplaySetting, getTheme} from '@mm-redux/selectors/entities/preferences';
-
-import {isLandscape} from 'app/selectors/device';
-import {getUniqueUserIds} from 'app/utils/reaction';
+import {getCurrentUserId, makeGetProfilesByIdsAndUsernames} from '@mm-redux/selectors/entities/users';
+import {isLandscape} from '@selectors/device';
+import {getUniqueUserIds} from '@utils/reaction';
 
 import ReactionList from './reaction_list';
 

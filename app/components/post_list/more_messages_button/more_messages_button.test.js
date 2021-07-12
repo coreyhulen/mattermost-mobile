@@ -3,13 +3,12 @@
 
 import React from 'react';
 import {Animated, AppState} from 'react-native';
-import {shallowWithIntl} from 'test/intl-test-helper';
 
+import ViewTypes from '@constants/view';
 import Preferences from '@mm-redux/constants/preferences';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import * as PostListUtils from '@mm-redux/utils/post_list';
-
-import ViewTypes from '@constants/view';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import MoreMessagesButton, {
     MIN_INPUT,

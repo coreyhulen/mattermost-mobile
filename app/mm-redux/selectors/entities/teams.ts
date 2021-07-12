@@ -1,16 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import * as reselect from 'reselect';
+
 import {Permissions, Preferences} from '@mm-redux/constants';
 import {getConfig, getCurrentUrl, isCompatibleWithJoinViewTeamPermissions} from '@mm-redux/selectors/entities/general';
 import {get as getPreference} from '@mm-redux/selectors/entities/preferences';
 import {haveISystemPermission} from '@mm-redux/selectors/entities/roles_helpers';
-import {createIdsSelector} from '@mm-redux/utils/helpers';
-import {isTeamAdmin} from '@mm-redux/utils/user_utils';
-import {sortTeamsByUserPreference, sortTeamsWithLocale} from '@mm-redux/utils/team_utils';
+import {GlobalState} from '@mm-redux/types/store';
 import {Team, TeamMembership} from '@mm-redux/types/teams';
 import {IDMappedObjects} from '@mm-redux/types/utilities';
-import {GlobalState} from '@mm-redux/types/store';
+import {createIdsSelector} from '@mm-redux/utils/helpers';
+import {sortTeamsByUserPreference, sortTeamsWithLocale} from '@mm-redux/utils/team_utils';
+import {isTeamAdmin} from '@mm-redux/utils/user_utils';
 
 export function getCurrentTeamId(state: GlobalState) {
     return state.entities.teams.currentTeamId;

@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {
     Platform,
@@ -12,18 +12,18 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {popTopScreen} from '@actions/navigation';
 import CustomList, {FLATLIST, SECTIONLIST} from '@components/custom_list';
-import UserListRow from '@components/custom_list/user_list_row';
 import ChannelListRow from '@components/custom_list/channel_list_row';
 import OptionListRow from '@components/custom_list/option_list_row';
+import UserListRow from '@components/custom_list/user_list_row';
 import FormattedText from '@components/formatted_text';
 import SearchBar from '@components/search_bar';
 import StatusBar from '@components/status_bar';
 import {ViewTypes} from '@constants';
 import {debounce} from '@mm-redux/actions/helpers';
 import {General} from '@mm-redux/constants';
-import {filterProfilesMatchingTerm} from '@mm-redux/utils/user_utils';
 import {filterChannelsMatchingTerm} from '@mm-redux/utils/channel_utils';
 import {memoizeResult} from '@mm-redux/utils/helpers';
+import {filterProfilesMatchingTerm} from '@mm-redux/utils/user_utils';
 import {t} from '@utils/i18n';
 import {createProfilesSections, loadingText} from '@utils/member_list';
 import {

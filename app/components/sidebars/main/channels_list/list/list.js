@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     Dimensions,
     findNodeHandle,
@@ -13,21 +14,18 @@ import {
     TouchableHighlight,
     View,
 } from 'react-native';
-import {intlShape} from 'react-intl';
 
-import EventEmitter from '@mm-redux/utils/event_emitter';
-import {General} from '@mm-redux/constants';
-import {debounce} from '@mm-redux/actions/helpers';
-
+import {showModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
 import ChannelItem from '@components/sidebars/main/channels_list/channel_item';
 import {DeviceTypes, ListTypes, NavigationTypes} from '@constants';
 import {SidebarSectionTypes} from '@constants/view';
-
+import {debounce} from '@mm-redux/actions/helpers';
+import {General} from '@mm-redux/constants';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 import BottomSheet from '@utils/bottom_sheet';
 import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
-import {showModal} from '@actions/navigation';
 
 const VIEWABILITY_CONFIG = {
     ...ListTypes.VISIBILITY_CONFIG_DEFAULTS,

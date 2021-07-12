@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Dimensions,
     StyleSheet,
@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 
 import Config from '@assets/config.json';
-import FormattedText from '@components/formatted_text';
 import CompassIcon from '@components/compass_icon';
+import FormattedText from '@components/formatted_text';
 
 import GeneralError from './general_error';
 

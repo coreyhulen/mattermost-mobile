@@ -8,16 +8,16 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    EditProfileScreen,
-    UserProfileScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
     System,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    EditProfileScreen,
+    UserProfileScreen,
+} from '@support/ui/screen';
 
 describe('User Profile', () => {
     let testUser;

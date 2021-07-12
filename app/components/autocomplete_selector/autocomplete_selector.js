@@ -1,22 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
-import {Text, View} from 'react-native';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Text, View} from 'react-native';
 
-import {displayUsername} from '@mm-redux/utils/user_utils';
-
+import {goToScreen} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
 import FormattedText from '@components/formatted_text';
 import Markdown from '@components/markdown';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
+import {ViewTypes} from '@constants';
+import {displayUsername} from '@mm-redux/utils/user_utils';
 import {getMarkdownBlockStyles, getMarkdownTextStyles} from '@utils/markdown';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme, changeOpacity} from '@utils/theme';
-import {ViewTypes} from '@constants';
-import {goToScreen} from '@actions/navigation';
 
 export default class AutocompleteSelector extends PureComponent {
     static propTypes = {

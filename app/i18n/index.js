@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 
 import 'intl';
+import moment from 'moment';
 import {addLocaleData} from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
-import moment from 'moment';
 
 import en from '@assets/i18n/en.json';
 

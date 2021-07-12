@@ -9,25 +9,25 @@ import {getStatusColors} from '@utils/message_attachment_colors';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {isValidUrl} from '@utils/url';
 
-import type {MessageAttachment as MessageAttachmentType} from '@mm-redux/types/message_attachments';
-import type {PostMetadata} from '@mm-redux/types/posts';
-import type {Theme} from '@mm-redux/types/preferences';
-
 import AttachmentActions from './attachment_actions';
 import AttachmentAuthor from './attachment_author';
 import AttachmentFields from './attachment_fields';
+import AttachmentFooter from './attachment_footer';
 import AttachmentImage from './attachment_image';
 import AttachmentPreText from './attachment_pretext';
 import AttachmentText from './attachment_text';
 import AttachmentThumbnail from './attachment_thumbnail';
 import AttachmentTitle from './attachment_title';
-import AttachmentFooter from './attachment_footer';
+
+import type {MessageAttachment as MessageAttachmentType} from '@mm-redux/types/message_attachments';
+import type {PostMetadata} from '@mm-redux/types/posts';
+import type {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
-    attachment: MessageAttachmentType,
-    metadata?: PostMetadata,
-    postId: string,
-    theme: Theme,
+    attachment: MessageAttachmentType;
+    metadata?: PostMetadata;
+    postId: string;
+    theme: Theme;
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {

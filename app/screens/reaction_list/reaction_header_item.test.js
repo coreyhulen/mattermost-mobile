@@ -1,14 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
 import {shallow} from 'enzyme';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
+import {ALL_EMOJIS} from '@constants/emoji';
 import Preferences from '@mm-redux/constants/preferences';
 
 import ReactionHeaderItem from './reaction_header_item';
-
-import {ALL_EMOJIS} from 'app/constants/emoji';
 
 describe('ReactionHeaderItem', () => {
     const baseProps = {

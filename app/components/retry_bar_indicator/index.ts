@@ -6,9 +6,10 @@ import {connect} from 'react-redux';
 import {refreshChannelWithRetry} from '@actions/views/channel';
 import {RequestStatus} from '@mm-redux/constants';
 import {getCurrentChannelId} from '@mm-redux/selectors/entities/channels';
-import type {GlobalState} from '@mm-redux/types/store';
 
 import RetryBarIndicator from './retry_bar_indicator';
+
+import type {GlobalState} from '@mm-redux/types/store';
 
 function mapStateToProps(state: GlobalState) {
     const {websocket: websocketRequest} = state.requests.general;

@@ -2,7 +2,6 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-
 import {
     ScrollView,
     View,
@@ -12,10 +11,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import FormattedText from '@components/formatted_text';
 import StatusBar from '@components/status_bar';
 import {Preferences} from '@mm-redux/constants';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {t} from '@utils/i18n';
 import Section from '@screens/settings/section';
 import SectionItem from '@screens/settings/section_item';
+import {t} from '@utils/i18n';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import NotificationSettingsEmailBase from './notification_settings_email_base';
 

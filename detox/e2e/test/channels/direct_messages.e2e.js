@@ -7,18 +7,18 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {MainSidebar} from '@support/ui/component';
-import {
-    ChannelInfoScreen,
-    ChannelScreen,
-    MoreDirectMessagesScreen,
-} from '@support/ui/screen';
 import {
     Preference,
     Setup,
     Team,
     User,
 } from '@support/server_api';
+import {MainSidebar} from '@support/ui/component';
+import {
+    ChannelInfoScreen,
+    ChannelScreen,
+    MoreDirectMessagesScreen,
+} from '@support/ui/screen';
 
 describe('Direct Messages', () => {
     const {

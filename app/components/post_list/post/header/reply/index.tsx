@@ -11,8 +11,8 @@ import EventEmitter from '@mm-redux/utils/event_emitter';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
-import type {Theme} from '@mm-redux/types/preferences';
 import type {Post} from '@mm-redux/types/posts';
+import type {Theme} from '@mm-redux/types/preferences';
 
 type HeaderReplyProps = {
     commentCount: number;

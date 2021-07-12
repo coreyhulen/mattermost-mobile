@@ -3,9 +3,9 @@
 
 import assert from 'assert';
 
-import {General} from '../../constants';
-
 import * as Selectors from '@mm-redux/selectors/entities/general';
+
+import {General} from '../../constants';
 
 describe('Selectors.General', () => {
     it('canUploadFilesOnMobile', () => {

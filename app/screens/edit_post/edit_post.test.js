@@ -5,8 +5,7 @@ import React from 'react';
 import {Keyboard} from 'react-native';
 
 import Preferences from '@mm-redux/constants/preferences';
-
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import EditPost from './edit_post';
 

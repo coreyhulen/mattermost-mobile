@@ -4,6 +4,7 @@
 import {connect} from 'react-redux';
 
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
+
 import ChannelsList from './channels_list';
 
 function mapStateToProps(state) {

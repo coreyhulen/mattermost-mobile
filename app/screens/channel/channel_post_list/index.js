@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {loadPostsIfNecessaryWithRetry, increasePostVisibility} from '@actions/views/channel';
 import {getPostThread} from '@actions/views/post';
 import {Types} from '@constants';
 import {selectPost} from '@mm-redux/actions/posts';
-import {getPostIdsInCurrentChannel} from '@mm-redux/selectors/entities/posts';
 import {getCurrentChannelId} from '@mm-redux/selectors/entities/channels';
-import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
+import {getPostIdsInCurrentChannel} from '@mm-redux/selectors/entities/posts';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {isLandscape} from '@selectors/device';
 
 import ChannelPostList from './channel_post_list';

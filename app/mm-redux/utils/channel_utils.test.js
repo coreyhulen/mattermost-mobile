@@ -3,7 +3,6 @@
 
 import assert from 'assert';
 
-import {General, Users} from '../constants';
 import TestHelper from 'test/test_helper';
 
 import {
@@ -16,6 +15,8 @@ import {
     sortChannelsByRecency,
     sortChannelsByDisplayName,
 } from '@mm-redux/utils/channel_utils';
+
+import {General, Users} from '../constants';
 
 describe('ChannelUtils', () => {
     it('canManageMembersOldPermissions', () => {

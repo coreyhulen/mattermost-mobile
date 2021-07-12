@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     Animated,
     Platform,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {NativeViewGestureHandler} from 'react-native-gesture-handler';
 
-import {makeStyleSheetFromTheme} from 'app/utils/theme';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 import ReactionHeaderItem from './reaction_header_item';
 

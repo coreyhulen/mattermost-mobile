@@ -1,10 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {PostTypes} from '@mm-redux/action_types';
-import {handleRequest, initialRequestState} from './helpers';
 import {GenericAction} from '@mm-redux/types/actions';
 import {PostsRequestsStatuses, RequestStatusType} from '@mm-redux/types/requests';
+
+import {handleRequest, initialRequestState} from './helpers';
 
 function createPost(state: RequestStatusType = initialRequestState(), action: GenericAction): RequestStatusType {
     if (action.type === PostTypes.CREATE_POST_RESET_REQUEST) {

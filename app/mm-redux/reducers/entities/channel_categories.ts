@@ -3,14 +3,13 @@
 
 import {combineReducers} from 'redux';
 
-import {CategoryTypes} from '../../constants/channel_categories';
-
 import {TeamTypes} from '@mm-redux/action_types';
-
 import {GenericAction} from '@mm-redux/types/actions';
 import {ChannelCategory} from '@mm-redux/types/channel_categories';
 import {Team, TeamMembership} from '@mm-redux/types/teams';
 import {$ID, IDMappedObjects, RelationOneToOne} from '@mm-redux/types/utilities';
+
+import {CategoryTypes} from '../../constants/channel_categories';
 
 export function byId(state: IDMappedObjects<ChannelCategory> = {}, action: GenericAction) {
     switch (action.type) {

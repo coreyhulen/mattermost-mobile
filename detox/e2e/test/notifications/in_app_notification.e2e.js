@@ -8,15 +8,15 @@
 // *******************************************************************
 
 import {
-    AddReactionScreen,
-    ChannelScreen,
-    NotificationScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
 } from '@support/server_api';
+import {
+    AddReactionScreen,
+    ChannelScreen,
+    NotificationScreen,
+} from '@support/ui/screen';
 import {
     isAndroid,
     timeouts,

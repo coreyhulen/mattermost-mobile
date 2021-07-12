@@ -5,7 +5,7 @@ import React from 'react';
 
 import CustomStatusEmoji from '@components/custom_status/custom_status_emoji';
 import * as CustomStatusSelectors from '@selectors/custom_status';
-import {renderWithRedux} from 'test/testing_library';
+import {renderWithRedux} from '@test/testing_library';
 
 jest.mock('@selectors/custom_status');
 

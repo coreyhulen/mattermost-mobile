@@ -4,23 +4,22 @@
 /* eslint-disable no-import-assign */
 
 import assert from 'assert';
-import nock from 'nock';
-import {Server, WebSocket as MockWebSocket} from 'mock-socket';
-import thunk from 'redux-thunk';
-import configureMockStore from 'redux-mock-store';
 
+import {Server, WebSocket as MockWebSocket} from 'mock-socket';
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+import * as Actions from '@actions/websocket';
+import {Client4} from '@client/rest';
+import {WebsocketEvents} from '@constants';
 import {ChannelTypes, RoleTypes} from '@mm-redux/action_types';
 import * as ChannelActions from '@mm-redux/actions/channels';
 import * as TeamActions from '@mm-redux/actions/teams';
-import {Client4} from '@client/rest';
 import {General} from '@mm-redux/constants';
-
-import * as Actions from '@actions/websocket';
-import {WebsocketEvents} from '@constants';
 import globalInitialState from '@store/initial_state';
-
-import TestHelper from 'test/test_helper';
-import configureStore from 'test/test_store';
+import TestHelper from '@test/test_helper';
+import configureStore from '@test/test_store';
 
 global.WebSocket = MockWebSocket;
 

@@ -6,7 +6,7 @@ import React from 'react';
 import Preferences from '@mm-redux/constants/preferences';
 import {selectEmojisByName} from '@selectors/emojis';
 import initialState from '@store/initial_state';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import EmojiSuggestion from './emoji_suggestion';
 

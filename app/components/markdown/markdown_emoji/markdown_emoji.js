@@ -3,9 +3,9 @@
 
 import {Node, Parser} from 'commonmark';
 import Renderer from 'commonmark-react-renderer';
+import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {Platform, Text, View} from 'react-native';
-import PropTypes from 'prop-types';
 
 import Emoji from '@components/emoji';
 import FormattedText from '@components/formatted_text';

@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Platform, ScrollView, View} from 'react-native';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Platform, ScrollView, View} from 'react-native';
 import HWKeyboardEvent from 'react-native-hw-keyboard-event';
 import {SafeAreaView} from 'react-native-safe-area-context';
 

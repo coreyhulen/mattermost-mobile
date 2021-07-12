@@ -35,7 +35,7 @@ export interface ClientUsersMix {
     getUserByEmail: (email: string) => Promise<UserProfile>;
     getProfilePictureUrl: (userId: string, lastPictureUpdate: number) => string;
     getDefaultProfilePictureUrl: (userId: string) => string;
-    autocompleteUsers: (name: string, teamId: string, channelId: string, options?: Record<string, any>) => Promise<{users: UserProfile[], out_of_channel?: UserProfile[]}>;
+    autocompleteUsers: (name: string, teamId: string, channelId: string, options?: Record<string, any>) => Promise<{users: UserProfile[]; out_of_channel?: UserProfile[]}>;
     getSessions: (userId: string) => Promise<any>;
     checkUserMfa: (loginId: string) => Promise<{mfa_required: boolean}>;
     attachDevice: (deviceId: string) => Promise<any>;

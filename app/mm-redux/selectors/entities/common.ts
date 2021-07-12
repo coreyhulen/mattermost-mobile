@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {createSelector} from 'reselect';
+
+import {ChannelMembership, Channel} from '@mm-redux/types/channels';
 import {GlobalState} from '@mm-redux/types/store';
 import {UserProfile} from '@mm-redux/types/users';
-import {ChannelMembership, Channel} from '@mm-redux/types/channels';
 import {RelationOneToOne, IDMappedObjects} from '@mm-redux/types/utilities';
-
-import {createSelector} from 'reselect';
 
 // Channels
 

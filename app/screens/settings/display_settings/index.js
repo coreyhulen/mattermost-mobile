@@ -7,6 +7,7 @@ import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {isTimezoneEnabled} from '@mm-redux/selectors/entities/timezone';
 import {getAllowedThemes} from '@selectors/theme';
 import {isThemeSwitchingEnabled} from '@utils/theme';
+
 import DisplaySettings from './display_settings';
 
 function mapStateToProps(state) {

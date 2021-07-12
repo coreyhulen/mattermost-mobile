@@ -3,7 +3,7 @@
 
 import {connect} from 'react-redux';
 
-import {handleRemoveFile, retryFileUpload, uploadComplete, uploadFailed} from 'app/actions/views/file_upload';
+import {handleRemoveFile, retryFileUpload, uploadComplete, uploadFailed} from '@actions/views/file_upload';
 
 import UploadItem from './upload_item';
 

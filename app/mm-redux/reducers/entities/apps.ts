@@ -1,10 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+
 import {combineReducers} from 'redux';
 
 import {AppsTypes} from '@mm-redux/action_types';
-import {AppBinding, AppsState} from '@mm-redux/types/apps';
 import {GenericAction} from '@mm-redux/types/actions';
+import {AppBinding, AppsState} from '@mm-redux/types/apps';
 import {validateBindings} from '@utils/apps';
 
 export function bindings(state: AppBinding[] = [], action: GenericAction): AppBinding[] {

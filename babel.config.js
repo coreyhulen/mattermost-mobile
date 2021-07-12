@@ -27,6 +27,8 @@ module.exports = {
                 '@selectors': './app/selectors',
                 '@store': './app/store',
                 '@telemetry': './app/telemetry',
+                '@test': './test',
+                '@mm-types': './types',
                 '@utils': './app/utils',
                 '@websocket': './app/client/websocket',
             },

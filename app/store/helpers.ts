@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import AsyncStorage from '@react-native-community/async-storage';
+
 import {combineReducers} from 'redux';
 
 import {enableBatching, Reducer} from '@mm-redux/types/actions';

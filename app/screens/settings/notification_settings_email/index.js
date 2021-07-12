@@ -1,22 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
-import {Preferences} from '@mm-redux/constants';
+import {bindActionCreators} from 'redux';
 
 import {savePreferences} from '@mm-redux/actions/preferences';
 import {updateMe} from '@mm-redux/actions/users';
-
-import {getCurrentUser} from '@mm-redux/selectors/entities/users';
+import {Preferences} from '@mm-redux/constants';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {
     get as getPreference,
     getTheme,
 } from '@mm-redux/selectors/entities/preferences';
-
-import {getNotificationProps} from 'app/utils/notify_props';
+import {getCurrentUser} from '@mm-redux/selectors/entities/users';
+import {getNotificationProps} from '@utils/notify_props';
 
 import NotificationSettingsEmail from './notification_settings_email';
 

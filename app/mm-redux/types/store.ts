@@ -1,25 +1,25 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {GeneralState} from './general';
-import {UsersState} from './users';
-import {TeamsState} from './teams';
-import {ChannelsState} from './channels';
-import {PostsState} from './posts';
-import {SearchState} from './search';
-import {IntegrationsState} from './integrations';
-import {FilesState} from './files';
-import {EmojisState} from './emojis';
-import {Typing} from './typing';
-import {GroupsState} from './groups';
-import {ChannelsRequestsStatuses, GeneralRequestsStatuses, PostsRequestsStatuses, TeamsRequestsStatuses, UsersRequestsStatuses, FilesRequestsStatuses, RolesRequestsStatuses} from './requests';
-import {Role} from './roles';
-import {PreferenceType} from './preferences';
+import {AppsState} from './apps';
 import {Bot} from './bots';
 import {ChannelCategoriesState} from './channel_categories';
+import {ChannelsState} from './channels';
+import {EmojisState} from './emojis';
+import {FilesState} from './files';
+import {GeneralState} from './general';
+import {GroupsState} from './groups';
+import {IntegrationsState} from './integrations';
+import {PostsState} from './posts';
+import {PreferenceType} from './preferences';
 import {RemoteCluster} from './remote_cluster';
+import {ChannelsRequestsStatuses, GeneralRequestsStatuses, PostsRequestsStatuses, TeamsRequestsStatuses, UsersRequestsStatuses, FilesRequestsStatuses, RolesRequestsStatuses} from './requests';
+import {Role} from './roles';
+import {SearchState} from './search';
+import {TeamsState} from './teams';
+import {Typing} from './typing';
+import {UsersState} from './users';
 import {Dictionary} from './utilities';
-import {AppsState} from './apps';
 
 export type GlobalState = {
     entities: {

@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 
 import {convertChannelToPrivate} from '@mm-redux/actions/channels';
 import {General, Permissions} from '@mm-redux/constants';
-import {haveIChannelPermission} from '@mm-redux/selectors/entities/roles';
-import {getServerVersion} from '@mm-redux/selectors/entities/general';
 import {getCurrentChannel} from '@mm-redux/selectors/entities/channels';
+import {getServerVersion} from '@mm-redux/selectors/entities/general';
+import {haveIChannelPermission} from '@mm-redux/selectors/entities/roles';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUserRoles} from '@mm-redux/selectors/entities/users';
-import {isAdmin as checkIsAdmin} from '@mm-redux/utils/user_utils';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
+import {isAdmin as checkIsAdmin} from '@mm-redux/utils/user_utils';
 
 import ConvertPrivate from './convert_private';
 

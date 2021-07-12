@@ -1,7 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React, {PureComponent} from 'react';
+
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {
     Alert,
@@ -10,13 +11,12 @@ import {
     StyleSheet,
     StatusBar,
 } from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
-import DeviceInfo from 'react-native-device-info';
 import AndroidOpenSettings from 'react-native-android-open-settings';
-
+import DeviceInfo from 'react-native-device-info';
 import DocumentPicker from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
 import Permissions from 'react-native-permissions';
+import RNFetchBlob from 'rn-fetch-blob';
 
 import {showModalOverCurrentContext} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';

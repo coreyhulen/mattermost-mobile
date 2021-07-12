@@ -7,6 +7,13 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {
+    Channel,
+    Post,
+    Setup,
+    Team,
+    User,
+} from '@support/server_api';
 import {MainSidebar} from '@support/ui/component';
 import {
     ChannelInfoScreen,
@@ -15,13 +22,6 @@ import {
     ThreadScreen,
     UserProfileScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Post,
-    Setup,
-    Team,
-    User,
-} from '@support/server_api';
 import {getRandomId} from '@support/utils';
 
 describe('Direct Messages', () => {

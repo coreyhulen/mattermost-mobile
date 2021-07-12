@@ -2,9 +2,8 @@
 // See LICENSE.txt for license information.
 
 import React, {useEffect, useRef, useState} from 'react';
-
-import {View} from 'react-native';
 import {intlShape, injectIntl} from 'react-intl';
+import {View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {popTopScreen} from '@actions/navigation';
@@ -12,6 +11,8 @@ import FormattedText from '@components/formatted_text';
 import StatusBar from '@components/status_bar';
 import TextInputWithLocalizedPlaceholder from '@components/text_input_with_localized_placeholder';
 import {General} from '@mm-redux/constants';
+import {Theme} from '@mm-redux/types/preferences';
+import {UserNotifyProps, UserProfile} from '@mm-redux/types/users';
 import Section from '@screens/settings/section';
 import SectionItem from '@screens/settings/section_item';
 import {t} from '@utils/i18n';
@@ -21,8 +22,6 @@ import {
     makeStyleSheetFromTheme,
     getKeyboardAppearanceFromTheme,
 } from '@utils/theme';
-import {UserNotifyProps, UserProfile} from '@mm-redux/types/users';
-import {Theme} from '@mm-redux/types/preferences';
 
 interface NotificationSettingsAutoResponderProps {
     currentUser: UserProfile;

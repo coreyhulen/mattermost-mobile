@@ -3,14 +3,13 @@
 
 import {Linking} from 'react-native';
 
+import {DeepLinkTypes} from '@constants';
+import {getCurrentServerUrl} from '@init/credentials';
+import {Files} from '@mm-redux/constants';
+import {emptyErrorHandlingFunction, emptyFunction} from '@utils/general';
+
 import {latinise} from './latinise.js';
 import {escapeRegex} from './markdown';
-
-import {Files} from '@mm-redux/constants';
-import {getCurrentServerUrl} from '@init/credentials';
-
-import {DeepLinkTypes} from '@constants';
-import {emptyErrorHandlingFunction, emptyFunction} from '@utils/general';
 
 const ytRegex = /(?:http|https):\/\/(?:www\.|m\.)?(?:(?:youtube\.com\/(?:(?:v\/)|(?:(?:watch|embed\/watch)(?:\/|.*v=))|(?:embed\/)|(?:user\/[^/]+\/u\/[0-9]\/)))|(?:youtu\.be\/))([^#&?]*)/;
 

@@ -50,6 +50,8 @@
             "@store": ["app/store/index"],
             "@store/*": ["app/store/*"],
             "@telemetry": ["app/telemetry/index"],
+            "@test/*": ["test/*"],
+            "@mm-types/*": ["types/*"],
             "@typings/*": ["types/*"],
             "@utils/*": ["app/utils/*"],
             "@websocket": ["app/client/websocket"],

@@ -1,29 +1,28 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {ScrollView, View} from 'react-native';
-
-import {General} from '@mm-redux/constants';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 
 import {showModal, showModalOverCurrentContext, dismissModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
-import CustomStatusText from '@components/custom_status/custom_status_text';
 import ClearButton from '@components/custom_status/clear_button';
+import CustomStatusText from '@components/custom_status/custom_status_text';
 import Emoji from '@components/emoji';
 import FormattedText from '@components/formatted_text';
 import UserStatus from '@components/user_status';
 import {NavigationTypes, CustomStatus} from '@constants';
+import {General} from '@mm-redux/constants';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 import {t} from '@utils/i18n';
 import {confirmOutOfOfficeDisabled} from '@utils/status';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import DrawerItem from './drawer_item';
-import UserInfo from './user_info';
 import StatusLabel from './status_label';
+import UserInfo from './user_info';
 
 export default class SettingsSidebarBase extends PureComponent {
     static propTypes = {

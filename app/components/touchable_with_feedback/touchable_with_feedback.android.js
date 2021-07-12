@@ -3,9 +3,9 @@
 
 /* eslint-disable new-cap */
 
+import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {TouchableNativeFeedback, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
-import PropTypes from 'prop-types';
 
 export default class TouchableWithFeedbackAndroid extends PureComponent {
     static propTypes = {

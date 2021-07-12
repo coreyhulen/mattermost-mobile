@@ -13,8 +13,8 @@ import {getMarkdownTextStyles} from '@utils/markdown';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import type {Post} from '@mm-redux/types/posts';
-import type {UserProfile} from '@mm-redux/types/users';
 import type {Theme} from '@mm-redux/types/preferences';
+import type {UserProfile} from '@mm-redux/types/users';
 
 type AddMembersProps = {
     addChannelMember: (channelId: string, userId: string, postRootId?: string) => void;

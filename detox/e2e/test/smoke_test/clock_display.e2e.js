@@ -10,18 +10,18 @@
 import moment from 'moment-timezone';
 
 import {
-    ChannelScreen,
-    ClockDisplaySettingsScreen,
-    DisplaySettingsScreen,
-    GeneralSettingsScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
     System,
     User,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    ClockDisplaySettingsScreen,
+    DisplaySettingsScreen,
+    GeneralSettingsScreen,
+} from '@support/ui/screen';
 import {isAndroid, isIos} from '@support/utils';
 
 describe('Clock Display', () => {

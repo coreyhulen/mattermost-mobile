@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import mattermostBucket from 'app/mattermost_bucket';
 import {throttle} from '@utils/general';
+
+import mattermostBucket from 'app/mattermost_bucket';
 
 const SAVE_STATE_ACTIONS = [
     'CONNECTION_CHANGED',

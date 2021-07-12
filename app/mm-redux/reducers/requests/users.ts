@@ -1,11 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {combineReducers} from 'redux';
-import {RequestStatus} from '../../constants';
-import {UserTypes} from '@mm-redux/action_types';
 
+import {combineReducers} from 'redux';
+
+import {UserTypes} from '@mm-redux/action_types';
 import {GenericAction} from '@mm-redux/types/actions';
 import {UsersRequestsStatuses, RequestStatusType} from '@mm-redux/types/requests';
+
+import {RequestStatus} from '../../constants';
 
 import {handleRequest, initialRequestState} from './helpers';
 

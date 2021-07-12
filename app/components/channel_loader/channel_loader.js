@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     ActivityIndicator,
     Animated,
@@ -10,8 +10,8 @@ import {
     Platform,
     View,
 } from 'react-native';
-import * as RNPlaceholder from 'rn-placeholder';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import * as RNPlaceholder from 'rn-placeholder';
 
 import FormattedText from '@components/formatted_text';
 import {INDICATOR_BAR_HEIGHT} from '@constants/view';

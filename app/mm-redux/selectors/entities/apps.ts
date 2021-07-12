@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {GlobalState} from '@mm-redux/types/store';
 import {AppBinding} from '@mm-redux/types/apps';
+import {GlobalState} from '@mm-redux/types/store';
 
 export function getAppsBindings(state: GlobalState, location?: string): AppBinding[] {
     if (!state.entities.apps.bindings) {

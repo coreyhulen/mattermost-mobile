@@ -8,16 +8,16 @@
 // *******************************************************************
 
 import {
+    Setup,
+    Team,
+    User,
+} from '@support/server_api';
+import {
     ChannelScreen,
     ChannelInfoScreen,
     EditChannelScreen,
     MoreDirectMessagesScreen,
 } from '@support/ui/screen';
-import {
-    Setup,
-    Team,
-    User,
-} from '@support/server_api';
 
 describe('Edit Channel', () => {
     const {

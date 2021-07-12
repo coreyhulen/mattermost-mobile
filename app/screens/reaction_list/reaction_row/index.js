@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {intlShape} from 'react-intl';
 import {
     Text,
@@ -10,12 +10,11 @@ import {
     View,
 } from 'react-native';
 
-import {displayUsername} from '@mm-redux/utils/user_utils';
-
 import {showModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
-import ProfilePicture from '@components/profile_picture';
 import Emoji from '@components/emoji';
+import ProfilePicture from '@components/profile_picture';
+import {displayUsername} from '@mm-redux/utils/user_utils';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 

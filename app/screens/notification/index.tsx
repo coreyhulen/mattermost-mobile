@@ -4,10 +4,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import {Navigation} from 'react-native-navigation';
 import {PanGestureHandler} from 'react-native-gesture-handler';
-import {useDispatch} from 'react-redux';
+import {Navigation} from 'react-native-navigation';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useDispatch} from 'react-redux';
 
 import {popToRoot, dismissAllModals, dismissOverlay} from '@actions/navigation';
 import {loadFromPushNotification} from '@actions/views/root';

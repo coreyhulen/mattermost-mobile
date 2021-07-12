@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import Fade from 'app/components/fade';
+import Fade from '@components/fade';
 
 import UnreadIndicatorBase, {getStyleSheet} from './unread_indicator.base';
 

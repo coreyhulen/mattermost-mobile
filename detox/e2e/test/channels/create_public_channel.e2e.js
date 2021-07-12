@@ -9,13 +9,13 @@
 
 import jestExpect from 'expect';
 
+import {Setup} from '@support/server_api';
 import {
     ChannelScreen,
     ChannelInfoScreen,
     CreateChannelScreen,
     MoreChannelsScreen,
 } from '@support/ui/screen';
-import {Setup} from '@support/server_api';
 import {isAndroid} from '@support/utils';
 
 describe('Channels', () => {

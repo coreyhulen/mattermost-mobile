@@ -1,16 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
+import Clipboard from '@react-native-community/clipboard';
+
 import PropTypes from 'prop-types';
+import React from 'react';
+import {intlShape} from 'react-intl';
 import {
     Platform,
     Text,
     TouchableHighlight,
     View,
 } from 'react-native';
-import {intlShape} from 'react-intl';
-import Clipboard from '@react-native-community/clipboard';
 
 import {popToRoot} from '@actions/navigation';
 import ChannelIcon from '@components/channel_icon';
@@ -19,13 +20,12 @@ import Emoji from '@components/emoji';
 import FormattedDate from '@components/formatted_date';
 import FormattedText from '@components/formatted_text';
 import Markdown from '@components/markdown';
+import mattermostManaged from '@mattermost-managed';
 import {General} from '@mm-redux/constants';
 import BottomSheet from '@utils/bottom_sheet';
 import {t} from '@utils/i18n';
 import {getMarkdownTextStyles, getMarkdownBlockStyles} from '@utils/markdown';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-
-import mattermostManaged from 'app/mattermost_managed';
 
 export default class ChannelInfoHeader extends React.PureComponent {
     static propTypes = {

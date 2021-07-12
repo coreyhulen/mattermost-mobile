@@ -2,8 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {General} from '@mm-redux/constants';
-
-import {selectFirstAvailableTeam} from 'app/utils/teams';
+import {selectFirstAvailableTeam} from '@utils/teams';
 
 describe('selectFirstAvailableTeam', () => {
     const myTeams = [{

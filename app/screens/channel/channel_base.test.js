@@ -8,8 +8,8 @@ import * as NavigationActions from '@actions/navigation';
 import {General, Preferences} from '@mm-redux/constants';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import EphemeralStore from '@store/ephemeral_store';
+import {shallowWithIntl} from '@test/intl-test-helper';
 import {emptyFunction} from '@utils/general';
-import {shallowWithIntl} from 'test/intl-test-helper';
 
 import ChannelBase from './channel_base';
 

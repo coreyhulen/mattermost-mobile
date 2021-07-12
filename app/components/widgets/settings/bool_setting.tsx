@@ -10,16 +10,16 @@ import {
 
 import FormattedText from '@components/formatted_text';
 import Markdown from '@components/markdown';
+import {Theme} from '@mm-redux/types/preferences';
 import {getMarkdownBlockStyles, getMarkdownTextStyles} from '@utils/markdown';
 import {
     changeOpacity,
     makeStyleSheetFromTheme,
 } from '@utils/theme';
-import {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
     id: string;
-    label?: string | {id: string, defaultMessage: string};
+    label?: string | {id: string; defaultMessage: string};
     value: boolean;
     placeholder?: string;
     helpText?: string;

@@ -9,12 +9,12 @@ import {getPostThread} from '@actions/views/post';
 import {setDeepLinkURL} from '@actions/views/root';
 import {getConfig, getCurrentUrl} from '@mm-redux/selectors/entities/general';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
-import {makePreparePostIdsForPostList, START_OF_NEW_MESSAGES} from '@mm-redux/utils/post_list';
 import {getCurrentTeam} from '@mm-redux/selectors/entities/teams';
-
-import type {GlobalState} from '@mm-redux/types/store';
+import {makePreparePostIdsForPostList, START_OF_NEW_MESSAGES} from '@mm-redux/utils/post_list';
 
 import PostList from './post_list';
+
+import type {GlobalState} from '@mm-redux/types/store';
 
 type PostListOwnProps = {
     highlightPostId?: string;

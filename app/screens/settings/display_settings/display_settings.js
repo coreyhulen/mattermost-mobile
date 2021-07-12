@@ -1,15 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {Platform, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {goToScreen} from '@actions/navigation';
-import {DeviceTypes} from '@constants';
 import StatusBar from '@components/status_bar';
+import {DeviceTypes} from '@constants';
 import ClockDisplay from '@screens/settings/clock_display';
 import SettingsItem from '@screens/settings/settings_item';
 import {preventDoubleTap} from '@utils/tap';

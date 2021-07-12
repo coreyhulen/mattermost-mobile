@@ -7,11 +7,11 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {ChannelScreen} from '@support/ui/screen';
 import {
     Setup,
     System,
 } from '@support/server_api';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Enable Upload', () => {
     beforeAll(async () => {

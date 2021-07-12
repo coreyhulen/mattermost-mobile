@@ -6,8 +6,8 @@ import {Animated, View} from 'react-native';
 
 import KeyboardLayout from '@components/layout/keyboard_layout';
 import Loading from '@components/loading';
-import PostList from '@components/post_list';
 import PostDraft from '@components/post_draft';
+import PostList from '@components/post_list';
 import SafeAreaView from '@components/safe_area_view';
 import StatusBar from '@components/status_bar';
 import {THREAD} from '@constants/screen';

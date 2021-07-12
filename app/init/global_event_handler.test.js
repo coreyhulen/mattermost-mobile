@@ -8,8 +8,8 @@ import semver from 'semver/preload';
 import * as I18n from '@i18n';
 import PushNotification from '@init/push_notifications';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-import Store from '@store/store';
 import intitialState from '@store/initial_state';
+import Store from '@store/store';
 
 import mattermostBucket from 'app/mattermost_bucket';
 

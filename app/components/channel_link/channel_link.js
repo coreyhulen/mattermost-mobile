@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import PropTypes from 'prop-types';
-import {Text} from 'react-native';
+import React from 'react';
 import {intlShape} from 'react-intl';
+import {Text} from 'react-native';
 
 import {popToRoot, dismissAllModals} from '@actions/navigation';
-import {t} from '@utils/i18n';
 import {alertErrorWithFallback} from '@utils/general';
+import {t} from '@utils/i18n';
 
 import {getChannelFromChannelName} from './channel_link_utils';
 

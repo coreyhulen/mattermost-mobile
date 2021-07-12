@@ -2,16 +2,16 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {ActivityIndicator, Animated, AppState, AppStateStatus, Text, View, ViewToken} from 'react-native';
 import {intlShape} from 'react-intl';
+import {ActivityIndicator, Animated, AppState, AppStateStatus, Text, View, ViewToken} from 'react-native';
 
-import TouchableWithFeedback from '@components/touchable_with_feedback';
 import CompassIcon from '@components/compass_icon';
+import TouchableWithFeedback from '@components/touchable_with_feedback';
 import ViewTypes, {INDICATOR_BAR_HEIGHT} from '@constants/view';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {messageCount} from '@mm-redux/utils/post_list';
-import {makeStyleSheetFromTheme, hexToHue} from '@utils/theme';
 import {t} from '@utils/i18n';
+import {makeStyleSheetFromTheme, hexToHue} from '@utils/theme';
 
 import type {Theme} from '@mm-redux/types/preferences';
 

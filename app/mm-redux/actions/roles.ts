@@ -3,7 +3,6 @@
 import {Client4} from '@client/rest';
 import {RoleTypes} from '@mm-redux/action_types';
 import {getRoles} from '@mm-redux/selectors/entities/roles_helpers';
-
 import {DispatchFunc, GetStateFunc, ActionFunc} from '@mm-redux/types/actions';
 
 import {bindClientFunc} from './helpers';

@@ -1,26 +1,25 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {injectIntl, intlShape} from 'react-intl';
 import {
     Text,
     View,
 } from 'react-native';
-import {injectIntl, intlShape} from 'react-intl';
-
-import {displayUsername} from '@mm-redux/utils/user_utils';
-import {General} from '@mm-redux/constants';
 
 import {showModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
 import ProfilePicture from '@components/profile_picture';
 import {BotTag, GuestTag} from '@components/tag';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
+import {General} from '@mm-redux/constants';
+import {displayUsername} from '@mm-redux/utils/user_utils';
 import telemetry, {PERF_MARKERS} from '@telemetry';
+import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {t} from '@utils/i18n';
 import {isGuest} from '@utils/users';
 
 class ChannelIntro extends PureComponent {

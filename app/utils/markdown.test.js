@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {Platform} from 'react-native';
+
 import {switchKeyboardForCodeBlocks} from './markdown';
 
 describe('switchKeyboardForCodeBlocks', () => {

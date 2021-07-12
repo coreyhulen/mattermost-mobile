@@ -1,26 +1,24 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {autocompleteUsers} from '@mm-redux/actions/users';
-import {getLicense} from '@mm-redux/selectors/entities/general';
+import {Permissions} from '@mm-redux/constants';
 import {getCurrentChannelId, getDefaultChannel} from '@mm-redux/selectors/entities/channels';
+import {getLicense} from '@mm-redux/selectors/entities/general';
 import {getAssociatedGroupsForReference, searchAssociatedGroupsForReferenceLocal} from '@mm-redux/selectors/entities/groups';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {haveIChannelPermission} from '@mm-redux/selectors/entities/roles';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
-
+import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {
     filterMembersInChannel,
     filterMembersNotInChannel,
     filterMembersInCurrentTeam,
     getMatchTermForAtMention,
-} from 'app/selectors/autocomplete';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
-
-import {haveIChannelPermission} from '@mm-redux/selectors/entities/roles';
-import {Permissions} from '@mm-redux/constants';
+} from '@selectors/autocomplete';
 
 import AtMention from './at_mention';
 

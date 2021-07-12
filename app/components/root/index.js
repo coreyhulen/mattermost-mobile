@@ -5,9 +5,8 @@ import {connect} from 'react-redux';
 
 import {getCurrentUrl} from '@mm-redux/selectors/entities/general';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
-
-import {getCurrentLocale} from 'app/selectors/i18n';
-import {removeProtocol} from 'app/utils/url';
+import {getCurrentLocale} from '@selectors/i18n';
+import {removeProtocol} from '@utils/url';
 
 import Root from './root';
 

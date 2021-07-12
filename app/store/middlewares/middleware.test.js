@@ -3,14 +3,15 @@
 
 /* eslint-disable max-nested-callbacks */
 
-import DeviceInfo from 'react-native-device-info';
-
 import assert from 'assert';
-import {REHYDRATE} from 'redux-persist';
+
 import merge from 'deepmerge';
+import DeviceInfo from 'react-native-device-info';
+import {REHYDRATE} from 'redux-persist';
 
 import {ViewTypes} from '@constants';
 import initialState from '@store/initial_state';
+
 import {
     cleanUpPostsInChannel,
     cleanUpState,

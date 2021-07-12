@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 
 import {Client4} from '@client/rest';
-import {logError} from '@mm-redux/actions/errors';
 import {UserTypes} from '@mm-redux/action_types';
+import {logError} from '@mm-redux/actions/errors';
 import {getCurrentUser} from '@mm-redux/selectors/entities/common';
 import {ActionFunc, DispatchFunc, batchActions, GetStateFunc} from '@mm-redux/types/actions';
 import {UserCustomStatus} from '@mm-redux/types/users';

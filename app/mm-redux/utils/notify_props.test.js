@@ -3,8 +3,9 @@
 
 import assert from 'assert';
 
-import {Preferences} from '../constants';
 import {getEmailInterval} from '@mm-redux/utils/notify_props';
+
+import {Preferences} from '../constants';
 
 describe('user utils', () => {
     it('getEmailInterval should return correct interval', () => {

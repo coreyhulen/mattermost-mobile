@@ -11,7 +11,7 @@ import type {PerfMetric} from '@telemetry';
 
 type PerfItemProps = {
     metric: PerfMetric;
-    theme: Theme
+    theme: Theme;
 };
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => ({

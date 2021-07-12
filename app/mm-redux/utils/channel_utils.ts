@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {General, Preferences, Permissions, Users} from '../constants';
-
 import {hasNewPermissions} from '@mm-redux/selectors/entities/general';
 import {haveITeamPermission, haveIChannelPermission} from '@mm-redux/selectors/entities/roles';
 import {Channel, ChannelMembership, ChannelType, ChannelNotifyProps} from '@mm-redux/types/channels';
 import {Post} from '@mm-redux/types/posts';
-import {UserProfile, UsersState, UserNotifyProps} from '@mm-redux/types/users';
+import {PreferenceType} from '@mm-redux/types/preferences';
 import {GlobalState} from '@mm-redux/types/store';
 import {TeamMembership} from '@mm-redux/types/teams';
-import {PreferenceType} from '@mm-redux/types/preferences';
+import {UserProfile, UsersState, UserNotifyProps} from '@mm-redux/types/users';
 import {RelationOneToOne, IDMappedObjects} from '@mm-redux/types/utilities';
+
+import {General, Preferences, Permissions, Users} from '../constants';
 
 import {getPreferenceKey, getPreferencesByCategory} from './preference_utils';
 import {displayUsername} from './user_utils';

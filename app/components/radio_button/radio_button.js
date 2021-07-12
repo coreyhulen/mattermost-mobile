@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {connect} from 'react-redux';
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {Animated, Text, View} from 'react-native';
+import {connect} from 'react-redux';
 
 import CompassIcon from '@components/compass_icon';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';

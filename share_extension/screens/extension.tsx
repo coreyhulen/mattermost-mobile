@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 
 import React, {PureComponent} from 'react';
-import {Alert, NativeModules, View} from 'react-native';
 import {intlShape} from 'react-intl';
+import {Alert, NativeModules, View} from 'react-native';
 
 import FormattedText from '@components/formatted_text';
 import {captureException, initializeSentry, LOGGER_EXTENSION} from '@utils/sentry';

@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import jestExpect from 'expect';
+
 import {capitalize, getRandomId} from '@support/utils';
 
 import client from './client';

@@ -8,6 +8,12 @@
 // *******************************************************************
 
 import {
+    Channel,
+    Setup,
+    Team,
+    User,
+} from '@support/server_api';
+import {
     Alert,
     MainSidebar,
 } from '@support/ui/component';
@@ -16,12 +22,6 @@ import {
     ChannelMembersScreen,
     ChannelScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Setup,
-    Team,
-    User,
-} from '@support/server_api';
 import {isAndroid} from '@support/utils';
 
 describe('Channel Moderation', () => {

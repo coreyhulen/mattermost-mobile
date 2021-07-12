@@ -1,6 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {intlShape} from 'react-intl';
+import {Alert} from 'react-native';
+
+import keyMirror from '@mm-redux/utils/key_mirror';
+import Store from '@store/store';
+
+import type {ParsedCommand} from './app_command_parser';
+import type {AutocompleteSuggestion} from '@mm-redux/types/integrations';
+
 export type {
     AppCallRequest,
     AppBinding,
@@ -17,9 +26,6 @@ export type {
     AutocompleteChannelSelect,
 } from '@mm-redux/types/apps';
 
-import type {
-    AutocompleteSuggestion,
-} from '@mm-redux/types/integrations';
 export type {AutocompleteSuggestion};
 
 export type {
@@ -53,21 +59,16 @@ export {getChannelByNameAndTeamName, getChannel} from '@mm-redux/actions/channel
 export {doAppCall} from '@actions/apps';
 export {createCallRequest} from '@utils/apps';
 
-import Store from '@store/store';
 export const getStore = () => Store.redux;
 
-import keyMirror from '@mm-redux/utils/key_mirror';
 export {keyMirror};
 
 export const EXECUTE_CURRENT_COMMAND_ITEM_ID = '_execute_current_command';
 
-import type {ParsedCommand} from './app_command_parser';
 export const getExecuteSuggestion = (_: ParsedCommand): AutocompleteSuggestion | null => { // eslint-disable-line @typescript-eslint/no-unused-vars
     return null;
 };
 
-import {Alert} from 'react-native';
-import {intlShape} from 'react-intl';
 export const displayError = (intl: typeof intlShape, body: string) => {
     const title = intl.formatMessage({
         id: 'mobile.general.error.title',

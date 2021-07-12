@@ -12,13 +12,13 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import {goToScreen} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
 import {CELL_MAX_WIDTH, CELL_MIN_WIDTH} from '@components/markdown/markdown_table_cell/markdown_table_cell';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
+import {DeviceTypes} from '@constants';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {goToScreen} from '@actions/navigation';
-import {DeviceTypes} from '@constants';
 
 const MAX_HEIGHT = 300;
 const MAX_PREVIEW_COLUMNS = 5;

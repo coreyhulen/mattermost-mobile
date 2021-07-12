@@ -1,19 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Alert, View} from 'react-native';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Alert, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {popTopScreen, setButtons} from '@actions/navigation';
-import Loading from '@components/loading';
 import CustomList, {FLATLIST, SECTIONLIST} from '@components/custom_list';
 import UserListRow from '@components/custom_list/user_list_row';
 import FormattedText from '@components/formatted_text';
 import KeyboardLayout from '@components/layout/keyboard_layout';
+import Loading from '@components/loading';
 import SearchBar from '@components/search_bar';
 import StatusBar from '@components/status_bar';
 import {debounce} from '@mm-redux/actions/helpers';

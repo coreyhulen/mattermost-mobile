@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import * as reselect from 'reselect';
-import {GlobalState} from '@mm-redux/types/store';
+
 import {getCurrentUser} from '@mm-redux/selectors/entities/common';
 import * as types from '@mm-redux/types';
+import {GlobalState} from '@mm-redux/types/store';
 
 export type PermissionsOptions = {
     channel?: string;

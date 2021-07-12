@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import Fuse from 'fuse.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import Fuse from 'fuse.js';
 
 import {incrementEmojiPickerPage} from '@actions/views/emoji';
 import {getCustomEmojis} from '@mm-redux/actions/emojis';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getConfig} from '@mm-redux/selectors/entities/general';
+import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {isLandscape} from '@selectors/device';
 import {selectEmojisByName, selectEmojisBySection} from '@selectors/emojis';
 

@@ -6,16 +6,13 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import {loadUnreadChannelPosts} from '@actions/views/post';
 import {Client4} from '@client/rest';
+import {ViewTypes} from '@constants';
 import {PostTypes, UserTypes} from '@mm-redux/action_types';
-
 import * as PostSelectors from '@mm-redux/selectors/entities/posts';
 import * as ChannelUtils from '@mm-redux/utils/channel_utils';
-
-import {ViewTypes} from '@constants';
 import initialState from '@store/initial_state';
-
-import {loadUnreadChannelPosts} from '@actions/views/post';
 
 describe('Actions.Views.Post', () => {
     const mockStore = configureStore([thunk]);

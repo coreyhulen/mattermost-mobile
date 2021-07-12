@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Preferences} from '../constants';
-
 import {PreferencesType} from '@mm-redux/types/preferences';
+
+import {Preferences} from '../constants';
 
 export function getPreferenceKey(category: string, name: string): string {
     return `${category}--${name}`;

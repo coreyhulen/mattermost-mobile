@@ -1,20 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
+import Fuse from 'fuse.js';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {
     FlatList,
     Platform,
     Text,
     View,
 } from 'react-native';
-import Fuse from 'fuse.js';
 
 import Emoji from '@components/emoji';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
-import {BuiltInEmojis} from '@utils/emojis';
 import {getEmojiByName, compareEmojis} from '@utils/emoji_utils';
+import {BuiltInEmojis} from '@utils/emojis';
 import {makeStyleSheetFromTheme, changeOpacity} from '@utils/theme';
 
 const EMOJI_REGEX = /(^|\s|^\+|^-)(:([^:\s]*))$/i;

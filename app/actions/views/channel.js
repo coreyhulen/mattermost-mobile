@@ -3,9 +3,13 @@
 
 import {batchActions} from 'redux-batched-actions';
 
-import {ViewTypes} from 'app/constants';
-
+import {lastChannelIdForTeam, loadSidebarDirectMessagesProfiles} from '@actions/helpers/channels';
+import {getPosts, getPostsBefore, getPostsSince, loadUnreadChannelPosts} from '@actions/views/post';
+import {Client4} from '@client/rest';
+import {ViewTypes} from '@constants';
+import {INSERT_TO_COMMENT, INSERT_TO_DRAFT} from '@constants/post_draft';
 import {ChannelTypes, RoleTypes, GroupTypes} from '@mm-redux/action_types';
+import {fetchAppBindings} from '@mm-redux/actions/apps';
 import {
     fetchMyChannelsAndMembers,
     getChannelByName,
@@ -13,12 +17,8 @@ import {
     leaveChannel as serviceLeaveChannel,
 } from '@mm-redux/actions/channels';
 import {savePreferences} from '@mm-redux/actions/preferences';
-import {getLicense} from '@mm-redux/selectors/entities/general';
 import {addUserToTeam, getTeamByName, removeUserFromTeam, selectTeam} from '@mm-redux/actions/teams';
-import {Client4} from '@client/rest';
 import {General, Preferences} from '@mm-redux/constants';
-import {getPostIdsInChannel} from '@mm-redux/selectors/entities/posts';
-import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {
     getCurrentChannelId,
     getRedirectChannelNameForTeam,
@@ -26,21 +26,18 @@ import {
     getMyChannelMemberships,
     isManuallyUnread,
 } from '@mm-redux/selectors/entities/channels';
-import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
+import {getLicense} from '@mm-redux/selectors/entities/general';
+import {getPostIdsInChannel} from '@mm-redux/selectors/entities/posts';
 import {getTeamByName as selectTeamByName, getCurrentTeam, getTeamMemberships} from '@mm-redux/selectors/entities/teams';
-
+import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {getChannelByName as selectChannelByName, getChannelsIdForTeam} from '@mm-redux/utils/channel_utils';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-
-import {lastChannelIdForTeam, loadSidebarDirectMessagesProfiles} from '@actions/helpers/channels';
-import {getPosts, getPostsBefore, getPostsSince, loadUnreadChannelPosts} from '@actions/views/post';
-import {INSERT_TO_COMMENT, INSERT_TO_DRAFT} from '@constants/post_draft';
+import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {getChannelReachable} from '@selectors/channel';
 import telemetry, {PERF_MARKERS} from '@telemetry';
+import {appsEnabled} from '@utils/apps';
 import {isDirectChannelVisible, isGroupChannelVisible, getChannelSinceValue, privateChannelJoinPrompt} from '@utils/channels';
 import {isPendingPost} from '@utils/general';
-import {fetchAppBindings} from '@mm-redux/actions/apps';
-import {appsEnabled} from '@utils/apps';
 
 const MAX_RETRIES = 3;
 

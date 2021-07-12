@@ -6,10 +6,9 @@ import {createSelector} from 'reselect';
 
 import {General} from '@mm-redux/constants';
 import {makeGetChannel} from '@mm-redux/selectors/entities/channels';
-import {getCurrentUserId, getUser, makeGetProfilesInChannel} from '@mm-redux/selectors/entities/users';
-
 import {getTeammateNameDisplaySetting, getTheme} from '@mm-redux/selectors/entities/preferences';
-import {getChannelMembersForDm} from 'app/selectors/channel';
+import {getCurrentUserId, getUser, makeGetProfilesInChannel} from '@mm-redux/selectors/entities/users';
+import {getChannelMembersForDm} from '@selectors/channel';
 
 import ChannelIntro from './channel_intro';
 

@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {makeGetChannel} from '@mm-redux/selectors/entities/channels';
 import {getPost} from '@mm-redux/selectors/entities/posts';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
+
 import ChannelDisplayName from './channel_display_name';
 
 function makeMapStateToProps() {

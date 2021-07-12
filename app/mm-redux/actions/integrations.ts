@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Alert} from 'react-native';
 import {intlShape} from 'react-intl';
+import {Alert} from 'react-native';
 
 import {handleSelectChannel, handleSelectChannelByName, loadChannelsByTeamName} from '@actions/views/channel';
 import {makeDirectChannel} from '@actions/views/more_dms';
@@ -10,18 +10,17 @@ import {showPermalink} from '@actions/views/permalink';
 import {Client4} from '@client/rest';
 import {DeepLinkTypes} from '@constants';
 import {analytics} from '@init/analytics';
-import {getUserByUsername} from '@mm-redux/actions/users';
 import {IntegrationTypes} from '@mm-redux/action_types';
+import {getUserByUsername} from '@mm-redux/actions/users';
 import {General} from '@mm-redux/constants';
 import {getCurrentChannelId} from '@mm-redux/selectors/entities/channels';
 import {getConfig, getCurrentUrl} from '@mm-redux/selectors/entities/general';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
+import {batchActions, DispatchFunc, GetStateFunc, ActionFunc} from '@mm-redux/types/actions';
+import {Command, CommandArgs, DialogSubmission} from '@mm-redux/types/integrations';
 import * as DraftUtils from '@utils/draft';
 import {permalinkBadTeam} from '@utils/general';
 import {getURLAndMatch, tryOpenURL} from '@utils/url';
-
-import {batchActions, DispatchFunc, GetStateFunc, ActionFunc} from '@mm-redux/types/actions';
-import {Command, CommandArgs, DialogSubmission} from '@mm-redux/types/integrations';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary, requestSuccess, requestFailure} from './helpers';

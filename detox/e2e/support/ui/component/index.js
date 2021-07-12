@@ -5,12 +5,11 @@ import Alert from './alert';
 import Autocomplete from './autocomplete';
 import BottomSheet from './bottom_sheet';
 import CameraQuickAction from './camera_quick_action';
+import ChannelsList from './channels_list';
 import EditChannelInfo from './edit_channel_info';
 import FileQuickAction from './file_quick_action';
 import ImageQuickAction from './image_quick_action';
 import InputQuickAction from './input_quick_action';
-import ChannelsList from './channels_list';
-import TeamsList from './teams_list';
 import MainSidebar from './main_sidebar';
 import Post from './post';
 import PostDraft from './post_draft';
@@ -21,6 +20,7 @@ import RecentItem from './recent_item';
 import SearchBar from './search_bar';
 import SendButton from './send_button';
 import SettingsSidebar from './settings_sidebar';
+import TeamsList from './teams_list';
 
 export {
     Alert,

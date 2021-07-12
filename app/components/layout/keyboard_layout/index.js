@@ -3,7 +3,7 @@
 
 import {connect} from 'react-redux';
 
-import {isLandscape} from 'app/selectors/device';
+import {isLandscape} from '@selectors/device';
 
 import KeyboardLayout from './keyboard_layout';
 

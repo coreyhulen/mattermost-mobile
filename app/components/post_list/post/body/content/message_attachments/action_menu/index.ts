@@ -3,9 +3,8 @@
 
 import {connect} from 'react-redux';
 
-import {GlobalState} from '@mm-redux/types/store';
-
 import {selectAttachmentMenuAction} from '@actions/views/post';
+import {GlobalState} from '@mm-redux/types/store';
 
 import ActionMenu from './action_menu';
 

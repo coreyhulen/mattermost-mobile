@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 
 import {ViewTypes} from '@constants';
-import {alertErrorWithFallback} from 'app/utils/general';
+import {alertErrorWithFallback} from '@utils/general';
 import {t} from '@utils/i18n';
-import {preventDoubleTap} from 'app/utils/tap';
+import {preventDoubleTap} from '@utils/tap';
 
 export default class ChannelNotificationPreferenceBase extends PureComponent {
     static propTypes = {

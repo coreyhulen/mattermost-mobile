@@ -1,25 +1,25 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import {shallow} from 'enzyme';
+import React from 'react';
 
 import Preferences from '@mm-redux/constants/preferences';
 import {Command, AutocompleteSuggestion} from '@mm-redux/types/integrations';
 import Store from '@store/store';
-import {intl} from 'test/intl-test-helper';
+import {intl} from '@test/intl-test-helper';
 
+import {
+    reduxTestState,
+    testBindings,
+} from './app_command_parser/tests/app_command_parser_test_data';
 import {
     thunk,
     configureStore,
     Client4,
     AppBinding,
 } from './app_command_parser/tests/app_command_parser_test_dependencies';
-
-import {
-    reduxTestState,
-    testBindings,
-} from './app_command_parser/tests/app_command_parser_test_data';
+import SlashSuggestion, {Props} from './slash_suggestion';
 
 const mockStore = configureStore([thunk]);
 
@@ -35,8 +35,6 @@ const makeStore = async (bindings: AppBinding[]) => {
 
     return testStore;
 };
-
-import SlashSuggestion, {Props} from './slash_suggestion';
 
 describe('components/autocomplete/slash_suggestion', () => {
     const sampleCommand = {

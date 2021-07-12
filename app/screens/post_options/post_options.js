@@ -1,11 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import {Alert, StyleSheet, View} from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
+
+import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
+import {Alert, StyleSheet, View} from 'react-native';
 
 import {showModal, dismissModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
@@ -18,9 +19,9 @@ import {isSystemMessage} from '@mm-redux/utils/post_utils';
 import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
 
+import Bindings from './bindings';
 import PostOption from './post_option';
 import {OPTION_HEIGHT, getInitialPosition} from './post_options_utils';
-import Bindings from './bindings';
 
 export default class PostOptions extends PureComponent {
     static propTypes = {

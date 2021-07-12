@@ -2,21 +2,21 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
+import {injectIntl} from 'react-intl';
 import {
     ScrollView,
     Text,
     View,
 } from 'react-native';
-import {injectIntl} from 'react-intl';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+import {goToScreen} from '@actions/navigation';
 import FormattedText from '@components/formatted_text';
 import StatusBar from '@components/status_bar';
 import Section from '@screens/settings/section';
 import SectionItem from '@screens/settings/section_item';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {t} from '@utils/i18n';
-import {goToScreen} from '@actions/navigation';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import NotificationSettingsMentionsBase from './notification_settings_mention_base';
 

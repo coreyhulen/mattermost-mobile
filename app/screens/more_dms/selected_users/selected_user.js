@@ -9,9 +9,8 @@ import {
     View,
 } from 'react-native';
 
-import {displayUsername} from '@mm-redux/utils/user_utils';
-
 import CompassIcon from '@components/compass_icon';
+import {displayUsername} from '@mm-redux/utils/user_utils';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class SelectedUser extends React.PureComponent {

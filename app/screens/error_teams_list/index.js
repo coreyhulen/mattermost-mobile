@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import {logout, loadMe} from 'app/actions/views/user';
-import {connection} from 'app/actions/device';
-import {selectDefaultTeam} from 'app/actions/views/select_team';
+import {connection} from '@actions/device';
+import {selectDefaultTeam} from '@actions/views/select_team';
+import {logout, loadMe} from '@actions/views/user';
 
 import ErrorTeamsList from './error_teams_list.js';
 

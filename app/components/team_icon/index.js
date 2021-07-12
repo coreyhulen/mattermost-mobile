@@ -3,8 +3,8 @@
 
 import {connect} from 'react-redux';
 
-import {getTeam} from '@mm-redux/selectors/entities/teams';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {getTeam} from '@mm-redux/selectors/entities/teams';
 
 import TeamIcon from './team_icon';
 

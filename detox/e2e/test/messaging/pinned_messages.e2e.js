@@ -7,6 +7,11 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {
+    Channel,
+    Post,
+    Setup,
+} from '@support/server_api';
 import {PostOptions} from '@support/ui/component';
 import {
     ChannelInfoScreen,
@@ -16,11 +21,6 @@ import {
     PinnedMessagesScreen,
     ThreadScreen,
 } from '@support/ui/screen';
-import {
-    Channel,
-    Post,
-    Setup,
-} from '@support/server_api';
 
 describe('Pinned Messages', () => {
     const {

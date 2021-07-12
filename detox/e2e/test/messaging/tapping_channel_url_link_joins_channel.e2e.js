@@ -8,16 +8,6 @@
 // *******************************************************************
 
 import {
-    Alert,
-    MainSidebar,
-    TeamsList,
-} from '@support/ui/component';
-import {
-    ChannelScreen,
-    CreateChannelScreen,
-    PermalinkScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
@@ -27,6 +17,16 @@ import {
 import {
     serverUrl,
 } from '@support/test_config';
+import {
+    Alert,
+    MainSidebar,
+    TeamsList,
+} from '@support/ui/component';
+import {
+    ChannelScreen,
+    CreateChannelScreen,
+    PermalinkScreen,
+} from '@support/ui/screen';
 import {
     getAdminAccount,
     getRandomId,

@@ -6,9 +6,9 @@ import {intlShape, injectIntl} from 'react-intl';
 import {Alert, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
+import {Theme} from '@mm-redux/types/preferences';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {tryOpenURL} from '@utils/url';
-import {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
     icon?: string;

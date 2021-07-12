@@ -15,11 +15,11 @@ import {isPostFlagged, isSystemMessage} from '@mm-redux/utils/post_utils';
 import {canDeletePost} from '@selectors/permissions';
 import {areConsecutivePosts, postUserDisplayName} from '@utils/post';
 
+import Post from './post';
+
 import type {Post as PostType} from '@mm-redux/types/posts';
 import type {Theme} from '@mm-redux/types/preferences';
 import type {GlobalState} from '@mm-redux/types/store';
-
-import Post from './post';
 
 type OwnProps = {
     highlight?: boolean;

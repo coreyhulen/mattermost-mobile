@@ -1,12 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 
-import {changeOpacity} from 'app/utils/theme';
-
-import Swiper from 'app/components/swiper';
+import Swiper from '@components/swiper';
+import {changeOpacity} from '@utils/theme';
 
 export default class DrawerSwiper extends Component {
     static propTypes = {

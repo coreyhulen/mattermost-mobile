@@ -7,13 +7,13 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {Setup} from '@support/server_api';
 import {Autocomplete} from '@support/ui/component';
 import {
     ChannelScreen,
     ChannelInfoScreen,
     EditChannelScreen,
 } from '@support/ui/screen';
-import {Setup} from '@support/server_api';
 
 describe('Autocomplete', () => {
     beforeAll(async () => {

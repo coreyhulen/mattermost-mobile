@@ -7,12 +7,6 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {Autocomplete} from '@support/ui/component';
-import {
-    ChannelScreen,
-    SearchScreen,
-    ThreadScreen,
-} from '@support/ui/screen';
 import {
     Channel,
     Post,
@@ -20,6 +14,12 @@ import {
     Team,
     User,
 } from '@support/server_api';
+import {Autocomplete} from '@support/ui/component';
+import {
+    ChannelScreen,
+    SearchScreen,
+    ThreadScreen,
+} from '@support/ui/screen';
 
 describe('Autocomplete', () => {
     const {

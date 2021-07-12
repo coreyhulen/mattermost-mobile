@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 
 import React, {PureComponent} from 'react';
-import {Alert} from 'react-native';
 import {intlShape} from 'react-intl';
+import {Alert} from 'react-native';
 
 import {ActionResult} from '@mm-redux/types/actions';
 import {Theme} from '@mm-redux/types/preferences';

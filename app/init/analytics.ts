@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import DeviceInfo from 'react-native-device-info';
 import {Dimensions} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 import LocalConfig from '@assets/config.json';
 import {Config} from '@mm-redux/types/config';

@@ -13,10 +13,10 @@ import {isCustomStatusEnabled} from '@selectors/custom_status';
 import {postUserDisplayName} from '@utils/post';
 import {isGuest} from '@utils/users';
 
-import type {GlobalState} from '@mm-redux/types/store';
-import type {Post} from '@mm-redux/types/posts';
-
 import Header from './header';
+
+import type {Post} from '@mm-redux/types/posts';
+import type {GlobalState} from '@mm-redux/types/store';
 
 type OwnProps = {
     enablePostUsernameOverride: boolean;

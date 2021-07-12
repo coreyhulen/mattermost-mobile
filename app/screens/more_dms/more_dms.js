@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {Keyboard, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
@@ -19,8 +19,8 @@ import StatusBar from '@components/status_bar';
 import {NavigationTypes} from '@constants';
 import {debounce} from '@mm-redux/actions/helpers';
 import {General} from '@mm-redux/constants';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 import {getGroupDisplayNameFromUserIds} from '@mm-redux/utils/channel_utils';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 import {displayUsername, filterProfilesMatchingTerm} from '@mm-redux/utils/user_utils';
 import {alertErrorWithFallback} from '@utils/general';
 import {t} from '@utils/i18n';

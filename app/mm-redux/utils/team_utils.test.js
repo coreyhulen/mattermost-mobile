@@ -4,7 +4,6 @@
 import assert from 'assert';
 
 import {General} from '@mm-redux/constants';
-
 import {sortTeamsByUserPreference} from '@mm-redux/utils/team_utils';
 
 describe('TeamUtils', () => {

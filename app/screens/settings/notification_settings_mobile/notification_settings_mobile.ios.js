@@ -8,13 +8,13 @@ import {
     View,
 } from 'react-native';
 
-import SafeAreaView from '@components/safe_area_view';
 import FormattedText from '@components/formatted_text';
+import SafeAreaView from '@components/safe_area_view';
 import StatusBar from '@components/status_bar';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {t} from '@utils/i18n';
 import Section from '@screens/settings/section';
 import SectionItem from '@screens/settings/section_item';
+import {t} from '@utils/i18n';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import NotificationSettingsMobileBase from './notification_settings_mobile_base';
 

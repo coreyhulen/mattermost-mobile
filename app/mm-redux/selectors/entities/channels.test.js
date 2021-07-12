@@ -3,10 +3,11 @@
 
 import assert from 'assert';
 
-import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
-import TestHelper from 'test/test_helper';
-import {sortChannelsByDisplayName, getDirectChannelName} from '@mm-redux/utils/channel_utils';
 import * as Selectors from '@mm-redux/selectors/entities/channels';
+import {sortChannelsByDisplayName, getDirectChannelName} from '@mm-redux/utils/channel_utils';
+import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
+import TestHelper from '@test/test_helper';
+
 import {General, Preferences} from '../../constants';
 
 const sortUsernames = (a, b) => a.localeCompare(b, General.DEFAULT_LOCALE, {numeric: true});

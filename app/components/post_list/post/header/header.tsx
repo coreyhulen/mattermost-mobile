@@ -11,13 +11,13 @@ import {Posts} from '@mm-redux/constants';
 import {fromAutoResponder, isFromWebhook, isPostEphemeral, isPostPendingOrFailed, isSystemMessage} from '@mm-redux/utils/post_utils';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
-import type {Post} from '@mm-redux/types/posts';
-import type {Theme} from '@mm-redux/types/preferences';
-
 import HeaderCommentedOn from './commented_on';
 import HeaderDisplayName from './display_name';
 import HeaderReply from './reply';
 import HeaderTag from './tag';
+
+import type {Post} from '@mm-redux/types/posts';
+import type {Theme} from '@mm-redux/types/preferences';
 
 type HeaderProps = {
     commentCount: number;

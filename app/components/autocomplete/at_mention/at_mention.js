@@ -1,19 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {Platform, SectionList} from 'react-native';
 
-import {AT_MENTION_REGEX, AT_MENTION_SEARCH_REGEX} from '@constants/autocomplete';
+import GroupMentionItem from '@components/autocomplete/at_mention_group/at_mention_group';
 import AtMentionItem from '@components/autocomplete/at_mention_item';
 import AutocompleteSectionHeader from '@components/autocomplete/autocomplete_section_header';
 import SpecialMentionItem from '@components/autocomplete/special_mention_item';
-import GroupMentionItem from '@components/autocomplete/at_mention_group/at_mention_group';
-import {RequestStatus} from '@mm-redux/constants';
+import {AT_MENTION_REGEX, AT_MENTION_SEARCH_REGEX} from '@constants/autocomplete';
 import {debounce} from '@mm-redux/actions/helpers';
-import {makeStyleSheetFromTheme} from '@utils/theme';
+import {RequestStatus} from '@mm-redux/constants';
 import {t} from '@utils/i18n';
+import {makeStyleSheetFromTheme} from '@utils/theme';
 
 export default class AtMention extends PureComponent {
     static propTypes = {

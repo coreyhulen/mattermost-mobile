@@ -4,9 +4,8 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import {handleSuccessfulLogin} from '@actions/views/login';
 import {Client4} from '@client/rest';
-
-import {handleSuccessfulLogin} from 'app/actions/views/login';
 
 jest.mock('app/init/credentials', () => ({
     setAppCredentials: () => jest.fn(),

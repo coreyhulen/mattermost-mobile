@@ -4,8 +4,7 @@
 import {connect} from 'react-redux';
 
 import {getConfig, getLicense} from '@mm-redux/selectors/entities/general';
-
-import {isLandscape} from 'app/selectors/device';
+import {isLandscape} from '@selectors/device';
 
 import AnnouncementBanner from './announcement_banner';
 

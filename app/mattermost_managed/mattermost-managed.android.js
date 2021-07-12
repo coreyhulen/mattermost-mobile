@@ -3,7 +3,7 @@
 
 import {NativeModules, DeviceEventEmitter} from 'react-native';
 
-import {emptyFunction} from 'app/utils/general';
+import {emptyFunction} from '@utils/general';
 
 const {MattermostManaged} = NativeModules;
 

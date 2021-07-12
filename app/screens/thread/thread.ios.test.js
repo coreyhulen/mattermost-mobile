@@ -5,10 +5,10 @@ import React from 'react';
 
 import PostList from '@components/post_list';
 import {TYPING_VISIBLE} from '@constants/post_draft';
-import Preferences from '@mm-redux/constants/preferences';
 import {General, RequestStatus} from '@mm-redux/constants';
+import Preferences from '@mm-redux/constants/preferences';
 import EventEmitter from '@mm-redux/utils/event_emitter';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
 import ThreadIOS from './thread.ios';
 

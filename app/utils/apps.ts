@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {AppBindingLocations, AppCallResponseTypes} from '@mm-redux/constants/apps';
-import {AppBinding, AppCall, AppCallRequest, AppCallValues, AppContext, AppExpand} from '@mm-redux/types/apps';
 import {getConfig} from '@mm-redux/selectors/entities/general';
+import {AppBinding, AppCall, AppCallRequest, AppCallValues, AppContext, AppExpand} from '@mm-redux/types/apps';
 import {Config} from '@mm-redux/types/config';
 import {GlobalState} from '@mm-redux/types/store';
 

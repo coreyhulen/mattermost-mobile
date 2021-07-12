@@ -7,12 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {Setup} from '@support/server_api';
 import {SettingsSidebar} from '@support/ui/component';
 import {
     ChannelScreen,
     SelectServerScreen,
 } from '@support/ui/screen';
-import {Setup} from '@support/server_api';
 
 describe('Logout', () => {
     beforeAll(async () => {

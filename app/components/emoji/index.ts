@@ -3,13 +3,12 @@
 
 import {connect} from 'react-redux';
 
-import {getCustomEmojisByName} from '@mm-redux/selectors/entities/emojis';
-import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-import {getConfig} from '@mm-redux/selectors/entities/general';
 import {Client4} from '@client/rest';
-import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
+import {getCustomEmojisByName} from '@mm-redux/selectors/entities/emojis';
+import {getConfig} from '@mm-redux/selectors/entities/general';
+import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {GlobalState} from '@mm-redux/types/store';
-
+import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {EmojiIndicesByAlias, Emojis} from '@utils/emojis';
 
 import Emoji from './emoji';

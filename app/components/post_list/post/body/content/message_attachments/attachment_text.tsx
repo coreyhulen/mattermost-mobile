@@ -8,18 +8,17 @@ import Animated from 'react-native-reanimated';
 import Markdown from '@components/markdown';
 import ShowMoreButton from '@components/post_list/post/body/message/show_more_button';
 import {useShowMoreAnimatedStyle} from '@hooks/show_more';
-
 import {PostMetadata} from '@mm-redux/types/posts';
 import {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
-    baseTextStyle: StyleProp<TextStyle>,
-    blockStyles?: StyleProp<ViewStyle>[],
-    hasThumbnail?: boolean,
-    metadata?: PostMetadata,
-    textStyles?: StyleProp<TextStyle>[],
-    theme: Theme,
-    value?: string,
+    baseTextStyle: StyleProp<TextStyle>;
+    blockStyles?: StyleProp<ViewStyle>[];
+    hasThumbnail?: boolean;
+    metadata?: PostMetadata;
+    textStyles?: StyleProp<TextStyle>[];
+    theme: Theme;
+    value?: string;
 }
 
 const SHOW_MORE_HEIGHT = 54;

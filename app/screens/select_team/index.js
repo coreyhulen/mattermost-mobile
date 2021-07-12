@@ -1,18 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import {handleTeamChange} from '@actions/views/select_team';
+import {logout} from '@actions/views/user';
 import {getTeams, addUserToTeam} from '@mm-redux/actions/teams';
 import {General} from '@mm-redux/constants';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getSortedJoinableTeams} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUser} from '@mm-redux/selectors/entities/users';
-
-import {logout} from 'app/actions/views/user';
-import {handleTeamChange} from 'app/actions/views/select_team';
-import {isGuest} from 'app/utils/users';
+import {isGuest} from '@utils/users';
 
 import SelectTeam from './select_team.js';
 

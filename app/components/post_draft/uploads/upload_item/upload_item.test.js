@@ -1,12 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
 import {shallow} from 'enzyme';
-import {shallowWithIntl} from 'test/intl-test-helper';
+import React from 'react';
 
 import {Preferences} from '@mm-redux/constants';
+import {shallowWithIntl} from '@test/intl-test-helper';
 import ImageCacheManager from '@utils/image_cache_manager';
+
 import UploadItem from './upload_item';
 
 describe('UploadItem', () => {

@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {
     ScrollView,
@@ -18,8 +18,8 @@ import {t} from '@utils/i18n';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 import AddMembers from './add_members';
-import NotificationPreference from './notification_preference';
 import Archive from './archive';
+import Bindings from './bindings';
 import ChannelInfoHeader from './channel_info_header';
 import ConvertPrivate from './convert_private';
 import EditChannel from './edit_channel';
@@ -28,9 +28,9 @@ import IgnoreMentions from './ignore_mentions';
 import Leave from './leave';
 import ManageMembers from './manage_members';
 import Mute from './mute';
+import NotificationPreference from './notification_preference';
 import Pinned from './pinned';
 import Separator from './separator';
-import Bindings from './bindings';
 
 export default class ChannelInfo extends PureComponent {
     static propTypes = {

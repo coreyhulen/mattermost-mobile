@@ -2,13 +2,13 @@
 // See LICENSE.txt for license information.
 
 import {Dimensions, Keyboard, Platform} from 'react-native';
+import {Options, SharedElementTransition, StackAnimationOptions, ViewAnimationOptions} from 'react-native-navigation';
 import parseUrl from 'url-parse';
 
 import {goToScreen} from '@actions/navigation';
 import {FileInfo} from '@mm-redux/types/files';
 
 import {generateId, isImage, lookupMimeType} from './file';
-import {Options, SharedElementTransition, StackAnimationOptions, ViewAnimationOptions} from 'react-native-navigation';
 
 export function openGalleryAtIndex(index: number, files: FileInfo[]) {
     Keyboard.dismiss();

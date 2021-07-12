@@ -4,17 +4,15 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import {Theme} from '@mm-redux/types/preferences';
-import {AppField, AppFormValue, AppSelectOption} from '@mm-redux/types/apps';
-import {AppFieldTypes} from '@mm-redux/constants/apps';
-import {DialogOption} from '@mm-redux/types/integrations';
-
-import {ViewTypes} from '@constants/index';
-
-import BoolSetting from '@components/widgets/settings/bool_setting';
-import TextSetting from '@components/widgets/settings/text_setting';
 import AutocompleteSelector from '@components/autocomplete_selector';
 import Markdown from '@components/markdown/markdown';
+import BoolSetting from '@components/widgets/settings/bool_setting';
+import TextSetting from '@components/widgets/settings/text_setting';
+import {ViewTypes} from '@constants/index';
+import {AppFieldTypes} from '@mm-redux/constants/apps';
+import {AppField, AppFormValue, AppSelectOption} from '@mm-redux/types/apps';
+import {DialogOption} from '@mm-redux/types/integrations';
+import {Theme} from '@mm-redux/types/preferences';
 import {getMarkdownBlockStyles, getMarkdownTextStyles} from '@utils/markdown';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 

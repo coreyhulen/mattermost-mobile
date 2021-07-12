@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
-import {TeamTypes} from '@mm-redux/action_types';
 
+import {TeamTypes} from '@mm-redux/action_types';
 import {GenericAction} from '@mm-redux/types/actions';
 import {TeamsRequestsStatuses, RequestStatusType} from '@mm-redux/types/requests';
 

@@ -5,9 +5,10 @@
 
 import RNFetchBlob from 'rn-fetch-blob';
 
-import ImageCacheManager, {getCacheFile} from 'app/utils/image_cache_manager';
-import {emptyFunction} from 'app/utils/general';
-import * as fileUtils from 'app/utils/file';
+import * as fileUtils from '@utils/file';
+import {emptyFunction} from '@utils/general';
+import ImageCacheManager, {getCacheFile} from '@utils/image_cache_manager';
+
 import mattermostBucket from 'app/mattermost_bucket';
 
 fileUtils.getExtensionFromMime = jest.fn();

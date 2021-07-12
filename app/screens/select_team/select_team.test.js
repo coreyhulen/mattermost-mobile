@@ -1,11 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react';
 import {shallow} from 'enzyme';
-
-import Preferences from '@mm-redux/constants/preferences';
+import React from 'react';
 
 import {RequestStatus} from '@mm-redux/constants';
+import Preferences from '@mm-redux/constants/preferences';
 
 import SelectTeam from './select_team.js';
 

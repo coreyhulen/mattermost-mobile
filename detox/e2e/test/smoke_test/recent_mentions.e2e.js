@@ -7,11 +7,6 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
-import {PostOptions} from '@support/ui/component';
-import {
-    ChannelScreen,
-    RecentMentionsScreen,
-} from '@support/ui/screen';
 import {
     Channel,
     Post,
@@ -19,6 +14,11 @@ import {
     Team,
     User,
 } from '@support/server_api';
+import {PostOptions} from '@support/ui/component';
+import {
+    ChannelScreen,
+    RecentMentionsScreen,
+} from '@support/ui/screen';
 
 describe('Recent Mentions', () => {
     let testUser1;

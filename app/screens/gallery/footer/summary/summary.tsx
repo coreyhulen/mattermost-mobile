@@ -5,11 +5,11 @@ import React from 'react';
 import {Platform, StyleSheet, View, ViewStyle} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import type {SummaryProps} from 'types/screens/gallery';
-
 import Actions from './actions';
 import Avatar from './avatar';
 import Details from './details';
+
+import type {SummaryProps} from '@mm-types/screens/gallery';
 
 const styles = StyleSheet.create({
     container: {

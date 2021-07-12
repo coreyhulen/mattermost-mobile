@@ -4,9 +4,9 @@
 import React from 'react';
 
 import Preferences from '@mm-redux/constants/preferences';
-import {SettingsSidebarDrawerButton} from './settings_sidebar_drawer_button';
+import {shallowWithIntl} from '@test/intl-test-helper';
 
-import {shallowWithIntl} from 'test/intl-test-helper';
+import {SettingsSidebarDrawerButton} from './settings_sidebar_drawer_button';
 
 describe('SettingsSidebarDrawerButton', () => {
     const baseProps = {

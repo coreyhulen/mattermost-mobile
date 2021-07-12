@@ -15,11 +15,11 @@ import {emptyFunction} from '@utils/general';
 import {getMarkdownTextStyles} from '@utils/markdown';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
-import type {Post} from '@mm-redux/types/posts';
-import type {Theme} from '@mm-redux/types/preferences';
-
 import LastUsers from './last_users';
 import {postTypeMessages} from './messages';
+
+import type {Post} from '@mm-redux/types/posts';
+import type {Theme} from '@mm-redux/types/preferences';
 
 type Props = {
     canDelete: boolean;

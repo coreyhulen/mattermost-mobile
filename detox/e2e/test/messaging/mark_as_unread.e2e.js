@@ -8,17 +8,17 @@
 // *******************************************************************
 
 import {
-    MainSidebar,
-    PostOptions,
-} from '@support/ui/component';
-import {ChannelScreen} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
     Team,
     User,
 } from '@support/server_api';
+import {
+    MainSidebar,
+    PostOptions,
+} from '@support/ui/component';
+import {ChannelScreen} from '@support/ui/screen';
 
 describe('Mark as Unread', () => {
     const {

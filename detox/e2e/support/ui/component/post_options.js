@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import Alert from './alert';
 import {isAndroid, timeouts, wait} from '@support/utils';
+
+import Alert from './alert';
 
 class PostOptions {
     testID = {

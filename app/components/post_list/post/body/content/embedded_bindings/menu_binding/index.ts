@@ -8,10 +8,10 @@ import {getChannel} from '@mm-redux/selectors/entities/channels';
 import {getPost} from '@mm-redux/selectors/entities/posts';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 
+import MenuBinding from './menu_binding';
+
 import type {AppBinding} from '@mm-redux/types/apps';
 import type {GlobalState} from '@mm-redux/types/store';
-
-import MenuBinding from './menu_binding';
 
 type OwnProps = {
     binding: AppBinding;

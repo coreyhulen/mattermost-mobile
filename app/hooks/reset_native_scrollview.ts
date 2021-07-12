@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {useEffect, useRef} from 'react';
+
 import {UPDATE_NATIVE_SCROLLVIEW} from '@constants/post_draft';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 

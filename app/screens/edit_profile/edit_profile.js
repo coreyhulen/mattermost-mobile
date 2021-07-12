@@ -1,32 +1,31 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {intlShape} from 'react-intl';
 import {Alert, View} from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import DocumentPicker from 'react-native-document-picker';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
 import {Navigation} from 'react-native-navigation';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import RNFetchBlob from 'rn-fetch-blob';
 
+import {popTopScreen, dismissModal, setButtons} from '@actions/navigation';
 import {Client4} from '@client/rest';
+import ErrorText from '@components/error_text';
+import Loading from '@components/loading';
+import ProfilePicture from '@components/profile_picture';
+import ProfilePictureButton from '@components/profile_picture_button';
+import StatusBar from '@components/status_bar/index';
+import TextSetting from '@components/widgets/settings/text_setting';
 import {getFormattedFileSize} from '@mm-redux/utils/file_utils';
+import {buildFileUploadData, encodeHeaderURIStringToUTF8} from '@utils/file';
+import {t} from '@utils/i18n';
+import {preventDoubleTap} from '@utils/tap';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
-import {buildFileUploadData, encodeHeaderURIStringToUTF8} from 'app/utils/file';
-import {preventDoubleTap} from 'app/utils/tap';
-import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
-import {t} from 'app/utils/i18n';
-
-import TextSetting from 'app/components/widgets/settings/text_setting';
-import Loading from 'app/components/loading';
-import ErrorText from 'app/components/error_text';
-import StatusBar from 'app/components/status_bar/index';
-import ProfilePictureButton from 'app/components/profile_picture_button';
-import ProfilePicture from 'app/components/profile_picture';
 import mattermostBucket from 'app/mattermost_bucket';
-import {popTopScreen, dismissModal, setButtons} from 'app/actions/navigation';
 
 const MAX_SIZE = 20 * 1024 * 1024;
 export const VALID_MIME_TYPES = [

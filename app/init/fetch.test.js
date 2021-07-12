@@ -4,8 +4,8 @@
 import '@init/fetch';
 import {Client4} from '@client/rest';
 import {HEADER_X_CLUSTER_ID, HEADER_X_VERSION_ID, HEADER_TOKEN} from '@client/rest/constants';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 import {General} from '@mm-redux/constants';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 
 describe('Fetch', () => {
     beforeAll(() => {

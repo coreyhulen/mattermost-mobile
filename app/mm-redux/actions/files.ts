@@ -2,7 +2,6 @@
 // See LICENSE.txt for license information.
 import {Client4} from '@client/rest';
 import {FileTypes} from '@mm-redux/action_types';
-
 import {DispatchFunc, GetStateFunc, ActionFunc} from '@mm-redux/types/actions';
 
 import {logError} from './errors';

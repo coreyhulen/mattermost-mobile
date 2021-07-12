@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {connect} from 'react-redux';
+
 import {getMyCurrentChannelMembership} from '@mm-redux/selectors/entities/channels';
 
 import NotificationPreference from './notification_preference';

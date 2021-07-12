@@ -12,11 +12,11 @@ import {isEdited, isPostPendingOrFailed} from '@mm-redux/utils/post_utils';
 import {getMarkdownTextStyles, getMarkdownBlockStyles} from '@utils/markdown';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 
+import ShowMoreButton from './show_more_button';
+
 import type {UserMentionKey} from '@mm-redux/selectors/entities/users';
 import type {Post} from '@mm-redux/types/posts';
 import type {Theme} from '@mm-redux/types/preferences';
-
-import ShowMoreButton from './show_more_button';
 
 type MessageProps = {
     highlight: boolean;

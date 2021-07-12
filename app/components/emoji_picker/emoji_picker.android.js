@@ -4,8 +4,8 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import SearchBar from 'app/components/search_bar';
-import {changeOpacity, getKeyboardAppearanceFromTheme} from 'app/utils/theme';
+import SearchBar from '@components/search_bar';
+import {changeOpacity, getKeyboardAppearanceFromTheme} from '@utils/theme';
 
 import EmojiPickerBase, {getStyleSheetFromTheme} from './emoji_picker_base';
 

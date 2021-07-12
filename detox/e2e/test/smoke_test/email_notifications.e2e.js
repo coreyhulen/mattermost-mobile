@@ -10,12 +10,6 @@
 import jestExpect from 'expect';
 
 import {
-    ChannelScreen,
-    GeneralSettingsScreen,
-    NotificationSettingsEmailScreen,
-    NotificationSettingsScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Post,
     Setup,
@@ -24,6 +18,12 @@ import {
     Team,
     User,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    GeneralSettingsScreen,
+    NotificationSettingsEmailScreen,
+    NotificationSettingsScreen,
+} from '@support/ui/screen';
 import {
     capitalize,
     getRecentEmail,

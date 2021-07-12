@@ -3,9 +3,9 @@
 
 import assert from 'assert';
 
-import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
-import TestHelper from 'test/test_helper';
 import * as Selectors from '@mm-redux/selectors/entities/search';
+import deepFreezeAndThrowOnMutation from '@mm-redux/utils/deep_freeze';
+import TestHelper from '@test/test_helper';
 
 describe('Selectors.Search', () => {
     const team1 = TestHelper.fakeTeamWithId();

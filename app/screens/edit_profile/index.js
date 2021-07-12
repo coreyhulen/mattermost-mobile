@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {setProfileImageUri, removeProfileImage, updateUser} from '@actions/views/edit_profile';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
-import {isLandscape} from 'app/selectors/device';
-import {setProfileImageUri, removeProfileImage, updateUser} from 'app/actions/views/edit_profile';
+import {isLandscape} from '@selectors/device';
 
 import EditProfile from './edit_profile';
 

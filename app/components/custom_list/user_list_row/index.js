@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 
 import {getTeammateNameDisplaySetting, getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUserId, getUser} from '@mm-redux/selectors/entities/users';
+
 import UserListRow from './user_list_row';
 
 function mapStateToProps(state, ownProps) {

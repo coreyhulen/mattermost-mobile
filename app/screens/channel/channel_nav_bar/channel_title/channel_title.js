@@ -1,21 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-
+import React, {PureComponent} from 'react';
 import {
     Text,
     TouchableOpacity,
     View,
 } from 'react-native';
 
-import {General} from '@mm-redux/constants';
-
 import ChannelIcon from '@components/channel_icon';
 import CompassIcon from '@components/compass_icon';
 import CustomStatusEmoji from '@components/custom_status/custom_status_emoji';
 import FormattedText from '@components/formatted_text';
+import {General} from '@mm-redux/constants';
 import {t} from '@utils/i18n';
 import {makeStyleSheetFromTheme} from '@utils/theme';
 

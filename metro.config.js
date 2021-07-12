@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 
 /* eslint-disable no-console */
-const resolve = require('path').resolve;
 const fs = require('fs');
+const resolve = require('path').resolve;
 
 const modulesRegex = /\/(node_modules)/;
 

@@ -1,10 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {BotTypes} from '@mm-redux/action_types';
 import {GenericAction} from '@mm-redux/types/actions';
-import {Dictionary} from '@mm-redux/types/utilities';
 import {Bot} from '@mm-redux/types/bots';
+import {Dictionary} from '@mm-redux/types/utilities';
 
 function accounts(state: Dictionary<Bot> = {}, action: GenericAction) {
     switch (action.type) {

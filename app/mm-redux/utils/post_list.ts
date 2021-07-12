@@ -1,22 +1,24 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import * as reselect from 'reselect';
 import moment from 'moment-timezone';
-import {Posts, Preferences} from '../constants';
+import * as reselect from 'reselect';
+
 import {makeGetPostsForIds} from '@mm-redux/selectors/entities/posts';
 import {getBool} from '@mm-redux/selectors/entities/preferences';
 import {isTimezoneEnabled} from '@mm-redux/selectors/entities/timezone';
 import {getCurrentUser} from '@mm-redux/selectors/entities/users';
+import * as types from '@mm-redux/types';
+import {GlobalState} from '@mm-redux/types/store';
 import {createIdsSelector, memoizeResult} from '@mm-redux/utils/helpers';
 import {isUserActivityPost, shouldFilterJoinLeavePost} from '@mm-redux/utils/post_utils';
 import {getUserCurrentTimezone} from '@mm-redux/utils/timezone_utils';
-import * as types from '@mm-redux/types';
+
+import {Posts, Preferences} from '../constants';
+
 export const COMBINED_USER_ACTIVITY = 'user-activity-';
 export const DATE_LINE = 'date-';
 export const START_OF_NEW_MESSAGES = 'start-of-new-messages';
 export const MAX_COMBINED_SYSTEM_POSTS = 100;
-
-import {GlobalState} from '@mm-redux/types/store';
 
 function shouldShowJoinLeaveMessages(state: GlobalState) {
     // This setting is true or not set if join/leave messages are to be displayed

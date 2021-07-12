@@ -7,8 +7,8 @@ import {Preferences} from '@mm-redux/constants';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {get} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUser, getUser} from '@mm-redux/selectors/entities/users';
-import {UserCustomStatus} from '@mm-redux/types/users';
 import {GlobalState} from '@mm-redux/types/store';
+import {UserCustomStatus} from '@mm-redux/types/users';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 
 export function makeGetCustomStatus(): (state: GlobalState, userID?: string) => UserCustomStatus {

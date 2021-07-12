@@ -5,7 +5,6 @@ import {Posts} from '@mm-redux/constants';
 import {makeGetPostsForIds} from '@mm-redux/selectors/entities/posts';
 import {getCurrentUser} from '@mm-redux/selectors/entities/users';
 import {createIdsSelector} from '@mm-redux/utils/helpers';
-
 import {DATE_LINE} from '@mm-redux/utils/post_list';
 
 export {DATE_LINE};

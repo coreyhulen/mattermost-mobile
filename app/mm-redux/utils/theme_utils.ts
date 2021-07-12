@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {Theme} from '@mm-redux/types/preferences';
+
 import {Preferences} from '../constants';
 
 export function makeStyleFromTheme(getStyleFromTheme: (a: any) => any): (a: any) => any {

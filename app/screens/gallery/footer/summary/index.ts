@@ -8,16 +8,16 @@ import {General} from '@mm-redux/constants';
 import {getChannel, getCurrentChannel} from '@mm-redux/selectors/entities/channels';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getPost} from '@mm-redux/selectors/entities/posts';
-import {getCurrentUserId, getUser} from '@mm-redux/selectors/entities/users';
 import {getTeammateNameDisplaySetting, getTheme} from '@mm-redux/selectors/entities/preferences';
+import {getCurrentUserId, getUser} from '@mm-redux/selectors/entities/users';
 import {isFromWebhook} from '@mm-redux/utils/post_utils';
 import {displayUsername} from '@mm-redux/utils/user_utils';
 import {isLandscape} from '@selectors/device';
 
-import type {GlobalState} from '@mm-redux/types/store';
-import type {FooterProps} from 'types/screens/gallery';
-
 import Summary from './summary';
+
+import type {GlobalState} from '@mm-redux/types/store';
+import type {FooterProps} from '@mm-types/screens/gallery';
 
 function mapStateToProps(state: GlobalState, ownProps: FooterProps) {
     const config = getConfig(state);

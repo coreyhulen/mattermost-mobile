@@ -8,15 +8,15 @@
 // *******************************************************************
 
 import {
-    ChannelAddMembersScreen,
-    ChannelInfoScreen,
-    ChannelScreen,
-} from '@support/ui/screen';
-import {
     Setup,
     Team,
     User,
 } from '@support/server_api';
+import {
+    ChannelAddMembersScreen,
+    ChannelInfoScreen,
+    ChannelScreen,
+} from '@support/ui/screen';
 
 describe('Channel Add Members', () => {
     const {

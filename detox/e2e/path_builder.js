@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 const path = require('path');
+
 const sanitizeFilename = require('sanitize-filename');
 
 const SANITIZE_OPTIONS = {replacement: '_'};

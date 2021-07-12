@@ -5,11 +5,11 @@ import {createSelector} from 'reselect';
 
 import {General} from '@mm-redux/constants';
 import {getAllChannels, getMyChannelMemberships} from '@mm-redux/selectors/entities/channels';
-import {getCurrentUser, getUsers, getUserIdsInChannels} from '@mm-redux/selectors/entities/users';
 import {getTeammateNameDisplaySetting, getVisibleTeammate, getVisibleGroupIds} from '@mm-redux/selectors/entities/preferences';
-import {completeDirectChannelDisplayName, getDirectChannelName, sortChannelsByDisplayName} from '@mm-redux/utils/channel_utils';
+import {getCurrentUser, getUsers, getUserIdsInChannels} from '@mm-redux/selectors/entities/users';
 import {Channel} from '@mm-redux/types/channels';
 import {GlobalState} from '@mm-redux/types/store';
+import {completeDirectChannelDisplayName, getDirectChannelName, sortChannelsByDisplayName} from '@mm-redux/utils/channel_utils';
 
 export const getExtensionSortedPublicChannels = createSelector(
     getCurrentUser,

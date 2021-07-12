@@ -1,6 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import deepEqual from 'deep-equal';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {injectIntl} from 'react-intl';
 import {
@@ -13,17 +15,15 @@ import {
     View,
 } from 'react-native';
 
-import deepEqual from 'deep-equal';
-import PropTypes from 'prop-types';
-
 import FormattedText from '@components/formatted_text';
 import RadioButtonGroup from '@components/radio_button';
 import StatusBar from '@components/status_bar';
 import PushNotifications from '@init/push_notifications';
 import {RequestStatus} from '@mm-redux/constants';
 import SectionItem from '@screens/settings/section_item';
-import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 import {getNotificationProps} from '@utils/notify_props';
+import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
+
 import NotificationPreferences from 'app/notification_preferences';
 
 import NotificationSettingsMobileBase from './notification_settings_mobile_base';

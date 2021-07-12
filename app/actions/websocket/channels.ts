@@ -3,10 +3,10 @@
 
 import {fetchChannelAndMyMember} from '@actions/helpers/channels';
 import {loadChannelsForTeam} from '@actions/views/channel';
-import {WebsocketEvents} from '@constants';
-import {markChannelAsRead} from '@mm-redux/actions/channels';
 import {Client4} from '@client/rest';
+import {WebsocketEvents} from '@constants';
 import {ChannelTypes, TeamTypes, RoleTypes} from '@mm-redux/action_types';
+import {markChannelAsRead} from '@mm-redux/actions/channels';
 import {General} from '@mm-redux/constants';
 import {
     getAllChannels,

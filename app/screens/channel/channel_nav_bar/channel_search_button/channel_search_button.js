@@ -1,20 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {intlShape} from 'react-intl';
 import {
     Keyboard,
     TouchableOpacity,
     View,
 } from 'react-native';
-import {intlShape} from 'react-intl';
 
 import {showSearchModal} from '@actions/navigation';
 import CompassIcon from '@components/compass_icon';
+import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
 import {makeStyleSheetFromTheme} from '@utils/theme';
-import {t} from '@utils/i18n';
 
 export default class ChannelSearchButton extends PureComponent {
     static propTypes = {

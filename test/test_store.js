@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {AsyncNodeStorage} from 'redux-persist-node-storage';
 import {createTransform} from 'redux-persist';
+import {AsyncNodeStorage} from 'redux-persist-node-storage';
 
 import configureStore from '@store';
 

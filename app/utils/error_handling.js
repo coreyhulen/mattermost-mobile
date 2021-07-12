@@ -7,8 +7,8 @@ import {setJSExceptionHandler, setNativeExceptionHandler} from 'react-native-exc
 import {dismissAllModals} from '@actions/navigation';
 import {purgeOfflineStore} from '@actions/views/root';
 import {close as closeWebSocket} from '@actions/websocket';
-import {DEFAULT_LOCALE, getTranslations} from '@i18n';
 import {Client4} from '@client/rest';
+import {DEFAULT_LOCALE, getTranslations} from '@i18n';
 import {logError} from '@mm-redux/actions/errors';
 import {t} from '@utils/i18n';
 import {

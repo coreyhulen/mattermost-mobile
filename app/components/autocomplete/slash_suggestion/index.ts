@@ -1,16 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 import {createSelector} from 'reselect';
 
-import {GlobalState} from '@mm-redux/types/store';
 import {getAutocompleteCommands, getCommandAutocompleteSuggestions} from '@mm-redux/actions/integrations';
 import {getAutocompleteCommandsList, getCommandAutocompleteSuggestionsList} from '@mm-redux/selectors/entities/integrations';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
-
+import {GlobalState} from '@mm-redux/types/store';
 import {appsEnabled} from '@utils/apps';
 
 import SlashSuggestion from './slash_suggestion';

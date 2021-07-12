@@ -3,12 +3,10 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 
-import EventEmitter from '@mm-redux/utils/event_emitter';
-
+import FormattedText from '@components/formatted_text';
 import {ViewTypes} from '@constants';
 import {INDICATOR_BAR_HEIGHT} from '@constants/view';
-
-import FormattedText from '@components/formatted_text';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 
 type Props = {
     channelId?: string;

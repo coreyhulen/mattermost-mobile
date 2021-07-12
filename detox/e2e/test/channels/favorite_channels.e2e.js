@@ -7,12 +7,12 @@
 // - Use element testID when selecting an element. Create one if none.
 // *******************************************************************
 
+import {Setup} from '@support/server_api';
 import {MainSidebar} from '@support/ui/component';
 import {
     ChannelInfoScreen,
     ChannelScreen,
 } from '@support/ui/screen';
-import {Setup} from '@support/server_api';
 
 describe('Favorite Channels', () => {
     let testChannel;

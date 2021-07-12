@@ -10,13 +10,13 @@ import RNFetchBlob from 'rn-fetch-blob';
 import Loading from '@components/loading';
 import {MAX_FILE_COUNT} from '@constants/post_draft';
 import {getAppCredentials} from '@init/credentials';
+import mattermostManaged from '@mattermost-managed';
+import {getFormattedFileSize, lookupMimeType} from '@mm-redux/utils/file_utils';
+import ShareError from '@share/components/error';
+import {getExtensionFromMime} from '@utils/file';
+
 import type {FileInfo} from '@mm-redux/types/files';
 import type {Team} from '@mm-redux/types/teams';
-import {getFormattedFileSize, lookupMimeType} from '@mm-redux/utils/file_utils';
-import {getExtensionFromMime} from '@utils/file';
-import mattermostManaged from 'app/mattermost_managed';
-
-import ShareError from '@share/components/error';
 
 const ShareExtension = NativeModules.MattermostShare;
 

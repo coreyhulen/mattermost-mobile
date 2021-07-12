@@ -1,31 +1,29 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Client4} from '@client/rest';
-import {General, Preferences} from '../constants';
+import {analytics} from '@init/analytics';
 import {ChannelTypes, PreferenceTypes, TeamTypes, UserTypes} from '@mm-redux/action_types';
-import {savePreferences, deletePreferences} from './preferences';
-import {compareNotifyProps, getChannelsIdForTeam, getChannelByName as selectChannelByName} from '@mm-redux/utils/channel_utils';
 import {
     getChannelsNameMapInTeam,
     getMyChannelMember as getMyChannelMemberSelector,
     getRedirectChannelNameForTeam,
     isManuallyUnread,
 } from '@mm-redux/selectors/entities/channels';
-import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {getConfig} from '@mm-redux/selectors/entities/general';
-
+import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from '@mm-redux/types/actions';
-
 import {Channel, ChannelNotifyProps, ChannelMembership} from '@mm-redux/types/channels';
-
 import {PreferenceType} from '@mm-redux/types/preferences';
 import {Dictionary} from '@mm-redux/types/utilities';
+import {compareNotifyProps, getChannelsIdForTeam, getChannelByName as selectChannelByName} from '@mm-redux/utils/channel_utils';
+
+import {General, Preferences} from '../constants';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
-import {getMissingProfilesByIds} from './users';
+import {savePreferences, deletePreferences} from './preferences';
 import {loadRolesIfNeeded} from './roles';
-import {analytics} from '@init/analytics';
+import {getMissingProfilesByIds} from './users';
 
 export function selectChannel(channelId: string) {
     return {

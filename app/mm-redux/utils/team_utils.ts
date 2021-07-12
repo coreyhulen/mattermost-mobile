@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 import {Team} from '@mm-redux/types/teams';
 import {IDMappedObjects, Dictionary} from '@mm-redux/types/utilities';
+
 import {General} from '../constants';
 
 export function teamListToMap(teamList: Array<Team>): IDMappedObjects<Team> {

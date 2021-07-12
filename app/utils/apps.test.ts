@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {AppBinding, AppCall} from '@mm-redux/types/apps';
+
 import {fillAndTrimBindingsInformation} from './apps';
 
 describe('Apps Utils', () => {

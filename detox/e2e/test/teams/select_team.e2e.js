@@ -8,15 +8,15 @@
 // *******************************************************************
 
 import {
-    ChannelScreen,
-    LoginScreen,
-    SelectTeamScreen,
-} from '@support/ui/screen';
-import {
     Channel,
     Team,
     User,
 } from '@support/server_api';
+import {
+    ChannelScreen,
+    LoginScreen,
+    SelectTeamScreen,
+} from '@support/ui/screen';
 
 describe('Select Team', () => {
     let testTeam;
