@@ -146,6 +146,9 @@ Navigation.setLazyComponentRegistrator((screenName) => {
     case 'OptionsModal':
         screen = require('@screens/options_modal').default;
         break;
+    case 'ParticipantsList':
+        screen = require('@screens/participants_list').default;
+        break;
     case 'PerfMetrics':
         screen = require('@screens/perf_metrics').default;
         break;

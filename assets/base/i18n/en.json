@@ -423,6 +423,7 @@
   "mobile.open_dm.error": "We couldn't open a direct message with {displayName}. Please check your connection and try again.",
   "mobile.open_gm.error": "We couldn't open a group message with those users. Please check your connection and try again.",
   "mobile.open_unknown_channel.error": "Unable to join the channel. Please reset the cache and try again.",
+  "mobile.participants_header": "THREAD PARTICIPANTS",
   "mobile.permission_denied_dismiss": "Don't Allow",
   "mobile.permission_denied_retry": "Settings",
   "mobile.pinned_posts.empty_description": "Pin important messages which are visible to the whole channel. Long press on a message and choose Pin to Channel to save it here.",

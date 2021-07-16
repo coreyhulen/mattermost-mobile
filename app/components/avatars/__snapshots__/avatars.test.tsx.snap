@@ -2,6 +2,7 @@
 
 exports[`Avatars should match snapshot for overflow 1`] = `
 <TouchableWithFeedbackIOS
+  onPress={[Function]}
   type="native"
 >
   <View
@@ -211,6 +212,7 @@ exports[`Avatars should match snapshot for overflow 1`] = `
 
 exports[`Avatars should match snapshot for single avatar 1`] = `
 <TouchableWithFeedbackIOS
+  onPress={[Function]}
   type="native"
 >
   <View

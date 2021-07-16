@@ -3,11 +3,11 @@
 import React, {PureComponent} from 'react';
 import {Platform, Text, View} from 'react-native';
 
-import TouchableWithFeedback from '@components/touchable_with_feedback';
 import ProfilePicture from '@components/profile_picture';
-import {ViewTypes} from '@constants';
-
+import TouchableWithFeedback from '@components/touchable_with_feedback';
 import type {Theme} from '@mm-redux/types/preferences';
+import {showModalOverCurrentContext} from '@actions/navigation';
+import {ViewTypes} from '@constants';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
@@ -89,6 +89,17 @@ export default class Avatars extends PureComponent<AvatarsProps> {
         breakAt: 3,
     };
 
+    showParticipantsList = () => {
+        const {userIds} = this.props;
+
+        const screen = 'ParticipantsList';
+        const passProps = {
+            userIds,
+        };
+
+        showModalOverCurrentContext(screen, passProps);
+    };
+
     render() {
         const {userIds, breakAt, theme} = this.props;
         const displayUserIds = userIds.slice(0, breakAt);
@@ -97,7 +108,9 @@ export default class Avatars extends PureComponent<AvatarsProps> {
         const style = getStyleSheet(theme);
 
         return (
-            <TouchableWithFeedback>
+            <TouchableWithFeedback
+                onPress={this.showParticipantsList}
+            >
                 <View style={style.container}>
                     {displayUserIds.map((userId: string, i: number) => (
                         <View
