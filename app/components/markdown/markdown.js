@@ -17,7 +17,7 @@ import Emoji from '@components/emoji';
 import FormattedText from '@components/formatted_text';
 import Hashtag from '@components/markdown/hashtag';
 import {blendColors, concatStyles, makeStyleSheetFromTheme} from '@utils/theme';
-import {getScheme} from '@utils/url';
+import {getScheme, isSVGLink} from '@utils/url';
 
 import MarkdownBlockQuote from './markdown_block_quote';
 import MarkdownCodeBlock from './markdown_code_block';
@@ -185,6 +185,21 @@ export default class Markdown extends PureComponent {
 
     renderImage = ({linkDestination, reactChildren, context, src}) => {
         if (!this.props.imagesMetadata) {
+            if (isSVGLink(src)) {
+                return (
+                    <MarkdownImage
+                        disable={this.props.disableGallery}
+                        errorTextStyle={[this.computeTextStyle(this.props.baseTextStyle, context), this.props.textStyles.error]}
+                        linkDestination={linkDestination}
+                        imagesMetadata={this.props.imagesMetadata}
+                        isReplyPost={this.props.isReplyPost}
+                        postId={this.props.postId}
+                        source={src}
+                    >
+                        {reactChildren}
+                    </MarkdownImage>
+                );
+            }
             return null;
         }
 

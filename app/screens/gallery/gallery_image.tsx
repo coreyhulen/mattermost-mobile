@@ -9,6 +9,9 @@ import {DeviceTypes} from '@constants';
 import {calculateDimensions} from '@utils/images';
 
 import {GalleryItemProps} from 'types/screens/gallery';
+import {SvgUri} from 'react-native-svg';
+import {ErrorBoundary} from '@sentry/react';
+import {SVG_DEFAULT_HEIGHT, SVG_DEFAULT_WIDTH} from '@constants/image';
 
 // @ts-expect-error: Ignore the typescript error for createAnimatedComponent
 const AnimatedImage = Animated.createAnimatedComponent(FastImage);
@@ -19,6 +22,17 @@ const GalleryImage = ({file, deviceHeight, deviceWidth, style}: GalleryItemProps
     const calculatedDimensions = calculateDimensions(height, width, deviceWidth, deviceHeight - statusBar);
     const uri = localPath || imageUri;
 
+    if (file.extension === 'svg') {
+        return (
+            <ErrorBoundary>
+                <SvgUri
+                    uri={uri || null}
+                    width={calculatedDimensions.width || SVG_DEFAULT_WIDTH}
+                    height={calculatedDimensions.height || SVG_DEFAULT_HEIGHT}
+                />
+            </ErrorBoundary>
+        );
+    }
     return (
         <AnimatedImage
             source={{uri}}

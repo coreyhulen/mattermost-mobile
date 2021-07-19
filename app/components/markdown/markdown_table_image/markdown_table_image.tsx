@@ -15,6 +15,7 @@ import {generateId} from '@utils/file';
 
 import type {PostImage} from '@mm-redux/types/posts';
 import {FileInfo} from '@mm-redux/types/files';
+import {fileNameFromLink} from '@utils/url';
 
 type MarkdownTableImageProps = {
     disable: boolean;
@@ -54,7 +55,7 @@ const MarkTableImage = ({disable, imagesMetadata, postId, serverURL, source}: Ma
     const getFileInfo = () => {
         const {height, width} = metadata;
         const link = decodeURIComponent(getImageSource());
-        let filename = parseUrl(link.substr(link.lastIndexOf('/'))).pathname.replace('/', '');
+        let filename = parseUrl(fileNameFromLink(link)).pathname.replace('/', '');
         let extension = filename.split('.').pop();
 
         if (extension === filename) {

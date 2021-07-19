@@ -7,7 +7,7 @@ import {View} from 'react-native';
 import {getMarkdownBlockStyles, getMarkdownTextStyles} from '@utils/markdown';
 import {getStatusColors} from '@utils/message_attachment_colors';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {isValidUrl} from '@utils/url';
+import {isValidUrl, isSVGLink} from '@utils/url';
 
 import type {MessageAttachment as MessageAttachmentType} from '@mm-redux/types/message_attachments';
 import type {PostMetadata} from '@mm-redux/types/posts';
@@ -59,6 +59,8 @@ export default function MessageAttachment({attachment, metadata, postId, theme}:
     const blockStyles = getMarkdownBlockStyles(theme);
     const textStyles = getMarkdownTextStyles(theme);
     const STATUS_COLORS = getStatusColors(theme);
+    const hasImage = Boolean(metadata?.images?.[attachment.image_url]) || isSVGLink(attachment.image_url);
+
     let borderStyle;
     if (attachment.color) {
         if (attachment.color[0] === '#') {
@@ -131,10 +133,10 @@ export default function MessageAttachment({attachment, metadata, postId, theme}:
                     theme={theme}
                 />
                 }
-                {Boolean(metadata?.images?.[attachment.image_url]) &&
+                {hasImage &&
                     <AttachmentImage
                         imageUrl={attachment.image_url}
-                        imageMetadata={metadata!.images[attachment.image_url]}
+                        imageMetadata={metadata?.images?.[attachment.image_url]}
                         postId={postId}
                         theme={theme}
                     />

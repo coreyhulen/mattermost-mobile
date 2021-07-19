@@ -14,6 +14,7 @@ import {
 import Clipboard from '@react-native-community/clipboard';
 import parseUrl from 'url-parse';
 
+import {SVG_DEFAULT_HEIGHT, SVG_DEFAULT_WIDTH} from '@constants/image';
 import CompassIcon from '@components/compass_icon';
 import ImageViewPort from '@components/image_viewport';
 import ProgressiveImage from '@components/progressive_image';
@@ -24,7 +25,7 @@ import BottomSheet from '@utils/bottom_sheet';
 import {generateId} from '@utils/file';
 import {calculateDimensions, getViewPortWidth, isGifTooLarge} from '@utils/images';
 import {openGalleryAtIndex} from '@utils/gallery';
-import {normalizeProtocol, tryOpenURL} from '@utils/url';
+import {fileNameFromLink, normalizeProtocol, tryOpenURL} from '@utils/url';
 
 import mattermostManaged from 'app/mattermost_managed';
 
@@ -63,7 +64,7 @@ export default class MarkdownImage extends ImageViewPort {
     getFileInfo = () => {
         const {originalHeight, originalWidth} = this.state;
         const link = decodeURIComponent(this.getSource());
-        let filename = parseUrl(link.substr(link.lastIndexOf('/'))).pathname.replace('/', '');
+        let filename = parseUrl(fileNameFromLink(link)).pathname.replace('/', '');
         let extension = filename.split('.').pop();
 
         if (extension === filename) {
@@ -99,7 +100,8 @@ export default class MarkdownImage extends ImageViewPort {
             return;
         }
 
-        if (!width || !height) {
+        const {extension} = this.getFileInfo();
+        if (extension !== 'svg' && (!width || !height)) {
             this.setState({failed: true});
             return;
         }
@@ -225,6 +227,28 @@ export default class MarkdownImage extends ImageViewPort {
                     </TouchableWithFeedback>
                 );
             }
+        } else if (fileInfo.extension === 'svg') {
+            let source = null;
+            if (fileInfo.uri) {
+                source = {uri: fileInfo.uri};
+            }
+            const svgHeight = height || SVG_DEFAULT_HEIGHT;
+            const svgWidth = width || SVG_DEFAULT_WIDTH;
+
+            image = (
+                <TouchableWithFeedback
+                    onLongPress={this.handleLinkLongPress}
+                    onPress={this.handlePreviewImage}
+                    style={{width: svgWidth, height: svgHeight}}
+                >
+                    <ProgressiveImage
+                        id={fileInfo.id}
+                        defaultSource={source}
+                        resizeMode='contain'
+                        style={{width: svgWidth, height: svgHeight}}
+                    />
+                </TouchableWithFeedback>
+            );
         }
 
         if (image && this.props.linkDestination) {

@@ -191,3 +191,17 @@ export function tryOpenURL(url, onError = emptyErrorHandlingFunction, onSuccess 
         then(onSuccess).
         catch(onError);
 }
+
+export function isSVGLink(imageUrl) {
+    const filename = fileNameFromLink(imageUrl);
+    const extension = filename.split('.').pop();
+    if (extension === 'svg') {
+        return true;
+    }
+    return false;
+}
+
+export function fileNameFromLink(url) {
+    const queryStripped = url.substring(0, url.indexOf('?') === -1 ? url.length : url.indexOf('?'));
+    return queryStripped.substring(queryStripped.lastIndexOf('/') + 1, queryStripped.length);
+}

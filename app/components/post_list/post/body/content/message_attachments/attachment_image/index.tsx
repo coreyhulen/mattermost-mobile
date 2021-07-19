@@ -12,10 +12,11 @@ import {generateId} from '@utils/file';
 import {isGifTooLarge, calculateDimensions, getViewPortWidth} from '@utils/images';
 import {openGallerWithMockFile} from '@utils/gallery';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import {isValidUrl} from '@utils/url';
+import {isSVGLink, isValidUrl} from '@utils/url';
 
 import type {Theme} from '@mm-redux/types/preferences';
 import type {PostImage} from '@mm-redux/types/posts';
+import {SVG_DEFAULT_HEIGHT, SVG_DEFAULT_WIDTH} from '@constants/image';
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
     return {
@@ -42,13 +43,13 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
 });
 
 export type Props = {
-    imageMetadata: PostImage;
+    imageMetadata?: PostImage;
     imageUrl: string;
     postId: string;
     theme: Theme;
 }
 
-const AttachmentImage = ({imageUrl, imageMetadata, postId, theme}: Props) => {
+const AttachmentImage = ({imageUrl, imageMetadata = {width: 0, height: 0}, postId, theme}: Props) => {
     const [error, setError] = useState(false);
     const fileId = useRef(generateId()).current;
     const permanentSidebar = usePermanentSidebar();
@@ -75,6 +76,32 @@ const AttachmentImage = ({imageUrl, imageMetadata, postId, theme}: Props) => {
                     />
                 </View>
             </View>
+        );
+    }
+
+    if (isSVGLink(imageUrl)) {
+        const svgWidth = width || SVG_DEFAULT_WIDTH;
+        const svgHeight = height || SVG_DEFAULT_HEIGHT;
+
+        return (
+            <TouchableWithFeedback
+                onPress={onPress}
+                style={[style.container, {width: svgWidth}]}
+                type={'none'}
+            >
+                <View
+                    style={[style.imageContainer, {width: svgWidth, height: svgHeight}]}
+                >
+                    <ProgressiveImage
+                        id={fileId}
+                        imageStyle={style.attachmentMargin}
+                        imageUri={imageUrl}
+                        onError={onError}
+                        resizeMode='contain'
+                        style={{height: svgHeight, width: svgWidth}}
+                    />
+                </View>
+            </TouchableWithFeedback>
         );
     }
 
