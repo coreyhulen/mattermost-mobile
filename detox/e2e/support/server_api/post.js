@@ -31,7 +31,6 @@ export const apiCreatePost = async ({channelId, message, rootId, props = {}, cre
         const payload = {
             channel_id: channelId,
             message,
-            parent_id: rootId,
             root_id: rootId,
             props,
             create_at: createAt,

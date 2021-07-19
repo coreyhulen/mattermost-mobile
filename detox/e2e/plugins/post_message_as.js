@@ -33,7 +33,6 @@ module.exports = async ({sender, message, channelId, rootId, createAt = 0, baseU
                 message,
                 type: '',
                 create_at: createAt,
-                parent_id: rootId,
                 root_id: rootId,
             },
         });

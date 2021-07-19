@@ -161,7 +161,6 @@ export default class DraftInput extends PureComponent {
             user_id: currentUserId,
             channel_id: channelId,
             root_id: rootId,
-            parent_id: rootId,
             message: value,
         };
 

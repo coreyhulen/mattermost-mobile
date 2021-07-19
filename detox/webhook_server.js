@@ -103,7 +103,6 @@ async function postOAuthMessage(req, res) {
                 message,
                 type: '',
                 create_at: createAt,
-                parent_id: rootId,
                 root_id: rootId,
             },
         });
