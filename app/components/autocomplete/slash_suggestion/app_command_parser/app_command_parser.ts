@@ -903,6 +903,9 @@ export class AppCommandParser {
     }
 
     setChannelContext = (channelID: string, rootPostID?: string) => {
+        if (this.channelID !== channelID || this.rootPostID !== rootPostID) {
+            this.forms = {};
+        }
         this.channelID = channelID;
         this.rootPostID = rootPostID;
     }
@@ -991,14 +994,17 @@ export class AppCommandParser {
     }
 
     getForm = async (location: string, binding: AppBinding): Promise<{form?: AppForm, error?: string} | undefined> => {
-        const form = this.forms[location];
+        const rootID = this.rootPostID || '';
+        const key = `${this.channelID}-${rootID}-${location}`;
+        const form = this.forms[key];
         if (form) {
             return {form};
         }
 
+        this.forms = {};
         const fetched = await this.fetchForm(binding);
         if (fetched?.form) {
-            this.forms[location] = fetched.form;
+            this.forms[key] = fetched.form;
         }
         return fetched;
     }
