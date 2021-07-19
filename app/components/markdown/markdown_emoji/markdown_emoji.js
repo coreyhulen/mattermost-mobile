@@ -39,6 +39,7 @@ export default class MarkdownEmoji extends PureComponent {
                 paragraph: this.renderParagraph,
                 document: this.renderParagraph,
                 text: this.renderText,
+                hardbreak: this.renderNewLine,
             },
         });
     };
@@ -73,9 +74,13 @@ export default class MarkdownEmoji extends PureComponent {
 
     renderText = ({context, literal}) => {
         const style = this.computeTextStyle(this.props.baseTextStyle, context);
-
         return <Text style={style}>{literal}</Text>;
     };
+
+    renderNewLine = ({context}) => {
+        const style = this.computeTextStyle(this.props.baseTextStyle, context);
+        return <Text style={style}>{'\n'}</Text>;
+    }
 
     renderEditedIndicator = ({context}) => {
         let spacer = '';
@@ -101,7 +106,7 @@ export default class MarkdownEmoji extends PureComponent {
     };
 
     render() {
-        const ast = this.parser.parse(this.props.value);
+        const ast = this.parser.parse(this.props.value.replace(/\n*$/, ''));
 
         if (this.props.isEdited) {
             const editIndicatorNode = new Node('edited_indicator');

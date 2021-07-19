@@ -31,3 +31,164 @@ exports[`MarkdownEmoji should match snapshot 1`] = `
   </Unknown>
 </Unknown>
 `;
+
+exports[`MarkdownEmoji should render with hardbreaks 1`] = `
+<Unknown
+  context={Array []}
+  first={true}
+  last={true}
+  literal={null}
+  nodeKey="22"
+>
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    emojiName="fire"
+    literal=":fire:"
+    nodeKey="4"
+  >
+    <Unknown
+      context={
+        Array [
+          "paragraph",
+          "emoji",
+        ]
+      }
+      literal=":fire:"
+      nodeKey="3"
+    />
+  </Unknown>
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    literal=" "
+    nodeKey="5"
+  />
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    emojiName="fire"
+    literal=":fire:"
+    nodeKey="8"
+  >
+    <Unknown
+      context={
+        Array [
+          "paragraph",
+          "emoji",
+        ]
+      }
+      literal=":fire:"
+      nodeKey="7"
+    />
+  </Unknown>
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    literal=""
+    nodeKey="9"
+  />
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    literal={null}
+    nodeKey="10"
+  />
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    emojiName="fire"
+    literal=":fire:"
+    nodeKey="13"
+  >
+    <Unknown
+      context={
+        Array [
+          "paragraph",
+          "emoji",
+        ]
+      }
+      literal=":fire:"
+      nodeKey="12"
+    />
+  </Unknown>
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    literal=" "
+    nodeKey="14"
+  />
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    emojiName="fire"
+    literal=":fire:"
+    nodeKey="17"
+  >
+    <Unknown
+      context={
+        Array [
+          "paragraph",
+          "emoji",
+        ]
+      }
+      literal=":fire:"
+      nodeKey="16"
+    />
+  </Unknown>
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    literal=" "
+    nodeKey="18"
+  />
+  <Unknown
+    context={
+      Array [
+        "paragraph",
+      ]
+    }
+    emojiName="fire"
+    literal=":fire:"
+    nodeKey="21"
+  >
+    <Unknown
+      context={
+        Array [
+          "paragraph",
+          "emoji",
+        ]
+      }
+      literal=":fire:"
+      nodeKey="20"
+    />
+  </Unknown>
+</Unknown>
+`;

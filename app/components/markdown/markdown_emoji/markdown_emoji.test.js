@@ -24,4 +24,17 @@ describe('MarkdownEmoji', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    test('should render with hardbreaks', () => {
+        const wrapper = shallow(
+            <MarkdownEmoji
+                {...baseProps}
+                value={`:fire: :fire:       
+               :fire: :fire: :fire:
+               `}
+            />,
+        );
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
