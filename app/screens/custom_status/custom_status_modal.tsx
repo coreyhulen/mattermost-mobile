@@ -1,46 +1,65 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import moment, {Moment} from 'moment-timezone';
 import React from 'react';
 import {intlShape, injectIntl} from 'react-intl';
 import {View, Text, TouchableOpacity, TextInput, Keyboard, KeyboardAvoidingView, Platform, ScrollView, StyleProp, ViewStyle} from 'react-native';
 import {Navigation, NavigationComponent, NavigationComponentProps, OptionsTopBarButton, Options, NavigationButtonPressedEvent} from 'react-native-navigation';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {dismissModal, showModal, mergeNavigationOptions} from '@actions/navigation';
+import {dismissModal, showModal, mergeNavigationOptions, goToScreen} from '@actions/navigation';
 import Emoji from '@components/emoji';
 import CompassIcon from '@components/compass_icon';
 import ClearButton from '@components/custom_status/clear_button';
+import CustomStatusExpiry from '@components/custom_status/custom_status_expiry';
 import FormattedText from '@components/formatted_text';
 import StatusBar from '@components/status_bar';
 import {CustomStatus, DeviceTypes} from '@constants';
+import {durationValues} from '@constants/custom_status';
 import {ActionFunc, ActionResult} from '@mm-redux/types/actions';
 import {Theme} from '@mm-redux/types/preferences';
-import {UserCustomStatus} from '@mm-redux/types/users';
+import {CustomStatusDuration, UserCustomStatus} from '@mm-redux/types/users';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import CustomStatusSuggestion from '@screens/custom_status/custom_status_suggestion';
+import {getRoundedTime} from '@screens/custom_status_clear_after/date_time_selector';
 import {t} from '@utils/i18n';
 import {preventDoubleTap} from '@utils/tap';
+import {getCurrentMomentForTimezone} from '@utils/timezone';
 import {changeOpacity, getKeyboardAppearanceFromTheme, makeStyleSheetFromTheme} from '@utils/theme';
 
 type DefaultUserCustomStatus = {
     emoji: string;
     message: string;
     messageDefault: string;
+    durationDefault: CustomStatusDuration;
 };
 
+const {
+    DONT_CLEAR,
+    THIRTY_MINUTES,
+    ONE_HOUR,
+    FOUR_HOURS,
+    TODAY,
+    THIS_WEEK,
+    DATE_AND_TIME,
+} = CustomStatusDuration;
+
 const defaultCustomStatusSuggestions: DefaultUserCustomStatus[] = [
-    {emoji: 'calendar', message: t('custom_status.suggestions.in_a_meeting'), messageDefault: 'In a meeting'},
-    {emoji: 'hamburger', message: t('custom_status.suggestions.out_for_lunch'), messageDefault: 'Out for lunch'},
-    {emoji: 'sneezing_face', message: t('custom_status.suggestions.out_sick'), messageDefault: 'Out sick'},
-    {emoji: 'house', message: t('custom_status.suggestions.working_from_home'), messageDefault: 'Working from home'},
-    {emoji: 'palm_tree', message: t('custom_status.suggestions.on_a_vacation'), messageDefault: 'On a vacation'},
+    {emoji: 'calendar', message: t('custom_status.suggestions.in_a_meeting'), messageDefault: 'In a meeting', durationDefault: ONE_HOUR},
+    {emoji: 'hamburger', message: t('custom_status.suggestions.out_for_lunch'), messageDefault: 'Out for lunch', durationDefault: THIRTY_MINUTES},
+    {emoji: 'sneezing_face', message: t('custom_status.suggestions.out_sick'), messageDefault: 'Out sick', durationDefault: TODAY},
+    {emoji: 'house', message: t('custom_status.suggestions.working_from_home'), messageDefault: 'Working from home', durationDefault: TODAY},
+    {emoji: 'palm_tree', message: t('custom_status.suggestions.on_a_vacation'), messageDefault: 'On a vacation', durationDefault: THIS_WEEK},
 ];
+
+const defaultDuration: CustomStatusDuration = TODAY;
 
 interface Props extends NavigationComponentProps {
     intl: typeof intlShape;
     theme: Theme;
     customStatus: UserCustomStatus;
+    userTimezone: string;
     recentCustomStatuses: UserCustomStatus[];
     isLandscape: boolean;
     actions: {
@@ -48,11 +67,15 @@ interface Props extends NavigationComponentProps {
         unsetCustomStatus: () => ActionFunc;
         removeRecentCustomStatus: (customStatus: UserCustomStatus) => ActionFunc;
     };
+    isExpirySupported: boolean;
+    isCustomStatusExpired: boolean;
 }
 
 type State = {
     emoji: string;
     text: string;
+    duration: CustomStatusDuration;
+    expires_at: Moment;
 }
 
 class CustomStatusModal extends NavigationComponent<Props, State> {
@@ -75,21 +98,31 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
 
     constructor(props: Props) {
         super(props);
+        const {customStatus, userTimezone, isCustomStatusExpired, intl, theme, componentId} = props;
 
-        this.rightButton.text = props.intl.formatMessage({id: 'mobile.custom_status.modal_confirm', defaultMessage: 'Done'});
-        this.rightButton.color = props.theme.sidebarHeaderTextColor;
+        this.rightButton.text = intl.formatMessage({id: 'mobile.custom_status.modal_confirm', defaultMessage: 'Done'});
+        this.rightButton.color = theme.sidebarHeaderTextColor;
 
         const options: Options = {
             topBar: {
                 rightButtons: [this.rightButton],
             },
         };
+        mergeNavigationOptions(componentId, options);
 
-        mergeNavigationOptions(props.componentId, options);
+        const currentTime = getCurrentMomentForTimezone(userTimezone);
+
+        let initialCustomExpiryTime: Moment = getRoundedTime(currentTime);
+        const isCurrentCustomStatusSet = !isCustomStatusExpired && (customStatus?.text || customStatus?.emoji);
+        if (isCurrentCustomStatusSet && customStatus?.duration === DATE_AND_TIME && customStatus?.expires_at) {
+            initialCustomExpiryTime = moment(customStatus?.expires_at);
+        }
 
         this.state = {
-            emoji: props.customStatus?.emoji,
-            text: props.customStatus?.text || '',
+            emoji: isCurrentCustomStatusSet ? customStatus?.emoji : '',
+            text: isCurrentCustomStatusSet ? customStatus?.text : '',
+            duration: isCurrentCustomStatusSet ? (customStatus?.duration ?? DONT_CLEAR) : defaultDuration,
+            expires_at: initialCustomExpiryTime,
         };
     }
 
@@ -106,16 +139,25 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
     }
 
     handleSetStatus = async () => {
-        const {emoji, text} = this.state;
+        const {emoji, text, duration} = this.state;
         const isStatusSet = emoji || text;
-        const {customStatus} = this.props;
+        const {customStatus, isExpirySupported} = this.props;
         if (isStatusSet) {
-            const isStatusSame = customStatus?.emoji === emoji && customStatus?.text === text;
+            let isStatusSame = customStatus?.emoji === emoji && customStatus?.text === text && customStatus?.duration === duration;
+            if (isStatusSame && duration === DATE_AND_TIME) {
+                isStatusSame = customStatus?.expires_at === this.calculateExpiryTime(duration);
+            }
             if (!isStatusSame) {
-                const status = {
+                const status: UserCustomStatus = {
                     emoji: emoji || 'speech_balloon',
                     text: text.trim(),
+                    duration: DONT_CLEAR,
                 };
+
+                if (isExpirySupported) {
+                    status.duration = duration;
+                    status.expires_at = this.calculateExpiryTime(duration);
+                }
                 const {error} = await this.props.actions.setCustomStatus(status);
                 if (error) {
                     EventEmitter.emit(CustomStatus.SET_CUSTOM_STATUS_FAILURE);
@@ -128,30 +170,65 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
         dismissModal();
     };
 
+    calculateExpiryTime = (duration: CustomStatusDuration): string => {
+        const {userTimezone} = this.props;
+        const currentTime = getCurrentMomentForTimezone(userTimezone);
+        const {expires_at} = this.state;
+        switch (duration) {
+        case THIRTY_MINUTES:
+            return currentTime.add(30, 'minutes').seconds(0).milliseconds(0).toISOString();
+        case ONE_HOUR:
+            return currentTime.add(1, 'hour').seconds(0).milliseconds(0).toISOString();
+        case FOUR_HOURS:
+            return currentTime.add(4, 'hours').seconds(0).milliseconds(0).toISOString();
+        case TODAY:
+            return currentTime.endOf('day').toISOString();
+        case THIS_WEEK:
+            return currentTime.endOf('week').toISOString();
+        case DATE_AND_TIME:
+            return expires_at.toISOString();
+        case DONT_CLEAR:
+        default:
+            return '';
+        }
+    };
+
     handleTextChange = (value: string) => this.setState({text: value});
 
     handleRecentCustomStatusClear = (status: UserCustomStatus) => this.props.actions.removeRecentCustomStatus(status);
 
     clearHandle = () => {
-        this.setState({emoji: '', text: ''});
+        this.setState({emoji: '', text: '', duration: defaultDuration});
     };
 
-    handleSuggestionClick = (status: UserCustomStatus) => {
-        const {emoji, text} = status;
-        this.setState({emoji, text});
+    handleCustomStatusSuggestionClick = (status: UserCustomStatus) => {
+        const {emoji, text, duration} = status;
+        this.setState({emoji, text, duration});
+    };
+
+    handleRecentCustomStatusSuggestionClick = (status: UserCustomStatus) => {
+        const {emoji, text, duration} = status;
+        this.setState({emoji, text, duration: duration || DONT_CLEAR});
+        if (duration === DATE_AND_TIME) {
+            this.openClearAfterModal();
+        }
     };
 
     renderRecentCustomStatuses = (style: Record<string, StyleProp<ViewStyle>>) => {
-        const {recentCustomStatuses, theme} = this.props;
+        const {recentCustomStatuses, theme, isExpirySupported} = this.props;
+
         const recentStatuses = recentCustomStatuses.map((status: UserCustomStatus, index: number) => (
             <CustomStatusSuggestion
                 key={status.text}
-                handleSuggestionClick={this.handleSuggestionClick}
+                handleSuggestionClick={this.handleRecentCustomStatusSuggestionClick}
                 handleClear={this.handleRecentCustomStatusClear}
                 emoji={status.emoji}
                 text={status.text}
                 theme={theme}
                 separator={index !== recentCustomStatuses.length - 1}
+                duration={status.duration}
+                expires_at={status.expires_at}
+                isExpirySupported={isExpirySupported}
             />
         ));
 
@@ -177,22 +254,25 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
     };
 
     renderCustomStatusSuggestions = (style: Record<string, StyleProp<ViewStyle>>) => {
-        const {recentCustomStatuses, theme, intl} = this.props;
+        const {recentCustomStatuses, theme, intl, isExpirySupported} = this.props;
         const recentCustomStatusTexts = recentCustomStatuses.map((status: UserCustomStatus) => status.text);
         const customStatusSuggestions = defaultCustomStatusSuggestions.
             map((status) => ({
                 emoji: status.emoji,
                 text: intl.formatMessage({id: status.message, defaultMessage: status.messageDefault}),
+                duration: status.durationDefault,
             })).
             filter((status: UserCustomStatus) => !recentCustomStatusTexts.includes(status.text)).
             map((status: UserCustomStatus, index: number, arr: UserCustomStatus[]) => (
                 <CustomStatusSuggestion
                     key={status.text}
-                    handleSuggestionClick={this.handleSuggestionClick}
+                    handleSuggestionClick={this.handleCustomStatusSuggestionClick}
                     emoji={status.emoji}
                     text={status.text}
                     theme={theme}
                     separator={index !== arr.length - 1}
+                    duration={status.duration}
+                    isExpirySupported={isExpirySupported}
                 />
             ));
 
@@ -236,11 +316,31 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
         this.setState({emoji});
     }
 
-    render() {
-        const {emoji, text} = this.state;
-        const {theme, isLandscape} = this.props;
+    handleClearAfterClick = (duration: CustomStatusDuration, expires_at: string) =>
+        this.setState({
+            duration,
+            expires_at: duration === DATE_AND_TIME && expires_at ? moment(expires_at) : this.state.expires_at,
+        });
 
-        const isStatusSet = emoji || text;
+    openClearAfterModal = async () => {
+        const {intl, theme} = this.props;
+        const screen = 'ClearAfter';
+        const title = intl.formatMessage({id: 'mobile.custom_status.clear_after', defaultMessage: 'Clear After'});
+        const passProps = {
+            handleClearAfterClick: this.handleClearAfterClick,
+            initialDuration: this.state.duration,
+            intl,
+            theme,
+        };
+
+        goToScreen(screen, title, passProps);
+    };
+
+    render() {
+        const {emoji, text, duration, expires_at} = this.state;
+        const {theme, isLandscape, intl, isExpirySupported} = this.props;
+
+        const isStatusSet = Boolean(emoji || text);
         const style = getStyleSheet(theme);
         const customStatusEmoji = (
             <TouchableOpacity
@@ -265,6 +365,42 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
             </TouchableOpacity>
         );
 
+        const clearAfterTime = duration && duration === DATE_AND_TIME ? (
+            <View style={style.expiryTime}>
+                <CustomStatusExpiry
+                    time={expires_at.toDate()}
+                    theme={theme}
+                    textStyles={style.customStatusExpiry}
+                />
+            </View>
+        ) : (
+            <FormattedText
+                id={durationValues[duration].id}
+                defaultMessage={durationValues[duration].defaultMessage}
+                style={style.expiryTime}
+            />
+        );
+
+        const clearAfter = isExpirySupported && (
+            <TouchableOpacity
+                testID={'custom_status.clear_after.action'}
+                onPress={this.openClearAfterModal}
+            >
+                <View
+                    testID={`custom_status.duration.${duration}`}
+                    style={style.inputContainer}
+                >
+                    <Text style={style.expiryTimeLabel}>{intl.formatMessage({id: 'mobile.custom_status.clear_after', defaultMessage: 'Clear After'})}</Text>
+                    {clearAfterTime}
+                    <CompassIcon
+                        name='chevron-right'
+                        size={24}
+                        style={style.rightIcon}
+                    />
+                </View>
+            </TouchableOpacity>
+        );
+
         const customStatusInput = (
             <View style={style.inputContainer}>
                 <TextInput
@@ -285,6 +421,9 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
                     underlineColorAndroid='transparent'
                     value={text}
                 />
+                {isStatusSet && (
+                    <View style={style.divider}/>
+                )}
                 {customStatusEmoji}
                 {isStatusSet ? (
                     <View
@@ -321,10 +460,14 @@ class CustomStatusModal extends NavigationComponent<Props, State> {
                     >
                         <StatusBar/>
                         <View style={style.scrollView}>
-                            {customStatusInput}
+                            <View style={style.block}>
+                                {customStatusInput}
+                                {isStatusSet && clearAfter}
+                            </View>
                             {this.renderRecentCustomStatuses(style)}
                             {this.renderCustomStatusSuggestions(style)}
                         </View>
+                        <View style={style.separator}/>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </SafeAreaView>
@@ -338,20 +481,15 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
     return {
         container: {
             flex: 1,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.03),
         },
         scrollView: {
             flex: 1,
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.03),
             paddingTop: 32,
         },
         inputContainer: {
-            position: 'relative',
-            flexDirection: 'row',
-            alignItems: 'center',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
+            justifyContent: 'center',
+            height: 48,
             backgroundColor: theme.centerChannelBg,
         },
         input: {
@@ -361,7 +499,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
             fontSize: 17,
             paddingHorizontal: 52,
             textAlignVertical: 'center',
-            height: 48,
+            height: '100%',
         },
         icon: {
             color: changeOpacity(theme.centerChannelColor, 0.64),
@@ -372,7 +510,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
         iconContainer: {
             position: 'absolute',
             left: 14,
-            top: 12,
+            top: 10,
         },
         separator: {
             marginTop: 32,
@@ -393,6 +531,31 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
             position: 'absolute',
             top: 3,
             right: 14,
+        },
+        customStatusExpiry: {
+            color: changeOpacity(theme.centerChannelColor, 0.5),
+        },
+        divider: {
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
+            height: 1,
+            marginRight: 16,
+            marginLeft: 52,
+        },
+        expiryTimeLabel: {
+            fontSize: 17,
+            paddingLeft: 16,
+            textAlignVertical: 'center',
+            color: theme.centerChannelColor,
+        },
+        expiryTime: {
+            position: 'absolute',
+            right: 42,
+            color: changeOpacity(theme.centerChannelColor, 0.5),
+        },
+        rightIcon: {
+            position: 'absolute',
+            right: 18,
+            color: changeOpacity(theme.centerChannelColor, 0.5),
         },
     };
 });

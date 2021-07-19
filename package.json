@@ -11,6 +11,7 @@
     "@react-native-community/async-storage": "1.12.1",
     "@react-native-community/cameraroll": "4.0.4",
     "@react-native-community/clipboard": "1.5.1",
+    "@react-native-community/datetimepicker": "3.5.2",
     "@react-native-community/masked-view": "0.1.11",
     "@react-native-community/netinfo": "6.0.0",
     "@react-native-cookies/cookies": "6.0.8",

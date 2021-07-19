@@ -20,9 +20,11 @@ import {
     dismissAllModalsAndPopToRoot,
 } from '@actions/navigation';
 import Config from '@assets/config';
-import Emoji from '@components/emoji';
-import ClearButton from '@components/custom_status/clear_button';
 import ChannelIcon from '@components/channel_icon';
+import ClearButton from '@components/custom_status/clear_button';
+import CustomStatusExpiry from '@components/custom_status/custom_status_expiry';
+import CustomStatusText from '@components/custom_status/custom_status_text';
+import Emoji from '@components/emoji';
 import FormattedTime from '@components/formatted_time';
 import ProfilePicture from '@components/profile_picture';
 import FormattedText from '@components/formatted_text';
@@ -60,6 +62,8 @@ export default class UserProfile extends PureComponent {
         isMyUser: PropTypes.bool.isRequired,
         remoteClusterInfo: PropTypes.object,
         customStatus: PropTypes.object,
+        isCustomStatusExpired: PropTypes.bool.isRequired,
+        isCustomStatusExpirySupported: PropTypes.bool.isRequired,
     };
 
     static contextTypes = {
@@ -232,20 +236,33 @@ export default class UserProfile extends PureComponent {
 
     buildCustomStatusBlock = () => {
         const {formatMessage} = this.context.intl;
-        const {customStatus, theme, isMyUser} = this.props;
+        const {customStatus, theme, isMyUser, isCustomStatusExpired, isCustomStatusExpirySupported} = this.props;
         const style = createStyleSheet(theme);
-        const isStatusSet = customStatus?.emoji;
+        const isStatusSet = !isCustomStatusExpired && customStatus?.emoji;
 
         if (!isStatusSet) {
             return null;
         }
 
         const label = formatMessage({id: 'user.settings.general.status', defaultMessage: 'Status'});
+
         return (
             <View
                 testID='user_profile.custom_status'
             >
-                <Text style={style.header}>{label}</Text>
+                <Text style={style.header}>
+                    {label}
+                    {' '}
+                    {Boolean(customStatus?.duration && isCustomStatusExpirySupported) && (
+                        <CustomStatusExpiry
+                            time={customStatus?.expires_at}
+                            theme={theme}
+                            textStyles={style.customStatusExpiry}
+                            showPrefix={true}
+                            withinBrackets={true}
+                        />
+                    )}
+                </Text>
                 <View style={style.customStatus}>
                     <Text
                         style={style.iconContainer}
@@ -257,9 +274,11 @@ export default class UserProfile extends PureComponent {
                         />
                     </Text>
                     <View style={style.customStatusTextContainer}>
-                        <Text style={style.text}>
-                            {customStatus.text}
-                        </Text>
+                        <CustomStatusText
+                            text={customStatus?.text}
+                            theme={theme}
+                            textStyle={style.text}
+                        />
                     </View>
                     {isMyUser && (
                         <View style={style.clearButton}>
@@ -494,6 +513,7 @@ const createStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
         },
         iconContainer: {
+            marginBottom: 3,
             marginRight: 5,
             color: theme.centerChannelColor,
         },
@@ -501,8 +521,14 @@ const createStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
         },
         customStatusTextContainer: {
-            justifyContent: 'center',
             width: '80%',
+            justifyContent: 'center',
+        },
+        customStatusExpiry: {
+            fontSize: 13,
+            fontWeight: '600',
+            textTransform: 'uppercase',
+            color: changeOpacity(theme.centerChannelColor, 0.5),
         },
         clearButton: {
             position: 'absolute',

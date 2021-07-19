@@ -5,6 +5,7 @@ import {shallow} from 'enzyme';
 
 import Preferences from '@mm-redux/constants/preferences';
 import {General} from '@mm-redux/constants';
+import {CustomStatusDuration} from '@mm-redux/types/users';
 
 import ChannelInfoHeader from './channel_info_header.js';
 
@@ -44,6 +45,8 @@ describe('channel_info_header', () => {
         isGroupConstrained: false,
         testID: 'channel_info.header',
         isCustomStatusEnabled: false,
+        isCustomStatusExpired: false,
+        isCustomStatusExpirySupported: false,
     };
 
     test('should match snapshot', async () => {
@@ -120,12 +123,34 @@ describe('channel_info_header', () => {
         const customStatus = {
             emoji: 'calendar',
             text: 'In a meeting',
+            duration: CustomStatusDuration.DONT_CLEAR,
         };
 
         const wrapper = shallow(
             <ChannelInfoHeader
                 {...baseProps}
                 isCustomStatusEnabled={true}
+                type={General.DM_CHANNEL}
+                customStatus={customStatus}
+            />,
+            {context: {intl: intlMock}},
+        );
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test('should match snapshot with custom status expiry', () => {
+        const customStatus = {
+            emoji: 'calendar',
+            text: 'In a meeting',
+            duration: CustomStatusDuration.DATE_AND_TIME,
+            expires_at: '2200-04-13T18:09:12.451Z',
+        };
+
+        const wrapper = shallow(
+            <ChannelInfoHeader
+                {...baseProps}
+                isCustomStatusEnabled={true}
+                isCustomStatusExpirySupported={true}
                 type={General.DM_CHANNEL}
                 customStatus={customStatus}
             />,

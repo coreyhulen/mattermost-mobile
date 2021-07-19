@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`screens/clear_after_menu_item should match snapshot 1`] = `
+<View>
+  <ForwardRef
+    onPress={[Function]}
+    testID="clear_after.menu_item."
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "display": "flex",
+          "flexDirection": "row",
+          "padding": 10,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginBottom": 2,
+            "marginLeft": 5,
+            "position": "relative",
+            "width": "70%",
+          }
+        }
+      >
+        <CustomStatusText
+          text="Don't clear"
+          textStyle={
+            Object {
+              "color": "#3d3c40",
+            }
+          }
+          theme={
+            Object {
+              "awayIndicator": "#ffbc42",
+              "buttonBg": "#166de0",
+              "buttonColor": "#ffffff",
+              "centerChannelBg": "#ffffff",
+              "centerChannelColor": "#3d3c40",
+              "codeTheme": "github",
+              "dndIndicator": "#f74343",
+              "errorTextColor": "#fd5960",
+              "linkColor": "#2389d7",
+              "mentionBg": "#ffffff",
+              "mentionBj": "#ffffff",
+              "mentionColor": "#145dbf",
+              "mentionHighlightBg": "#ffe577",
+              "mentionHighlightLink": "#166de0",
+              "newMessageSeparator": "#ff8800",
+              "onlineIndicator": "#06d6a0",
+              "sidebarBg": "#145dbf",
+              "sidebarHeaderBg": "#1153ab",
+              "sidebarHeaderTextColor": "#ffffff",
+              "sidebarText": "#ffffff",
+              "sidebarTextActiveBorder": "#579eff",
+              "sidebarTextActiveColor": "#ffffff",
+              "sidebarTextHoverBg": "#4578bf",
+              "sidebarUnreadText": "#ffffff",
+              "type": "Mattermost",
+            }
+          }
+        />
+      </View>
+    </View>
+  </ForwardRef>
+</View>
+`;
+
+exports[`screens/clear_after_menu_item should match snapshot with separator and selected check 1`] = `
+<View>
+  <ForwardRef
+    onPress={[Function]}
+    testID="clear_after.menu_item."
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "display": "flex",
+          "flexDirection": "row",
+          "padding": 10,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginBottom": 2,
+            "marginLeft": 5,
+            "position": "relative",
+            "width": "70%",
+          }
+        }
+      >
+        <CustomStatusText
+          text="Don't clear"
+          textStyle={
+            Object {
+              "color": "#3d3c40",
+            }
+          }
+          theme={
+            Object {
+              "awayIndicator": "#ffbc42",
+              "buttonBg": "#166de0",
+              "buttonColor": "#ffffff",
+              "centerChannelBg": "#ffffff",
+              "centerChannelColor": "#3d3c40",
+              "codeTheme": "github",
+              "dndIndicator": "#f74343",
+              "errorTextColor": "#fd5960",
+              "linkColor": "#2389d7",
+              "mentionBg": "#ffffff",
+              "mentionBj": "#ffffff",
+              "mentionColor": "#145dbf",
+              "mentionHighlightBg": "#ffe577",
+              "mentionHighlightLink": "#166de0",
+              "newMessageSeparator": "#ff8800",
+              "onlineIndicator": "#06d6a0",
+              "sidebarBg": "#145dbf",
+              "sidebarHeaderBg": "#1153ab",
+              "sidebarHeaderTextColor": "#ffffff",
+              "sidebarText": "#ffffff",
+              "sidebarTextActiveBorder": "#579eff",
+              "sidebarTextActiveColor": "#ffffff",
+              "sidebarTextHoverBg": "#4578bf",
+              "sidebarUnreadText": "#ffffff",
+              "type": "Mattermost",
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "position": "absolute",
+              "right": 14,
+            }
+          }
+        >
+          <CompassIcon
+            name="check"
+            size={24}
+            style={
+              Object {
+                "borderRadius": 1000,
+                "color": "#166de0",
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "rgba(61,60,64,0.2)",
+          "height": 1,
+          "marginHorizontal": 16,
+        }
+      }
+    />
+  </ForwardRef>
+</View>
+`;

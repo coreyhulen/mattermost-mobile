@@ -12,6 +12,7 @@ class CustomStatusScreen {
         doneButton: 'custom_status.done.button',
         suggestionPrefix: 'custom_status_suggestion.',
         suggestionClearButton: 'custom_status_suggestion.clear.button',
+        clearAfterAction: 'custom_status.clear_after.action',
     }
 
     customStatusScreen = element(by.id(this.testID.customStatusScreen));
@@ -52,6 +53,10 @@ class CustomStatusScreen {
 
         await expect(this.input).toHaveText(text);
         await expect(this.getCustomStatusSelectedEmoji(emoji)).toBeVisible();
+    }
+
+    openClearAfterModal = async () => {
+        await element(by.id(this.testID.clearAfterAction)).tap();
     }
 
     close = async () => {

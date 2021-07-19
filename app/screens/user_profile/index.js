@@ -7,15 +7,15 @@ import {connect} from 'react-redux';
 import {setChannelDisplayName} from '@actions/views/channel';
 import {unsetCustomStatus} from '@actions/views/custom_status';
 import {makeDirectChannel} from '@actions/views/more_dms';
+import {loadBot} from '@mm-redux/actions/bots';
+import {getRemoteClusterInfo} from '@mm-redux/actions/remote_cluster';
+import Preferences from '@mm-redux/constants/preferences';
+import {getBotAccounts} from '@mm-redux/selectors/entities/bots';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getTeammateNameDisplaySetting, getTheme, getBool} from '@mm-redux/selectors/entities/preferences';
 import {isTimezoneEnabled} from '@mm-redux/selectors/entities/timezone';
-import Preferences from '@mm-redux/constants/preferences';
-import {loadBot} from '@mm-redux/actions/bots';
-import {getRemoteClusterInfo} from '@mm-redux/actions/remote_cluster';
-import {getBotAccounts} from '@mm-redux/selectors/entities/bots';
 import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
-import {makeGetCustomStatus, isCustomStatusEnabled} from '@selectors/custom_status';
+import {makeGetCustomStatus, isCustomStatusEnabled, isCustomStatusExpired, isCustomStatusExpirySupported} from '@selectors/custom_status';
 
 import UserProfile from './user_profile';
 
@@ -28,7 +28,8 @@ function makeMapStateToProps() {
         const enableTimezone = isTimezoneEnabled(state);
         const user = state.entities.users.profiles[ownProps.userId];
 
-        const customStatus = isCustomStatusEnabled(state) ? getCustomStatus(state, user?.id) : undefined;
+        const customStatusEnabled = isCustomStatusEnabled(state);
+        const customStatus = customStatusEnabled ? getCustomStatus(state, user?.id) : undefined;
         return {
             config,
             createChannelRequest,
@@ -42,6 +43,8 @@ function makeMapStateToProps() {
             isMyUser: getCurrentUserId(state) === ownProps.userId,
             remoteClusterInfo: state.entities.remoteCluster.info[user?.remote_id],
             customStatus,
+            isCustomStatusExpired: customStatusEnabled ? isCustomStatusExpired(state, customStatus) : true,
+            isCustomStatusExpirySupported: customStatusEnabled ? isCustomStatusExpirySupported(state) : false,
         };
     };
 }

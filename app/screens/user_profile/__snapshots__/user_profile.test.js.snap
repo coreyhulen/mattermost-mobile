@@ -478,6 +478,7 @@ exports[`user_profile should match snapshot with custom status 1`] = `
           }
         >
           Status
+           
         </Text>
         <View
           style={
@@ -490,6 +491,7 @@ exports[`user_profile should match snapshot with custom status 1`] = `
             style={
               Object {
                 "color": "#3d3c40",
+                "marginBottom": 3,
                 "marginRight": 5,
               }
             }
@@ -508,16 +510,44 @@ exports[`user_profile should match snapshot with custom status 1`] = `
               }
             }
           >
-            <Text
-              style={
+            <CustomStatusText
+              text="In a meeting"
+              textStyle={
                 Object {
                   "color": "#3d3c40",
                   "fontSize": 15,
                 }
               }
-            >
-              In a meeting
-            </Text>
+              theme={
+                Object {
+                  "awayIndicator": "#ffbc42",
+                  "buttonBg": "#166de0",
+                  "buttonColor": "#ffffff",
+                  "centerChannelBg": "#ffffff",
+                  "centerChannelColor": "#3d3c40",
+                  "codeTheme": "github",
+                  "dndIndicator": "#f74343",
+                  "errorTextColor": "#fd5960",
+                  "linkColor": "#2389d7",
+                  "mentionBg": "#ffffff",
+                  "mentionBj": "#ffffff",
+                  "mentionColor": "#145dbf",
+                  "mentionHighlightBg": "#ffe577",
+                  "mentionHighlightLink": "#166de0",
+                  "newMessageSeparator": "#ff8800",
+                  "onlineIndicator": "#06d6a0",
+                  "sidebarBg": "#145dbf",
+                  "sidebarHeaderBg": "#1153ab",
+                  "sidebarHeaderTextColor": "#ffffff",
+                  "sidebarText": "#ffffff",
+                  "sidebarTextActiveBorder": "#579eff",
+                  "sidebarTextActiveColor": "#ffffff",
+                  "sidebarTextHoverBg": "#4578bf",
+                  "sidebarUnreadText": "#ffffff",
+                  "type": "Mattermost",
+                }
+              }
+            />
           </View>
         </View>
       </View>
@@ -694,6 +724,7 @@ exports[`user_profile should match snapshot with custom status and isMyUser true
           }
         >
           Status
+           
         </Text>
         <View
           style={
@@ -706,6 +737,7 @@ exports[`user_profile should match snapshot with custom status and isMyUser true
             style={
               Object {
                 "color": "#3d3c40",
+                "marginBottom": 3,
                 "marginRight": 5,
               }
             }
@@ -724,16 +756,44 @@ exports[`user_profile should match snapshot with custom status and isMyUser true
               }
             }
           >
-            <Text
-              style={
+            <CustomStatusText
+              text="In a meeting"
+              textStyle={
                 Object {
                   "color": "#3d3c40",
                   "fontSize": 15,
                 }
               }
-            >
-              In a meeting
-            </Text>
+              theme={
+                Object {
+                  "awayIndicator": "#ffbc42",
+                  "buttonBg": "#166de0",
+                  "buttonColor": "#ffffff",
+                  "centerChannelBg": "#ffffff",
+                  "centerChannelColor": "#3d3c40",
+                  "codeTheme": "github",
+                  "dndIndicator": "#f74343",
+                  "errorTextColor": "#fd5960",
+                  "linkColor": "#2389d7",
+                  "mentionBg": "#ffffff",
+                  "mentionBj": "#ffffff",
+                  "mentionColor": "#145dbf",
+                  "mentionHighlightBg": "#ffe577",
+                  "mentionHighlightLink": "#166de0",
+                  "newMessageSeparator": "#ff8800",
+                  "onlineIndicator": "#06d6a0",
+                  "sidebarBg": "#145dbf",
+                  "sidebarHeaderBg": "#1153ab",
+                  "sidebarHeaderTextColor": "#ffffff",
+                  "sidebarText": "#ffffff",
+                  "sidebarTextActiveBorder": "#579eff",
+                  "sidebarTextActiveColor": "#ffffff",
+                  "sidebarTextHoverBg": "#4578bf",
+                  "sidebarUnreadText": "#ffffff",
+                  "type": "Mattermost",
+                }
+              }
+            />
           </View>
           <View
             style={
@@ -749,6 +809,294 @@ exports[`user_profile should match snapshot with custom status and isMyUser true
               handlePress={[MockFunction]}
               iconName="close-circle"
               size={20}
+              theme={
+                Object {
+                  "awayIndicator": "#ffbc42",
+                  "buttonBg": "#166de0",
+                  "buttonColor": "#ffffff",
+                  "centerChannelBg": "#ffffff",
+                  "centerChannelColor": "#3d3c40",
+                  "codeTheme": "github",
+                  "dndIndicator": "#f74343",
+                  "errorTextColor": "#fd5960",
+                  "linkColor": "#2389d7",
+                  "mentionBg": "#ffffff",
+                  "mentionBj": "#ffffff",
+                  "mentionColor": "#145dbf",
+                  "mentionHighlightBg": "#ffe577",
+                  "mentionHighlightLink": "#166de0",
+                  "newMessageSeparator": "#ff8800",
+                  "onlineIndicator": "#06d6a0",
+                  "sidebarBg": "#145dbf",
+                  "sidebarHeaderBg": "#1153ab",
+                  "sidebarHeaderTextColor": "#ffffff",
+                  "sidebarText": "#ffffff",
+                  "sidebarTextActiveBorder": "#579eff",
+                  "sidebarTextActiveColor": "#ffffff",
+                  "sidebarTextHoverBg": "#4578bf",
+                  "sidebarUnreadText": "#ffffff",
+                  "type": "Mattermost",
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        testID="user_profile.display_block"
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 13,
+              "fontWeight": "600",
+              "marginBottom": 10,
+              "marginTop": 25,
+              "textTransform": "uppercase",
+            }
+          }
+          testID="user_profile.display_block.nickname.label"
+        >
+          Nickname
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#3d3c40",
+              "fontSize": 15,
+            }
+          }
+          testID="user_profile.display_block.nickname.value"
+        >
+          nick
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#EBEBEC",
+          "height": 1,
+          "marginLeft": 16,
+          "marginRight": 22,
+        }
+      }
+    />
+    <userProfileRow
+      action={[Function]}
+      defaultMessage="Send Message"
+      icon="send"
+      iconColor="rgba(0, 0, 0, 0.7)"
+      iconSize={24}
+      testID="user_profile.send_message.action"
+      textColor="#000"
+      textId="mobile.routes.user_profile.send_message"
+      theme={
+        Object {
+          "awayIndicator": "#ffbc42",
+          "buttonBg": "#166de0",
+          "buttonColor": "#ffffff",
+          "centerChannelBg": "#ffffff",
+          "centerChannelColor": "#3d3c40",
+          "codeTheme": "github",
+          "dndIndicator": "#f74343",
+          "errorTextColor": "#fd5960",
+          "linkColor": "#2389d7",
+          "mentionBg": "#ffffff",
+          "mentionBj": "#ffffff",
+          "mentionColor": "#145dbf",
+          "mentionHighlightBg": "#ffe577",
+          "mentionHighlightLink": "#166de0",
+          "newMessageSeparator": "#ff8800",
+          "onlineIndicator": "#06d6a0",
+          "sidebarBg": "#145dbf",
+          "sidebarHeaderBg": "#1153ab",
+          "sidebarHeaderTextColor": "#ffffff",
+          "sidebarText": "#ffffff",
+          "sidebarTextActiveBorder": "#579eff",
+          "sidebarTextActiveColor": "#ffffff",
+          "sidebarTextHoverBg": "#4578bf",
+          "sidebarUnreadText": "#ffffff",
+          "type": "Mattermost",
+        }
+      }
+      togglable={false}
+    />
+  </ScrollView>
+</RNCSafeAreaView>
+`;
+
+exports[`user_profile should match snapshot with custom status expiry 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+  testID="user_profile.screen"
+>
+  <Connect(StatusBar) />
+  <ScrollView
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 48,
+      }
+    }
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+      }
+    }
+    testID="user_profile.scroll_view"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "padding": 25,
+        }
+      }
+    >
+      <Connect(ProfilePicture)
+        iconSize={104}
+        size={153}
+        statusBorderWidth={6}
+        statusSize={36}
+        testID="user_profile.profile_picture"
+        userId="4hzdnk6mg7gepe7yze6m3domnc"
+      />
+      <Text
+        style={
+          Object {
+            "color": "#3d3c40",
+            "fontSize": 15,
+            "marginTop": 15,
+          }
+        }
+        testID="user_profile.username"
+      >
+        @fred
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#EBEBEC",
+          "height": 1,
+          "marginLeft": 16,
+          "marginRight": 22,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "marginBottom": 25,
+          "marginHorizontal": 15,
+        }
+      }
+    >
+      <View
+        testID="user_profile.custom_status"
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 13,
+              "fontWeight": "600",
+              "marginBottom": 10,
+              "marginTop": 25,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Status
+           
+          <CustomStatusExpiry
+            showPrefix={true}
+            textStyles={
+              Object {
+                "color": undefined,
+                "fontSize": 13,
+                "fontWeight": "600",
+                "textTransform": "uppercase",
+              }
+            }
+            theme={
+              Object {
+                "awayIndicator": "#ffbc42",
+                "buttonBg": "#166de0",
+                "buttonColor": "#ffffff",
+                "centerChannelBg": "#ffffff",
+                "centerChannelColor": "#3d3c40",
+                "codeTheme": "github",
+                "dndIndicator": "#f74343",
+                "errorTextColor": "#fd5960",
+                "linkColor": "#2389d7",
+                "mentionBg": "#ffffff",
+                "mentionBj": "#ffffff",
+                "mentionColor": "#145dbf",
+                "mentionHighlightBg": "#ffe577",
+                "mentionHighlightLink": "#166de0",
+                "newMessageSeparator": "#ff8800",
+                "onlineIndicator": "#06d6a0",
+                "sidebarBg": "#145dbf",
+                "sidebarHeaderBg": "#1153ab",
+                "sidebarHeaderTextColor": "#ffffff",
+                "sidebarText": "#ffffff",
+                "sidebarTextActiveBorder": "#579eff",
+                "sidebarTextActiveColor": "#ffffff",
+                "sidebarTextHoverBg": "#4578bf",
+                "sidebarUnreadText": "#ffffff",
+                "type": "Mattermost",
+              }
+            }
+            time="2200-04-13T18:09:12.451Z"
+            withinBrackets={true}
+          />
+        </Text>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#3d3c40",
+                "marginBottom": 3,
+                "marginRight": 5,
+              }
+            }
+            testID="custom_status.emoji.calendar"
+          >
+            <Connect(Emoji)
+              emojiName="calendar"
+              size={20}
+            />
+          </Text>
+          <View
+            style={
+              Object {
+                "justifyContent": "center",
+                "width": "80%",
+              }
+            }
+          >
+            <CustomStatusText
+              text="In a meeting"
+              textStyle={
+                Object {
+                  "color": "#3d3c40",
+                  "fontSize": 15,
+                }
+              }
               theme={
                 Object {
                   "awayIndicator": "#ffbc42",

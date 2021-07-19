@@ -31,3 +31,19 @@ exports[`SettingsSidebar should match snapshot with custom status enabled 1`] = 
   useNativeAnimations={true}
 />
 `;
+
+exports[`SettingsSidebar should match snapshot with custom status expiry 1`] = `
+<DrawerLayoutAdapter
+  drawerPosition="right"
+  drawerWidth={710}
+  forwardRef={
+    Object {
+      "current": null,
+    }
+  }
+  onDrawerClose={[Function]}
+  onDrawerOpen={[Function]}
+  renderNavigationView={[Function]}
+  useNativeAnimations={true}
+/>
+`;

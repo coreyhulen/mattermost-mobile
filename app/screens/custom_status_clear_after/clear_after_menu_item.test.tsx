@@ -1,54 +1,50 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 
 import Preferences from '@mm-redux/constants/preferences';
-import CustomStatusSuggestion from '@screens/custom_status/custom_status_suggestion';
 import {CustomStatusDuration} from '@mm-redux/types/users';
 import {shallowWithIntl} from 'test/intl-test-helper';
+import ClearAfterMenuItem from './clear_after_menu_item';
 
-describe('screens/custom_status_suggestion', () => {
+describe('screens/clear_after_menu_item', () => {
     const baseProps = {
-        handleSuggestionClick: jest.fn(),
-        emoji: 'calendar',
-        text: 'In a meeting',
         theme: Preferences.THEMES.default,
-        separator: false,
         duration: CustomStatusDuration.DONT_CLEAR,
+        separator: false,
+        isSelected: false,
+        handleItemClick: jest.fn(),
     };
 
     it('should match snapshot', () => {
         const wrapper = shallowWithIntl(
-            <CustomStatusSuggestion
-                {...baseProps}
-            />,
+            <ClearAfterMenuItem {...baseProps}/>,
         );
 
         expect(wrapper.dive().getElement()).toMatchSnapshot();
     });
 
-    it('should match snapshot with separator and clear button', () => {
+    it('should match snapshot with separator and selected check', () => {
         const wrapper = shallowWithIntl(
-            <CustomStatusSuggestion
+            <ClearAfterMenuItem
                 {...baseProps}
                 separator={true}
-                handleClear={jest.fn()}
+                isSelected={true}
             />,
         );
 
         expect(wrapper.dive().getElement()).toMatchSnapshot();
     });
 
-    it('should call handleSuggestionClick on clicking the suggestion', () => {
+    it('should call handleItemClick on clicking the suggestion', () => {
         const wrapper = shallowWithIntl(
-            <CustomStatusSuggestion
+            <ClearAfterMenuItem
                 {...baseProps}
             />,
         );
 
         wrapper.dive().find(TouchableOpacity).simulate('press');
-        expect(baseProps.handleSuggestionClick).toBeCalled();
+        expect(baseProps.handleItemClick).toBeCalled();
     });
 });

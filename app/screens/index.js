@@ -61,6 +61,9 @@ Navigation.setLazyComponentRegistrator((screenName) => {
     case 'ChannelNotificationPreference':
         screen = require('@screens/channel_notification_preference').default;
         break;
+    case 'ClearAfter':
+        screen = require('@screens/custom_status_clear_after').default;
+        break;
     case 'ClockDisplaySettings':
         screen = require('@screens/settings/clock_display').default;
         break;

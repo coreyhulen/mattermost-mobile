@@ -34,6 +34,7 @@ exports[`channelInfo should match snapshot 1`] = `
       header=""
       isArchived={false}
       isCustomStatusEnabled={false}
+      isCustomStatusExpired={false}
       isGroupConstrained={false}
       isTeammateGuest={false}
       memberCount={2}

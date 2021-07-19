@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/custom_status/custom_status_expiry should match snapshot 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#3d3c40",
+        "fontSize": 15,
+      },
+      Object {},
+    ]
+  }
+  testID=""
+>
+  <Text>
+    Today
+  </Text>
+</Text>
+`;
+
+exports[`components/custom_status/custom_status_expiry should match snapshot with prefix and brackets 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#3d3c40",
+        "fontSize": 15,
+      },
+      Object {},
+    ]
+  }
+  testID=""
+>
+  (
+  <Text>
+    Until
+  </Text>
+   
+  <Text>
+    Today
+  </Text>
+  )
+</Text>
+`;

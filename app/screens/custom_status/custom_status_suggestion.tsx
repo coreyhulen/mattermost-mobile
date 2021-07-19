@@ -1,41 +1,46 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {injectIntl, intlShape} from 'react-intl';
 import React, {useCallback} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
 
 import Emoji from '@components/emoji';
 import ClearButton from '@components/custom_status/clear_button';
 import CustomStatusText from '@components/custom_status/custom_status_text';
+import {durationValues} from '@constants/custom_status';
 import {Theme} from '@mm-redux/types/preferences';
-import {UserCustomStatus} from '@mm-redux/types/users';
+import {CustomStatusDuration, UserCustomStatus} from '@mm-redux/types/users';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
 
 type Props = {
+    intl: typeof intlShape;
     handleSuggestionClick: (status: UserCustomStatus) => void;
     emoji: string;
     text: string;
     handleClear?: (status: UserCustomStatus) => void;
     theme: Theme;
     separator: boolean;
+    duration: CustomStatusDuration;
+    isExpirySupported: boolean;
+    expires_at?: string;
 };
 
-const CustomStatusSuggestion = (props: Props) => {
-    const {handleSuggestionClick, emoji, text, theme, separator, handleClear} = props;
+const CustomStatusSuggestion = ({handleSuggestionClick, emoji, text, theme, separator, handleClear, duration, expires_at, intl, isExpirySupported}: Props) => {
     const style = getStyleSheet(theme);
 
     const handleClick = useCallback(preventDoubleTap(() => {
-        handleSuggestionClick({emoji, text});
+        handleSuggestionClick({emoji, text, duration});
     }), []);
 
     const handleSuggestionClear = useCallback(() => {
         if (handleClear) {
-            handleClear({emoji, text});
+            handleClear({emoji, text, duration, expires_at});
         }
     }, []);
 
-    const clearButton = handleClear ?
+    const clearButton = handleClear && expires_at ?
         (
             <View style={style.clearButtonContainer}>
                 <ClearButton
@@ -62,11 +67,22 @@ const CustomStatusSuggestion = (props: Props) => {
                 </Text>
                 <View style={style.wrapper}>
                     <View style={style.textContainer}>
-                        <CustomStatusText
-                            text={text}
-                            theme={theme}
-                            textStyle={{color: theme.centerChannelColor}}
-                        />
+                        <View>
+                            <CustomStatusText
+                                text={text}
+                                theme={theme}
+                                textStyle={style.customStatusText}
+                            />
+                        </View>
+                        {Boolean(duration && isExpirySupported) && (
+                            <View style={{paddingTop: 5}}>
+                                <CustomStatusText
+                                    text={intl.formatMessage(durationValues[duration])}
+                                    theme={theme}
+                                    textStyle={style.customStatusDuration}
+                                />
+                            </View>
+                        )}
                     </View>
                     {clearButton}
                     {separator && <View style={style.divider}/>}
@@ -76,7 +92,7 @@ const CustomStatusSuggestion = (props: Props) => {
     );
 };
 
-export default CustomStatusSuggestion;
+export default injectIntl(CustomStatusSuggestion);
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
     return {
@@ -111,6 +127,14 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
         divider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
             height: 1,
+            marginRight: 16,
+        },
+        customStatusDuration: {
+            color: changeOpacity(theme.centerChannelColor, 0.6),
+            fontSize: 15,
+        },
+        customStatusText: {
+            color: theme.centerChannelColor,
         },
     };
 });

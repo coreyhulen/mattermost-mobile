@@ -14,6 +14,7 @@ import Clipboard from '@react-native-community/clipboard';
 
 import {popToRoot} from '@actions/navigation';
 import ChannelIcon from '@components/channel_icon';
+import CustomStatusExpiry from '@components/custom_status/custom_status_expiry';
 import CustomStatusText from '@components/custom_status/custom_status_text';
 import Emoji from '@components/emoji';
 import FormattedDate from '@components/formatted_date';
@@ -47,6 +48,8 @@ export default class ChannelInfoHeader extends React.PureComponent {
         timezone: PropTypes.string,
         customStatus: PropTypes.object,
         isCustomStatusEnabled: PropTypes.bool.isRequired,
+        isCustomStatusExpired: PropTypes.bool.isRequired,
+        isCustomStatusExpirySupported: PropTypes.bool.isRequired,
     };
 
     static contextTypes = {
@@ -147,6 +150,8 @@ export default class ChannelInfoHeader extends React.PureComponent {
             timezone,
             customStatus,
             isCustomStatusEnabled,
+            isCustomStatusExpired,
+            isCustomStatusExpirySupported,
         } = this.props;
 
         const style = getStyleSheet(theme);
@@ -156,6 +161,9 @@ export default class ChannelInfoHeader extends React.PureComponent {
             ios: {...style.detail, lineHeight: 20},
             android: style.detail,
         });
+
+        const showCustomStatus = isCustomStatusEnabled && type === General.DM_CHANNEL && customStatus?.emoji && !isCustomStatusExpired;
+        const showCustomStatusExpiry = Boolean(customStatus?.duration && isCustomStatusExpirySupported);
 
         return (
             <View style={style.container}>
@@ -180,7 +188,7 @@ export default class ChannelInfoHeader extends React.PureComponent {
                         {displayName}
                     </Text>
                 </View>
-                {isCustomStatusEnabled && type === General.DM_CHANNEL && customStatus?.emoji &&
+                {showCustomStatus && (
                     <View
                         style={[style.row, style.customStatusContainer]}
                         testID={`${testID}.custom_status`}
@@ -188,18 +196,28 @@ export default class ChannelInfoHeader extends React.PureComponent {
                         <Emoji
                             emojiName={customStatus.emoji}
                             size={20}
-                            textStyle={style.iconContainer}
+                            textStyle={[style.iconContainer, {bottom: showCustomStatusExpiry ? 8 : 0}]}
                             testID={`custom_status.emoji.${customStatus.emoji}`}
                         />
-                        <CustomStatusText
-                            text={customStatus.text}
-                            theme={theme}
-                            textStyle={style.customStatusText}
-                            ellipsizeMode='tail'
-                            numberOfLines={1}
-                        />
+                        <View style={style.customStatus}>
+                            <CustomStatusText
+                                text={customStatus.text}
+                                theme={theme}
+                                textStyle={style.customStatusText}
+                                ellipsizeMode='tail'
+                                numberOfLines={1}
+                            />
+                            {showCustomStatusExpiry && (
+                                <CustomStatusExpiry
+                                    time={customStatus.expires_at}
+                                    theme={theme}
+                                    textStyles={style.customStatusExpiry}
+                                    showPrefix={true}
+                                />
+                            )}
+                        </View>
                     </View>
-                }
+                )}
                 {this.renderHasGuestText(style)}
                 {purpose.length > 0 &&
                     <View style={style.section}>
@@ -299,16 +317,22 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             color: theme.centerChannelColor,
         },
         customStatusContainer: {
-            position: 'relative',
             flexDirection: 'row',
             alignItems: 'center',
             paddingVertical: 10,
+        },
+        customStatus: {
+            width: '90%',
+        },
+        customStatusExpiry: {
+            color: changeOpacity(theme.centerChannelColor, 0.5),
+            fontSize: 13,
         },
         customStatusText: {
             flex: 1,
             fontSize: 15,
             color: theme.centerChannelColor,
-            width: '80%',
+            height: '100%',
         },
         channelNameContainer: {
             flexDirection: 'row',

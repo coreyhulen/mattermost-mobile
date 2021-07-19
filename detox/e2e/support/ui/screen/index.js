@@ -9,6 +9,7 @@ import ChannelAddMembersScreen from './channel_add_members';
 import ChannelMembersScreen from './channel_members';
 import ChannelNotificationPreferenceScreen from './channel_notification_preference';
 import ChannelScreen from './channel';
+import ClearAfterScreen from './custom_status_clear_after';
 import ClockDisplaySettingsScreen from './clock_display_settings';
 import CreateChannelScreen from './create_channel';
 import CustomStatusScreen from './custom_status';
@@ -46,6 +47,7 @@ export {
     ChannelMembersScreen,
     ChannelNotificationPreferenceScreen,
     ChannelScreen,
+    ClearAfterScreen,
     ClockDisplaySettingsScreen,
     CreateChannelScreen,
     CustomStatusScreen,

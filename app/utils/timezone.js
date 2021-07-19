@@ -16,3 +16,6 @@ export function getUtcOffsetForTimeZone(timezone) {
     return moment.tz(timezone).utcOffset();
 }
 
+export function getCurrentMomentForTimezone(timezone) {
+    return timezone ? moment.tz(timezone) : moment();
+}

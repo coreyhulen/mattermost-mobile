@@ -8,7 +8,7 @@ import {unsetCustomStatus} from '@actions/views/custom_status';
 import {setStatus} from '@mm-redux/actions/users';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentUser, getStatusForUserId} from '@mm-redux/selectors/entities/users';
-import {isCustomStatusEnabled, makeGetCustomStatus} from '@selectors/custom_status';
+import {isCustomStatusEnabled, isCustomStatusExpired, isCustomStatusExpirySupported, makeGetCustomStatus} from '@selectors/custom_status';
 
 import {logout} from 'app/actions/views/user';
 
@@ -29,6 +29,8 @@ function makeMapStateToProps() {
             theme: getTheme(state),
             isCustomStatusEnabled: customStatusEnabled,
             customStatus,
+            isCustomStatusExpired: customStatusEnabled ? isCustomStatusExpired(state, customStatus) : true,
+            isCustomStatusExpirySupported: customStatusEnabled ? isCustomStatusExpirySupported(state) : false,
         };
     };
 }
