@@ -7,4 +7,5 @@ export default {
     GROUPCHANNEL: 'groupchannel',
     PERMALINK: 'permalink',
     OTHER: 'other',
+    PLUGIN: 'plugin',
 };

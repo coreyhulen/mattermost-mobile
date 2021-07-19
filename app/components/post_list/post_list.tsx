@@ -298,10 +298,10 @@ const PostList = ({
 
             if (match) {
                 if (match.type === DeepLinkTypes.CHANNEL) {
-                    handleSelectChannelByName(match.channelName!, match.teamName, errorBadChannel, intl);
+                    handleSelectChannelByName(match.channelName!, match.teamName!, errorBadChannel, intl);
                 } else if (match.type === DeepLinkTypes.PERMALINK) {
                     const teamName = match.teamName === PERMALINK_GENERIC_TEAM_NAME_REDIRECT ? currentTeamName : match.teamName;
-                    onPermalinkPress(match.postId!, teamName);
+                    onPermalinkPress(match.postId!, teamName!);
                 }
             } else {
                 badDeepLink(intl);

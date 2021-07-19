@@ -144,6 +144,11 @@ export function matchDeepLink(url, serverURL, siteURL) {
         return {type: DeepLinkTypes.GROUPCHANNEL, teamName: match[1], id: match[2]};
     }
 
+    match = new RegExp(linkRoot + '\\/plugins\\/([^\\/]+)\\/(\\S+)').exec(urlToMatch);
+    if (match) {
+        return {type: DeepLinkTypes.PLUGIN, id: match[1]};
+    }
+
     return null;
 }
 
