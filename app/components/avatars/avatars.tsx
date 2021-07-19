@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import React, {PureComponent} from 'react';
-import {Platform, Text, View} from 'react-native';
+import {Platform, StyleProp, Text, View, ViewStyle} from 'react-native';
 
 import ProfilePicture from '@components/profile_picture';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
@@ -70,6 +70,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
         },
         overflowText: {
             fontSize: 10,
+            fontWeight: 'bold',
             color: changeOpacity(theme.centerChannelColor, 0.64),
             textAlign: 'center',
         },
@@ -78,9 +79,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
 
 const OVERFLOW_DISPLAY_LIMIT = 99;
 
-interface AvatarsProps {
+export interface AvatarsProps {
     userIds: string[];
     breakAt?: number;
+    style?: StyleProp<ViewStyle>;
     theme: Theme;
 }
 
@@ -101,7 +103,7 @@ export default class Avatars extends PureComponent<AvatarsProps> {
     };
 
     render() {
-        const {userIds, breakAt, theme} = this.props;
+        const {userIds, breakAt, style: baseContainerStyle, theme} = this.props;
         const displayUserIds = userIds.slice(0, breakAt);
         const overflowUsersCount = Math.min(userIds.length - displayUserIds.length, OVERFLOW_DISPLAY_LIMIT);
 
@@ -110,6 +112,8 @@ export default class Avatars extends PureComponent<AvatarsProps> {
         return (
             <TouchableWithFeedback
                 onPress={this.showParticipantsList}
+                style={baseContainerStyle}
+                type={'opacity'}
             >
                 <View style={style.container}>
                     {displayUserIds.map((userId: string, i: number) => (

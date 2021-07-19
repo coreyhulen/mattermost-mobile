@@ -4,13 +4,16 @@
 import {connect} from 'react-redux';
 
 import {showPermalink} from '@actions/views/permalink';
+import {THREAD} from '@constants/screen';
 import {removePost} from '@mm-redux/actions/posts';
 import {getChannel} from '@mm-redux/selectors/entities/channels';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import {getPost, isRootPost} from '@mm-redux/selectors/entities/posts';
-import {getMyPreferences, getTeammateNameDisplaySetting} from '@mm-redux/selectors/entities/preferences';
+import {getMyPreferences, getTeammateNameDisplaySetting, isCollapsedThreadsEnabled} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
+import {getThread} from '@mm-redux/selectors/entities/threads';
 import {getUser} from '@mm-redux/selectors/entities/users';
+import {UserThread} from '@mm-redux/types/threads';
 import {isPostFlagged, isSystemMessage} from '@mm-redux/utils/post_utils';
 import {canDeletePost} from '@selectors/permissions';
 import {areConsecutivePosts, postUserDisplayName} from '@utils/post';
@@ -23,6 +26,7 @@ import type {GlobalState} from '@mm-redux/types/store';
 import Post from './post';
 
 type OwnProps = {
+    location: string;
     highlight?: boolean;
     postId: string;
     post?: PostType;
@@ -73,16 +77,26 @@ function mapSateToProps(state: GlobalState, ownProps: OwnProps) {
         }
     }
 
+    const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
+
+    let thread: UserThread | null = null;
+    if (collapsedThreadsEnabled && ownProps.location !== THREAD) {
+        thread = getThread(state, post.id, true);
+    }
+
     return {
         canDelete,
         enablePostUsernameOverride,
         isConsecutivePost,
+        collapsedThreadsEnabled,
         isFirstReply,
         isFlagged: isPostFlagged(post.id, myPreferences),
         isLastReply,
         post,
         rootPostAuthor,
         teammateNameDisplay,
+        thread,
+        threadStarter: getUser(state, post.user_id),
     };
 }
 

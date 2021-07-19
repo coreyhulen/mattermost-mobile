@@ -11,13 +11,14 @@ import {getChannelStats} from '@mm-redux/actions/channels';
 import {Client4} from '@client/rest';
 import {getCurrentChannelId} from '@mm-redux/selectors/entities/channels';
 import {getServerVersion} from '@mm-redux/selectors/entities/general';
-import {getTheme} from '@mm-redux/selectors/entities/preferences';
+import {getTheme, isCollapsedThreadsEnabled} from '@mm-redux/selectors/entities/preferences';
 import {getCurrentTeam} from '@mm-redux/selectors/entities/teams';
 import {getCurrentUserId, getCurrentUserRoles, shouldShowTermsOfService} from '@mm-redux/selectors/entities/users';
 import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {isSystemAdmin as checkIsSystemAdmin} from '@mm-redux/utils/user_utils';
 
 import Channel from './channel';
+import {getViewingGlobalThreads} from '@selectors/threads';
 
 function mapStateToProps(state) {
     const currentTeam = getCurrentTeam(state);
@@ -48,6 +49,7 @@ function mapStateToProps(state) {
         showTermsOfService: shouldShowTermsOfService(state),
         teamName: currentTeam?.display_name,
         theme: getTheme(state),
+        viewingGlobalThreads: isCollapsedThreadsEnabled(state) && getViewingGlobalThreads(state),
     };
 }
 

@@ -6,13 +6,14 @@ import {StyleSheet, View, BackHandler, ToastAndroid} from 'react-native';
 
 import {openMainSideMenu, openSettingsSideMenu} from '@actions/navigation';
 import AnnouncementBanner from 'app/components/announcement_banner';
+import GlobalThreadsList from '@components/global_threads';
 import KeyboardLayout from '@components/layout/keyboard_layout';
 import InteractiveDialogController from '@components/interactive_dialog_controller';
 import NetworkIndicator from '@components/network_indicator';
 import PostDraft from '@components/post_draft';
 import {NavigationTypes} from '@constants';
-import EventEmitter from '@mm-redux/utils/event_emitter';
 import EphemeralStore from '@store/ephemeral_store';
+import EventEmitter from '@mm-redux/utils/event_emitter';
 
 import ChannelNavBar from './channel_nav_bar';
 import ChannelPostList from './channel_post_list';
@@ -60,26 +61,33 @@ export default class ChannelAndroid extends ChannelBase {
     }
 
     render() {
-        const {theme} = this.props;
-        let component = this.renderLoadingOrFailedChannel();
+        const {theme, viewingGlobalThreads} = this.props;
+        let component;
 
-        if (!component) {
+        if (viewingGlobalThreads) {
             component = (
-                <KeyboardLayout>
-                    <View
-                        testID='channel.screen'
-                        style={style.flex}
-                    >
-                        <ChannelPostList registerTypingAnimation={this.registerTypingAnimation}/>
-                    </View>
-                    <PostDraft
-                        testID='channel.post_draft'
-                        ref={this.postDraft}
-                        screenId={this.props.componentId}
-                        registerTypingAnimation={this.registerTypingAnimation}
-                    />
-                </KeyboardLayout>
+                <GlobalThreadsList/>
             );
+        } else {
+            component = this.renderLoadingOrFailedChannel();
+            if (!component) {
+                component = (
+                    <KeyboardLayout>
+                        <View
+                            testID='channel.screen'
+                            style={style.flex}
+                        >
+                            <ChannelPostList registerTypingAnimation={this.registerTypingAnimation}/>
+                        </View>
+                        <PostDraft
+                            testID='channel.post_draft'
+                            ref={this.postDraft}
+                            screenId={this.props.componentId}
+                            registerTypingAnimation={this.registerTypingAnimation}
+                        />
+                    </KeyboardLayout>
+                );
+            }
         }
 
         const drawerContent = (

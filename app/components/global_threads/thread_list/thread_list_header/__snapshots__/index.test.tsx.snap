@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global Thread List Header Should render threads with functional tabs & mark all as read button 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      undefined,
+    ]
+  }
+>
+  <View>
+    <ForwardRef
+      onPress={[MockFunction]}
+      testID="thread_list.all_threads"
+    >
+      <View
+        style={
+          Array [
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              undefined,
+              Object {},
+            ]
+          }
+        >
+          All Your Threads
+        </Text>
+      </View>
+    </ForwardRef>
+    <ForwardRef
+      onPress={[MockFunction]}
+      testID="thread_list.unread_threads"
+    >
+      <View
+        style={
+          Array [
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        <View>
+          <Text
+            style={
+              Array [
+                undefined,
+                undefined,
+              ]
+            }
+          >
+            Unreads
+          </Text>
+          <View
+            testID="thread_list.unreads_dot"
+          />
+        </View>
+      </View>
+    </ForwardRef>
+  </View>
+  <View>
+    <ForwardRef
+      disabled={false}
+      onPress={[MockFunction]}
+      testID="thread_list.mark_all_read"
+    >
+      <Icon
+        name="playlist-check"
+        style={
+          Array [
+            undefined,
+            undefined,
+          ]
+        }
+      />
+    </ForwardRef>
+  </View>
+</View>
+`;

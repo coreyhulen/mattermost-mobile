@@ -21,6 +21,7 @@ import HeaderTag from './tag';
 
 type HeaderProps = {
     commentCount: number;
+    collapsedThreadsEnabled: boolean;
     displayName?: string;
     isBot: boolean;
     isGuest: boolean;
@@ -63,7 +64,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
 });
 
 const Header = ({
-    commentCount, displayName, location, isBot, isGuest,
+    commentCount, collapsedThreadsEnabled, displayName, location, isBot, isGuest,
     isMilitaryTime, post, rootPostAuthor, shouldRenderReplyButton, theme, userTimezone, isCustomStatusEnabled,
 }: HeaderProps) => {
     const style = getStyleSheet(theme);
@@ -72,7 +73,7 @@ const Header = ({
     const isWebHook = isFromWebhook(post);
     const isSystemPost = isSystemMessage(post);
     const isReplyPost = Boolean(post.root_id && (!isPostEphemeral(post) || post.state === Posts.POST_DELETED));
-    const showReply = !isReplyPost && (location !== THREAD) && (shouldRenderReplyButton || (!rootPostAuthor && commentCount > 0));
+    const showReply = !collapsedThreadsEnabled && !isReplyPost && (location !== THREAD) && (shouldRenderReplyButton || (!rootPostAuthor && commentCount > 0));
     const showCustomStatusEmoji = Boolean(isCustomStatusEnabled && displayName && !(isSystemPost || isBot || isAutoResponse || isWebHook));
 
     return (

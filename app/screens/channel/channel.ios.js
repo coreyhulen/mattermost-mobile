@@ -7,6 +7,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import AnnouncementBanner from 'app/components/announcement_banner';
 import Autocomplete from '@components/autocomplete';
+import GlobalThreadsList from '@components/global_threads';
 import InteractiveDialogController from '@components/interactive_dialog_controller';
 import NetworkIndicator from '@components/network_indicator';
 import PostDraft from '@components/post_draft';
@@ -53,17 +54,27 @@ export default class ChannelIOS extends ChannelBase {
     };
 
     render() {
-        const {currentChannelId, theme} = this.props;
-        let component = this.renderLoadingOrFailedChannel();
-        let renderDraftArea = false;
+        const {currentChannelId, theme, viewingGlobalThreads} = this.props;
 
-        if (!component) {
-            renderDraftArea = true;
+        let component;
+        let renderDraftArea = false;
+        const safeAreaEdges = ['left', 'right'];
+
+        if (viewingGlobalThreads) {
             component = (
-                <>
-                    <ChannelPostList registerTypingAnimation={this.registerTypingAnimation}/>
-                </>
+                <GlobalThreadsList/>
             );
+        } else {
+            safeAreaEdges.push('bottom');
+            component = this.renderLoadingOrFailedChannel();
+            if (!component) {
+                renderDraftArea = true;
+                component = (
+                    <>
+                        <ChannelPostList registerTypingAnimation={this.registerTypingAnimation}/>
+                    </>
+                );
+            }
         }
 
         const style = getStyle(theme);
@@ -79,6 +90,7 @@ export default class ChannelIOS extends ChannelBase {
                     openMainSidebar={this.openMainSidebar}
                     openSettingsSidebar={this.openSettingsSidebar}
                     onPress={this.goToChannelInfo}
+                    isGlobalThreads={viewingGlobalThreads}
                 />
             </>
         );
@@ -88,22 +100,24 @@ export default class ChannelIOS extends ChannelBase {
                 {header}
                 <SafeAreaView
                     mode='margin'
-                    edges={['left', 'right', 'bottom']}
+                    edges={safeAreaEdges}
                     style={style.flex}
                 >
                     {component}
                 </SafeAreaView>
                 {indicators}
-                <View nativeID={ACCESSORIES_CONTAINER_NATIVE_ID}>
-                    <Autocomplete
-                        maxHeight={DEVICE.AUTOCOMPLETE_MAX_HEIGHT}
-                        onChangeText={this.handleAutoComplete}
-                        cursorPositionEvent={CHANNEL_POST_TEXTBOX_CURSOR_CHANGE}
-                        valueEvent={CHANNEL_POST_TEXTBOX_VALUE_CHANGE}
-                        channelId={currentChannelId}
-                        offsetY={0}
-                    />
-                </View>
+                {!viewingGlobalThreads && (
+                    <View nativeID={ACCESSORIES_CONTAINER_NATIVE_ID}>
+                        <Autocomplete
+                            maxHeight={DEVICE.AUTOCOMPLETE_MAX_HEIGHT}
+                            onChangeText={this.handleAutoComplete}
+                            cursorPositionEvent={CHANNEL_POST_TEXTBOX_CURSOR_CHANGE}
+                            valueEvent={CHANNEL_POST_TEXTBOX_VALUE_CHANGE}
+                            channelId={currentChannelId}
+                            offsetY={0}
+                        />
+                    </View>
+                )}
                 {renderDraftArea &&
                     <PostDraft
                         testID='channel.post_draft'

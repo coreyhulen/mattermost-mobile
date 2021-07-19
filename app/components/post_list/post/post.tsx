@@ -6,11 +6,14 @@ import {Keyboard, StyleProp, View, ViewStyle} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 
 import {showModalOverCurrentContext} from '@actions/navigation';
+import ThreadFooter from '@components/global_threads/thread_footer';
 import SystemHeader from '@components/post_list/system_header';
 import TouchableWithFeedback from '@components/touchable_with_feedback';
 import SystemAvatar from '@components/post_list/system_avatar';
 import * as Screens from '@constants/screen';
 import {Posts} from '@mm-redux/constants';
+import {UserProfile} from '@mm-redux/types/users';
+import {UserThread} from '@mm-redux/types/threads';
 import EventEmitter from '@mm-redux/utils/event_emitter';
 import {fromAutoResponder, isPostEphemeral, isPostPendingOrFailed, isSystemMessage} from '@mm-redux/utils/post_utils';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
@@ -27,6 +30,7 @@ import SystemMessage from './system_message';
 
 type PostProps = {
     canDelete: boolean;
+    collapsedThreadsEnabled: boolean;
     enablePostUsernameOverride: boolean;
     highlight?: boolean;
     highlightPinnedOrFlagged?: boolean;
@@ -48,6 +52,8 @@ type PostProps = {
     teammateNameDisplay: string;
     testID?: string;
     theme: Theme
+    thread: UserThread;
+    threadStarter: UserProfile;
 };
 
 const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
@@ -66,6 +72,20 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
             opacity: 1,
         },
         highlightPinnedOrFlagged: {backgroundColor: changeOpacity(theme.mentionHighlightBg, 0.2)},
+        badgeContainer: {
+            position: 'absolute',
+            left: 28,
+            bottom: 9,
+        },
+        unreadDot: {
+            width: 8,
+            height: 8,
+            borderRadius: 4,
+            backgroundColor: theme.sidebarTextActiveBorder,
+            alignSelf: 'center',
+            top: -6,
+            left: 4,
+        },
         pendingPost: {opacity: 0.5},
         postStyle: {
             overflow: 'hidden',
@@ -91,9 +111,9 @@ const getStyleSheet = makeStyleSheetFromTheme((theme: Theme) => {
 });
 
 const Post = ({
-    canDelete, enablePostUsernameOverride, highlight, highlightPinnedOrFlagged = true, intl, isConsecutivePost, isFirstReply, isFlagged, isLastReply,
-    location, post, removePost, rootPostAuthor, shouldRenderReplyButton, skipFlaggedHeader, skipPinnedHeader, showAddReaction = true, showPermalink,
-    teammateNameDisplay, testID, theme, style,
+    canDelete, collapsedThreadsEnabled, enablePostUsernameOverride, highlight, highlightPinnedOrFlagged = true, intl, isConsecutivePost, isFirstReply, isFlagged, isLastReply,
+    location, post, removePost, rootPostAuthor, shouldRenderReplyButton, skipFlaggedHeader, skipPinnedHeader, showAddReaction = true, showPermalink, style,
+    teammateNameDisplay, testID, theme, thread, threadStarter,
 }: PostProps) => {
     const pressDetected = useRef(false);
     const styles = getStyleSheet(theme);
@@ -198,6 +218,7 @@ const Post = ({
         } else {
             header = (
                 <Header
+                    collapsedThreadsEnabled={collapsedThreadsEnabled}
                     enablePostUsernameOverride={enablePostUsernameOverride}
                     location={location}
                     post={post}
@@ -233,6 +254,35 @@ const Post = ({
         );
     }
 
+    let footer;
+    if (
+        collapsedThreadsEnabled &&
+        Boolean(thread) &&
+        post.state !== Posts.POST_DELETED &&
+        thread?.participants?.length
+    ) {
+        footer = (
+            <ThreadFooter
+                testID={`${itemTestID}.footer`}
+                theme={theme}
+                thread={thread}
+                threadStarter={threadStarter}
+                location={Screens.CHANNEL}
+            />
+        );
+    }
+
+    let badge;
+    if (thread?.unread_mentions || thread?.unread_replies) {
+        if (thread.unread_replies && thread.unread_replies > 0) {
+            badge = (
+                <View style={styles.badgeContainer}>
+                    <View style={styles.unreadDot}/>
+                </View>
+            );
+        }
+    }
+
     return (
         <View
             testID={testID}
@@ -260,7 +310,9 @@ const Post = ({
                         <View style={rightColumnStyle}>
                             {header}
                             {body}
+                            {footer}
                         </View>
+                        {badge}
                     </View>
                 </>
             </TouchableWithFeedback>

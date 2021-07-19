@@ -39,3 +39,76 @@ exports[`ChannelsList List should match snapshot 1`] = `
   />
 </View>
 `;
+
+exports[`ChannelsList List should match snapshot with collapsed threads enabled 1`] = `
+<View
+  onLayout={[Function]}
+>
+  <SectionList
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 44,
+      }
+    }
+    data={Array []}
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    keyboardDismissMode="interactive"
+    keyboardShouldPersistTaps="always"
+    maxToRenderPerBatch={10}
+    onEndReachedThreshold={2}
+    onScrollBeginDrag={[Function]}
+    onViewableItemsChanged={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={Array []}
+    stickySectionHeadersEnabled={true}
+    testID="main.sidebar.channels_list.list"
+    updateCellsBatchingPeriod={50}
+    viewabilityConfig={
+      Object {
+        "itemVisiblePercentThreshold": 100,
+        "waitForInteraction": true,
+      }
+    }
+    windowSize={21}
+  />
+  <UnreadIndicatorIOS
+    onPress={[Function]}
+    theme={
+      Object {
+        "awayIndicator": "#ffbc42",
+        "buttonBg": "#166de0",
+        "buttonColor": "#ffffff",
+        "centerChannelBg": "#ffffff",
+        "centerChannelColor": "#3d3c40",
+        "codeTheme": "github",
+        "dndIndicator": "#f74343",
+        "errorTextColor": "#fd5960",
+        "linkColor": "#2389d7",
+        "mentionBg": "#ffffff",
+        "mentionBj": "#ffffff",
+        "mentionColor": "#145dbf",
+        "mentionHighlightBg": "#ffe577",
+        "mentionHighlightLink": "#166de0",
+        "newMessageSeparator": "#ff8800",
+        "onlineIndicator": "#06d6a0",
+        "sidebarBg": "#145dbf",
+        "sidebarHeaderBg": "#1153ab",
+        "sidebarHeaderTextColor": "#ffffff",
+        "sidebarText": "#ffffff",
+        "sidebarTextActiveBorder": "#579eff",
+        "sidebarTextActiveColor": "#ffffff",
+        "sidebarTextHoverBg": "#4578bf",
+        "sidebarUnreadText": "#ffffff",
+        "type": "Mattermost",
+      }
+    }
+    visible={false}
+  />
+</View>
+`;

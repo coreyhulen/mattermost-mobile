@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global Thread Footer Should render for channel view and unfollow the thread on press 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "minHeight": 40,
+    }
+  }
+>
+  <Connect(Avatars)
+    style={
+      Object {
+        "marginRight": 12,
+        "paddingVertical": 8,
+      }
+    }
+    userIds={
+      Array [
+        "user1",
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "marginRight": 5,
+        "top": -1,
+      }
+    }
+  >
+    <CompassIcon
+      color="rgba(61,60,64,0.64)"
+      name="reply-outline"
+      size={18}
+    />
+  </View>
+  <Text
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "rgba(61,60,64,0.64)",
+        "fontSize": 12,
+        "fontWeight": "600",
+        "marginRight": 12,
+      }
+    }
+    testID="thread_footer.footer.reply_count"
+  >
+    2 replies
+  </Text>
+  <ForwardRef
+    onPress={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(22,109,224,0.08)",
+        "borderRadius": 4,
+        "height": 32,
+        "justifyContent": "center",
+        "paddingHorizontal": 12,
+      }
+    }
+    testID="thread_footer.footer.following"
+  >
+    <Text
+      style={
+        Object {
+          "color": "#166de0",
+          "fontSize": 12,
+          "fontWeight": "600",
+        }
+      }
+    >
+      Following
+    </Text>
+  </ForwardRef>
+</View>
+`;
+
+exports[`Global Thread Footer Should render for global threads view 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "minHeight": 40,
+    }
+  }
+>
+  <Connect(Avatars)
+    style={
+      Object {
+        "marginRight": 12,
+        "paddingVertical": 8,
+      }
+    }
+    userIds={
+      Array [
+        "user1",
+      ]
+    }
+  />
+  <Text
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#579eff",
+        "fontSize": 12,
+        "fontWeight": "600",
+        "marginRight": 12,
+      }
+    }
+    testID="thread_footer.footer.unread_replies"
+  >
+    2 new replies
+  </Text>
+</View>
+`;

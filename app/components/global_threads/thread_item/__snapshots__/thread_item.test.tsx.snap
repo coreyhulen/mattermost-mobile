@@ -1,0 +1,382 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global Thread Item Should render thread item with unread messages dot 1`] = `
+<ForwardRef
+  onPress={[Function]}
+  testID="thread_item.post1.item"
+  underlayColor="rgba(22,109,224,0.08)"
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "rgba(61,60,64,0.08)",
+        "borderBottomWidth": 1,
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingRight": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginTop": 3,
+          "width": 32,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#579eff",
+            "borderRadius": 4,
+            "height": 8,
+            "marginTop": 5,
+            "width": 8,
+          }
+        }
+        testID="thread_item.post1.unread_dot"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginBottom": 9,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "marginRight": 12,
+              "overflow": "hidden",
+            }
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#3d3c40",
+                "fontSize": 15,
+                "fontWeight": "600",
+                "lineHeight": 22,
+                "paddingRight": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgba(61,60,64,0.08)",
+                "borderRadius": 4,
+                "maxWidth": "50%",
+              }
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Object {
+                  "color": "#3d3c40",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 0.1,
+                  "lineHeight": 16,
+                  "marginBottom": 2,
+                  "marginLeft": 6,
+                  "marginRight": 6,
+                  "marginTop": 2,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              CHANNEL 1
+            </Text>
+          </View>
+        </View>
+        <InjectIntl(FriendlyDate)
+          style={
+            Object {
+              "color": "rgba(61,60,64,0.64)",
+              "fontSize": 12,
+              "fontWeight": "400",
+            }
+          }
+        />
+      </View>
+      <Text
+        numberOfLines={2}
+        style={
+          Object {
+            "color": "#3d3c40",
+            "fontSize": 15,
+            "lineHeight": 20,
+          }
+        }
+      >
+        <RemoveMarkdown
+          value=""
+        />
+      </Text>
+      <Connect(InjectIntl(ThreadFooter))
+        location="GlobalThreads"
+        testID="thread_item.post1.footer"
+        theme={
+          Object {
+            "awayIndicator": "#ffbc42",
+            "buttonBg": "#166de0",
+            "buttonColor": "#ffffff",
+            "centerChannelBg": "#ffffff",
+            "centerChannelColor": "#3d3c40",
+            "codeTheme": "github",
+            "dndIndicator": "#f74343",
+            "errorTextColor": "#fd5960",
+            "linkColor": "#2389d7",
+            "mentionBg": "#ffffff",
+            "mentionBj": "#ffffff",
+            "mentionColor": "#145dbf",
+            "mentionHighlightBg": "#ffe577",
+            "mentionHighlightLink": "#166de0",
+            "newMessageSeparator": "#ff8800",
+            "onlineIndicator": "#06d6a0",
+            "sidebarBg": "#145dbf",
+            "sidebarHeaderBg": "#1153ab",
+            "sidebarHeaderTextColor": "#ffffff",
+            "sidebarText": "#ffffff",
+            "sidebarTextActiveBorder": "#579eff",
+            "sidebarTextActiveColor": "#ffffff",
+            "sidebarTextHoverBg": "#4578bf",
+            "sidebarUnreadText": "#ffffff",
+            "type": "Mattermost",
+          }
+        }
+        thread={
+          Object {
+            "id": "post1",
+            "unread_replies": 5,
+          }
+        }
+        threadStarter={
+          Object {
+            "id": "user1",
+          }
+        }
+      />
+    </View>
+  </View>
+</ForwardRef>
+`;
+
+exports[`Global Thread Item Should show unread mentions count 1`] = `
+<ForwardRef
+  onPress={[Function]}
+  testID="thread_item.post1.item"
+  underlayColor="rgba(22,109,224,0.08)"
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "rgba(61,60,64,0.08)",
+        "borderBottomWidth": 1,
+        "flex": 1,
+        "flexDirection": "row",
+        "paddingRight": 16,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginTop": 3,
+          "width": 32,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#145dbf",
+            "borderRadius": 9,
+            "height": 18,
+            "width": 18,
+          }
+        }
+        testID="thread_item.post1.unread_mentions"
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "#ffffff",
+              "fontFamily": "Open Sans",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "lineHeight": 16,
+            }
+          }
+        >
+          5
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "marginBottom": 9,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "marginRight": 12,
+              "overflow": "hidden",
+            }
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "#3d3c40",
+                "fontSize": 15,
+                "fontWeight": "600",
+                "lineHeight": 22,
+                "paddingRight": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "rgba(61,60,64,0.08)",
+                "borderRadius": 4,
+                "maxWidth": "50%",
+              }
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Object {
+                  "color": "#3d3c40",
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "letterSpacing": 0.1,
+                  "lineHeight": 16,
+                  "marginBottom": 2,
+                  "marginLeft": 6,
+                  "marginRight": 6,
+                  "marginTop": 2,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              CHANNEL 1
+            </Text>
+          </View>
+        </View>
+        <InjectIntl(FriendlyDate)
+          style={
+            Object {
+              "color": "rgba(61,60,64,0.64)",
+              "fontSize": 12,
+              "fontWeight": "400",
+            }
+          }
+        />
+      </View>
+      <Text
+        numberOfLines={2}
+        style={
+          Object {
+            "color": "#3d3c40",
+            "fontSize": 15,
+            "lineHeight": 20,
+          }
+        }
+      >
+        <RemoveMarkdown
+          value=""
+        />
+      </Text>
+      <Connect(InjectIntl(ThreadFooter))
+        location="GlobalThreads"
+        testID="thread_item.post1.footer"
+        theme={
+          Object {
+            "awayIndicator": "#ffbc42",
+            "buttonBg": "#166de0",
+            "buttonColor": "#ffffff",
+            "centerChannelBg": "#ffffff",
+            "centerChannelColor": "#3d3c40",
+            "codeTheme": "github",
+            "dndIndicator": "#f74343",
+            "errorTextColor": "#fd5960",
+            "linkColor": "#2389d7",
+            "mentionBg": "#ffffff",
+            "mentionBj": "#ffffff",
+            "mentionColor": "#145dbf",
+            "mentionHighlightBg": "#ffe577",
+            "mentionHighlightLink": "#166de0",
+            "newMessageSeparator": "#ff8800",
+            "onlineIndicator": "#06d6a0",
+            "sidebarBg": "#145dbf",
+            "sidebarHeaderBg": "#1153ab",
+            "sidebarHeaderTextColor": "#ffffff",
+            "sidebarText": "#ffffff",
+            "sidebarTextActiveBorder": "#579eff",
+            "sidebarTextActiveColor": "#ffffff",
+            "sidebarTextHoverBg": "#4578bf",
+            "sidebarUnreadText": "#ffffff",
+            "type": "Mattermost",
+          }
+        }
+        thread={
+          Object {
+            "id": "post1",
+            "unread_mentions": 5,
+            "unread_replies": 5,
+          }
+        }
+        threadStarter={
+          Object {
+            "id": "user1",
+          }
+        }
+      />
+    </View>
+  </View>
+</ForwardRef>
+`;

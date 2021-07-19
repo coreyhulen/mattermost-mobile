@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global Thread List Should render threads with functional tabs & mark all as read button 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <InjectIntl(ThreadListHeader)
+    haveUnreads={true}
+    markAllAsRead={[MockFunction]}
+    style={
+      Object {
+        "borderBottom": Object {
+          "borderBottomColor": "rgba(61,60,64,0.08)",
+          "borderBottomWidth": 1,
+        },
+        "container": Object {
+          "flex": 1,
+        },
+        "headerContainer": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        },
+        "listScrollIndicator": Object {
+          "right": 1,
+        },
+        "loadingMoreContainer": Object {
+          "paddingVertical": 12,
+        },
+        "markAllReadIcon": Object {
+          "color": "rgba(61,60,64,0.56)",
+          "fontSize": 28,
+          "lineHeight": 28,
+        },
+        "markAllReadIconContainer": Object {
+          "paddingHorizontal": 20,
+        },
+        "markAllReadIconDisabled": Object {
+          "opacity": 0.5,
+        },
+        "menuContainer": Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "marginVertical": 12,
+          "paddingLeft": 12,
+        },
+        "menuItem": Object {
+          "alignSelf": "center",
+          "color": "rgba(61,60,64,0.56)",
+          "fontFamily": "Open Sans",
+          "fontSize": 16,
+          "fontWeight": "600",
+          "lineHeight": 24,
+        },
+        "menuItemContainer": Object {
+          "paddingHorizontal": 16,
+          "paddingVertical": 8,
+        },
+        "menuItemContainerSelected": Object {
+          "backgroundColor": "rgba(22,109,224,0.08)",
+          "borderRadius": 4,
+        },
+        "menuItemSelected": Object {
+          "color": "#166de0",
+        },
+        "messagesContainer": Object {
+          "flexGrow": 1,
+        },
+        "unreadsDot": Object {
+          "backgroundColor": "#579eff",
+          "borderRadius": 3,
+          "height": 6,
+          "position": "absolute",
+          "right": -6,
+          "top": 4,
+          "width": 6,
+        },
+      }
+    }
+    testId="thread_list"
+    viewAllThreads={[MockFunction]}
+    viewUnreadThreads={[MockFunction]}
+    viewingUnreads={true}
+  />
+  <FlatList
+    ListEmptyComponent={
+      <EmptyState
+        intl={
+          Object {
+            "defaultFormats": Object {},
+            "defaultLocale": "en",
+            "formatDate": [Function],
+            "formatHTMLMessage": [Function],
+            "formatMessage": [Function],
+            "formatNumber": [Function],
+            "formatPlural": [Function],
+            "formatRelative": [Function],
+            "formatTime": [Function],
+            "formats": Object {},
+            "formatters": Object {
+              "getDateTimeFormat": [Function],
+              "getMessageFormat": [Function],
+              "getNumberFormat": [Function],
+              "getPluralFormat": [Function],
+              "getRelativeFormat": [Function],
+            },
+            "locale": "en",
+            "messages": Object {},
+            "now": [Function],
+            "onError": [Function],
+            "textComponent": "span",
+            "timeZone": null,
+          }
+        }
+        isUnreads={true}
+      />
+    }
+    ListFooterComponent={null}
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+      }
+    }
+    data={
+      Array [
+        "thread1",
+      ]
+    }
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    removeClippedSubviews={true}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</View>
+`;

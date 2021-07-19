@@ -5,3 +5,4 @@ export const THREAD = 'Thread';
 export const PERMALINK = 'Permalink';
 export const SEARCH = 'Search';
 export const CHANNEL = 'Channel';
+export const GLOBAL_THREADS = 'GlobalThreads';

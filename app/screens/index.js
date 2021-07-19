@@ -10,6 +10,8 @@ import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import RootWrapper from '@components/root';
+import ThreadFollow from '@screens/thread/thread_follow';
+
 let store;
 
 const withGestures = (screen, styles) => {
@@ -203,6 +205,10 @@ Navigation.setLazyComponentRegistrator((screenName) => {
     case 'Thread':
         screen = require('@screens/thread').default;
         break;
+    case 'ThreadFollow': {
+        Navigation.registerComponent('ThreadFollow', () => ThreadFollow);
+        break;
+    }
     case 'TimezoneSettings':
         screen = require('@screens/settings/timezone').default;
         break;

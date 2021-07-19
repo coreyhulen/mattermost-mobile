@@ -15,6 +15,7 @@ describe('ChannelsList List', () => {
         canJoinPublicChannels: true,
         canCreatePrivateChannels: true,
         canCreatePublicChannels: true,
+        collapsedThreadsEnabled: false,
         favoriteChannelIds: [],
         unreadChannelIds: [],
         styles: {},
@@ -25,6 +26,17 @@ describe('ChannelsList List', () => {
 
     test('should match snapshot', () => {
         const wrapper = shallow(<List {...baseProps}/>);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test('should match snapshot with collapsed threads enabled', () => {
+        const wrapper = shallow(
+            <List
+                {...baseProps}
+                collapsedThreadsEnabled={true}
+            />,
+        );
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

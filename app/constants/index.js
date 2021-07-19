@@ -4,6 +4,7 @@
 import AttachmentTypes from './attachment';
 import CustomPropTypes from './custom_prop_types';
 import * as CustomStatus from './custom_status';
+import DateTypes from './date';
 import DeepLinkTypes from './deep_linking';
 import DeviceTypes from './device';
 import ListTypes from './list';
@@ -17,6 +18,7 @@ export {
     CustomPropTypes,
     DeepLinkTypes,
     DeviceTypes,
+    DateTypes,
     ListTypes,
     NavigationTypes,
     Types,

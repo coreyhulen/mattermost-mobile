@@ -18,6 +18,7 @@ describe('PostOptions', () => {
         removePost: jest.fn(),
         unflagPost: jest.fn(),
         unpinPost: jest.fn(),
+        setThreadFollow: jest.fn(),
         setUnreadPost: jest.fn(),
     };
 
@@ -39,6 +40,7 @@ describe('PostOptions', () => {
         canMarkAsUnread: true,
         canEditUntil: -1,
         channelIsReadOnly: false,
+        currentTeamId: 'current_team_id',
         currentTeamUrl: 'http://localhost:8065/team-name',
         currentUserId: 'user1',
         deviceHeight: 600,

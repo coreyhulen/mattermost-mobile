@@ -12,7 +12,7 @@ import {
 } from '@mm-redux/selectors/entities/channels';
 import {getCurrentUserId, getCurrentUserRoles} from '@mm-redux/selectors/entities/users';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
-import {getTheme, getFavoritesPreferences, getSidebarPreferences} from '@mm-redux/selectors/entities/preferences';
+import {getTheme, getFavoritesPreferences, getSidebarPreferences, isCollapsedThreadsEnabled} from '@mm-redux/selectors/entities/preferences';
 import {showCreateOption} from '@mm-redux/utils/channel_utils';
 import {memoizeResult} from '@mm-redux/utils/helpers';
 import {isAdmin as checkIsAdmin, isSystemAdmin as checkIsSystemAdmin} from '@mm-redux/utils/user_utils';
@@ -33,6 +33,7 @@ const filterZeroUnreads = memoizeResult((sections) => {
 
 function mapStateToProps(state) {
     const config = getConfig(state);
+    const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
     const license = getLicense(state);
     const roles = getCurrentUserId(state) ? getCurrentUserRoles(state) : '';
     const currentTeamId = getCurrentTeamId(state);
@@ -49,6 +50,7 @@ function mapStateToProps(state) {
         sidebarPrefs.sorting,
         true, // The mobile app should always display the Unreads section regardless of user settings (MM-13420)
         sidebarPrefs.favorite_at_top === 'true' && favoriteChannelIds.length,
+        collapsedThreadsEnabled,
     ));
 
     let canJoinPublicChannels = true;
@@ -65,6 +67,7 @@ function mapStateToProps(state) {
         canJoinPublicChannels,
         canCreatePrivateChannels,
         canCreatePublicChannels,
+        collapsedThreadsEnabled,
         favoriteChannelIds,
         theme: getTheme(state),
         unreadChannelIds,

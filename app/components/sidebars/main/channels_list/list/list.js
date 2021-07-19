@@ -21,6 +21,7 @@ import {debounce} from '@mm-redux/actions/helpers';
 
 import CompassIcon from '@components/compass_icon';
 import ChannelItem from '@components/sidebars/main/channels_list/channel_item';
+import ThreadsSidebarEntry from '@components/sidebars/main/threads_entry';
 import {DeviceTypes, ListTypes, NavigationTypes} from '@constants';
 import {SidebarSectionTypes} from '@constants/view';
 
@@ -42,6 +43,7 @@ export default class List extends PureComponent {
         canJoinPublicChannels: PropTypes.bool.isRequired,
         canCreatePrivateChannels: PropTypes.bool.isRequired,
         canCreatePublicChannels: PropTypes.bool.isRequired,
+        collapsedThreadsEnabled: PropTypes.bool.isRequired,
         favoriteChannelIds: PropTypes.array.isRequired,
         onSelectChannel: PropTypes.func.isRequired,
         unreadChannelIds: PropTypes.array.isRequired,
@@ -154,6 +156,12 @@ export default class List extends PureComponent {
                 id: t('mobile.channel_list.channels'),
                 defaultMessage: 'CHANNELS',
             };
+        case SidebarSectionTypes.THREADS: // Used only to identity the threads, hence not translating "id: t('...')"
+            return {
+                data: [''],
+                id: 'sidebar.threads',
+                defaultMessage: '',
+            };
         default:
             return {
                 action: this.showCreateChannelOptions,
@@ -168,12 +176,14 @@ export default class List extends PureComponent {
             orderedChannelIds,
         } = props;
 
-        return orderedChannelIds.map((s) => {
+        const sections = orderedChannelIds.map((s) => {
             return {
                 ...this.getSectionConfigByType(props, s.type),
                 data: s.items,
             };
         });
+
+        return sections;
     };
 
     showCreateChannelOptions = () => {
@@ -314,7 +324,12 @@ export default class List extends PureComponent {
         );
     };
 
-    renderItem = ({item}) => {
+    renderItem = ({item, section}) => {
+        if (section.id === 'sidebar.threads') {
+            return (
+                <ThreadsSidebarEntry/>
+            );
+        }
         const {testID, favoriteChannelIds, unreadChannelIds} = this.props;
         const channelItemTestID = `${testID}.channel_item`;
 
@@ -333,6 +348,10 @@ export default class List extends PureComponent {
         const {styles} = this.props;
         const {intl} = this.context;
         const {action, defaultMessage, id} = section;
+
+        if (id === 'sidebar.threads') {
+            return null;
+        }
 
         const anchor = (id === 'sidebar.types.recent' || id === 'mobile.channel_list.channels');
 
