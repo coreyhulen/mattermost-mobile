@@ -23,6 +23,7 @@ import * as DraftUtils from '@utils/draft';
 import {confirmOutOfOfficeDisabled} from '@utils/status';
 import {preventDoubleTap} from '@utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
+import {showAppForm} from '@actions/navigation';
 
 const AUTOCOMPLETE_MARGIN = 20;
 const HW_SHIFT_ENTER_TEXT = Platform.OS === 'ios' ? '\n' : '';
@@ -294,7 +295,7 @@ export default class DraftInput extends PureComponent {
 
     sendCommand = async (msg) => {
         const {intl} = this.context;
-        const {channelId, executeCommand, rootId, userIsOutOfOffice} = this.props;
+        const {channelId, executeCommand, rootId, userIsOutOfOffice, theme} = this.props;
 
         const status = DraftUtils.getStatusFromSlashCommand(msg);
         if (userIsOutOfOffice && DraftUtils.isStatusSlashCommand(status)) {
@@ -310,6 +311,10 @@ export default class DraftInput extends PureComponent {
             this.setInputValue(msg);
             DraftUtils.alertSlashCommandFailed(intl.formatMessage, error.message);
             return;
+        }
+
+        if (data.form) {
+            showAppForm(data.form, data.call, theme);
         }
 
         this.setInputValue('');

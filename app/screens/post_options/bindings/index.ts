@@ -14,6 +14,7 @@ import {getCurrentUser} from '@mm-redux/selectors/entities/users';
 
 import {doAppCall, postEphemeralCallResponseForPost} from '@actions/apps';
 import {appsEnabled} from '@utils/apps';
+import {handleGotoLocation} from '@mm-redux/actions/integrations';
 
 import Bindings from './bindings';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
@@ -50,6 +51,7 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
         actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Actions>({
             doAppCall,
             postEphemeralCallResponseForPost,
+            handleGotoLocation,
         }, dispatch),
     };
 }

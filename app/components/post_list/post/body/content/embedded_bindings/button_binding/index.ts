@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 
 import {doAppCall, postEphemeralCallResponseForPost} from '@actions/apps';
+import {handleGotoLocation} from '@mm-redux/actions/integrations';
+
 import {getPost} from '@mm-redux/selectors/entities/posts';
 import {getChannel} from '@mm-redux/selectors/entities/channels';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
@@ -33,6 +35,7 @@ function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
 const mapDispatchToProps = {
     doAppCall,
     postEphemeralCallResponseForPost,
+    handleGotoLocation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ButtonBinding);

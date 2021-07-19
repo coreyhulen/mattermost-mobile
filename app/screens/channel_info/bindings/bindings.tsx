@@ -8,11 +8,12 @@ import {intlShape, injectIntl} from 'react-intl';
 import Separator from '@screens/channel_info/separator';
 
 import ChannelInfoRow from '../channel_info_row';
+import {ActionResult} from '@mm-redux/types/actions';
 import {AppBinding} from '@mm-redux/types/apps';
 import {Theme} from '@mm-redux/types/preferences';
 import {Channel} from '@mm-redux/types/channels';
 import {AppCallResponseTypes, AppCallTypes} from '@mm-redux/constants/apps';
-import {dismissModal} from '@actions/navigation';
+import {dismissModal, showAppForm} from '@actions/navigation';
 import {createCallContext, createCallRequest} from '@utils/apps';
 import {DoAppCall, PostEphemeralCallResponseForChannel} from 'types/actions/apps';
 
@@ -26,6 +27,7 @@ type Props = {
     actions: {
         doAppCall: DoAppCall;
         postEphemeralCallResponseForChannel: PostEphemeralCallResponseForChannel;
+        handleGotoLocation: (href: string, intl: any) => Promise<ActionResult>;
     }
 }
 
@@ -65,6 +67,7 @@ type OptionProps = {
     actions: {
         doAppCall: DoAppCall;
         postEphemeralCallResponseForChannel: PostEphemeralCallResponseForChannel;
+        handleGotoLocation: (href: string, intl: any) => Promise<ActionResult>;
     },
 }
 
@@ -78,7 +81,7 @@ class Option extends React.PureComponent<OptionProps, OptionState> {
     };
 
     onPress = async () => {
-        const {binding, currentChannel, currentTeamId, intl} = this.props;
+        const {binding, currentChannel, currentTeamId, intl, theme} = this.props;
         const {doAppCall, postEphemeralCallResponseForChannel} = this.props.actions;
 
         if (this.state.submitting) {
@@ -128,8 +131,13 @@ class Option extends React.PureComponent<OptionProps, OptionState> {
             }
             break;
         case AppCallResponseTypes.NAVIGATE:
+            await dismissModal();
+            this.props.actions.handleGotoLocation(callResp.navigate_to_url!, intl);
+            return;
         case AppCallResponseTypes.FORM:
-            break;
+            await dismissModal();
+            showAppForm(callResp.form, call, theme);
+            return;
         default: {
             const title = intl.formatMessage({
                 id: 'mobile.general.error.title',

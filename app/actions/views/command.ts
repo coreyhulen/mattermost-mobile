@@ -69,8 +69,14 @@ export function executeCommand(message: string, channelId: string, rootId: strin
                     }
                     return {data: {}};
                 case AppCallResponseTypes.FORM:
+                    return {data: {
+                        form: callResp.form,
+                        call,
+                    }};
                 case AppCallResponseTypes.NAVIGATE:
-                    return {data: {}};
+                    return {data: {
+                        goto_location: callResp.navigate_to_url,
+                    }};
                 default:
                     return createErrorMessage(intl.formatMessage({
                         id: 'apps.error.responses.unknown_type',
