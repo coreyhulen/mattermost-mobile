@@ -54,6 +54,13 @@ export default class DialogElement extends PureComponent {
         onChange(name, newValue);
     }
 
+    handleClear = () => {
+        const {name, onChange} = this.props;
+
+        this.setState({selected: null});
+        onChange(name, null);
+    }
+
     handleAutocompleteSelect = (selected) => {
         if (!selected) {
             return;
@@ -134,6 +141,7 @@ export default class DialogElement extends PureComponent {
                     options={options}
                     optional={optional}
                     onSelected={this.handleAutocompleteSelect}
+                    onClear={this.handleClear}
                     helpText={helpText}
                     errorText={errorText}
                     placeholder={placeholder}

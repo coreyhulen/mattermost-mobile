@@ -73,6 +73,13 @@ export default class AppsFormField extends React.PureComponent<Props, State> {
         this.props.onChange(field.name, selectedOption);
     };
 
+    handleClear = () => {
+        const {field, onChange} = this.props;
+
+        this.setState({selected: null});
+        onChange(field.name, null);
+    };
+
     getDynamicOptions = async (userInput = ''): Promise<{data: DialogOption[]}> => {
         const options = await this.props.performLookup(this.props.field.name, userInput);
         return {
@@ -192,6 +199,7 @@ export default class AppsFormField extends React.PureComponent<Props, State> {
                     options={options}
                     optional={!field.is_required}
                     onSelected={this.handleAutocompleteSelect}
+                    onClear={this.handleClear}
                     getDynamicOptions={this.getDynamicOptions}
                     helpText={field.description}
                     errorText={errorText}

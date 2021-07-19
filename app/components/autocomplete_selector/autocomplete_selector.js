@@ -34,6 +34,7 @@ export default class AutocompleteSelector extends PureComponent {
         teammateNameDisplay: PropTypes.string,
         theme: PropTypes.object.isRequired,
         onSelected: PropTypes.func,
+        onClear: PropTypes.func,
         helpText: PropTypes.node,
         errorText: PropTypes.node,
         roundedBorders: PropTypes.bool,
@@ -67,6 +68,11 @@ export default class AutocompleteSelector extends PureComponent {
         }
 
         return null;
+    }
+
+    handleClear = () => {
+        this.setState({selectedText: ''});
+        this.props.onClear();
     }
 
     handleSelect = (selected) => {
@@ -121,6 +127,8 @@ export default class AutocompleteSelector extends PureComponent {
             showRequiredAsterisk,
             roundedBorders,
             disabled,
+            selected,
+            onClear,
         } = this.props;
         const {selectedText} = this.state;
         const style = getStyleSheet(theme);
@@ -215,11 +223,15 @@ export default class AutocompleteSelector extends PureComponent {
                         >
                             {text}
                         </Text>
-                        <CompassIcon
-                            name='chevron-down'
-                            color={changeOpacity(theme.centerChannelColor, 0.5)}
-                            style={style.icon}
-                        />
+                        {!disabled && onClear && selected && (
+                            <CompassIcon
+                                name='close-circle'
+                                color={changeOpacity(theme.centerChannelColor, 0.5)}
+                                style={style.clearx}
+                                size={20}
+                                onPress={this.handleClear}
+                            />
+                        )}
                     </View>
                 </TouchableWithFeedback>
                 {helpTextContent}
@@ -255,17 +267,22 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         dropdownPlaceholder: {
             top: 3,
             marginLeft: 5,
+            paddingRight: 55,
             color: changeOpacity(theme.centerChannelColor, 0.5),
         },
         dropdownSelected: {
             top: 3,
             marginLeft: 5,
+            paddingRight: 55,
             color: theme.centerChannelColor,
         },
-        icon: {
+        clearx: {
             position: 'absolute',
-            top: 13,
-            right: 12,
+            top: 1,
+            right: 5,
+            padding: 8,
+            paddingRight: 20,
+            paddingLeft: 40,
         },
         labelContainer: {
             flexDirection: 'row',
