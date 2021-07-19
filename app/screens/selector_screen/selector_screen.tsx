@@ -2,7 +2,6 @@
 // See LICENSE.txt for license information.
 
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
 import {intlShape} from 'react-intl';
 import {
     Platform,
@@ -31,37 +30,66 @@ import {
     makeStyleSheetFromTheme,
     getKeyboardAppearanceFromTheme,
 } from '@utils/theme';
+import {Theme} from '@mm-redux/types/preferences';
+import {DialogOption} from '@mm-redux/types/integrations';
+import {Channel} from '@mm-redux/types/channels';
+import {ActionResult} from '@mm-redux/types/actions';
+import {UserProfile} from '@mm-redux/types/users';
+import SelectedOptions from './selected_options';
+import {EventSubscription, Navigation} from 'react-native-navigation';
 
-export default class SelectorScreen extends PureComponent {
-    static propTypes = {
-        actions: PropTypes.shape({
-            getProfiles: PropTypes.func.isRequired,
-            getChannels: PropTypes.func.isRequired,
-            searchProfiles: PropTypes.func.isRequired,
-            searchChannels: PropTypes.func.isRequired,
-        }),
-        getDynamicOptions: PropTypes.func,
-        currentTeamId: PropTypes.string.isRequired,
-        data: PropTypes.arrayOf(PropTypes.object),
-        dataSource: PropTypes.string,
-        onSelect: PropTypes.func.isRequired,
-        theme: PropTypes.object.isRequired,
+type DataType = DialogOption[] | Channel[] | UserProfile[];
+type Selection = DialogOption | Channel | UserProfile | DialogOption[] | Channel[] | UserProfile[];
+
+type Props = {
+    actions: {
+        getProfiles: (page?: number, perPage?: number, options?: any) => Promise<ActionResult>;
+        getChannels: (teamId: string, page?: number, perPage?: number) => Promise<ActionResult>;
+        searchProfiles: (term: string, options?: any) => Promise<ActionResult>;
+        searchChannels: (teamId: string, term: string, archived?: boolean | undefined) => Promise<ActionResult>;
     };
+    getDynamicOptions?: (term: string) => Promise<ActionResult>;
+    currentTeamId: string;
+    data?: DataType;
+    dataSource: string;
+    onSelect: (opt: Selection) => void;
+    isMultiselect?: boolean;
+    selected?: DialogOption[];
+    theme: Theme;
+}
 
+type State = {
+    data: DataType | {id: string; data: DataType}[];
+    loading: boolean;
+    searchResults: DialogOption[];
+    term: string;
+    multiselectSelected: DataType;
+}
+
+export default class SelectorScreen extends PureComponent<Props, State> {
     static contextTypes = {
         intl: intlShape.isRequired,
     };
 
-    constructor(props) {
+    private navigationEventListener?: EventSubscription;
+
+    private searchTimeoutId = 0;
+    private page = -1;
+    private next: boolean;
+    private searchBarRef = React.createRef<SearchBar>();
+    constructor(props: Props) {
         super(props);
 
-        this.searchTimeoutId = 0;
-        this.page = -1;
         this.next = props.dataSource === ViewTypes.DATA_SOURCE_USERS || props.dataSource === ViewTypes.DATA_SOURCE_CHANNELS || props.dataSource === ViewTypes.DATA_SOURCE_DYNAMIC;
 
-        let data = [];
+        let data: DataType = [];
         if (!props.dataSource) {
-            data = props.data;
+            data = props.data || [];
+        }
+
+        let multiselectSelected: DataType = [];
+        if (props.isMultiselect && props.selected && !([ViewTypes.DATA_SOURCE_USERS, ViewTypes.DATA_SOURCE_CHANNELS].includes(props.dataSource))) {
+            multiselectSelected = props.selected;
         }
 
         this.state = {
@@ -69,12 +97,13 @@ export default class SelectorScreen extends PureComponent {
             loading: false,
             searchResults: [],
             term: '',
+            multiselectSelected,
         };
     }
 
     componentDidMount() {
+        this.navigationEventListener = Navigation.events().bindComponent(this);
         const {dataSource} = this.props;
-        this.mounted = true;
         if (dataSource === ViewTypes.DATA_SOURCE_USERS) {
             this.getProfiles();
         } else if (dataSource === ViewTypes.DATA_SOURCE_CHANNELS) {
@@ -82,14 +111,6 @@ export default class SelectorScreen extends PureComponent {
         } else if (dataSource === ViewTypes.DATA_SOURCE_DYNAMIC) {
             this.getDynamicOptions();
         }
-    }
-
-    componentWillUnmount() {
-        this.mounted = false;
-    }
-
-    setSearchBarRef = (ref) => {
-        this.searchBarRef = ref;
     }
 
     clearSearch = () => {
@@ -100,10 +121,72 @@ export default class SelectorScreen extends PureComponent {
         popTopScreen();
     };
 
-    handleSelectItem = (id, item) => {
-        this.props.onSelect(item);
-        this.close();
+    handleSelectItem = (id: string, item: UserProfile | Channel | DialogOption) => {
+        if (!this.props.isMultiselect) {
+            this.props.onSelect(item);
+            this.close();
+            return;
+        }
+
+        switch (this.props.dataSource) {
+        case ViewTypes.DATA_SOURCE_USERS: {
+            const currentList = this.state.multiselectSelected as UserProfile[];
+            const typedItem = item as UserProfile;
+            if (!currentList.find((u) => u.id === typedItem.id)) {
+                this.setState({multiselectSelected: [...currentList, typedItem]});
+            }
+            return;
+        }
+        case ViewTypes.DATA_SOURCE_CHANNELS: {
+            const currentList = this.state.multiselectSelected as Channel[];
+            const typedItem = item as Channel;
+            if (!currentList.find((u) => u.id === typedItem.id)) {
+                this.setState({multiselectSelected: [...currentList, typedItem]});
+            }
+            return;
+        }
+        default: {
+            const currentList = this.state.multiselectSelected as DialogOption[];
+            const typedItem = item as DialogOption;
+            if (!currentList.find((u) => u.value === typedItem.value)) {
+                this.setState({multiselectSelected: [...currentList, typedItem]});
+            }
+        }
+        }
     };
+
+    navigationButtonPressed({buttonId}: {buttonId: string}) {
+        switch (buttonId) {
+        case 'submit-form':
+            this.props.onSelect(this.state.multiselectSelected);
+            this.close();
+            return;
+        case 'close-dialog':
+            this.close();
+        }
+    }
+
+    handleRemoveOption = (item: UserProfile | Channel | DialogOption) => {
+        switch (this.props.dataSource) {
+        case ViewTypes.DATA_SOURCE_USERS: {
+            const currentList = this.state.multiselectSelected as UserProfile[];
+            const multiselectSelected = currentList.filter((u) => u.id !== (item as UserProfile).id);
+            this.setState({multiselectSelected});
+            return;
+        }
+        case ViewTypes.DATA_SOURCE_CHANNELS: {
+            const currentList = this.state.multiselectSelected as Channel[];
+            const multiselectSelected = currentList.filter((u) => u.id !== (item as Channel).id);
+            this.setState({multiselectSelected});
+            return;
+        }
+        default: {
+            const currentList = this.state.multiselectSelected as DialogOption[];
+            const multiselectSelected = currentList.filter((u) => u.value !== (item as DialogOption).value);
+            this.setState({multiselectSelected});
+        }
+        }
+    }
 
     getChannels = debounce(() => {
         const {actions, currentTeamId} = this.props;
@@ -157,8 +240,8 @@ export default class SelectorScreen extends PureComponent {
         }
     }, 100);
 
-    loadedChannels = ({data: channels}) => {
-        const {data} = this.state;
+    loadedChannels = ({data: channels}: {data: Channel[]}) => {
+        const data = this.state.data as Channel[];
         if (channels && !channels.length) {
             this.next = false;
         }
@@ -167,8 +250,8 @@ export default class SelectorScreen extends PureComponent {
         this.setState({loading: false, data: [...channels, ...data]});
     };
 
-    loadedProfiles = ({data: profiles}) => {
-        const {data} = this.state;
+    loadedProfiles = ({data: profiles}: {data: UserProfile[]}) => {
+        const data = this.state.data as UserProfile[];
         if (profiles && !profiles.length) {
             this.next = false;
         }
@@ -189,7 +272,7 @@ export default class SelectorScreen extends PureComponent {
         // dynamic options are not paged so are not reloaded on scroll
     };
 
-    onSearch = (text) => {
+    onSearch = (text: string) => {
         if (text) {
             const {dataSource, data} = this.props;
             this.setState({term: text});
@@ -208,13 +291,13 @@ export default class SelectorScreen extends PureComponent {
                 } else if (dataSource === ViewTypes.DATA_SOURCE_DYNAMIC) {
                     this.searchDynamicOptions(text);
                 }
-            }, General.SEARCH_TIMEOUT_MILLISECONDS);
+            }, General.SEARCH_TIMEOUT_MILLISECONDS) as any;
         } else {
             this.clearSearch();
         }
     };
 
-    searchChannels = (term) => {
+    searchChannels = (term: string) => {
         const {actions, currentTeamId} = this.props;
 
         actions.searchChannels(currentTeamId, term.toLowerCase()).then(({data}) => {
@@ -222,7 +305,7 @@ export default class SelectorScreen extends PureComponent {
         });
     };
 
-    searchProfiles = (term) => {
+    searchProfiles = (term: string) => {
         const {actions} = this.props;
         this.setState({loading: true});
 
@@ -314,15 +397,15 @@ export default class SelectorScreen extends PureComponent {
         );
     };
 
-    renderChannelItem = (props) => {
+    renderChannelItem = (props: any) => {
         return <ChannelListRow {...props}/>;
     };
 
-    renderOptionItem = (props) => {
+    renderOptionItem = (props: any) => {
         return <OptionListRow {...props}/>;
     };
 
-    renderUserItem = (props) => {
+    renderUserItem = (props: any) => {
         return <UserListRow {...props}/>;
     };
 
@@ -349,6 +432,17 @@ export default class SelectorScreen extends PureComponent {
 
         const {data, listType} = this.getDataResults();
 
+        let selectedOptionsComponent = null;
+        if (this.state.multiselectSelected.length > 0) {
+            selectedOptionsComponent = (
+                <SelectedOptions
+                    selectedOptions={this.state.multiselectSelected}
+                    dataSource={this.props.dataSource}
+                    onRemove={this.handleRemoveOption}
+                />
+            );
+        }
+
         return (
             <SafeAreaView style={style.container}>
                 <StatusBar/>
@@ -358,7 +452,7 @@ export default class SelectorScreen extends PureComponent {
                 >
                     <SearchBar
                         testID='selector.search_bar'
-                        ref={this.setSearchBarRef}
+                        ref={this.searchBarRef}
                         placeholder={formatMessage({id: 'search_bar.search', defaultMessage: 'Search'})}
                         cancelTitle={formatMessage({id: 'mobile.post.cancel', defaultMessage: 'Cancel'})}
                         backgroundColor='transparent'
@@ -376,6 +470,7 @@ export default class SelectorScreen extends PureComponent {
                         value={term}
                     />
                 </View>
+                {selectedOptionsComponent}
                 <CustomList
                     data={data}
                     key='custom_list'
@@ -393,7 +488,7 @@ export default class SelectorScreen extends PureComponent {
     }
 }
 
-const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
+const getStyleFromTheme = makeStyleSheetFromTheme((theme: Theme) => {
     return {
         container: {
             flex: 1,
@@ -429,19 +524,19 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
     };
 });
 
-const filterSearchData = memoizeResult((dataSource, data, term) => {
+const filterSearchData = memoizeResult((dataSource: string, data: DataType, term: string) => {
     if (!data) {
         return [];
     }
 
     const lowerCasedTerm = term.toLowerCase();
     if (dataSource === ViewTypes.DATA_SOURCE_USERS) {
-        return filterProfilesMatchingTerm(data, lowerCasedTerm);
+        return filterProfilesMatchingTerm(data as UserProfile[], lowerCasedTerm);
     } else if (dataSource === ViewTypes.DATA_SOURCE_CHANNELS) {
-        return filterChannelsMatchingTerm(data, lowerCasedTerm);
+        return filterChannelsMatchingTerm(data as Channel[], lowerCasedTerm);
     } else if (dataSource === ViewTypes.DATA_SOURCE_DYNAMIC) {
         return data;
     }
 
-    return data.filter((option) => option.text && option.text.toLowerCase().startsWith(lowerCasedTerm));
+    return (data as DialogOption[]).filter((option) => option.text && option.text.toLowerCase().startsWith(lowerCasedTerm));
 });
