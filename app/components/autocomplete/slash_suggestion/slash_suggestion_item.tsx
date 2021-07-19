@@ -4,12 +4,14 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import FastImage from 'react-native-fast-image';
 
 import {Theme} from '@mm-redux/types/preferences';
+import {COMMAND_SUGGESTION_ERROR} from '@mm-redux/constants/apps';
 
 import TouchableWithFeedback from '@components/touchable_with_feedback';
 import {changeOpacity, makeStyleSheetFromTheme} from '@utils/theme';
-import FastImage from 'react-native-fast-image';
+
 const slashIcon = require('@assets/images/autocomplete/slash_command.png');
 const bangIcon = require('@assets/images/autocomplete/slash_command_error.png');
 
@@ -99,7 +101,7 @@ const SlashSuggestionItem = (props: Props) => {
             source={slashIcon}
         />
     );
-    if (props.icon === 'error') {
+    if (props.icon === COMMAND_SUGGESTION_ERROR) {
         image = (
             <Image
                 style={style.iconColor}

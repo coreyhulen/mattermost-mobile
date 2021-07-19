@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/autocomplete/app_slash_suggestion should match snapshot 1`] = `
+<FlatList
+  data={
+    Array [
+      Object {
+        "Complete": "thetrigger",
+        "Description": "The Description",
+        "Hint": "The Hint",
+        "IconData": "iconurl.com",
+        "Suggestion": "/thetrigger",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  extraData={
+    Object {
+      "active": true,
+      "dataSource": Array [
+        Object {
+          "Complete": "thetrigger",
+          "Description": "The Description",
+          "Hint": "The Hint",
+          "IconData": "iconurl.com",
+          "Suggestion": "/thetrigger",
+        },
+      ],
+      "lastCommandRequest": 1234,
+    }
+  }
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  keyboardShouldPersistTaps="always"
+  maxToRenderPerBatch={10}
+  nestedScrollEnabled={false}
+  numColumns={1}
+  onEndReachedThreshold={2}
+  removeClippedSubviews={true}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderRadius": 4,
+        "flex": 1,
+        "paddingTop": 8,
+      },
+      Object {
+        "maxHeight": 50,
+      },
+    ]
+  }
+  testID="app_slash_suggestion.list"
+  updateCellsBatchingPeriod={50}
+  windowSize={21}
+/>
+`;

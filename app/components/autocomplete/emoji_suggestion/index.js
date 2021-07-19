@@ -12,7 +12,18 @@ import {selectEmojisByName} from '@selectors/emojis';
 
 import EmojiSuggestion from './emoji_suggestion';
 
-function mapStateToProps(state) {
+const appsTakeOverProps = {
+    emojis: [],
+    customEmojisEnabled: false,
+    theme: {},
+};
+
+function mapStateToProps(state, ownProps) {
+    if (ownProps.appsTakeOver) {
+        // Return empty values for the required fields.
+        return appsTakeOverProps;
+    }
+
     const emojis = selectEmojisByName(state);
 
     return {

@@ -1,6 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {UserProfile} from './users';
+
 export type AppManifest = {
     app_id: string;
     display_name: string;
@@ -175,6 +177,14 @@ export type AppField = {
     subtype?: string;
     min_length?: number;
     max_length?: number;
+};
+
+export type UserAutocomplete = {
+    users: UserProfile[];
+
+    // out_of_channel contains users that aren't in the given channel. It's only populated when autocompleting users in
+    // a given channel ID.
+    out_of_channel?: UserProfile[];
 };
 
 export type AutocompleteSuggestion = {

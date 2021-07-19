@@ -22,6 +22,7 @@ export default class DateSuggestion extends PureComponent {
         theme: PropTypes.object.isRequired,
         value: PropTypes.string,
         enableDateSuggestion: PropTypes.bool.isRequired,
+        appsTakeOver: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -51,6 +52,9 @@ export default class DateSuggestion extends PureComponent {
     };
 
     componentDidUpdate(prevProps) {
+        if (this.appsTakeOver) {
+            return;
+        }
         const {locale, matchTerm, enableDateSuggestion} = this.props;
         const {mentionComplete} = this.state;
 
@@ -138,6 +142,9 @@ export default class DateSuggestion extends PureComponent {
     };
 
     render() {
+        if (this.props.appsTakeOver) {
+            return null;
+        }
         const {active, calendarWidth} = this.state;
         const {theme} = this.props;
         const styles = getStyleFromTheme(theme);

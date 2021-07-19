@@ -15,12 +15,13 @@ import {sortByUsername} from '@mm-redux/utils/user_utils';
 
 import * as Autocomplete from 'app/constants/autocomplete';
 import {getCurrentLocale} from 'app/selectors/i18n';
+import {GlobalState} from '@mm-redux/types/store';
 
 export const getMatchTermForAtMention = (() => {
-    let lastMatchTerm = null;
-    let lastValue;
-    let lastIsSearch;
-    return (value, isSearch) => {
+    let lastMatchTerm: string | null = null;
+    let lastValue: string;
+    let lastIsSearch: boolean;
+    return (value: string, isSearch: boolean) => {
         if (value !== lastValue || isSearch !== lastIsSearch) {
             const regex = isSearch ? Autocomplete.AT_MENTION_SEARCH_REGEX : Autocomplete.AT_MENTION_REGEX;
             let term = value;
@@ -42,10 +43,10 @@ export const getMatchTermForAtMention = (() => {
 })();
 
 export const getMatchTermForChannelMention = (() => {
-    let lastMatchTerm = null;
-    let lastValue;
-    let lastIsSearch;
-    return (value, isSearch) => {
+    let lastMatchTerm: string | null = null;
+    let lastValue: string;
+    let lastIsSearch: boolean;
+    return (value: string, isSearch: boolean) => {
         if (value !== lastValue || isSearch !== lastIsSearch) {
             const regex = isSearch ? Autocomplete.CHANNEL_MENTION_SEARCH_REGEX : Autocomplete.CHANNEL_MENTION_REGEX;
             const match = value.match(regex);
@@ -54,7 +55,7 @@ export const getMatchTermForChannelMention = (() => {
             if (match) {
                 if (isSearch) {
                     lastMatchTerm = match[1].toLowerCase();
-                } else if (match.index > 0 && value[match.index - 1] === '~') {
+                } else if (match.index && match.index > 0 && value[match.index - 1] === '~') {
                     lastMatchTerm = null;
                 } else {
                     lastMatchTerm = match[2].toLowerCase();
@@ -69,7 +70,7 @@ export const getMatchTermForChannelMention = (() => {
 
 export const filterMembersInChannel = createSelector(
     getProfilesInCurrentChannel,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     (profilesInChannel, matchTerm) => {
         if (matchTerm === null) {
             return null;
@@ -96,7 +97,7 @@ export const filterMembersInChannel = createSelector(
 
 export const filterMembersNotInChannel = createSelector(
     getProfilesNotInCurrentChannel,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     (profilesNotInChannel, matchTerm) => {
         if (matchTerm === null) {
             return null;
@@ -128,7 +129,7 @@ export const filterMembersNotInChannel = createSelector(
 export const filterMembersInCurrentTeam = createSelector(
     getProfilesInCurrentTeam,
     getCurrentUser,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     (profilesInTeam, currentUser, matchTerm) => {
         if (matchTerm === null) {
             return null;
@@ -152,7 +153,7 @@ export const filterMembersInCurrentTeam = createSelector(
 
 export const filterMyChannels = createSelector(
     getMyChannels,
-    (state, opts) => opts,
+    (state: GlobalState, opts: any) => opts,
     (myChannels, matchTerm) => {
         if (matchTerm === null) {
             return null;
@@ -176,7 +177,7 @@ export const filterMyChannels = createSelector(
 
 export const filterOtherChannels = createSelector(
     getOtherChannels,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     (otherChannels, matchTerm) => {
         if (matchTerm === null) {
             return null;
@@ -199,7 +200,7 @@ export const filterPublicChannels = createSelector(
     getMyChannels,
     getOtherChannels,
     getCurrentLocale,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     getConfig,
     (myChannels, otherChannels, locale, matchTerm, config) => {
         if (matchTerm === null) {
@@ -231,7 +232,7 @@ export const filterPublicChannels = createSelector(
 
 export const filterPrivateChannels = createSelector(
     getMyChannels,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     getConfig,
     (myChannels, matchTerm, config) => {
         if (matchTerm === null) {
@@ -262,7 +263,7 @@ export const filterPrivateChannels = createSelector(
 export const filterDirectAndGroupMessages = createSelector(
     getMyChannels,
     (state) => state.entities.channels.channels,
-    (state, matchTerm) => matchTerm,
+    (state: GlobalState, matchTerm: string) => matchTerm,
     (myChannels, originalChannels, matchTerm) => {
         if (matchTerm === null) {
             return null;
@@ -294,9 +295,9 @@ export const filterDirectAndGroupMessages = createSelector(
 );
 
 export const makeGetMatchTermForDateMention = () => {
-    let lastMatchTerm = null;
-    let lastValue;
-    return (value) => {
+    let lastMatchTerm: string | null = null;
+    let lastValue: string;
+    return (value: string) => {
         if (value !== lastValue) {
             const regex = Autocomplete.DATE_MENTION_SEARCH_REGEX;
             const match = value.match(regex);

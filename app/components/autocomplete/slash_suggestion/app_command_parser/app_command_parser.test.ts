@@ -53,7 +53,7 @@ describe('AppCommandParser', () => {
     let parser: AppCommandParser;
     beforeEach(async () => {
         const store = await makeStore(testBindings);
-        parser = new AppCommandParser(store as any, intl, 'current_channel_id', 'root_id');
+        parser = new AppCommandParser(store as any, intl, 'current_channel_id', 'team_id', 'root_id');
     });
 
     type Variant = {

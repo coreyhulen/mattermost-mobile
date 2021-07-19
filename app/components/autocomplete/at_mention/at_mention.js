@@ -38,6 +38,7 @@ export default class AtMention extends PureComponent {
         nestedScrollEnabled: PropTypes.bool,
         useChannelMentions: PropTypes.bool.isRequired,
         groups: PropTypes.array,
+        appsTakeOver: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -64,6 +65,10 @@ export default class AtMention extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if (this.props.appsTakeOver) {
+            return;
+        }
+
         if (this.props.matchTerm !== prevProps.matchTerm) {
             if (this.props.matchTerm === null) {
                 this.updateSections([]);
@@ -245,6 +250,10 @@ export default class AtMention extends PureComponent {
     };
 
     render() {
+        if (this.props.appsTakeOver) {
+            return null;
+        }
+
         const {maxListHeight, theme, nestedScrollEnabled} = this.props;
         const {sections} = this.state;
         if (sections.length === 0) {

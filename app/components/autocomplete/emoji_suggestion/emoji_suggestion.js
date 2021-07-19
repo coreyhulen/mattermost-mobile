@@ -44,6 +44,7 @@ export default class EmojiSuggestion extends PureComponent {
         rootId: PropTypes.string,
         value: PropTypes.string,
         nestedScrollEnabled: PropTypes.bool,
+        appsTakeOver: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -65,6 +66,9 @@ export default class EmojiSuggestion extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
+        if (this.props.appsTakeOver) {
+            return;
+        }
         const {isSearch, emojis, cursorPosition, value} = this.props;
 
         if (isSearch) {
@@ -213,6 +217,9 @@ export default class EmojiSuggestion extends PureComponent {
     };
 
     render() {
+        if (this.props.appsTakeOver) {
+            return null;
+        }
         const {maxListHeight, theme, nestedScrollEnabled} = this.props;
 
         if (!this.state.active) {

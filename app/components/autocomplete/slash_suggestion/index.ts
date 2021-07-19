@@ -28,7 +28,20 @@ const mobileCommandsSelector = createSelector(
     },
 );
 
-function mapStateToProps(state: GlobalState) {
+const appsTakeOverProps = {
+    commands: [],
+    currentTeamId: '',
+    theme: {},
+    suggestions: [],
+    appsEnabled: true,
+};
+
+function mapStateToProps(state: GlobalState, ownProps: {appsTakeOver: boolean}) {
+    if (ownProps.appsTakeOver) {
+        // Return empty values for the required fields.
+        return appsTakeOverProps;
+    }
+
     return {
         commands: mobileCommandsSelector(state),
         currentTeamId: getCurrentTeamId(state),

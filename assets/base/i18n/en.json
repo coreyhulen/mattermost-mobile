@@ -26,7 +26,6 @@
   "apps.error.lookup.error_preparing_request": "Error preparing lookup request: {errorMessage}",
   "apps.error.parser": "Parsing error: {error}",
   "apps.error.parser.empty_value": "empty values are not allowed",
-  "apps.error.parser.missing_binding": "Missing command bindings.",
   "apps.error.parser.missing_call": "Missing binding call.",
   "apps.error.parser.missing_field_value": "Field value is missing.",
   "apps.error.parser.missing_quote": "Matching double quote expected before end of input.",

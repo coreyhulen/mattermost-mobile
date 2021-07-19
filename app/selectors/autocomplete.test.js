@@ -8,7 +8,7 @@ import {
     filterMembersNotInChannel,
     filterMembersInChannel,
     filterDirectAndGroupMessages,
-} from 'app/selectors/autocomplete';
+} from '@selectors/autocomplete';
 
 import {General} from '@mm-redux/constants';
 

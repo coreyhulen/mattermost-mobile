@@ -38,6 +38,7 @@ export type Props = {
     rootId?: string;
     channelId: string;
     appsEnabled: boolean;
+    appsTakeOver?: boolean;
 };
 
 type State = {
@@ -66,7 +67,7 @@ export default class SlashSuggestion extends PureComponent<Props, State> {
 
     constructor(props: Props, context: any) {
         super(props);
-        this.appCommandParser = new AppCommandParser(null, context.intl, props.channelId, props.rootId);
+        this.appCommandParser = new AppCommandParser(null, context.intl, props.channelId, props.currentTeamId, props.rootId);
     }
 
     setActive(active: boolean) {
@@ -78,6 +79,9 @@ export default class SlashSuggestion extends PureComponent<Props, State> {
     }
 
     componentDidUpdate(prevProps: Props) {
+        if (this.props.appsTakeOver) {
+            return;
+        }
         if ((this.props.value === prevProps.value && this.props.suggestions === prevProps.suggestions && this.props.commands === prevProps.commands) ||
             this.props.isSearch || this.props.value.startsWith('//') || !this.props.channelId) {
             return;
@@ -109,12 +113,9 @@ export default class SlashSuggestion extends PureComponent<Props, State> {
                 this.setLastCommandRequest(Date.now());
             }
 
-            this.showBaseCommands(nextValue, nextCommands, prevProps.channelId, prevProps.rootId);
+            this.showBaseCommands(nextValue, nextCommands, this.props.channelId, this.props.currentTeamId, this.props.rootId);
         } else if (isMinimumServerVersion(Client4.getServerVersion(), 5, 24)) {
-            // If this is an app command, then hand it off to the app command parser.
-            if (this.props.appsEnabled && this.isAppCommand(nextValue, prevProps.channelId, prevProps.rootId)) {
-                this.fetchAndShowAppCommandSuggestions(nextValue, prevProps.channelId, prevProps.rootId);
-            } else if (nextSuggestions === prevProps.suggestions) {
+            if (nextSuggestions === prevProps.suggestions) {
                 const args = {
                     channel_id: prevProps.channelId,
                     team_id: prevProps.currentTeamId,
@@ -135,11 +136,11 @@ export default class SlashSuggestion extends PureComponent<Props, State> {
         }
     }
 
-    showBaseCommands = (text: string, commands: Command[], channelID: string, rootID?: string) => {
+    showBaseCommands = (text: string, commands: Command[], channelID: string, teamID = '', rootID?: string) => {
         let matches: AutocompleteSuggestion[] = [];
 
         if (this.props.appsEnabled) {
-            const appCommands = this.getAppBaseCommandSuggestions(text, channelID, rootID);
+            const appCommands = this.getAppBaseCommandSuggestions(text, channelID, teamID, rootID);
             matches = matches.concat(appCommands);
         }
 
@@ -155,19 +156,8 @@ export default class SlashSuggestion extends PureComponent<Props, State> {
         this.updateSuggestions(matches);
     }
 
-    isAppCommand = (pretext: string, channelID: string, rootID?: string) => {
-        this.appCommandParser.setChannelContext(channelID, rootID);
-        return this.appCommandParser.isAppCommand(pretext);
-    }
-
-    fetchAndShowAppCommandSuggestions = async (pretext: string, channelID: string, rootID?: string) => {
-        this.appCommandParser.setChannelContext(channelID, rootID);
-        const suggestions = await this.appCommandParser.getSuggestions(pretext);
-        this.updateSuggestions(suggestions);
-    }
-
-    getAppBaseCommandSuggestions = (pretext: string, channelID: string, rootID?: string): AutocompleteSuggestion[] => {
-        this.appCommandParser.setChannelContext(channelID, rootID);
+    getAppBaseCommandSuggestions = (pretext: string, channelID: string, teamID = '', rootID?: string): AutocompleteSuggestion[] => {
+        this.appCommandParser.setChannelContext(channelID, teamID, rootID);
         const suggestions = this.appCommandParser.getSuggestionsBase(pretext);
         return suggestions;
     }
@@ -248,6 +238,9 @@ export default class SlashSuggestion extends PureComponent<Props, State> {
     )
 
     render() {
+        if (this.props.appsTakeOver) {
+            return null;
+        }
         const {maxListHeight, theme, nestedScrollEnabled} = this.props;
 
         if (!this.state.active) {

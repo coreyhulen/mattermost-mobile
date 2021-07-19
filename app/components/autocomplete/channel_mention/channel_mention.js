@@ -10,7 +10,7 @@ import {debounce} from '@mm-redux/actions/helpers';
 
 import {CHANNEL_MENTION_REGEX, CHANNEL_MENTION_SEARCH_REGEX} from 'app/constants/autocomplete';
 import AutocompleteSectionHeader from 'app/components/autocomplete/autocomplete_section_header';
-import ChannelMentionItem from 'app/components/autocomplete/channel_mention_item';
+import ChannelMentionItem from '@components/autocomplete/channel_mention_item';
 import {makeStyleSheetFromTheme} from 'app/utils/theme';
 import {t} from 'app/utils/i18n';
 
@@ -36,6 +36,7 @@ export default class ChannelMention extends PureComponent {
         theme: PropTypes.object.isRequired,
         value: PropTypes.string,
         nestedScrollEnabled: PropTypes.bool,
+        appsTakeOver: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -72,6 +73,9 @@ export default class ChannelMention extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if (this.props.appsTakeOver) {
+            return;
+        }
         const {isSearch, matchTerm, myChannels, otherChannels, privateChannels, publicChannels, directAndGroupMessages, requestStatus, myMembers} = this.props;
 
         if ((matchTerm !== prevProps.matchTerm && matchTerm === null) || (this.state.mentionComplete !== prevState.mentionComplete && this.state.mentionComplete)) {
@@ -211,6 +215,9 @@ export default class ChannelMention extends PureComponent {
     };
 
     render() {
+        if (this.props.appsTakeOver) {
+            return null;
+        }
         const {maxListHeight, theme, nestedScrollEnabled} = this.props;
         const {mentionComplete, sections} = this.state;
 

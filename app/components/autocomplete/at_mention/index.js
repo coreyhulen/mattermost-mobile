@@ -16,7 +16,7 @@ import {
     filterMembersNotInChannel,
     filterMembersInCurrentTeam,
     getMatchTermForAtMention,
-} from 'app/selectors/autocomplete';
+} from '@selectors/autocomplete';
 import {getTheme} from '@mm-redux/selectors/entities/preferences';
 
 import {haveIChannelPermission} from '@mm-redux/selectors/entities/roles';
@@ -24,7 +24,18 @@ import {Permissions} from '@mm-redux/constants';
 
 import AtMention from './at_mention';
 
+const appsTakeOverProps = {
+    currentTeamId: '',
+    requestStatus: '',
+    theme: {},
+    useChannelMentions: false,
+};
+
 function mapStateToProps(state, ownProps) {
+    if (ownProps.appsTakeOver) {
+        // Return empty values for the required fields.
+        return appsTakeOverProps;
+    }
     const {cursorPosition, isSearch} = ownProps;
     const currentChannelId = getCurrentChannelId(state);
     const currentTeamId = getCurrentTeamId(state);

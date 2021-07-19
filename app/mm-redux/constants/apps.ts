@@ -45,3 +45,7 @@ export const AppFieldTypes: { [name: string]: AppFieldType } = {
     CHANNEL: 'channel',
     MARKDOWN: 'markdown',
 };
+
+export const COMMAND_SUGGESTION_ERROR = 'error';
+export const COMMAND_SUGGESTION_CHANNEL = 'channel';
+export const COMMAND_SUGGESTION_USER = 'user';

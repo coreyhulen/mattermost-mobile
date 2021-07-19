@@ -36,6 +36,7 @@ export type Channel = {
     status?: string;
     fake?: boolean;
     group_constrained: boolean;
+    shared?: boolean;
 };
 export type ChannelWithTeamData = Channel & {
     team_display_name: string;

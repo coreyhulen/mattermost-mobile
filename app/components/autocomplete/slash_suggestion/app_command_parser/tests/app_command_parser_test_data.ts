@@ -89,7 +89,10 @@ export const reduxTestState = {
         general: {
             license: {IsLicensed: 'false'},
             serverVersion: '5.25.0',
-            config: {PostEditTimeLimit: -1},
+            config: {
+                PostEditTimeLimit: -1,
+                FeatureFlagAppsEnabled: 'true',
+            },
         },
     },
 };
