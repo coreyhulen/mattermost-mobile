@@ -99,6 +99,7 @@ const ViewTypes = keyMirror({
     LANDSCAPE: null,
 
     INDICATOR_BAR_VISIBLE: null,
+    CHANNEL_NAV_BAR_CHANGED: null,
 });
 
 const RequiredServer = {

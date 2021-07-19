@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/app_version should match snapshot 1`] = `
+<View
+  pointerEvents="none"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 12,
+        }
+      }
+    >
+      App Version: 0.0.0 (Build 0)
+    </Text>
+  </View>
+</View>
+`;

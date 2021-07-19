@@ -5,8 +5,7 @@ import {useManagedConfig, ManagedConfig} from '@mattermost/react-native-emm';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {
-    ActivityIndicator, EventSubscription, Image, Keyboard, KeyboardAvoidingView,
-    Platform, StatusBar, StyleSheet, TextInput, TouchableWithoutFeedback, View,
+    ActivityIndicator, EventSubscription, Image, Keyboard, KeyboardAvoidingView, Platform, StatusBar, StyleSheet, TextInput, TouchableWithoutFeedback, View,
 } from 'react-native';
 import Button from 'react-native-button';
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';

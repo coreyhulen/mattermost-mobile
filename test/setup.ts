@@ -7,8 +7,9 @@ import * as ReactNative from 'react-native';
 
 import MockAsyncStorage from 'mock-async-storage';
 import 'react-native-gesture-handler/jestSetup';
-require('react-native-reanimated/lib/reanimated2/jestUtils').setUpTests();
+import {Client} from '@client/rest';
 
+require('react-native-reanimated/lib/reanimated2/jestUtils').setUpTests();
 require('isomorphic-fetch');
 
 // @ts-expect-error no window exist in global
@@ -311,6 +312,13 @@ jest.mock('@screens/navigation', () => ({
 }));
 
 jest.mock('@mattermost/react-native-emm');
+
+jest.mock('@init/network_manager', () => {
+    return {
+        getClient: () => {},
+        init: () => {},
+    };
+});
 
 declare const global: {requestAnimationFrame: (callback: any) => void};
 global.requestAnimationFrame = (callback) => {

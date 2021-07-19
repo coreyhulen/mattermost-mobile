@@ -706,7 +706,7 @@ SPEC CHECKSUMS:
   EXFileSystem: 0a04aba8da751b9ac954065911bcf166503f8267
   ExpoModulesCore: 2734852616127a6c1fc23012197890a6f3763dc7
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: cef0cc6d50abc92e8cf52f140aa22b5371cfec0b
+  FBReactNativeSpec: d35931295aacfe996e833c01a3701d4aa7a80cb4
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   jail-monkey: feb2bdedc4d67312cd41a455c22661d804bba985
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0

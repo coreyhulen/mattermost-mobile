@@ -109,20 +109,19 @@ describe('Login', () => {
 
         await waitFor(() => fireEvent.press(loginButton), {timeout: 300});
 
-        expect(goToScreen).
-            toHaveBeenCalledWith(
-                'MFA',
-                'Multi-factor Authentication',
-                {
-                    goToChannel: expect.anything(),
-                    loginId,
-                    password,
-                    config: {EnableSignInWithEmail: 'true', EnableSignInWithUsername: 'true'},
-                    license: {IsLicensed: 'false'},
-                    serverUrl: baseProps.serverUrl,
-                    theme: baseProps.theme,
-                },
-            );
+        expect(goToScreen).toHaveBeenCalledWith(
+            'MFA',
+            'Multi-factor Authentication',
+            {
+                goToChannel: expect.anything(),
+                loginId,
+                password,
+                config: {EnableSignInWithEmail: 'true', EnableSignInWithUsername: 'true'},
+                license: {IsLicensed: 'false'},
+                serverUrl: baseProps.serverUrl,
+                theme: baseProps.theme,
+            },
+        );
     });
 
     test('should go to ForgotPassword screen when forgotPassword is called', () => {

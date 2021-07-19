@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/emoji should match snapshot 1`] = `
+<Text
+  style={
+    Array [
+      undefined,
+      Object {
+        "fontSize": 24,
+      },
+    ]
+  }
+>
+  😃
+</Text>
+`;

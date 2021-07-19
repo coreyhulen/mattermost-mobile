@@ -9,6 +9,7 @@ import General from './general';
 import List from './list';
 import Navigation from './navigation';
 import Network from './network';
+import Post from './posts';
 import Preferences from './preferences';
 import Screens from './screens';
 import SSO, {REDIRECT_URL_SCHEME, REDIRECT_URL_SCHEME_DEV} from './sso';
@@ -24,11 +25,12 @@ export {
     List,
     Navigation,
     Network,
+    Post,
     Preferences,
     REDIRECT_URL_SCHEME,
     REDIRECT_URL_SCHEME_DEV,
-    Screens,
     SSO,
+    Screens,
     Upgrade,
     View,
     WebsocketEvents,

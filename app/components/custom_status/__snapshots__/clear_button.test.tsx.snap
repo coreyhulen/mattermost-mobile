@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/custom_status/clear_button should match snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": 40,
+      "justifyContent": "center",
+      "opacity": 1,
+      "width": 40,
+    }
+  }
+  testID="clear.button.touchable"
+>
+  <Icon
+    name="close-circle"
+    size={20}
+    style={
+      Object {
+        "borderRadius": 1000,
+        "color": "rgba(61,60,64,0.52)",
+      }
+    }
+  />
+</View>
+`;

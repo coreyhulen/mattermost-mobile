@@ -6,7 +6,8 @@ import {getTimeZone} from 'react-native-localize';
 import DatabaseManager from '@database/manager';
 import {queryUserById} from '@queries/servers/user';
 import {updateMe} from '@actions/remote/user';
-import User from '@typings/database/models/servers/user';
+
+import type UserModel from '@typings/database/models/servers/user';
 
 export const isTimezoneEnabled = (config: Partial<ClientConfig>) => {
     return config?.ExperimentalTimezone === 'true';
@@ -33,13 +34,13 @@ export const autoUpdateTimezone = async (serverUrl: string, {deviceTimezone, use
 
     if (currentTimezone.useAutomaticTimezone && newTimezoneExists) {
         const timezone = {useAutomaticTimezone: 'true', automaticTimezone: deviceTimezone, manualTimezone: currentTimezone.manualTimezone};
-        const updatedUser = {...currentUser, timezone} as User;
+        const updatedUser = {...currentUser, timezone} as UserModel;
         await updateMe(serverUrl, updatedUser);
     }
     return null;
 };
 
-export const getUserTimezone = (currentUser: User) => {
+export const getUserTimezone = (currentUser: UserModel) => {
     if (currentUser?.timezone) {
         return {
             ...currentUser?.timezone,

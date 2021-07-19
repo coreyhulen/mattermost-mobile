@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 
 import {createElement, isValidElement} from 'react';
-import {StyleProp, Text, TextStyle, ViewStyle} from 'react-native';
+import {StyleProp, Text, TextProps, TextStyle, ViewStyle} from 'react-native';
 import {useIntl} from 'react-intl';
 
-type FormattedTextProps = {
+type FormattedTextProps = TextProps & {
     id: string;
     defaultMessage: string;
     values?: Record<string, any>;

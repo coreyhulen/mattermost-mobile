@@ -18,9 +18,7 @@ type State = {
 
 const {SERVERS} = MM_TABLES.APP;
 
-export function withServerDatabase<T>(
-    Component: ComponentType<T>,
-): ComponentType<T> {
+export function withServerDatabase<T>(Component: ComponentType<T>): ComponentType<T> {
     return function ServerDatabaseComponent(props) {
         const [state, setState] = useState<State|undefined>();
         const db = DatabaseManager.appDatabase?.database;
