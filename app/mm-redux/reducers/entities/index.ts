@@ -19,6 +19,7 @@ import roles from './roles';
 import groups from './groups';
 import bots from './bots';
 import channelCategories from './channel_categories';
+import threads from './threads';
 import remoteCluster from './remote_cluster';
 import apps from './apps';
 
@@ -39,6 +40,7 @@ export default combineReducers({
     groups,
     bots,
     channelCategories,
+    threads,
     remoteCluster,
     apps,
 });

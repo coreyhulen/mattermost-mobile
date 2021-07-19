@@ -7,6 +7,8 @@ import {Error} from './errors';
 export type TeamMembership = {
     mention_count: number;
     msg_count: number;
+    mention_count_root: number;
+    msg_count_root: number;
     team_id: string;
     user_id: string;
     roles: string;
@@ -55,4 +57,6 @@ export type TeamUnread = {
     team_id: string;
     mention_count: number;
     msg_count: number;
+    mention_count_root: number;
+    msg_count_root: number;
 };

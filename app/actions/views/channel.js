@@ -18,7 +18,6 @@ import {addUserToTeam, getTeamByName, removeUserFromTeam, selectTeam} from '@mm-
 import {Client4} from '@client/rest';
 import {General, Preferences} from '@mm-redux/constants';
 import {getPostIdsInChannel} from '@mm-redux/selectors/entities/posts';
-import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 import {
     getCurrentChannelId,
     getRedirectChannelNameForTeam,
@@ -26,21 +25,25 @@ import {
     getMyChannelMemberships,
     isManuallyUnread,
 } from '@mm-redux/selectors/entities/channels';
-import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
+import {isCollapsedThreadsEnabled} from '@mm-redux/selectors/entities/preferences';
 import {getTeamByName as selectTeamByName, getCurrentTeam, getTeamMemberships} from '@mm-redux/selectors/entities/teams';
-
+import {getCurrentUserId} from '@mm-redux/selectors/entities/users';
 import {getChannelByName as selectChannelByName, getChannelsIdForTeam} from '@mm-redux/utils/channel_utils';
 import EventEmitter from '@mm-redux/utils/event_emitter';
+import {isMinimumServerVersion} from '@mm-redux/utils/helpers';
 
 import {lastChannelIdForTeam, loadSidebarDirectMessagesProfiles} from '@actions/helpers/channels';
 import {getPosts, getPostsBefore, getPostsSince, loadUnreadChannelPosts} from '@actions/views/post';
 import {INSERT_TO_COMMENT, INSERT_TO_DRAFT} from '@constants/post_draft';
 import {getChannelReachable} from '@selectors/channel';
+import {getViewingGlobalThreads} from '@selectors/threads';
 import telemetry, {PERF_MARKERS} from '@telemetry';
 import {isDirectChannelVisible, isGroupChannelVisible, getChannelSinceValue, privateChannelJoinPrompt} from '@utils/channels';
 import {isPendingPost} from '@utils/general';
 import {fetchAppBindings} from '@mm-redux/actions/apps';
 import {appsEnabled} from '@utils/apps';
+
+import {handleNotViewingGlobalThreadsScreen} from './threads';
 
 const MAX_RETRIES = 3;
 
@@ -124,9 +127,11 @@ export function fetchPostActionWithRetry(action, maxTries = MAX_RETRIES) {
 export function selectInitialChannel(teamId) {
     return (dispatch, getState) => {
         const state = getState();
-        const channelId = lastChannelIdForTeam(state, teamId);
-
-        dispatch(handleSelectChannel(channelId));
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
+        if (!collapsedThreadsEnabled || (collapsedThreadsEnabled && !getViewingGlobalThreads(state))) {
+            const channelId = lastChannelIdForTeam(state, teamId);
+            dispatch(handleSelectChannel(channelId));
+        }
     };
 }
 
@@ -219,6 +224,9 @@ export function handleSelectChannel(channelId) {
                     teamId: channel.team_id || currentTeamId,
                 },
             });
+            if (getViewingGlobalThreads(state)) {
+                actions.push(handleNotViewingGlobalThreadsScreen());
+            }
 
             dispatch(batchActions(actions, 'BATCH_SWITCH_CHANNEL'));
 
@@ -376,6 +384,7 @@ export function markAsViewedAndReadBatch(state, channelId, prevChannelId = '', m
 
         if (channel) {
             const unreadMessageCount = channel.total_msg_count - member.msg_count;
+            const unreadMessageCountRoot = channel.total_msg_count_root - member.msg_count_root;
             actions.push({
                 type: ChannelTypes.SET_UNREAD_MSG_COUNT,
                 data: {
@@ -388,6 +397,7 @@ export function markAsViewedAndReadBatch(state, channelId, prevChannelId = '', m
                     teamId: channel.team_id,
                     channelId,
                     amount: unreadMessageCount,
+                    amountRoot: unreadMessageCountRoot,
                 },
             }, {
                 type: ChannelTypes.DECREMENT_UNREAD_MENTION_COUNT,
@@ -395,6 +405,7 @@ export function markAsViewedAndReadBatch(state, channelId, prevChannelId = '', m
                     teamId: channel.team_id,
                     channelId,
                     amount: member.mention_count,
+                    amountRoot: member.mention_count_root,
                 },
             });
         }
@@ -415,6 +426,7 @@ export function markAsViewedAndReadBatch(state, channelId, prevChannelId = '', m
                     teamId: prevChannel.team_id,
                     channelId: prevChannelId,
                     amount: prevChannel.total_msg_count - prevMember.msg_count,
+                    amountRoot: prevChannel.total_msg_count_root - prevMember.msg_count_root,
                 },
             }, {
                 type: ChannelTypes.DECREMENT_UNREAD_MENTION_COUNT,
@@ -422,6 +434,7 @@ export function markAsViewedAndReadBatch(state, channelId, prevChannelId = '', m
                     teamId: prevChannel.team_id,
                     channelId: prevChannelId,
                     amount: prevMember.mention_count,
+                    amountRoot: prevMember.mention_count_root,
                 },
             });
         }

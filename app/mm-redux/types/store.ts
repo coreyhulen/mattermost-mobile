@@ -19,6 +19,7 @@ import {Bot} from './bots';
 import {ChannelCategoriesState} from './channel_categories';
 import {RemoteCluster} from './remote_cluster';
 import {Dictionary} from './utilities';
+import {ThreadsState} from './threads';
 import {AppsState} from './apps';
 
 export type GlobalState = {
@@ -28,6 +29,7 @@ export type GlobalState = {
         teams: TeamsState;
         channels: ChannelsState;
         posts: PostsState;
+        threads: ThreadsState;
         bots: {
             accounts: Dictionary<Bot>;
         };

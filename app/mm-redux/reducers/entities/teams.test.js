@@ -15,9 +15,9 @@ describe('Reducers.teams.myMembers', () => {
     });
 
     it('RECEIVED_MY_TEAM_MEMBER', async () => {
-        const myMember1 = {user_id: 'user_id_1', team_id: 'team_id_1', delete_at: 0, mention_count: 0, msg_count: 0};
-        const myMember2 = {user_id: 'user_id_2', team_id: 'team_id_2', delete_at: 0, mention_count: 0, msg_count: 0};
-        const myMember3 = {user_id: 'user_id_3', team_id: 'team_id_3', delete_at: 1, mention_count: 0, msg_count: 0};
+        const myMember1 = {user_id: 'user_id_1', team_id: 'team_id_1', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
+        const myMember2 = {user_id: 'user_id_2', team_id: 'team_id_2', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
+        const myMember3 = {user_id: 'user_id_3', team_id: 'team_id_3', delete_at: 1, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
 
         let state = {myMembers: {team_id_1: myMember1}};
         const testAction = {
@@ -36,9 +36,9 @@ describe('Reducers.teams.myMembers', () => {
 
     it('RECEIVED_MY_TEAM_MEMBERS', async () => {
         let state = {};
-        const myMember1 = {user_id: 'user_id_1', team_id: 'team_id_1', delete_at: 0, mention_count: 0, msg_count: 0};
-        const myMember2 = {user_id: 'user_id_2', team_id: 'team_id_2', delete_at: 0, mention_count: 0, msg_count: 0};
-        const myMember3 = {user_id: 'user_id_3', team_id: 'team_id_3', delete_at: 1, mention_count: 0, msg_count: 0};
+        const myMember1 = {user_id: 'user_id_1', team_id: 'team_id_1', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
+        const myMember2 = {user_id: 'user_id_2', team_id: 'team_id_2', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
+        const myMember3 = {user_id: 'user_id_3', team_id: 'team_id_3', delete_at: 1, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
         const testAction = {
             type: TeamTypes.RECEIVED_MY_TEAM_MEMBERS,
             data: [myMember1, myMember2, myMember3],
@@ -85,9 +85,9 @@ describe('Reducers.teams.myMembers', () => {
     });
 
     it('RECEIVED_TEAMS', async () => {
-        const myMember1 = {user_id: 'user_id_1', team_id: 'team_id_1', delete_at: 0, mention_count: 0, msg_count: 0};
-        const myMember2 = {user_id: 'user_id_2', team_id: 'team_id_2', delete_at: 0, mention_count: 0, msg_count: 0};
-        const myMember3 = {user_id: 'user_id_3', team_id: 'team_id_3', delete_at: 0, mention_count: 0, msg_count: 0};
+        const myMember1 = {user_id: 'user_id_1', team_id: 'team_id_1', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
+        const myMember2 = {user_id: 'user_id_2', team_id: 'team_id_2', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
+        const myMember3 = {user_id: 'user_id_3', team_id: 'team_id_3', delete_at: 0, mention_count: 0, mention_count_root: 0, msg_count: 0, msg_count_root: 0};
 
         let state = {myMembers: {team_id_1: myMember1, team_id_2: myMember2}};
 

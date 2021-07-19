@@ -3,7 +3,7 @@
 
 import * as reselect from 'reselect';
 import {General, Preferences} from '../../constants';
-import {getConfig, getLicense} from '@mm-redux/selectors/entities/general';
+import {getConfig, getFeatureFlagValue, getLicense} from '@mm-redux/selectors/entities/general';
 import {getCurrentTeamId} from '@mm-redux/selectors/entities/teams';
 import {createShallowSelector} from '@mm-redux/utils/helpers';
 import {getPreferenceKey} from '@mm-redux/utils/preference_utils';
@@ -264,4 +264,33 @@ export function shouldAutocloseDMs(state: GlobalState) {
 
     const preference = get(state, Preferences.CATEGORY_SIDEBAR_SETTINGS, Preferences.CHANNEL_SIDEBAR_AUTOCLOSE_DMS, Preferences.AUTOCLOSE_DMS_ENABLED);
     return preference === Preferences.AUTOCLOSE_DMS_ENABLED;
+}
+
+export function getCollapsedThreadsPreference(state: GlobalState): string {
+    const configValue = getConfig(state)?.CollapsedThreads;
+    let preferenceDefault = Preferences.COLLAPSED_REPLY_THREADS_OFF;
+
+    if (configValue === 'default_on') {
+        preferenceDefault = Preferences.COLLAPSED_REPLY_THREADS_ON;
+    }
+
+    return get(
+        state,
+        Preferences.CATEGORY_DISPLAY_SETTINGS,
+        Preferences.COLLAPSED_REPLY_THREADS,
+        preferenceDefault ?? Preferences.COLLAPSED_REPLY_THREADS_FALLBACK_DEFAULT,
+    );
+}
+
+export function isCollapsedThreadsAllowed(state: GlobalState): boolean {
+    return (
+        getFeatureFlagValue(state, 'CollapsedThreads') === 'true' &&
+        getConfig(state).CollapsedThreads !== 'disabled'
+    );
+}
+
+export function isCollapsedThreadsEnabled(state: GlobalState): boolean {
+    const isAllowed = isCollapsedThreadsAllowed(state);
+    const userPreference = getCollapsedThreadsPreference(state);
+    return isAllowed && (userPreference === Preferences.COLLAPSED_REPLY_THREADS_ON || getConfig(state).CollapsedThreads as string === 'always_on');
 }

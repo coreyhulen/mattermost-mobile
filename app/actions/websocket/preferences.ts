@@ -2,6 +2,8 @@
 // See LICENSE.txt for license information.
 
 import {getAddedDmUsersIfNecessary} from '@actions/helpers/channels';
+import {handleCRTPreferenceChange} from '@actions/views/crt';
+
 import {getPost} from '@actions/views/post';
 import {PreferenceTypes} from '@mm-redux/action_types';
 import {Preferences} from '@mm-redux/constants';
@@ -17,12 +19,15 @@ export function handlePreferenceChangedEvent(msg: WebSocketMessage) {
             type: PreferenceTypes.RECEIVED_PREFERENCES,
             data: [preference],
         }];
-
-        const dmActions = await getAddedDmUsersIfNecessary(getState(), [preference]);
+        const crtPreferenceChanged = dispatch(handleCRTPreferenceChange([preference])) as ActionResult;
+        if (crtPreferenceChanged.data) {
+            return {data: true};
+        }
+        const state = getState();
+        const dmActions = await getAddedDmUsersIfNecessary(state, [preference]);
         if (dmActions.length) {
             actions.push(...dmActions);
         }
-
         dispatch(batchActions(actions, 'BATCH_WS_PREFERENCE_CHANGED'));
         return {data: true};
     };
@@ -43,7 +48,13 @@ export function handlePreferencesChangedEvent(msg: WebSocketMessage) {
             }
         });
 
-        const dmActions = await getAddedDmUsersIfNecessary(getState(), preferences);
+        const crtPreferenceChanged = dispatch(handleCRTPreferenceChange(preferences)) as ActionResult;
+        if (crtPreferenceChanged.data) {
+            return {data: true};
+        }
+
+        const state = getState();
+        const dmActions = await getAddedDmUsersIfNecessary(state, preferences);
         if (dmActions.length) {
             actions.push(...dmActions);
         }

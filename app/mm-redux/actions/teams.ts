@@ -152,6 +152,8 @@ export function createTeam(team: Team): ActionFunc {
             delete_at: 0,
             msg_count: 0,
             mention_count: 0,
+            msg_count_root: 0,
+            mention_count_root: 0,
         };
 
         dispatch(batchActions([

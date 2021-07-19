@@ -5,12 +5,15 @@
 import {Client4} from '@client/rest';
 import {General, Preferences, Posts} from '@mm-redux/constants';
 import {WebsocketEvents} from '@constants';
+import {THREAD} from '@constants/screen';
+import {handleFollowChanged, updateThreadRead} from '@mm-redux/actions/threads';
 import {PostTypes, ChannelTypes, FileTypes, IntegrationTypes} from '@mm-redux/action_types';
 
 import {getCurrentChannelId, getMyChannelMember as getMyChannelMemberSelector, isManuallyUnread} from '@mm-redux/selectors/entities/channels';
 import {getCustomEmojisByName as selectCustomEmojisByName} from '@mm-redux/selectors/entities/emojis';
 import {getConfig} from '@mm-redux/selectors/entities/general';
 import * as Selectors from '@mm-redux/selectors/entities/posts';
+import {getThreadTeamId} from '@mm-redux/selectors/entities/threads';
 import {getCurrentUserId, getUsersByUsername} from '@mm-redux/selectors/entities/users';
 
 import {getUserIdFromChannelName} from '@mm-redux/utils/channel_utils';
@@ -31,6 +34,7 @@ import {
     savePreferences,
 } from './preferences';
 import {getProfilesByIds, getProfilesByUsernames, getStatusesByIds} from './users';
+import {isCollapsedThreadsEnabled} from '@mm-redux/selectors/entities/preferences';
 import {Action, ActionResult, batchActions, DispatchFunc, GetStateFunc, GenericAction} from '@mm-redux/types/actions';
 import {ChannelUnread} from '@mm-redux/types/channels';
 import {GlobalState} from '@mm-redux/types/store';
@@ -51,10 +55,11 @@ export function receivedPost(post: Post) {
 
 // receivedNewPost should be dispatched when receiving a newly created post or when sending a request to the server
 // to make a new post.
-export function receivedNewPost(post: Post) {
+export function receivedNewPost(post: Post, collapsedThreadsEnabled: boolean) {
     return {
         type: PostTypes.RECEIVED_NEW_POST,
         data: post,
+        features: {collapsedThreadsEnabled},
     };
 }
 
@@ -206,12 +211,14 @@ export function createPost(post: Post, files: any[] = []) {
             });
         }
 
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
         actions.push({
             type: PostTypes.RECEIVED_NEW_POST,
             data: {
                 ...newPost,
                 id: pendingPostId,
             },
+            features: {collapsedThreadsEnabled},
         });
 
         dispatch(batchActions(actions, 'BATCH_CREATE_POST_INIT'));
@@ -226,6 +233,7 @@ export function createPost(post: Post, files: any[] = []) {
                     data: {
                         channelId: newPost.channel_id,
                         amount: 1,
+                        amountRoot: created.root_id === '' ? 1 : 0,
                     },
                 },
                 {
@@ -233,6 +241,7 @@ export function createPost(post: Post, files: any[] = []) {
                     data: {
                         channelId: newPost.channel_id,
                         amount: 1,
+                        amountRoot: created.root_id === '' ? 1 : 0,
                     },
                 },
             ];
@@ -304,11 +313,12 @@ export function createPostImmediately(post: Post, files: any[] = []) {
             });
         }
 
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
         dispatch(
             receivedNewPost({
                 ...newPost,
                 id: pendingPostId,
-            }),
+            }, collapsedThreadsEnabled),
         );
 
         try {
@@ -321,6 +331,7 @@ export function createPostImmediately(post: Post, files: any[] = []) {
                     data: {
                         channelId: newPost.channel_id,
                         amount: 1,
+                        amountRoot: newPost.root_id === '' ? 1 : 0,
                     },
                 },
                 {
@@ -328,6 +339,7 @@ export function createPostImmediately(post: Post, files: any[] = []) {
                     data: {
                         channelId: newPost.channel_id,
                         amount: 1,
+                        amountRoot: newPost.root_id === '' ? 1 : 0,
                     },
                 },
             ];
@@ -406,29 +418,42 @@ export function editPost(post: Post) {
 export function getUnreadPostData(unreadChan: ChannelUnread, state: GlobalState) {
     const member = getMyChannelMemberSelector(state, unreadChan.channel_id);
     const delta = member ? member.msg_count - unreadChan.msg_count : unreadChan.msg_count;
+    const deltaRoot = member ? member.msg_count_root - unreadChan.msg_count_root : unreadChan.msg_count_root;
 
     const data = {
         teamId: unreadChan.team_id,
         channelId: unreadChan.channel_id,
         msgCount: unreadChan.msg_count,
         mentionCount: unreadChan.mention_count,
+        msgCountRoot: unreadChan.msg_count_root,
+        mentionCountRoot: unreadChan.mention_count_root,
         lastViewedAt: unreadChan.last_viewed_at,
         deltaMsgs: delta,
+        deltaMsgsRoot: deltaRoot,
     };
 
     return data;
 }
 
-export function setUnreadPost(userId: string, postId: string) {
+export function setUnreadPost(userId: string, postId: string, location: string) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let state = getState();
         const post = Selectors.getPost(state, postId);
         let unreadChan;
-
         try {
             if (isCombinedUserActivityPost(postId)) {
                 return {};
             }
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
+            const isUnreadFromThreadScreen = collapsedThreadsEnabled && location === THREAD;
+            if (isUnreadFromThreadScreen) {
+                const currentTeamId = getThreadTeamId(state, postId);
+                const threadId = post.root_id || post.id;
+                dispatch(handleFollowChanged(threadId, currentTeamId, true));
+                await dispatch(updateThreadRead(userId, threadId, post.create_at));
+                return {data: true};
+            }
+
             unreadChan = await Client4.markPostAsUnread(userId, postId);
             dispatch({
                 type: ChannelTypes.ADD_MANUALLY_UNREAD,
@@ -667,13 +692,14 @@ export function flagPost(postId: string) {
     };
 }
 
-export function getPostThread(rootId: string) {
+export function getPostThread(rootId: string, fetchThreads = true) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         dispatch({type: PostTypes.GET_POST_THREAD_REQUEST});
 
         let posts;
         try {
-            posts = await Client4.getPostThread(rootId);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            posts = await Client4.getPostThread(rootId, fetchThreads, collapsedThreadsEnabled);
             getProfilesAndStatusesForPosts(posts.posts, dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -696,12 +722,12 @@ export function getPostThread(rootId: string) {
     };
 }
 
-export function getPosts(channelId: string, page = 0, perPage = Posts.POST_CHUNK_SIZE) {
+export function getPosts(channelId: string, page = 0, perPage = Posts.POST_CHUNK_SIZE, fetchThreads = true, collapsedThreadsExtended = false) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let posts;
-
         try {
-            posts = await Client4.getPosts(channelId, page, perPage);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            posts = await Client4.getPosts(channelId, page, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             getProfilesAndStatusesForPosts(posts.posts, dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -718,11 +744,40 @@ export function getPosts(channelId: string, page = 0, perPage = Posts.POST_CHUNK
     };
 }
 
-export function getPostsSince(channelId: string, since: number) {
+export function getPostsUnread(channelId: string, fetchThreads = true, collapsedThreadsExtended = false) {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        const userId = getCurrentUserId(getState());
+        let posts;
+        try {
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            posts = await Client4.getPostsUnread(channelId, userId, undefined, undefined, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
+            getProfilesAndStatusesForPosts(posts.posts, dispatch, getState);
+        } catch (error) {
+            forceLogoutIfNecessary(error, dispatch, getState);
+            dispatch(logError(error));
+            return {error};
+        }
+
+        dispatch(batchActions([
+            receivedPosts(posts),
+            receivedPostsInChannel(posts, channelId, posts.next_post_id === '', posts.prev_post_id === ''),
+        ]));
+        dispatch({
+            type: PostTypes.RECEIVED_POSTS,
+            data: posts,
+            channelId,
+        });
+
+        return {data: posts};
+    };
+}
+
+export function getPostsSince(channelId: string, since: number, fetchThreads = true, collapsedThreadsExtended = false) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let posts;
         try {
-            posts = await Client4.getPostsSince(channelId, since);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            posts = await Client4.getPostsSince(channelId, since, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             getProfilesAndStatusesForPosts(posts.posts, dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -742,11 +797,12 @@ export function getPostsSince(channelId: string, since: number) {
     };
 }
 
-export function getPostsBefore(channelId: string, postId: string, page = 0, perPage = Posts.POST_CHUNK_SIZE) {
+export function getPostsBefore(channelId: string, postId: string, page = 0, perPage = Posts.POST_CHUNK_SIZE, fetchThreads = true, collapsedThreadsExtended = false) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let posts;
         try {
-            posts = await Client4.getPostsBefore(channelId, postId, page, perPage);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            posts = await Client4.getPostsBefore(channelId, postId, page, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             getProfilesAndStatusesForPosts(posts.posts, dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -763,11 +819,12 @@ export function getPostsBefore(channelId: string, postId: string, page = 0, perP
     };
 }
 
-export function getPostsAfter(channelId: string, postId: string, page = 0, perPage = Posts.POST_CHUNK_SIZE) {
+export function getPostsAfter(channelId: string, postId: string, page = 0, perPage = Posts.POST_CHUNK_SIZE, fetchThreads = true, collapsedThreadsExtended = false) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let posts;
         try {
-            posts = await Client4.getPostsAfter(channelId, postId, page, perPage);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            posts = await Client4.getPostsAfter(channelId, postId, page, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             getProfilesAndStatusesForPosts(posts.posts, dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -790,17 +847,18 @@ export type CombinedPostList = {
     prev_post_id: string;
 }
 
-export function getPostsAround(channelId: string, postId: string, perPage = Posts.POST_CHUNK_SIZE / 2) {
+export function getPostsAround(channelId: string, postId: string, perPage = Posts.POST_CHUNK_SIZE / 2, fetchThreads = true, collapsedThreadsExtended = false) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let after;
         let thread;
         let before;
 
         try {
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
             [after, thread, before] = await Promise.all([
-                Client4.getPostsAfter(channelId, postId, 0, perPage),
-                Client4.getPostThread(postId),
-                Client4.getPostsBefore(channelId, postId, 0, perPage),
+                Client4.getPostsAfter(channelId, postId, 0, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended),
+                Client4.getPostThread(postId, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended),
+                Client4.getPostsBefore(channelId, postId, 0, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended),
             ]);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -837,7 +895,7 @@ export function getPostsAround(channelId: string, postId: string, perPage = Post
 
 // getThreadsForPosts is intended for an array of posts that have been batched
 // (see the actions/websocket_actions/handleNewPostEvents function in the webapp)
-export function getThreadsForPosts(posts: Array<Post>) {
+export function getThreadsForPosts(posts: Array<Post>, fetchThreads = true) {
     return (dispatch: DispatchFunc, getState: GetStateFunc) => {
         if (!Array.isArray(posts) || !posts.length) {
             return {data: true};
@@ -853,7 +911,7 @@ export function getThreadsForPosts(posts: Array<Post>) {
 
             const rootPost = Selectors.getPost(state, post.root_id);
             if (!rootPost) {
-                promises.push(dispatch(getPostThread(post.root_id)));
+                promises.push(dispatch(getPostThread(post.root_id, fetchThreads)));
             }
         });
 
@@ -1226,8 +1284,9 @@ function completePostReceive(post: Post, websocketMessageProps: any) {
 export function lastPostActions(post: Post, websocketMessageProps: any) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         const state = getState();
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
         const actions = [
-            receivedNewPost(post),
+            receivedNewPost(post, collapsedThreadsEnabled),
             {
                 type: WebsocketEvents.STOP_TYPING,
                 data: {

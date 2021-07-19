@@ -360,7 +360,7 @@ describe('Actions.Posts', () => {
         };
 
         nock(Client4.getBaseRoute()).
-            get(`/posts/${post.id}/thread`).
+            get(`/posts/${post.id}/thread?skipFetchThreads=false&collapsedThreads=false&collapsedThreadsExtended=false`).
             reply(200, postList);
         await Actions.getPostThread(post.id)(store.dispatch, store.getState);
 
@@ -390,8 +390,8 @@ describe('Actions.Posts', () => {
         const post0 = {id: 'post0', channel_id: 'channel1', create_at: 1000, message: ''};
         const post1 = {id: 'post1', channel_id: 'channel1', create_at: 1001, message: ''};
         const post2 = {id: 'post2', channel_id: 'channel1', create_at: 1002, message: ''};
-        const post3 = {id: 'post3', channel_id: 'channel1', root_id: 'post2', create_at: 1003, message: ''};
-        const post4 = {id: 'post4', channel_id: 'channel1', root_id: 'post0', create_at: 1004, message: ''};
+        const post3 = {id: 'post3', channel_id: 'channel1', root_id: 'post2', create_at: 1003, message: '', user_id: 'user1'};
+        const post4 = {id: 'post4', channel_id: 'channel1', root_id: 'post0', create_at: 1004, message: '', user_id: 'user2'};
 
         const postList = {
             order: ['post4', 'post3', 'post2', 'post1'],
@@ -416,9 +416,9 @@ describe('Actions.Posts', () => {
         const state = store.getState();
 
         expect(state.entities.posts.posts).toEqual({
-            post0,
+            post0: {...post0, participants: [{id: 'user2'}]},
             post1,
-            post2,
+            post2: {...post2, participants: [{id: 'user1'}]},
             post3,
             post4,
         });
@@ -705,7 +705,7 @@ describe('Actions.Posts', () => {
         const post1 = {id: 'post1', channel_id: 'channel1', create_at: 1001, message: ''};
         const post2 = {id: 'post2', channel_id: 'channel1', create_at: 1002, message: ''};
         const post3 = {id: 'post3', channel_id: 'channel1', create_at: 1003, message: ''};
-        const post4 = {id: 'post4', channel_id: 'channel1', root_id: 'post0', create_at: 1004, message: ''};
+        const post4 = {id: 'post4', channel_id: 'channel1', root_id: 'post0', create_at: 1004, message: '', user_id: 'user1'};
 
         store = await configureStore({
             entities: {
@@ -745,7 +745,7 @@ describe('Actions.Posts', () => {
         const state = store.getState();
 
         expect(state.entities.posts.posts).toEqual({
-            post0,
+            post0: {...post0, participants: [{id: 'user1'}]},
             post1,
             post2,
             post3,
@@ -817,7 +817,7 @@ describe('Actions.Posts', () => {
         const channelId = 'channel1';
 
         const post1 = {id: 'post1', channel_id: channelId, create_at: 1001, message: ''};
-        const post2 = {id: 'post2', channel_id: channelId, root_id: 'post1', create_at: 1002, message: ''};
+        const post2 = {id: 'post2', channel_id: channelId, root_id: 'post1', create_at: 1002, message: '', user_id: 'user1'};
         const post3 = {id: 'post3', channel_id: channelId, create_at: 1003, message: ''};
 
         store = await configureStore({
@@ -854,7 +854,11 @@ describe('Actions.Posts', () => {
 
         const state = store.getState();
 
-        expect(state.entities.posts.posts).toEqual({post1, post2, post3});
+        expect(state.entities.posts.posts).toEqual({
+            post1: {...post1, participants: [{id: 'user1'}]},
+            post2,
+            post3,
+        });
         expect(state.entities.posts.postsInChannel.channel1).toEqual([
             {order: ['post3', 'post2', 'post1'], recent: false},
         ]);
@@ -867,7 +871,7 @@ describe('Actions.Posts', () => {
         const channelId = 'channel1';
 
         const post1 = {id: 'post1', channel_id: channelId, create_at: 1001, message: ''};
-        const post2 = {id: 'post2', channel_id: channelId, root_id: 'post1', create_at: 1002, message: ''};
+        const post2 = {id: 'post2', channel_id: channelId, root_id: 'post1', create_at: 1002, message: '', user_id: 'user1'};
         const post3 = {id: 'post3', channel_id: channelId, create_at: 1003, message: ''};
 
         store = await configureStore({
@@ -905,7 +909,11 @@ describe('Actions.Posts', () => {
 
         const state = store.getState();
 
-        expect(state.entities.posts.posts).toEqual({post1, post2, post3});
+        expect(state.entities.posts.posts).toEqual({
+            post1: {...post1, participants: [{id: 'user1'}]},
+            post2,
+            post3,
+        });
         expect(state.entities.posts.postsInChannel.channel1).toEqual([
             {order: ['post3', 'post2', 'post1'], recent: true},
         ]);
@@ -1129,7 +1137,7 @@ describe('Actions.Posts', () => {
         postList.posts[post1.id] = post1;
 
         nock(Client4.getBaseRoute()).
-            get(`/posts/${post1.id}/thread`).
+            get(`/posts/${post1.id}/thread?skipFetchThreads=false&collapsedThreads=false&collapsedThreadsExtended=false`).
             reply(200, postList);
         await Actions.getPostThread(post1.id)(dispatch, getState);
 
@@ -1168,7 +1176,7 @@ describe('Actions.Posts', () => {
         postList.posts[post1.id] = post1;
 
         nock(Client4.getBaseRoute()).
-            get(`/posts/${post1.id}/thread`).
+            get(`/posts/${post1.id}/thread?skipFetchThreads=false&collapsedThreads=false&collapsedThreadsExtended=false`).
             reply(200, postList);
         await Actions.getPostThread(post1.id)(dispatch, getState);
 
@@ -1607,7 +1615,7 @@ describe('Actions.Posts', () => {
             };
 
             nock(Client4.getBaseRoute()).
-                get(`/posts/${post1.id}/thread`).
+                get(`/posts/${post1.id}/thread?skipFetchThreads=false&collapsedThreads=false&collapsedThreadsExtended=false`).
                 reply(200, threadList);
         });
 

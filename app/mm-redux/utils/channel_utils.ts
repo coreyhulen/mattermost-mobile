@@ -35,7 +35,7 @@ const channelTypeOrder = {
  */
 export function buildDisplayableChannelListWithUnreadSection(usersState: UsersState, myChannels: Array<Channel>, myMembers: RelationOneToOne<Channel, ChannelMembership>, config: any, myPreferences: {
     [x: string]: PreferenceType;
-}, teammateNameDisplay: string, lastPosts: RelationOneToOne<Channel, Post>) {
+}, teammateNameDisplay: string, lastPosts: RelationOneToOne<Channel, Post>, collapsedThreadsEnabled: boolean) {
     const {
         currentUserId,
         profiles,
@@ -44,10 +44,10 @@ export function buildDisplayableChannelListWithUnreadSection(usersState: UsersSt
     const missingDirectChannels = createMissingDirectChannels(currentUserId, myChannels, myPreferences);
     const channels = buildChannels(usersState, myChannels, missingDirectChannels, teammateNameDisplay, locale);
     const unreadChannels = [...buildChannelsWithMentions(channels, myMembers, locale), ...buildUnreadChannels(channels, myMembers, locale)];
-    const notUnreadChannels = channels.filter((channel: Channel) => !isUnreadChannel(myMembers, channel));
+    const notUnreadChannels = channels.filter((channel: Channel) => !isUnreadChannel(myMembers, channel, collapsedThreadsEnabled));
     const favoriteChannels = buildFavoriteChannels(notUnreadChannels, myPreferences, locale);
     const notFavoriteChannels = buildNotFavoriteChannels(notUnreadChannels, myPreferences);
-    const directAndGroupChannels = buildDirectAndGroupChannels(notFavoriteChannels, myMembers, config, myPreferences, currentUserId, profiles, lastPosts);
+    const directAndGroupChannels = buildDirectAndGroupChannels(notFavoriteChannels, myMembers, config, myPreferences, currentUserId, profiles, lastPosts, collapsedThreadsEnabled);
     return {
         unreadChannels,
         favoriteChannels,
@@ -255,12 +255,13 @@ export function isGroupOrDirectChannelVisible(
     currentUserId: string,
     users: IDMappedObjects<UserProfile>,
     lastPosts: RelationOneToOne<Channel, Post>,
+    collapsedThreadsEnabled: boolean,
     currentChannelId?: string,
     now?: number,
 ): boolean {
     const lastPost = lastPosts[channel.id];
 
-    if (isGroupChannel(channel) && isGroupChannelVisible(config, myPreferences, channel, lastPost, isUnreadChannel(memberships, channel), now)) {
+    if (isGroupChannel(channel) && isGroupChannelVisible(config, myPreferences, channel, lastPost, isUnreadChannel(memberships, channel, collapsedThreadsEnabled), now)) {
         return true;
     }
 
@@ -276,7 +277,7 @@ export function isGroupOrDirectChannelVisible(
         myPreferences,
         channel,
         lastPost,
-        isUnreadChannel(memberships, channel),
+        isUnreadChannel(memberships, channel, collapsedThreadsEnabled),
         currentChannelId,
         now,
     );
@@ -476,6 +477,7 @@ function createFakeChannel(userId: string, otherUserId: string): Channel {
         extra_update_at: 0,
         last_post_at: 0,
         total_msg_count: 0,
+        total_msg_count_root: 0,
         type: General.DM_CHANNEL as ChannelType,
         fake: true,
         team_id: '',
@@ -556,12 +558,14 @@ function channelHasUnreadMessages(members: RelationOneToOne<Channel, ChannelMemb
     return false;
 }
 
-export function isUnreadChannel(members: RelationOneToOne<Channel, ChannelMembership>, channel: Channel): boolean {
+export function isUnreadChannel(members: RelationOneToOne<Channel, ChannelMembership>, channel: Channel, collapsedThreadsEnabled: boolean): boolean {
     const member = members[channel.id];
     if (member) {
-        const msgCount = channel.total_msg_count - member.msg_count;
+        const msgCount = getMsgCountInChannel(collapsedThreadsEnabled, channel, member);
         const onlyMentions = member.notify_props && member.notify_props.mark_unread === General.MENTION;
-        return (member.mention_count > 0 || (Boolean(msgCount) && !onlyMentions));
+        return (
+            collapsedThreadsEnabled ? member.mention_count_root : member.mention_count
+        ) > 0 || (Boolean(msgCount) && !onlyMentions);
     }
 
     return false;
@@ -697,9 +701,9 @@ function buildNotFavoriteChannels(channels: Array<Channel>, myPreferences: {
 
 function buildDirectAndGroupChannels(channels: Array<Channel>, memberships: RelationOneToOne<Channel, ChannelMembership>, config: any, myPreferences: {
     [x: string]: PreferenceType;
-}, currentUserId: string, users: IDMappedObjects<UserProfile>, lastPosts: RelationOneToOne<Channel, Post>): Array<Channel> {
+}, currentUserId: string, users: IDMappedObjects<UserProfile>, lastPosts: RelationOneToOne<Channel, Post>, collapsedThreadsEnabled: boolean): Array<Channel> {
     return channels.filter((channel) => {
-        return isGroupOrDirectChannelVisible(channel, memberships, config, myPreferences, currentUserId, users, lastPosts);
+        return isGroupOrDirectChannelVisible(channel, memberships, config, myPreferences, currentUserId, users, lastPosts, collapsedThreadsEnabled);
     });
 }
 
@@ -735,4 +739,8 @@ export function filterChannelsMatchingTerm(channels: Array<Channel>, term: strin
         return name.startsWith(lowercasedTerm) ||
             displayName.startsWith(lowercasedTerm);
     });
+}
+
+export function getMsgCountInChannel(collapsedThreadsEnabled: boolean, channel: Channel, member: ChannelMembership): number {
+    return collapsedThreadsEnabled ? Math.max(channel.total_msg_count_root - member.msg_count_root, 0) : Math.max(channel.total_msg_count - member.msg_count, 0);
 }

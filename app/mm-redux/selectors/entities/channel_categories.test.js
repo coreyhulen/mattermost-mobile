@@ -312,6 +312,7 @@ describe('makeFilterAutoclosedDMs', () => {
             getCurrentUserId(state),
             state.entities.users.profiles,
             getLastPostPerChannel(state),
+            false,
             getCurrentChannelId(state),
             now,
         );

@@ -4,6 +4,7 @@
 import {batchActions} from 'redux-batched-actions';
 
 import {NavigationTypes} from 'app/constants';
+import {handleCRTPreferenceChange} from '@actions/views/crt';
 import {GeneralTypes, RoleTypes, UserTypes} from '@mm-redux/action_types';
 import {getDataRetentionPolicy} from '@mm-redux/actions/general';
 import * as HelperActions from '@mm-redux/actions/helpers';
@@ -98,26 +99,29 @@ export function loadMe(user, deviceToken, skipDispatch = false) {
             analytics.setUserId(data.user.id);
             analytics.setUserRoles(data.user.roles);
 
+            data.preferences = await Client4.getMyPreferences();
+            const crtPreferenceChanged = dispatch(handleCRTPreferenceChange(data.preferences));
+            if (crtPreferenceChanged.data) {
+                return {data};
+            }
+
             // Execute all other requests in parallel
             const teamsRequest = Client4.getMyTeams();
             const teamMembersRequest = Client4.getMyTeamMembers();
             const teamUnreadRequest = Client4.getMyTeamUnreads();
-            const preferencesRequest = Client4.getMyPreferences();
             const configRequest = Client4.getClientConfigOld();
             const actions = [];
 
-            const [teams, teamMembers, teamUnreads, preferences, config] = await Promise.all([
+            const [teams, teamMembers, teamUnreads, config] = await Promise.all([
                 teamsRequest,
                 teamMembersRequest,
                 teamUnreadRequest,
-                preferencesRequest,
                 configRequest,
             ]);
 
             data.teams = teams;
             data.teamMembers = teamMembers;
             data.teamUnreads = teamUnreads;
-            data.preferences = preferences;
             data.config = config;
             data.url = Client4.getUrl();
 

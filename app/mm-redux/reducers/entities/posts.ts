@@ -1,12 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {ChannelTypes, GeneralTypes, PostTypes} from '@mm-redux/action_types';
+import {ChannelTypes, GeneralTypes, PostTypes, ThreadTypes} from '@mm-redux/action_types';
 import {Posts} from '../../constants';
 import {comparePosts} from '@mm-redux/utils/post_utils';
 import {Post, PostsState, PostOrderBlock, MessageHistory} from '@mm-redux/types/posts';
 import {RelationOneToOne, Dictionary, IDMappedObjects, RelationOneToMany} from '@mm-redux/types/utilities';
 import {GenericAction} from '@mm-redux/types/actions';
 import {Reaction} from '@mm-redux/types/reactions';
+import {UserProfile} from '@mm-redux/types/users';
 
 export function removeUnneededMetadata(post: Post) {
     if (!post.metadata) {
@@ -165,6 +166,17 @@ export function handlePosts(state: RelationOneToOne<Post, Post> = {}, action: Ge
 
         return nextState;
     }
+    case ThreadTypes.FOLLOW_CHANGED_THREAD: {
+        const {id, following} = action.data;
+        const post = state[id];
+        return {
+            ...state,
+            [id]: {
+                ...post,
+                is_following: following,
+            },
+        };
+    }
     default:
         return state;
     }
@@ -174,6 +186,11 @@ function handlePostReceived(nextState: any, post: Post) {
     if (nextState[post.id] && nextState[post.id].update_at >= post.update_at) {
         // The stored post is newer than the one we've received
         return nextState;
+    }
+
+    // Edited posts that don't have 'is_following' specified should maintain 'is_following' state
+    if (post.update_at > 0 && (post.is_following === null || post.is_following === undefined) && nextState[post.id]) {
+        post.is_following = nextState[post.id].is_following;
     }
 
     if (post.delete_at > 0) {
@@ -193,6 +210,21 @@ function handlePostReceived(nextState: any, post: Post) {
     // Delete any pending post that existed for this post
     if (post.pending_post_id && post.id !== post.pending_post_id && nextState[post.pending_post_id]) {
         Reflect.deleteProperty(nextState, post.pending_post_id);
+    }
+
+    const rootPost: Post = nextState[post.root_id];
+    if (post.root_id && rootPost) {
+        const participants = rootPost.participants || [];
+        const nextRootPost = {...rootPost};
+        if (!participants.find((user: UserProfile) => user.id === post.user_id)) {
+            nextRootPost.participants = [...participants, {id: post.user_id}];
+        }
+
+        if (post.reply_count) {
+            nextRootPost.reply_count = post.reply_count;
+        }
+
+        nextState[post.root_id] = nextRootPost;
     }
 
     return nextState;
@@ -268,6 +300,11 @@ export function postsInChannel(state: Dictionary<Array<PostOrderBlock>> = {}, ac
     switch (action.type) {
     case PostTypes.RECEIVED_NEW_POST: {
         const post = action.data as Post;
+
+        // When CRT enabled, do not add post to the channel if not a root post
+        if (action.features?.collapsedThreadsEnabled && post.root_id) {
+            return state;
+        }
 
         const postsForChannel = state[post.channel_id];
         if (!postsForChannel) {

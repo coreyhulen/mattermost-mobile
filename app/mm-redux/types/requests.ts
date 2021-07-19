@@ -25,6 +25,10 @@ export type PostsRequestsStatuses = {
     getPostThread: RequestStatusType;
 };
 
+export type ThreadsRequestStatuses = {
+    getThreads: RequestStatusType;
+};
+
 export type TeamsRequestsStatuses = {
     getMyTeams: RequestStatusType;
     getTeams: RequestStatusType;

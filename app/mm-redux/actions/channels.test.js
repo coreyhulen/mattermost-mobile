@@ -539,7 +539,7 @@ describe('Actions.Channels', () => {
             });
 
             nock(Client4.getBaseRoute()).
-                post('/channels/members/me/view', {channel_id: channelId, prev_channel_id: prevChannelId}).
+                post('/channels/members/me/view', {channel_id: channelId, prev_channel_id: prevChannelId, collapsed_threads_supported: true}).
                 reply(200, OK_RESPONSE);
 
             const now = Date.now();
@@ -578,7 +578,7 @@ describe('Actions.Channels', () => {
             });
 
             nock(Client4.getBaseRoute()).
-                post('/channels/members/me/view', {channel_id: channelId, prev_channel_id: ''}).
+                post('/channels/members/me/view', {channel_id: channelId, prev_channel_id: '', collapsed_threads_supported: true}).
                 reply(200, OK_RESPONSE);
 
             const result = await store.dispatch(Actions.viewChannel(channelId));
@@ -620,7 +620,7 @@ describe('Actions.Channels', () => {
             });
 
             nock(Client4.getBaseRoute()).
-                post('/channels/members/me/view', {channel_id: channelId, prev_channel_id: ''}).
+                post('/channels/members/me/view', {channel_id: channelId, prev_channel_id: '', collapsed_threads_supported: true}).
                 reply(200, OK_RESPONSE);
 
             const now = Date.now();

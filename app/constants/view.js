@@ -16,6 +16,7 @@ export const SidebarSectionTypes = {
     DIRECT: 'direct',
     RECENT_ACTIVITY: 'recent',
     ALPHA: 'alpha',
+    THREADS: 'threads',
 };
 
 export const NotificationLevels = {
@@ -99,6 +100,12 @@ const ViewTypes = keyMirror({
 
     INDICATOR_BAR_VISIBLE: null,
     CHANNEL_NAV_BAR_CHANGED: null,
+
+    VIEWING_GLOBAL_THREADS_SCREEN: null,
+    NOT_VIEWING_GLOBAL_THREADS_SCREEN: null,
+
+    VIEWING_GLOBAL_THREADS_UNREADS: null,
+    VIEWING_GLOBAL_THREADS_ALL: null,
 });
 
 const RequiredServer = {
@@ -112,6 +119,7 @@ export default {
     ...ViewTypes,
     RequiredServer,
     POST_VISIBILITY_CHUNK_SIZE: 60,
+    CRT_CHUNK_SIZE: 60,
     FEATURE_TOGGLE_PREFIX: 'feature_enabled_',
     EMBED_PREVIEW: 'embed_preview',
     LINK_PREVIEW_DISPLAY: 'link_previews',

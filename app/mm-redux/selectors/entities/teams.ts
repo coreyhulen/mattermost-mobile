@@ -12,6 +12,8 @@ import {Team, TeamMembership} from '@mm-redux/types/teams';
 import {IDMappedObjects} from '@mm-redux/types/utilities';
 import {GlobalState} from '@mm-redux/types/store';
 
+import {isCollapsedThreadsEnabled} from './preferences';
+
 export function getCurrentTeamId(state: GlobalState) {
     return state.entities.teams.currentTeamId;
 }
@@ -246,13 +248,14 @@ export const getMyTeamsCount = reselect.createSelector(
 export const getChannelDrawerBadgeCount = reselect.createSelector(
     getCurrentTeamId,
     getTeamMemberships,
-    (currentTeamId, teamMembers) => {
+    isCollapsedThreadsEnabled,
+    (currentTeamId, teamMembers, collapsedThreadsEnabled) => {
         let mentionCount = 0;
         let messageCount = 0;
         Object.values(teamMembers).forEach((m: TeamMembership) => {
             if (m.team_id !== currentTeamId) {
-                mentionCount += (m.mention_count || 0);
-                messageCount += (m.msg_count || 0);
+                mentionCount += collapsedThreadsEnabled ? (m.mention_count_root || 0) : (m.mention_count || 0);
+                messageCount += collapsedThreadsEnabled ? (m.msg_count_root || 0) : (m.msg_count || 0);
             }
         });
 
@@ -275,14 +278,17 @@ export function makeGetBadgeCountForTeamId() {
     return reselect.createSelector(
         getTeamMemberships,
         (state: GlobalState, id: string) => id,
-        (members, teamId) => {
+        isCollapsedThreadsEnabled,
+        (members, teamId, collapsedThreadsEnabled) => {
             const member = members[teamId];
             let badgeCount = 0;
 
             if (member) {
-                if (member.mention_count) {
-                    badgeCount = member.mention_count;
-                } else if (member.msg_count) {
+                const mentionCount = collapsedThreadsEnabled ? member.mention_count_root : member.mention_count;
+                const msgCount = collapsedThreadsEnabled ? member.msg_count_root : member.msg_count;
+                if (mentionCount) {
+                    badgeCount = mentionCount;
+                } else if (msgCount) {
                     badgeCount = -1;
                 }
             }

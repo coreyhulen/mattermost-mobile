@@ -19,6 +19,7 @@ import {Client4} from '@client/rest';
 import {Posts} from '@mm-redux/constants';
 import {getPost as selectPost, getPostIdsInChannel} from '@mm-redux/selectors/entities/posts';
 import {getCurrentChannelId} from '@mm-redux/selectors/entities/channels';
+import {isCollapsedThreadsEnabled} from '@mm-redux/selectors/entities/preferences';
 import {removeUserFromList} from '@mm-redux/utils/user_utils';
 import {isUnreadChannel, isArchivedChannel} from '@mm-redux/utils/channel_utils';
 
@@ -51,7 +52,7 @@ export function sendEphemeralPost(message, channelId = '', parentId = '', userId
 }
 
 export function sendAddToChannelEphemeralPost(user, addedUsername, message, channelId, postRootId = '') {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         const timestamp = Date.now();
         const post = {
             id: generateId(),
@@ -69,7 +70,8 @@ export function sendAddToChannelEphemeralPost(user, addedUsername, message, chan
             },
         };
 
-        dispatch(receivedNewPost(post));
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+        dispatch(receivedNewPost(post, collapsedThreadsEnabled));
     };
 }
 
@@ -102,13 +104,14 @@ export function selectAttachmentMenuAction(postId, actionId, text, value) {
     };
 }
 
-export function getPosts(channelId, page = 0, perPage = Posts.POST_CHUNK_SIZE) {
+export function getPosts(channelId, page = 0, perPage = Posts.POST_CHUNK_SIZE, fetchThreads = true, collapsedThreadsExtended = false) {
     return async (dispatch, getState) => {
         try {
             const state = getState();
             const {postsInChannel} = state.entities.posts;
             const postForChannel = postsInChannel[channelId];
-            const data = await Client4.getPosts(channelId, page, perPage);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            const data = await Client4.getPosts(channelId, page, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             const posts = Object.values(data.posts);
             const actions = [{
                 type: ViewTypes.SET_CHANNEL_RETRY_FAILED,
@@ -161,10 +164,11 @@ export function getPost(postId) {
     };
 }
 
-export function getPostsSince(channelId, since) {
-    return async (dispatch) => {
+export function getPostsSince(channelId, since, fetchThreads = true, collapsedThreadsExtended = false) {
+    return async (dispatch, getState) => {
         try {
-            const data = await Client4.getPostsSince(channelId, since);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            const data = await Client4.getPostsSince(channelId, since, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             const posts = Object.values(data.posts);
 
             if (posts?.length) {
@@ -188,10 +192,11 @@ export function getPostsSince(channelId, since) {
     };
 }
 
-export function getPostsBefore(channelId, postId, page = 0, perPage = Posts.POST_CHUNK_SIZE) {
-    return async (dispatch) => {
+export function getPostsBefore(channelId, postId, page = 0, perPage = Posts.POST_CHUNK_SIZE, fetchThreads = true, collapsedThreadsExtended = false) {
+    return async (dispatch, getState) => {
         try {
-            const data = await Client4.getPostsBefore(channelId, postId, page, perPage);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
+            const data = await Client4.getPostsBefore(channelId, postId, page, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended);
             const posts = Object.values(data.posts);
 
             if (posts?.length) {
@@ -246,13 +251,14 @@ export function getPostThread(rootId, skipDispatch = false) {
     };
 }
 
-export function getPostsAround(channelId, postId, perPage = Posts.POST_CHUNK_SIZE / 2) {
-    return async (dispatch) => {
+export function getPostsAround(channelId, postId, perPage = Posts.POST_CHUNK_SIZE / 2, fetchThreads = true, collapsedThreadsExtended = false) {
+    return async (dispatch, getState) => {
         try {
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(getState());
             const [before, thread, after] = await Promise.all([
-                Client4.getPostsBefore(channelId, postId, 0, perPage),
-                Client4.getPostThread(postId),
-                Client4.getPostsAfter(channelId, postId, 0, perPage),
+                Client4.getPostsBefore(channelId, postId, 0, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended),
+                Client4.getPostThread(postId, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended),
+                Client4.getPostsAfter(channelId, postId, 0, perPage, fetchThreads, collapsedThreadsEnabled, collapsedThreadsExtended),
             ]);
 
             const data = {
@@ -297,7 +303,8 @@ export function handleNewPostBatch(WebSocketMessage) {
     return async (dispatch, getState) => {
         const state = getState();
         const post = JSON.parse(WebSocketMessage.data.post);
-        const actions = [receivedNewPost(post)];
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
+        const actions = [receivedNewPost(post, collapsedThreadsEnabled)];
 
         // If we don't have the thread for this post, fetch it from the server
         // and include the actions in the batch
@@ -438,8 +445,8 @@ export function loadUnreadChannelPosts(channels, channelMembers) {
             if (channel.id === currentChannelId || isArchivedChannel(channel)) {
                 return;
             }
-
-            const isUnread = isUnreadChannel(channelMembersByChannel, channel);
+            const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
+            const isUnread = isUnreadChannel(channelMembersByChannel, channel, collapsedThreadsEnabled);
             if (!isUnread) {
                 return;
             }
@@ -453,10 +460,10 @@ export function loadUnreadChannelPosts(channels, channelMembers) {
             };
             if (!postIds || !postIds.length) {
                 // Get the first page of posts if it appears we haven't gotten it yet, like the webapp
-                promise = Client4.getPosts(channel.id);
+                promise = Client4.getPosts(channel.id, undefined, undefined, true, collapsedThreadsEnabled);
             } else {
                 const since = getChannelSinceValue(state, channel.id, postIds);
-                promise = Client4.getPostsSince(channel.id, since);
+                promise = Client4.getPostsSince(channel.id, since, true, collapsedThreadsEnabled);
                 trace.since = since;
             }
 
