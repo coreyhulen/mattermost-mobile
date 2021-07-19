@@ -137,7 +137,7 @@ public class CustomPushNotificationHelper {
                 .addAction(replyAction);
     }
 
-    public static NotificationCompat.Builder createNotificationBuilder(Context context, PendingIntent intent, Bundle bundle) {
+    public static NotificationCompat.Builder createNotificationBuilder(Context context, PendingIntent intent, Bundle bundle, boolean createSummary) {
         final NotificationCompat.Builder notification = new NotificationCompat.Builder(context, CHANNEL_HIGH_IMPORTANCE_ID);
 
         String channelId = bundle.getString("channel_id");
@@ -148,7 +148,7 @@ public class CustomPushNotificationHelper {
         addNotificationExtras(notification, bundle);
         setNotificationIcons(context, notification, bundle);
         setNotificationMessagingStyle(context, notification, bundle);
-        setNotificationGroup(notification, channelId);
+        setNotificationGroup(notification, channelId, createSummary);
         setNotificationBadgeType(notification);
         setNotificationSound(notification, notificationPreferences);
         setNotificationVibrate(notification, notificationPreferences);
@@ -373,10 +373,13 @@ public class CustomPushNotificationHelper {
         notification.setStyle(messagingStyle);
     }
 
-    private static void setNotificationGroup(NotificationCompat.Builder notification, String channelId) {
-        notification
-                .setGroup(channelId)
-                .setGroupSummary(true);
+    private static void setNotificationGroup(NotificationCompat.Builder notification, String channelId, boolean setAsSummary) {
+        notification.setGroup(channelId);
+
+        if (setAsSummary) {
+            // if this is the first notification for the channel then set as summary, otherwise skip
+            notification.setGroupSummary(true);
+        }
     }
 
     private static void setNotificationIcons(Context context, NotificationCompat.Builder notification, Bundle bundle) {

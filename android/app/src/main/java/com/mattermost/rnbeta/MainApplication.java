@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.RestrictionsManager;
 import android.os.Bundle;
 import android.util.Log;
-import java.lang.reflect.InvocationTargetException;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -101,7 +100,7 @@ private final ReactNativeHost mReactNativeHost =
 
     @Override
     protected JSIModulePackage getJSIModulePackage() {
-      return new CustomMMKVJSIModulePackage();
+      return (JSIModulePackage) new CustomMMKVJSIModulePackage();
     }
   };
 

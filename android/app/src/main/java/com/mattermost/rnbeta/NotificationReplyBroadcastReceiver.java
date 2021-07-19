@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.Person;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -21,7 +23,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.internal.annotations.EverythingIsNonNull;
 
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -88,21 +89,19 @@ public class NotificationReplyBroadcastReceiver extends BroadcastReceiver {
 
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
-            @EverythingIsNonNull
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.i("ReactNative", String.format("Reply FAILED exception %s", e.getMessage()));
                 onReplyFailed(notificationId);
             }
 
             @Override
-            @EverythingIsNonNull
-            public void onResponse(Call call, final Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull final Response response) throws IOException {
                 if (response.isSuccessful()) {
                     onReplySuccess(notificationId, message);
                     Log.i("ReactNative", "Reply SUCCESS");
                 } else {
                     assert response.body() != null;
-                    Log.i("ReactNative", String.format("Reply FAILED status %s BODY %s", response.code(), response.body().string()));
+                    Log.i("ReactNative", String.format("Reply FAILED status %s BODY %s", response.code(), Objects.requireNonNull(response.body()).string()));
                     onReplyFailed(notificationId);
                 }
             }
@@ -133,7 +132,7 @@ public class NotificationReplyBroadcastReceiver extends BroadcastReceiver {
         final Intent cta = new Intent(mContext, ProxyService.class);
         final PushNotificationProps notificationProps = new PushNotificationProps(bundle);
         final PendingIntent pendingIntent = NotificationIntentAdapter.createPendingNotificationIntent(mContext, cta, notificationProps);
-        NotificationCompat.Builder builder = CustomPushNotificationHelper.createNotificationBuilder(mContext, pendingIntent, bundle);
+        NotificationCompat.Builder builder = CustomPushNotificationHelper.createNotificationBuilder(mContext, pendingIntent, bundle, false);
         Notification notification =  builder.build();
         NotificationCompat.MessagingStyle messagingStyle = NotificationCompat.MessagingStyle.extractMessagingStyleFromNotification(notification);
         assert messagingStyle != null;

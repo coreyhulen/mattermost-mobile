@@ -1,5 +1,6 @@
 package com.mattermost.rnbeta;
 
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -66,11 +67,9 @@ public class CustomPushNotification extends PushNotification {
             notificationsInChannel.remove(channelId);
             saveNotificationsMap(context, notificationsInChannel);
 
-            if (context != null) {
-                for (final Integer notificationId : notifications) {
-                    final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-                    notificationManager.cancel(notificationId);
-                }
+            for (final Integer notificationId : notifications) {
+                final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+                notificationManager.cancel(notificationId);
             }
         }
     }
@@ -120,23 +119,32 @@ public class CustomPushNotification extends PushNotification {
         switch (type) {
             case PUSH_TYPE_MESSAGE:
             case PUSH_TYPE_SESSION:
+                boolean createSummary = type.equals(PUSH_TYPE_MESSAGE);
                 if (!mAppLifecycleFacade.isAppVisible()) {
                     if (type.equals(PUSH_TYPE_MESSAGE)) {
                         if (channelId != null) {
                             Map<String, List<Integer>> notificationsInChannel = loadNotificationsMap(mContext);
-                            synchronized (notificationsInChannel) {
-                                List<Integer> list = notificationsInChannel.get(channelId);
-                                if (list == null) {
-                                    list = Collections.synchronizedList(new ArrayList(0));
-                                }
-
-                                list.add(0, notificationId);
-                                notificationsInChannel.put(channelId, list);
-                                saveNotificationsMap(mContext, notificationsInChannel);
+                            List<Integer> list = notificationsInChannel.get(channelId);
+                            if (list == null) {
+                                list = Collections.synchronizedList(new ArrayList(0));
                             }
+
+                            list.add(0, notificationId);
+                            if (list.size() > 1) {
+                                createSummary = false;
+                            }
+
+                            if (createSummary) {
+                                // Add the summary notification id as well
+                                list.add(0, notificationId + 1);
+                            }
+
+                            notificationsInChannel.put(channelId, list);
+                            saveNotificationsMap(mContext, notificationsInChannel);
                         }
                     }
-                    super.postNotification(notificationId);
+
+                    buildNotification(notificationId, createSummary);
                 } else {
                     notifyReceivedToJS();
                 }
@@ -173,10 +181,25 @@ public class CustomPushNotification extends PushNotification {
         }
     }
 
+    private void buildNotification(Integer notificationId, boolean createSummary) {
+        final PendingIntent pendingIntent = super.getCTAPendingIntent();
+        final Notification notification = buildNotification(pendingIntent);
+        if (createSummary) {
+            final Notification summary = getNotificationSummaryBuilder(pendingIntent).build();
+            super.postNotification(summary, notificationId + 1);
+        }
+        super.postNotification(notification, notificationId);
+    }
+
     @Override
     protected NotificationCompat.Builder getNotificationBuilder(PendingIntent intent) {
         Bundle bundle = mNotificationProps.asBundle();
-        return CustomPushNotificationHelper.createNotificationBuilder(mContext, intent, bundle);
+        return CustomPushNotificationHelper.createNotificationBuilder(mContext, intent, bundle, false);
+    }
+
+    protected NotificationCompat.Builder getNotificationSummaryBuilder(PendingIntent intent) {
+        Bundle bundle = mNotificationProps.asBundle();
+        return CustomPushNotificationHelper.createNotificationBuilder(mContext, intent, bundle, true);
     }
 
     private void notificationReceiptDelivery(String ackId, String postId, String type, boolean isIdLoaded, ResolvePromise promise) {
